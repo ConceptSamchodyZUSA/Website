@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Plus, Edit, Trash2, Save, X, Eye, EyeOff, LogOut } from 'lucide-react';
-import { carService, inquiryService } from './services';
+import { Plus, Edit, Trash2, Save, X, Eye, EyeOff, LogOut, Upload } from 'lucide-react';
+import { carService, inquiryService, storageService } from './services';
 import bcrypt from 'bcryptjs';
 
 const AdminPanel = () => {
@@ -12,6 +12,7 @@ const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('cars');
   const [editingCar, setEditingCar] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   // Password hash - bcrypt secured
   // To change: node generate-password-hash.js "YourNewPassword"
@@ -60,6 +61,35 @@ const AdminPanel = () => {
       alert('Błąd podczas usuwania samochodu');
     } else {
       loadData();
+    }
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      alert('Proszę wybrać plik obrazu');
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Plik jest za duży. Maksymalny rozmiar to 5MB');
+      return;
+    }
+
+    setUploadingImage(true);
+    const { data, error } = await storageService.uploadCarImage(file);
+    setUploadingImage(false);
+
+    if (error) {
+      console.error('Upload error:', error);
+      alert('Błąd podczas uploadu zdjęcia');
+    } else {
+      setEditingCar({...editingCar, image_url: data.url});
+      alert('Zdjęcie zostało przesłane!');
     }
   };
 
@@ -426,14 +456,27 @@ const AdminPanel = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-2">URL zdjęcia</label>
-                  <input
-                    type="text"
-                    value={editingCar.image_url}
-                    onChange={(e) => setEditingCar({...editingCar, image_url: e.target.value})}
-                    className="w-full bg-gray-700 border border-gray-600 rounded px-4 py-2"
-                    placeholder="https://..."
-                  />
+                  <label className="block text-sm font-semibold mb-2">Zdjęcie samochodu</label>
+                  <div className="space-y-2">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      disabled={uploadingImage}
+                      className="w-full bg-gray-700 border border-gray-600 rounded px-4 py-2 text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-red-600 file:text-white hover:file:bg-red-700 file:cursor-pointer"
+                    />
+                    {uploadingImage && (
+                      <p className="text-sm text-yellow-500 flex items-center gap-2">
+                        <Upload size={16} className="animate-pulse" />
+                        Uploading...
+                      </p>
+                    )}
+                    {editingCar.image_url && (
+                      <div className="mt-2">
+                        <img src={editingCar.image_url} alt="Preview" className="w-32 h-32 object-cover rounded border border-gray-600" />
+                      </div>
+                    )}
+                  </div>
                 </div>
                 <div className="md:col-span-2">
                   <label className="block text-sm font-semibold mb-2">Opis</label>
