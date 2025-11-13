@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# 🚗 ConceptUSA - Samochody z USA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Profesjonalna strona internetowa dla firmy importującej samochody z USA. Built with React, Supabase, Tailwind CSS i deployed na Vercel.
 
-## Available Scripts
+![ConceptUSA](https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&h=400&fit=crop)
 
-In the project directory, you can run:
+## 🌟 Funkcjonalności
 
-### `npm start`
+### Strona główna
+- ✅ Nowoczesny, responsywny design
+- ✅ Sekcja portfolio z dostępnymi samochodami
+- ✅ Filtrowanie (wszystkie/dostępne/sprzedane)
+- ✅ Szczegółowe karty samochodów z:
+  - Marką, modelem, rokiem produkcji
+  - Ceną, przebiegiem
+  - Pojemnością silnika i mocą (KM)
+  - Skrzynią biegów, paliwem, kolorem
+- ✅ Formularz kontaktowy/zamówienia
+- ✅ Sekcja "O nas" i "Jak to działa"
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Panel administracyjny (`/admin`)
+- ✅ Zabezpieczone hasłem logowanie
+- ✅ Zarządzanie samochodami (CRUD):
+  - Dodawanie nowych aut
+  - Edycja istniejących
+  - Usuwanie
+  - Zmiana statusu (dostępny/sprzedany/zarezerwowany)
+- ✅ Przegląd zapytań od klientów
+- ✅ Aktualizacja statusu zapytań
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend & Database
+- ✅ Supabase PostgreSQL database
+- ✅ Row Level Security (RLS)
+- ✅ Automatyczne zapisy formularzy
+- ✅ EmailJS integration dla powiadomień
 
-### `npm test`
+## 🛠️ Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend:** React 19.2, React Router
+- **Styling:** Tailwind CSS
+- **Icons:** Lucide React
+- **Database:** Supabase (PostgreSQL)
+- **Email:** EmailJS
+- **Hosting:** Vercel
+- **CI/CD:** Automatyczne deployments z GitHub
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📱 Responsywność
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Strona jest w pełni responsywna:
+- ✅ Desktop (1920px+)
+- ✅ Laptop (1024px-1919px)
+- ✅ Tablet (768px-1023px)
+- ✅ Mobile (320px-767px)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## 👨‍💻 Autor
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**ConceptUSA Team**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Website: [conceptusa.pl](https://conceptusa.pl) (wkrótce!)
+- Email: kontakt@conceptusa.pl
+- Phone: 691 795 116
+- Facebook: [Loveusacar](https://facebook.com/Loveusacar)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🙏 Acknowledgments
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [React](https://react.dev)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Supabase](https://supabase.com)
+- [Vercel](https://vercel.com)
+- [EmailJS](https://www.emailjs.com)
+- [Lucide Icons](https://lucide.dev)
+- [Unsplash](https://unsplash.com) - za zdjęcia
 
-## Learn More
+## License
+© 2025 Jakub Pospieszny (Kobeep). All rights reserved.
+This is proprietary software for business use.
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Made with ❤️ for car enthusiasts**

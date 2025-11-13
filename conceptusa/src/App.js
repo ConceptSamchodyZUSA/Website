@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, CheckCircle, Filter, Calendar, Gauge } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap } from 'lucide-react';
+import { carService, inquiryService } from './services';
+import { emailService } from './emailService';
 
 const ConceptUSACars = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedCar, setSelectedCar] = useState(null);
+  const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,6 +21,11 @@ const ConceptUSACars = () => {
     message: ''
   });
 
+  // Fetch cars from Supabase on mount
+  useEffect(() => {
+    fetchCars();
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -25,68 +34,17 @@ const ConceptUSACars = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const cars = [
-    {
-      id: 1,
-      brand: 'Ford',
-      model: 'Mustang GT',
-      year: 2022,
-      price: 145000,
-      mileage: 15000,
-      image: 'https://images.unsplash.com/photo-1584345604476-8ec5f5a2d6f0?w=800',
-      status: 'available'
-    },
-    {
-      id: 2,
-      brand: 'Chevrolet',
-      model: 'Camaro SS',
-      year: 2023,
-      price: 165000,
-      mileage: 8000,
-      image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800',
-      status: 'available'
-    },
-    {
-      id: 3,
-      brand: 'Dodge',
-      model: 'Challenger SRT',
-      year: 2021,
-      price: 185000,
-      mileage: 22000,
-      image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800',
-      status: 'sold'
-    },
-    {
-      id: 4,
-      brand: 'Tesla',
-      model: 'Model 3',
-      year: 2023,
-      price: 195000,
-      mileage: 5000,
-      image: 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800',
-      status: 'available'
-    },
-    {
-      id: 5,
-      brand: 'Jeep',
-      model: 'Wrangler Rubicon',
-      year: 2022,
-      price: 175000,
-      mileage: 18000,
-      image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800',
-      status: 'available'
-    },
-    {
-      id: 6,
-      brand: 'RAM',
-      model: '1500 TRX',
-      year: 2023,
-      price: 285000,
-      mileage: 3000,
-      image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800',
-      status: 'available'
+  const fetchCars = async () => {
+    setLoading(true);
+    const { data, error } = await carService.getCars();
+    if (error) {
+      console.error('Error loading cars:', error);
+      alert('Error loading cars. Check Supabase configuration.');
+    } else {
+      setCars(data || []);
     }
-  ];
+    setLoading(false);
+  };
 
   const filteredCars = activeFilter === 'all'
     ? cars
@@ -107,20 +65,59 @@ const ConceptUSACars = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Dziękujemy za zapytanie! Skontaktujemy się wkrótce.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      brand: '',
-      model: '',
-      budget: '',
-      year: '',
-      message: ''
-    });
+
+    if (!formData.name || !formData.email || !formData.phone) {
+      alert('Please fill in all required fields (Name, Email, Phone)');
+      return;
+    }
+
+    try {
+      // Save inquiry to Supabase
+      const { data, error } = await inquiryService.createInquiry({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        brand: formData.brand || null,
+        model: formData.model || null,
+        budget: formData.budget ? parseFloat(formData.budget) : null,
+        year_range: formData.year || null,
+        message: formData.message || null
+      });
+
+      if (error) {
+        console.error('Error submitting inquiry:', error);
+        alert('Error submitting form. Please try again or contact us by phone.');
+        return;
+      }
+
+      // Send email notification (optional)
+      if (emailService.isConfigured()) {
+        const emailResult = await emailService.sendInquiryEmail(formData);
+        if (!emailResult.success) {
+          console.warn('Email not sent, but inquiry saved to database');
+        }
+      }
+
+      console.log('Inquiry submitted:', data);
+      alert('Thank you for your inquiry! We will contact you soon.');
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        brand: '',
+        model: '',
+        budget: '',
+        year: '',
+        message: ''
+      });
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      alert('Unexpected error occurred. Please try again.');
+    }
   };
 
   return (
@@ -322,47 +319,80 @@ const ConceptUSACars = () => {
             </button>
           </div>
 
+          {/* Loading */}
+          {loading && (
+            <div className="text-center py-20">
+              <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-red-600"></div>
+              <p className="mt-4 text-gray-400">Ładowanie samochodów...</p>
+            </div>
+          )}
+
+          {/* No cars message */}
+          {!loading && filteredCars.length === 0 && (
+            <div className="text-center py-20">
+              <p className="text-xl text-gray-400">Brak samochodów w tej kategorii</p>
+            </div>
+          )}
+
           {/* Cars Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredCars.map((car) => (
-              <div
-                key={car.id}
-                className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-red-500/20 transition transform hover:scale-105 cursor-pointer"
-                onClick={() => setSelectedCar(car)}
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={car.image}
-                    alt={`${car.brand} ${car.model}`}
-                    className="w-full h-full object-cover hover:scale-110 transition duration-500"
-                  />
-                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold ${
-                    car.status === 'available'
-                      ? 'bg-green-500'
-                      : 'bg-gray-500'
-                  }`}>
-                    {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
+          {!loading && filteredCars.length > 0 && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredCars.map((car) => (
+                <div
+                  key={car.id}
+                  className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-red-500/20 transition transform hover:scale-105 cursor-pointer"
+                  onClick={() => setSelectedCar(car)}
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={car.image_url || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800'}
+                      alt={`${car.brand} ${car.model}`}
+                      className="w-full h-full object-cover hover:scale-110 transition duration-500"
+                    />
+                    <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold ${
+                      car.status === 'available'
+                        ? 'bg-green-500'
+                        : 'bg-gray-500'
+                    }`}>
+                      {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold mb-2">{car.brand} {car.model}</h3>
+                    <div className="flex items-center gap-4 text-gray-400 mb-2 flex-wrap">
+                      <span className="flex items-center gap-1">
+                        <Calendar size={16} />
+                        {car.year}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Gauge size={16} />
+                        {car.mileage?.toLocaleString()} mil
+                      </span>
+                    </div>
+                    {(car.engine_capacity || car.horsepower) && (
+                      <div className="flex items-center gap-4 text-gray-400 mb-4 flex-wrap">
+                        {car.engine_capacity && (
+                          <span className="flex items-center gap-1">
+                            <Fuel size={16} />
+                            {car.engine_capacity}L
+                          </span>
+                        )}
+                        {car.horsepower && (
+                          <span className="flex items-center gap-1">
+                            <Zap size={16} />
+                            {car.horsepower} KM
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    <div className="text-3xl font-bold text-red-600">
+                      {car.price?.toLocaleString()} PLN
+                    </div>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">{car.brand} {car.model}</h3>
-                  <div className="flex items-center gap-4 text-gray-400 mb-4">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={16} />
-                      {car.year}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Gauge size={16} />
-                      {car.mileage.toLocaleString()} mil
-                    </span>
-                  </div>
-                  <div className="text-3xl font-bold text-red-600">
-                    {car.price.toLocaleString()} PLN
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -504,12 +534,12 @@ const ConceptUSACars = () => {
             </a>
 
             <a
-              href="mailto:kontakt@conceptusa.pl"
+              href="mailto:kuba.pospieszny@gmail.com"
               className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
             >
               <Mail size={40} className="mx-auto mb-4 text-blue-500" />
               <h3 className="text-xl font-bold mb-2">Email</h3>
-              <p className="text-gray-400">kontakt@conceptusa.pl</p>
+              <p className="text-gray-400">kuba.pospieszny@gmail.com</p>
             </a>
 
             <a
@@ -540,7 +570,7 @@ const ConceptUSACars = () => {
           onClick={() => setSelectedCar(null)}
         >
           <div
-            className="bg-gray-800 rounded-xl max-w-2xl w-full p-8 relative"
+            className="bg-gray-800 rounded-xl max-w-2xl w-full p-8 relative max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -551,12 +581,16 @@ const ConceptUSACars = () => {
             </button>
 
             <img
-              src={selectedCar.image}
+              src={selectedCar.image_url || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800'}
               alt={`${selectedCar.brand} ${selectedCar.model}`}
               className="w-full h-64 object-cover rounded-lg mb-6"
             />
 
             <h3 className="text-3xl font-bold mb-4">{selectedCar.brand} {selectedCar.model}</h3>
+
+            {selectedCar.description && (
+              <p className="text-gray-300 mb-6">{selectedCar.description}</p>
+            )}
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div>
@@ -565,15 +599,45 @@ const ConceptUSACars = () => {
               </div>
               <div>
                 <p className="text-gray-400">Przebieg</p>
-                <p className="text-xl font-bold">{selectedCar.mileage.toLocaleString()} mil</p>
+                <p className="text-xl font-bold">{selectedCar.mileage?.toLocaleString()} mil</p>
               </div>
+              {selectedCar.engine_capacity && (
+                <div>
+                  <p className="text-gray-400">Pojemność silnika</p>
+                  <p className="text-xl font-bold">{selectedCar.engine_capacity}L</p>
+                </div>
+              )}
+              {selectedCar.horsepower && (
+                <div>
+                  <p className="text-gray-400">Moc</p>
+                  <p className="text-xl font-bold">{selectedCar.horsepower} KM</p>
+                </div>
+              )}
+              {selectedCar.transmission && (
+                <div>
+                  <p className="text-gray-400">Skrzynia biegów</p>
+                  <p className="text-xl font-bold capitalize">{selectedCar.transmission}</p>
+                </div>
+              )}
+              {selectedCar.fuel_type && (
+                <div>
+                  <p className="text-gray-400">Paliwo</p>
+                  <p className="text-xl font-bold capitalize">{selectedCar.fuel_type}</p>
+                </div>
+              )}
+              {selectedCar.color && (
+                <div>
+                  <p className="text-gray-400">Kolor</p>
+                  <p className="text-xl font-bold capitalize">{selectedCar.color}</p>
+                </div>
+              )}
               <div>
                 <p className="text-gray-400">Status</p>
                 <p className="text-xl font-bold">{selectedCar.status === 'available' ? 'Dostępny' : 'Sprzedany'}</p>
               </div>
-              <div>
+              <div className="col-span-2">
                 <p className="text-gray-400">Cena</p>
-                <p className="text-3xl font-bold text-red-600">{selectedCar.price.toLocaleString()} PLN</p>
+                <p className="text-3xl font-bold text-red-600">{selectedCar.price?.toLocaleString()} PLN</p>
               </div>
             </div>
 
@@ -591,6 +655,22 @@ const ConceptUSACars = () => {
           </div>
         </div>
       )}
+
+      {/* Footer with author info */}
+      <footer className="bg-gray-900 text-center py-6 mt-12 border-t border-gray-800">
+        <p className="text-gray-400 text-sm">
+          Built by{' '}
+          <a
+            href="https://github.com/Kobeep"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:text-blue-400 font-semibold transition"
+          >
+            Kobeep
+          </a>
+          {' '}(Jakub Pospieszny)
+        </p>
+      </footer>
     </div>
   );
 };
