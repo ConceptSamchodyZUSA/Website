@@ -120,6 +120,22 @@ const ConceptUSACars = () => {
     }
   };
 
+  // Fill form with car details and scroll to order section
+  const inquireAboutCar = (car) => {
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      brand: car.brand,
+      model: car.model,
+      budget: car.price?.toString() || '',
+      year: car.year?.toString() || '',
+      message: `Hej! Jestem zainteresowany ${car.brand} ${car.model} z ${car.year} roku. Proszę o więcej informacji.`
+    });
+    setSelectedCar(null);
+    scrollToSection('order');
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Navigation */}
@@ -758,10 +774,7 @@ const ConceptUSACars = () => {
 
             {selectedCar.status === 'available' && (
               <button
-                onClick={() => {
-                  setSelectedCar(null);
-                  scrollToSection('order');
-                }}
+                onClick={() => inquireAboutCar(selectedCar)}
                 className="w-full bg-red-600 hover:bg-red-700 py-3 rounded-lg font-semibold transition"
               >
                 Zapytaj o ten samochód
