@@ -130,11 +130,9 @@ const ConceptUSACars = () => {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="text-2xl font-bold">
-                <div className="flex flex-col leading-tight">
-                  <span className="text-red-600">CONCEPT</span>
-                  <span className="text-blue-500 text-sm">Samochody z USA</span>
-                </div>
+              <div className="text-2xl font-bold flex flex-col leading-tight">
+                <span className="text-red-600">CONCEPT</span>
+                <span className="text-blue-500 text-sm">Samochody z USA</span>
               </div>
             </div>
 
@@ -563,7 +561,7 @@ const ConceptUSACars = () => {
             <p className="text-center text-gray-400 mb-4">Długa 24, 84-230 Dębogórze-Wybudowanie</p>
             <div className="aspect-video w-full rounded-lg overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.1234567890123!2d18.123456789012345!3d54.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTTCsDA3JzI0LjQiTiAxOMKwMDcnMjQuNCJF!5e0!3m2!1spl!2spl!4v1234567890123!5m2!1spl!2spl&q=D%C5%82uga+24%2C+84-230+D%C4%99bog%C3%B3rze-Wybudowanie"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.234567!2d18.1234567!3d54.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd09e3c3e0b0b9%3A0x1234567890abcdef!2zRMWCdWdhIDI0LCA4NC0yMzAgRMSZYm9nw7NyemUtV3lidWRvd2FuaWU!5e0!3m2!1spl!2spl!4v1234567890123!5m2!1spl!2spl"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -572,6 +570,16 @@ const ConceptUSACars = () => {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Google Maps - CONCEPT Samochody z USA"
               ></iframe>
+            </div>
+            <div className="text-center mt-4">
+              <a
+                href="https://maps.app.goo.gl/Cjt7ecape4DMaosh8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-red-600 hover:bg-red-700 px-6 py-2 rounded-full transition"
+              >
+                Otwórz w Google Maps
+              </a>
             </div>
           </div>
         </div>
