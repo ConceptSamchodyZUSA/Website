@@ -131,8 +131,10 @@ const ConceptUSACars = () => {
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <div className="text-2xl font-bold">
-                <span className="text-red-600">CONCEPT</span>
-                <span className="text-blue-500 text-sm ml-2">Samochody z USA</span>
+                <div className="flex flex-col leading-tight">
+                  <span className="text-red-600">CONCEPT</span>
+                  <span className="text-blue-500 text-sm">Samochody z USA</span>
+                </div>
               </div>
             </div>
 
@@ -188,7 +190,8 @@ const ConceptUSACars = () => {
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-white to-blue-500">
-              CONCEPT - Samochody z USA
+              <span className="block">CONCEPT</span>
+              <span className="block text-4xl md:text-5xl mt-2">Samochody z USA</span>
             </span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-300">
@@ -523,7 +526,7 @@ const ConceptUSACars = () => {
             <span className="text-red-600">Kontakt</span>
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
             <a
               href="tel:691795116"
               className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
@@ -552,6 +555,24 @@ const ConceptUSACars = () => {
               <h3 className="text-xl font-bold mb-2">Facebook</h3>
               <p className="text-gray-400">Loveusacar</p>
             </a>
+          </div>
+
+          {/* Google Maps */}
+          <div className="bg-gray-900 p-4 rounded-xl">
+            <h3 className="text-2xl font-bold mb-4 text-center">Nasza lokalizacja</h3>
+            <p className="text-center text-gray-400 mb-4">Długa 24, 84-230 Dębogórze-Wybudowanie</p>
+            <div className="aspect-video w-full rounded-lg overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.1234567890123!2d18.123456789012345!3d54.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTTCsDA3JzI0LjQiTiAxOMKwMDcnMjQuNCJF!5e0!3m2!1spl!2spl!4v1234567890123!5m2!1spl!2spl&q=D%C5%82uga+24%2C+84-230+D%C4%99bog%C3%B3rze-Wybudowanie"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Google Maps - CONCEPT Samochody z USA"
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>
