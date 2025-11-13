@@ -130,9 +130,9 @@ const ConceptUSACars = () => {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="text-2xl font-bold flex flex-col leading-tight">
+              <div className="text-2xl font-bold">
                 <span className="text-red-600">CONCEPT</span>
-                <span className="text-blue-500 text-sm">Samochody z USA</span>
+                <span className="text-blue-500 text-sm ml-2">Samochody z USA</span>
               </div>
             </div>
 
