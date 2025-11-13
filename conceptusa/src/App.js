@@ -186,6 +186,7 @@ const ConceptUSACars = () => {
         ></div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+          <span className="text-red-600">CONCEPT</span>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-white to-blue-500">
               Samochody z USA
