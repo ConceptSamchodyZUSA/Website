@@ -15,7 +15,7 @@ const AdminPanel = () => {
 
   // Password hash for "KobeandMike" - bcrypt secured
   // To change: node generate-password-hash.js "YourNewPassword"
-  const ADMIN_PASSWORD_HASH = '$2a$10$0z9K8X.QNwqwMi.VEn/Zv.WPHg9Gf5j0xnLQ7N4y8RCh3x7K9iB6m';
+  const ADMIN_PASSWORD_HASH = '$2b$10$YT7ssu576utwYPgoVot1au.xm0K5aX1pwqErY3B33lHghTe0AIZly';
 
   const loadData = useCallback(async () => {
     setLoading(true);
