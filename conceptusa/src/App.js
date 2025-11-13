@@ -132,7 +132,7 @@ const ConceptUSACars = () => {
             <div className="flex items-center space-x-3">
               <div className="text-2xl font-bold">
                 <span className="text-red-600">CONCEPT</span>
-                <span className="text-blue-500 text-sm ml-2">Kocham Kinge</span>
+                <span className="text-blue-500 text-sm ml-2">Samochody z USA</span>
               </div>
             </div>
 
