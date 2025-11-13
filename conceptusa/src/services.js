@@ -1,8 +1,8 @@
-import { supabase } from './supabaseClient';
+import { supabase, supabaseAdmin } from './supabaseClient';
 
 // Car service - database operations for cars
 export const carService = {
-  // Get all cars with optional status filter
+  // Get all cars with optional status filter (public access)
   async getCars(status = null) {
     try {
       let query = supabase
@@ -24,7 +24,7 @@ export const carService = {
     }
   },
 
-  // Get single car by ID
+  // Get single car by ID (public access)
   async getCarById(id) {
     try {
       const { data, error } = await supabase
@@ -41,10 +41,10 @@ export const carService = {
     }
   },
 
-  // Create new car (requires auth)
+  // Create new car (admin only - uses service role)
   async createCar(carData) {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAdmin
         .from('cars')
         .insert([carData])
         .select()
@@ -58,10 +58,10 @@ export const carService = {
     }
   },
 
-  // Update car (requires auth)
+  // Update car (admin only - uses service role)
   async updateCar(id, updates) {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAdmin
         .from('cars')
         .update(updates)
         .eq('id', id)
@@ -76,10 +76,10 @@ export const carService = {
     }
   },
 
-  // Delete car (requires auth)
+  // Delete car (admin only - uses service role)
   async deleteCar(id) {
     try {
-      const { error } = await supabase
+      const { error } = await supabaseAdmin
         .from('cars')
         .delete()
         .eq('id', id);
@@ -100,7 +100,7 @@ export const carService = {
     });
   },
 
-  // Search cars with filters
+  // Search cars with filters (public access)
   async searchCars(filters) {
     try {
       let query = supabase.from('cars').select('*');
@@ -140,7 +140,7 @@ export const carService = {
 
 // Inquiry service - contact form operations
 export const inquiryService = {
-  // Create new inquiry
+  // Create new inquiry (public access)
   async createInquiry(inquiryData) {
     try {
       const { data, error } = await supabase
@@ -157,11 +157,10 @@ export const inquiryService = {
     }
   },
 
-
-  // Get all inquiries (requires auth)
+  // Get all inquiries (admin only - uses service role)
   async getInquiries() {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAdmin
         .from('inquiries')
         .select('*')
         .order('created_at', { ascending: false });
@@ -174,10 +173,10 @@ export const inquiryService = {
     }
   },
 
-  // Update inquiry status (requires auth)
+  // Update inquiry status (admin only - uses service role)
   async updateInquiryStatus(id, status) {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAdmin
         .from('inquiries')
         .update({ status })
         .eq('id', id)
@@ -195,21 +194,21 @@ export const inquiryService = {
 
 // Storage service - image upload operations
 export const storageService = {
-  // Upload car image
+  // Upload car image (admin only - uses service role)
   async uploadCarImage(file, carId = null) {
     try {
       const fileExt = file.name.split('.').pop();
       const fileName = `${carId || Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
       const filePath = `cars/${fileName}`;
 
-      const { error } = await supabase.storage
+      const { error } = await supabaseAdmin.storage
         .from('car-images')
         .upload(filePath, file);
 
       if (error) throw error;
 
       // Get public URL
-      const { data: urlData } = supabase.storage
+      const { data: urlData } = supabaseAdmin.storage
         .from('car-images')
         .getPublicUrl(filePath);
 
@@ -220,10 +219,10 @@ export const storageService = {
     }
   },
 
-  // Delete image
+  // Delete image (admin only - uses service role)
   async deleteImage(filePath) {
     try {
-      const { error } = await supabase.storage
+      const { error } = await supabaseAdmin.storage
         .from('car-images')
         .remove([filePath]);
 

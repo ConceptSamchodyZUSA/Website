@@ -71,45 +71,34 @@ CREATE TRIGGER update_inquiries_updated_at BEFORE UPDATE ON inquiries
 ALTER TABLE cars ENABLE ROW LEVEL SECURITY;
 ALTER TABLE inquiries ENABLE ROW LEVEL SECURITY;
 
--- Polityki RLS - każdy może czytać auta
-CREATE POLICY "Cars are viewable by everyone"
+-- ============================================
+-- POLITYKI RLS DLA TABELI CARS
+-- ============================================
+
+-- Każdy może czytać samochody (dla strony głównej)
+CREATE POLICY "Enable read access for all users"
     ON cars FOR SELECT
     USING (true);
 
--- Tylko autoryzowani użytkownicy mogą dodawać/edytować auta
-CREATE POLICY "Authenticated users can insert cars"
-    ON cars FOR INSERT
-    WITH CHECK (auth.role() = 'authenticated');
+-- Service role może wszystko (dla panelu admina używającego service_role key)
+-- Te operacje będą wykonywane z backendu/service role key
+CREATE POLICY "Enable all access for service role"
+    ON cars FOR ALL
+    USING (auth.jwt() ->> 'role' = 'service_role');
 
-CREATE POLICY "Authenticated users can update cars"
-    ON cars FOR UPDATE
-    USING (auth.role() = 'authenticated');
+-- ============================================
+-- POLITYKI RLS DLA TABELI INQUIRIES
+-- ============================================
 
-CREATE POLICY "Authenticated users can delete cars"
-    ON cars FOR DELETE
-    USING (auth.role() = 'authenticated');
-
--- Polityki dla inquiries
-CREATE POLICY "Anyone can insert inquiries"
+-- Każdy może dodawać zapytania (formularz kontaktowy)
+CREATE POLICY "Enable insert for all users"
     ON inquiries FOR INSERT
     WITH CHECK (true);
 
-CREATE POLICY "Authenticated users can view all inquiries"
-    ON inquiries FOR SELECT
-    USING (auth.role() = 'authenticated');
-
-CREATE POLICY "Authenticated users can update inquiries"
-    ON inquiries FOR UPDATE
-    USING (auth.role() = 'authenticated');
-
--- Przykładowe dane
-INSERT INTO cars (brand, model, year, price, mileage, engine_capacity, horsepower, transmission, fuel_type, color, status, description, image_url) VALUES
-('Ford', 'Mustang GT', 2022, 145000, 15000, 5.0, 450, 'automatic', 'gasoline', 'red', 'available', 'Kultowy amerykański muscle car w doskonałym stanie. Silnik V8 5.0L o mocy 450 KM. Full opcja.', 'https://images.unsplash.com/photo-1584345604476-8ec5f5a2d6f0?w=800'),
-('Chevrolet', 'Camaro SS', 2023, 165000, 8000, 6.2, 455, 'automatic', 'gasoline', 'yellow', 'available', 'Chevrolet Camaro SS z silnikiem V8 6.2L. Niski przebieg, idealny stan techniczny.', 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800'),
-('Dodge', 'Challenger SRT', 2021, 185000, 22000, 6.4, 485, 'automatic', 'gasoline', 'black', 'sold', 'Dodge Challenger SRT Hellcat - ponad 700 KM mocy! SPRZEDANY', 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800'),
-('Tesla', 'Model 3', 2023, 195000, 5000, 0, 513, 'automatic', 'electric', 'white', 'available', 'Tesla Model 3 Performance. Elektryczny napęd, zasięg 500km. Autopilot.', 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800'),
-('Jeep', 'Wrangler Rubicon', 2022, 175000, 18000, 3.6, 285, 'automatic', 'gasoline', 'green', 'available', 'Jeep Wrangler Rubicon 4x4. Gotowy na każdą przygodę!', 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800'),
-('RAM', '1500 TRX', 2023, 285000, 3000, 6.2, 702, 'automatic', 'gasoline', 'grey', 'available', 'RAM 1500 TRX - najpotężniejszy pickup na rynku! Silnik Hellcat V8 o mocy 702 KM.', 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800');
+-- Service role może wszystko (dla panelu admina)
+CREATE POLICY "Enable all access for service role inquiries"
+    ON inquiries FOR ALL
+    USING (auth.jwt() ->> 'role' = 'service_role');
 
 -- Widok do statystyk (opcjonalnie)
 CREATE VIEW car_stats AS
