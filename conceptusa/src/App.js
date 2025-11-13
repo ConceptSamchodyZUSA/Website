@@ -239,6 +239,88 @@ const ConceptUSACars = () => {
               </div>
             ))}
           </div>
+
+          {/* Specjalizacja */}
+          <div className="mt-20">
+            <h3 className="text-3xl font-bold text-center mb-8">
+              Nasza <span className="text-red-600">specjalizacja</span>
+            </h3>
+            <div className="bg-gray-900 rounded-xl p-8 text-center">
+              <p className="text-xl text-gray-300 mb-6">
+                Specjalizujemy się w markach grupy <span className="text-blue-500 font-bold">Stellantis</span>
+              </p>
+              <div className="flex flex-wrap justify-center gap-6 text-lg">
+                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Chrysler</span>
+                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Dodge</span>
+                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Jeep</span>
+                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Fiat</span>
+                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Ford</span>
+                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Alfa Romeo</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Formy zakupu */}
+          <div className="mt-16">
+            <h3 className="text-3xl font-bold text-center mb-12">
+              <span className="text-blue-500">Formy zakupu</span>
+            </h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-gradient-to-br from-red-600 to-red-700 rounded-xl p-8 hover:shadow-2xl hover:shadow-red-500/30 transition transform hover:scale-105">
+                <div className="text-4xl mb-4">🚗✨</div>
+                <h4 className="text-2xl font-bold mb-4">Auto na gotowo</h4>
+                <ul className="space-y-3 text-gray-100">
+                  <li className="flex items-start">
+                    <span className="text-white mr-2">✓</span>
+                    <span>Sprowadzone z USA</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-white mr-2">✓</span>
+                    <span>Naprawione i sprawdzone</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-white mr-2">✓</span>
+                    <span>Zarejestrowane w Polsce</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-white mr-2">✓</span>
+                    <span>Wszystkie opłaty uregulowane</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-white mr-2">✓</span>
+                    <span className="font-semibold">Gotowe do jazdy!</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-8 hover:shadow-2xl hover:shadow-blue-500/30 transition transform hover:scale-105">
+                <div className="text-4xl mb-4">🚚💰</div>
+                <h4 className="text-2xl font-bold mb-4">Samochód pod dom</h4>
+                <ul className="space-y-3 text-gray-100">
+                  <li className="flex items-start">
+                    <span className="text-white mr-2">✓</span>
+                    <span>Zakup w USA według Twoich wymagań</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-white mr-2">✓</span>
+                    <span>Transport do Polski</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-white mr-2">✓</span>
+                    <span>Odprawa celna</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-white mr-2">✓</span>
+                    <span>Bez naprawy i rejestracji</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-white mr-2">✓</span>
+                    <span className="font-semibold">Niższa cena - większa elastyczność!</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
