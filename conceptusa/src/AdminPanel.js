@@ -13,9 +13,9 @@ const AdminPanel = () => {
   const [editingCar, setEditingCar] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
-  // Password hash for "KobeandMike" - bcrypt secured
+  // Password hash - bcrypt secured
   // To change: node generate-password-hash.js "YourNewPassword"
-  const ADMIN_PASSWORD_HASH = '$2b$10$YT7ssu576utwYPgoVot1au.xm0K5aX1pwqErY3B33lHghTe0AIZly';
+  const ADMIN_PASSWORD_HASH = '$2b$10$htMN/d9XtcPPiEp62dLcl.57HA8o2S6CgOcjVGy2BgujYagjY2Icu';
 
   const loadData = useCallback(async () => {
     setLoading(true);
