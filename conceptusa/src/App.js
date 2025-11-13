@@ -217,7 +217,7 @@ const ConceptUSACars = () => {
           position: relative;
           opacity: 0;
           transform: translateY(50px) scale(0.95);
-          transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         section.visible {
