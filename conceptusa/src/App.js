@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap } from 'lucide-react';
 import { carService, inquiryService } from './services';
 import { emailService } from './emailService';
+import backgroundImage from './background.jpg';
 
 const ConceptUSACars = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -193,9 +194,9 @@ const ConceptUSACars = () => {
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-gray-900 to-red-900/50"></div>
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920)',
+            backgroundImage: `url(${backgroundImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
