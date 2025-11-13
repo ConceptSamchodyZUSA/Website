@@ -11,6 +11,8 @@ const ConceptUSACars = () => {
   const [selectedCar, setSelectedCar] = useState(null);
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [pageLoading, setPageLoading] = useState(true);
+  const [visibleSections, setVisibleSections] = useState(new Set(['home']));
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,6 +23,39 @@ const ConceptUSACars = () => {
     year: '',
     message: ''
   });
+
+  // Page loading effect
+  useEffect(() => {
+    // Simulate initial page load
+    const timer = setTimeout(() => {
+      setPageLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setVisibleSections(prev => new Set([...prev, entry.target.id]));
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach(section => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
 
   // Fetch cars from Supabase on mount
   useEffect(() => {
@@ -139,6 +174,48 @@ const ConceptUSACars = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
+      {/* Loading Bar */}
+      {pageLoading && (
+        <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+          <div className="h-full bg-gradient-to-r from-red-600 via-blue-500 to-red-600 animate-[loading_1s_ease-in-out]"
+               style={{ width: '100%' }}></div>
+        </div>
+      )}
+
+      {/* CSS for animations */}
+      <style>{`
+        @keyframes loading {
+          0% { width: 0%; }
+          100% { width: 100%; }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        section {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      `}</style>
+
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
@@ -191,7 +268,7 @@ const ConceptUSACars = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className={`relative h-screen flex items-center justify-center overflow-hidden ${visibleSections.has('home') ? 'visible' : ''}`}>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-gray-900 to-red-900/50"></div>
         <div
           className="absolute inset-0 opacity-30"
@@ -237,7 +314,7 @@ const ConceptUSACars = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gray-800">
+      <section id="about" className={`py-20 bg-gray-800 ${visibleSections.has('about') ? 'visible' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
             Dlaczego <span className="text-red-600">CONCEPT</span>?
@@ -348,7 +425,7 @@ const ConceptUSACars = () => {
       </section>
 
       {/* Process Section */}
-      <section id="process" className="py-20 bg-gray-900">
+      <section id="process" className={`py-20 bg-gray-900 ${visibleSections.has('process') ? 'visible' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
             Jak to <span className="text-blue-500">działa</span>?
@@ -380,7 +457,7 @@ const ConceptUSACars = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 bg-gray-800">
+      <section id="portfolio" className={`py-20 bg-gray-800 ${visibleSections.has('portfolio') ? 'visible' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
             Nasze <span className="text-red-600">Portfolio</span>
@@ -501,7 +578,7 @@ const ConceptUSACars = () => {
       </section>
 
       {/* Order Form Section */}
-      <section id="order" className="py-20 bg-gray-900">
+      <section id="order" className={`py-20 bg-gray-900 ${visibleSections.has('order') ? 'visible' : ''}`}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
             Zamów <span className="text-blue-500">swoje auto</span>
@@ -621,7 +698,7 @@ const ConceptUSACars = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-800">
+      <section id="contact" className={`py-20 bg-gray-800 ${visibleSections.has('contact') ? 'visible' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
             <span className="text-red-600">Kontakt</span>
