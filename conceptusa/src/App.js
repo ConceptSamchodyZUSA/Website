@@ -192,7 +192,7 @@ const ConceptUSACars = () => {
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(50px);
           }
           to {
             opacity: 1;
@@ -204,39 +204,27 @@ const ConceptUSACars = () => {
           animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        /* Modern Sticky Scroll Effect */
+        /* Modern Scroll Effect - sections slide up */
         section {
           position: relative;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        section:not(#home) {
-          position: sticky;
-          top: 0;
           opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+          transform: translateY(50px) scale(0.95);
+          transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         section.visible {
           opacity: 1;
-          transform: translateY(0);
+          transform: translateY(0) scale(1);
         }
-
-        /* Z-index stacking for overlay effect */
-        #home { z-index: 1; }
-        #about { z-index: 2; }
-        #process { z-index: 3; }
-        #portfolio { z-index: 4; }
-        #order { z-index: 5; }
-        #contact { z-index: 6; }
 
         /* Smooth scroll */
         html {
           scroll-behavior: smooth;
+        }
+
+        /* Add spacing between sections */
+        section:not(#home) {
+          margin-top: -1px; /* Remove gap between sections */
         }
       `}</style>
 
@@ -338,8 +326,8 @@ const ConceptUSACars = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className={`bg-gray-800 ${visibleSections.has('about') ? 'visible' : ''}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+      <section id="about" className={`py-20 bg-gray-800 ${visibleSections.has('about') ? 'visible' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
             Dlaczego <span className="text-red-600">CONCEPT</span>?
           </h2>
@@ -449,8 +437,8 @@ const ConceptUSACars = () => {
       </section>
 
       {/* Process Section */}
-      <section id="process" className={`bg-gray-900 ${visibleSections.has('process') ? 'visible' : ''}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+      <section id="process" className={`py-20 bg-gray-900 ${visibleSections.has('process') ? 'visible' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
             Jak to <span className="text-blue-500">działa</span>?
           </h2>
@@ -481,8 +469,8 @@ const ConceptUSACars = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className={`bg-gray-800 ${visibleSections.has('portfolio') ? 'visible' : ''}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+      <section id="portfolio" className={`py-20 bg-gray-800 ${visibleSections.has('portfolio') ? 'visible' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
             Nasze <span className="text-red-600">Portfolio</span>
           </h2>
@@ -602,8 +590,8 @@ const ConceptUSACars = () => {
       </section>
 
       {/* Order Form Section */}
-      <section id="order" className={`bg-gray-900 ${visibleSections.has('order') ? 'visible' : ''}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+      <section id="order" className={`py-20 bg-gray-900 ${visibleSections.has('order') ? 'visible' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
             Zamów <span className="text-blue-500">swoje auto</span>
           </h2>
@@ -722,8 +710,8 @@ const ConceptUSACars = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className={`bg-gray-800 ${visibleSections.has('contact') ? 'visible' : ''}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+      <section id="contact" className={`py-20 bg-gray-800 ${visibleSections.has('contact') ? 'visible' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
             <span className="text-red-600">Kontakt</span>
           </h2>
