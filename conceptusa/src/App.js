@@ -247,16 +247,18 @@ const ConceptUSACars = () => {
             </h3>
             <div className="bg-gray-900 rounded-xl p-8 text-center">
               <p className="text-xl text-gray-300 mb-6">
-                Specjalizujemy się w markach grupy <span className="text-blue-500 font-bold">Stellantis</span>
+                Specjalizujemy się głównie w markach grupy <span className="text-blue-500 font-bold">Stellantis</span>
               </p>
-              <div className="flex flex-wrap justify-center gap-6 text-lg">
+              <div className="flex flex-wrap justify-center gap-6 text-lg mb-8">
                 <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Chrysler</span>
                 <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Dodge</span>
                 <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Jeep</span>
                 <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Fiat</span>
-                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Ford</span>
                 <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Alfa Romeo</span>
               </div>
+              <p className="text-gray-400 text-sm">
+                oraz inne marki amerykańskie jak <span className="text-white font-semibold">Ford</span> i więcej
+              </p>
             </div>
           </div>
 
