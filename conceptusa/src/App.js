@@ -33,17 +33,25 @@ const ConceptUSACars = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Intersection Observer for scroll animations
+  // Intersection Observer for scroll animations (bi-directional)
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
     };
 
     const observerCallback = (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          // Section entering viewport - add to visible
           setVisibleSections(prev => new Set([...prev, entry.target.id]));
+        } else {
+          // Section leaving viewport - remove from visible (for reverse effect)
+          setVisibleSections(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(entry.target.id);
+            return newSet;
+          });
         }
       });
     };
@@ -204,12 +212,12 @@ const ConceptUSACars = () => {
           animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        /* Modern Scroll Effect - sections slide up */
+        /* Modern Scroll Effect - sections slide up (slower) */
         section {
           position: relative;
           opacity: 0;
           transform: translateY(50px) scale(0.95);
-          transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         section.visible {
