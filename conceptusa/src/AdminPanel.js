@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Plus, Edit, Trash2, Save, X, Eye, EyeOff, LogOut } from 'lucide-react';
 import { carService, inquiryService } from './services';
 import bcrypt from 'bcryptjs';
@@ -9,7 +9,7 @@ const AdminPanel = () => {
   const [cars, setCars] = useState([]);
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState('cars'); // 'cars' or 'inquiries'
+  const [activeTab, setActiveTab] = useState('cars');
   const [editingCar, setEditingCar] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -17,7 +17,7 @@ const AdminPanel = () => {
   // To change: node generate-password-hash.js "YourNewPassword"
   const ADMIN_PASSWORD_HASH = '$2a$10$0z9K8X.QNwqwMi.VEn/Zv.WPHg9Gf5j0xnLQ7N4y8RCh3x7K9iB6m';
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     setLoading(true);
     if (activeTab === 'cars') {
       const { data } = await carService.getCars();
@@ -27,13 +27,13 @@ const AdminPanel = () => {
       setInquiries(data || []);
     }
     setLoading(false);
-  };
+  }, [activeTab]);
 
   useEffect(() => {
     if (isAuthenticated) {
       loadData();
     }
-  }, [isAuthenticated, activeTab, loadData]);
+  }, [isAuthenticated, loadData]);
 
   const handleLogin = (e) => {
     e.preventDefault();
