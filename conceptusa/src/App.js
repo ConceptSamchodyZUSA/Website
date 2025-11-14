@@ -91,9 +91,15 @@ const ConceptUSACars = () => {
     setLoading(false);
   };
 
-  const filteredCars = activeFilter === 'all'
+  const filteredCars = (activeFilter === 'all'
     ? cars
-    : cars.filter(car => car.status === activeFilter);
+    : cars.filter(car => car.status === activeFilter))
+    .sort((a, b) => {
+      // Available cars first
+      if (a.status === 'available' && b.status !== 'available') return -1;
+      if (a.status !== 'available' && b.status === 'available') return 1;
+      return 0;
+    });
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
