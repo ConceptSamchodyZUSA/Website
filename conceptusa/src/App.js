@@ -658,7 +658,7 @@ const ConceptUSACars = () => {
                       </span>
                       <span className="flex items-center gap-1">
                         <Gauge size={16} />
-                        {car.mileage?.toLocaleString()} mil
+                        {car.mileage?.toLocaleString()} mil ({Math.round(car.mileage * 1.60934).toLocaleString()} km)
                       </span>
                     </div>
                     {(car.engine_capacity || car.horsepower) && (
@@ -965,7 +965,12 @@ const ConceptUSACars = () => {
               </div>
               <div>
                 <p className="text-gray-400">Przebieg</p>
-                <p className="text-xl font-bold">{selectedCar.mileage?.toLocaleString()} mil</p>
+                <p className="text-xl font-bold">
+                  {selectedCar.mileage?.toLocaleString()} mil
+                  <span className="text-sm text-gray-400 ml-2">
+                    ({Math.round(selectedCar.mileage * 1.60934).toLocaleString()} km)
+                  </span>
+                </p>
               </div>
               {selectedCar.engine_capacity && (
                 <div>
