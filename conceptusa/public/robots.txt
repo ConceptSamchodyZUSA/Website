@@ -1,3 +1,12 @@
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt dla CONCEPT - Samochody z USA
+
+# Zezwalaj wszystkim robotom na indeksowanie
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin
+
+# Sitemap
+Sitemap: https://conceptusa.pl/sitemap.xml
+
+# Crawl-delay dla grzecznych botów
+Crawl-delay: 1
