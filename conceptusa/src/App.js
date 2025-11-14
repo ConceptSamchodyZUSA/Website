@@ -14,6 +14,8 @@ const ConceptUSACars = () => {
   const [loading, setLoading] = useState(true);
   const [pageLoading, setPageLoading] = useState(true);
   const [visibleSections, setVisibleSections] = useState(new Set(['home']));
+  const [currentPage, setCurrentPage] = useState(1);
+  const carsPerPage = 9; // 3x3 grid
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -37,8 +39,8 @@ const ConceptUSACars = () => {
   // Intersection Observer for scroll animations (bi-directional)
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1, // Reduced for mobile - trigger sooner
-      rootMargin: '0px 0px 0px 0px' // Removed negative margin for better mobile detection
+      threshold: 0.05, // Very low threshold for instant mobile loading
+      rootMargin: '100px 0px 100px 0px' // Start loading 100px before entering viewport
     };
 
     const observerCallback = (entries) => {
@@ -100,6 +102,17 @@ const ConceptUSACars = () => {
       if (a.status !== 'available' && b.status === 'available') return 1;
       return 0;
     });
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredCars.length / carsPerPage);
+  const startIndex = (currentPage - 1) * carsPerPage;
+  const endIndex = startIndex + carsPerPage;
+  const currentCars = filteredCars.slice(startIndex, endIndex);
+
+  // Reset to page 1 when filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeFilter]);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -628,72 +641,145 @@ const ConceptUSACars = () => {
 
           {/* Cars Grid */}
           {!loading && filteredCars.length > 0 && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredCars.map((car) => {
-                const carImages = getCarImages(car);
-                const mainImage = carImages[0];
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {currentCars.map((car) => {
+                  const carImages = getCarImages(car);
+                  const mainImage = carImages[0];
 
-                return (
-                  <div
-                    key={car.id}
-                    className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-red-500/20 transition transform hover:scale-105 cursor-pointer"
-                    onClick={() => openCarModal(car)}
-                  >
-                    <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={mainImage}
-                        alt={`${car.brand} ${car.model}`}
-                        className="w-full h-full object-cover hover:scale-110 transition duration-500"
-                      />
-                      {carImages.length > 1 && (
-                        <div className="absolute bottom-4 right-4 bg-black/70 px-3 py-1 rounded-full text-sm">
-                          📷 {carImages.length}
+                  return (
+                    <div
+                      key={car.id}
+                      className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-red-500/20 transition transform hover:scale-105 cursor-pointer"
+                      onClick={() => openCarModal(car)}
+                    >
+                      <div className="relative h-48 overflow-hidden">
+                        <img
+                          src={mainImage}
+                          alt={`${car.brand} ${car.model}`}
+                          className="w-full h-full object-cover hover:scale-110 transition duration-500"
+                        />
+                        {carImages.length > 1 && (
+                          <div className="absolute bottom-4 right-4 bg-black/70 px-3 py-1 rounded-full text-sm">
+                            📷 {carImages.length}
+                          </div>
+                        )}
+                        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold ${
+                          car.status === 'available'
+                            ? 'bg-green-500'
+                            : 'bg-gray-500'
+                        }`}>
+                          {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
+                        </div>
+                      </div>
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold mb-2">{car.brand} {car.model}</h3>
+                      <div className="flex items-center gap-4 text-gray-400 mb-2 flex-wrap">
+                        <span className="flex items-center gap-1">
+                          <Calendar size={16} />
+                          {car.year}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Gauge size={16} />
+                          {car.mileage?.toLocaleString()} mil ({Math.round(car.mileage * 1.60934).toLocaleString()} km)
+                        </span>
+                      </div>
+                      {(car.engine_capacity || car.horsepower) && (
+                        <div className="flex items-center gap-4 text-gray-400 mb-4 flex-wrap">
+                          {car.engine_capacity && (
+                            <span className="flex items-center gap-1">
+                              <Fuel size={16} />
+                              {car.engine_capacity}L
+                            </span>
+                          )}
+                          {car.horsepower && (
+                            <span className="flex items-center gap-1">
+                              <Zap size={16} />
+                              {car.horsepower} KM
+                            </span>
+                          )}
                         </div>
                       )}
-                      <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold ${
-                        car.status === 'available'
-                          ? 'bg-green-500'
-                          : 'bg-gray-500'
-                      }`}>
-                        {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
+                      <div className={`text-3xl font-bold ${car.status === 'available' ? 'text-green-500' : 'text-red-500'}`}>
+                        {car.price?.toLocaleString()} PLN <span className="text-sm text-blue-400">brutto</span>
                       </div>
-                    </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-2">{car.brand} {car.model}</h3>
-                    <div className="flex items-center gap-4 text-gray-400 mb-2 flex-wrap">
-                      <span className="flex items-center gap-1">
-                        <Calendar size={16} />
-                        {car.year}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Gauge size={16} />
-                        {car.mileage?.toLocaleString()} mil ({Math.round(car.mileage * 1.60934).toLocaleString()} km)
-                      </span>
-                    </div>
-                    {(car.engine_capacity || car.horsepower) && (
-                      <div className="flex items-center gap-4 text-gray-400 mb-4 flex-wrap">
-                        {car.engine_capacity && (
-                          <span className="flex items-center gap-1">
-                            <Fuel size={16} />
-                            {car.engine_capacity}L
-                          </span>
-                        )}
-                        {car.horsepower && (
-                          <span className="flex items-center gap-1">
-                            <Zap size={16} />
-                            {car.horsepower} KM
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    <div className={`text-3xl font-bold ${car.status === 'available' ? 'text-green-500' : 'text-red-500'}`}>
-                      {car.price?.toLocaleString()} PLN <span className="text-sm text-blue-400">brutto</span>
                     </div>
                   </div>
+                  );
+                })}
+              </div>
+
+              {/* Modern Pagination */}
+              {totalPages > 1 && (
+                <div className="flex justify-center items-center gap-2 mt-12">
+                  {/* Previous Button */}
+                  <button
+                    onClick={() => {
+                      setCurrentPage(prev => Math.max(1, prev - 1));
+                      scrollToSection('portfolio');
+                    }}
+                    disabled={currentPage === 1}
+                    className={`p-2 rounded-lg transition ${
+                      currentPage === 1
+                        ? 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                        : 'bg-gray-700 hover:bg-red-600 text-white'
+                    }`}
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+
+                  {/* Page Numbers */}
+                  {[...Array(totalPages)].map((_, index) => {
+                    const pageNum = index + 1;
+                    // Show first, last, current, and adjacent pages
+                    if (
+                      pageNum === 1 ||
+                      pageNum === totalPages ||
+                      (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)
+                    ) {
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => {
+                            setCurrentPage(pageNum);
+                            scrollToSection('portfolio');
+                          }}
+                          className={`min-w-[40px] h-10 rounded-lg font-semibold transition ${
+                            currentPage === pageNum
+                              ? 'bg-gradient-to-r from-red-600 to-blue-600 text-white scale-110'
+                              : 'bg-gray-700 hover:bg-gray-600 text-white'
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    } else if (
+                      pageNum === currentPage - 2 ||
+                      pageNum === currentPage + 2
+                    ) {
+                      return <span key={pageNum} className="text-gray-500">...</span>;
+                    }
+                    return null;
+                  })}
+
+                  {/* Next Button */}
+                  <button
+                    onClick={() => {
+                      setCurrentPage(prev => Math.min(totalPages, prev + 1));
+                      scrollToSection('portfolio');
+                    }}
+                    disabled={currentPage === totalPages}
+                    className={`p-2 rounded-lg transition ${
+                      currentPage === totalPages
+                        ? 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                        : 'bg-gray-700 hover:bg-red-600 text-white'
+                    }`}
+                  >
+                    <ChevronRight size={20} />
+                  </button>
                 </div>
-                );
-              })}
-            </div>
+              )}
+            </>
           )}
         </div>
       </section>

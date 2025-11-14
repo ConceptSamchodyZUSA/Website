@@ -14,6 +14,10 @@ const AdminPanel = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
 
+  // Filters for cars
+  const [filterBrand, setFilterBrand] = useState('all');
+  const [filterStatus, setFilterStatus] = useState('all');
+
   // Password hash - bcrypt secured
   // To change: node generate-password-hash.js "YourNewPassword"
   const ADMIN_PASSWORD_HASH = '$2b$10$htMN/d9XtcPPiEp62dLcl.57HA8o2S6CgOcjVGy2BgujYagjY2Icu';
@@ -252,36 +256,64 @@ const AdminPanel = () => {
         {/* Cars Tab */}
         {activeTab === 'cars' && (
           <div>
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
               <h2 className="text-2xl font-bold">Zarządzanie samochodami</h2>
-              <button
-                onClick={() => setEditingCar({
-                  brand: '',
-                  model: '',
-                  year: new Date().getFullYear(),
-                  price: '',
-                  mileage: '',
-                  engine_capacity: '',
-                  horsepower: '',
-                  transmission: 'automatic',
-                  fuel_type: 'gasoline',
-                  color: '',
-                  status: 'available',
-                  description: '',
-                  images: []
-                })}
-                className="flex items-center gap-2 bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition"
-              >
-                <Plus size={20} />
-                Dodaj samochód
-              </button>
+
+              {/* Filters */}
+              <div className="flex flex-wrap gap-3">
+                <select
+                  value={filterBrand}
+                  onChange={(e) => setFilterBrand(e.target.value)}
+                  className="bg-gray-700 px-4 py-2 rounded-lg"
+                >
+                  <option value="all">Wszystkie marki</option>
+                  {[...new Set(cars.map(car => car.brand))].sort().map(brand => (
+                    <option key={brand} value={brand}>{brand}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={filterStatus}
+                  onChange={(e) => setFilterStatus(e.target.value)}
+                  className="bg-gray-700 px-4 py-2 rounded-lg"
+                >
+                  <option value="all">Wszystkie statusy</option>
+                  <option value="available">Dostępne</option>
+                  <option value="sold">Sprzedane</option>
+                </select>
+
+                <button
+                  onClick={() => setEditingCar({
+                    brand: '',
+                    model: '',
+                    year: new Date().getFullYear(),
+                    price: '',
+                    mileage: '',
+                    engine_capacity: '',
+                    horsepower: '',
+                    transmission: 'automatic',
+                    fuel_type: 'gasoline',
+                    color: '',
+                    status: 'available',
+                    description: '',
+                    images: []
+                  })}
+                  className="flex items-center gap-2 bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition"
+                >
+                  <Plus size={20} />
+                  Dodaj samochód
+                </button>
+              </div>
             </div>
 
             {loading ? (
               <div className="text-center py-20">Ładowanie...</div>
             ) : (
               <div className="grid gap-4">
-                {cars.map((car) => (
+                {cars
+                  .filter(car => filterBrand === 'all' || car.brand === filterBrand)
+                  .filter(car => filterStatus === 'all' || car.status === filterStatus)
+                  .map((car) => (
                   <div key={car.id} className="bg-gray-800 p-6 rounded-xl flex justify-between items-start">
                     <div className="flex-1">
                       <h3 className="text-xl font-bold mb-2">
