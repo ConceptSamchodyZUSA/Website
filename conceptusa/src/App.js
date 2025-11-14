@@ -248,15 +248,15 @@ const ConceptUSACars = () => {
         }
 
         .animate-fade-in-up {
-          animation: fadeInUp 0.8s ease-out forwards;
+          animation: fadeInUp 0.4s ease-out forwards;
         }
 
-        /* Modern Scroll Effect - sections slide up (slower) */
+        /* Modern Scroll Effect - sections slide up (faster) */
         section {
           position: relative;
           opacity: 0;
-          transform: translateY(50px) scale(0.95);
-          transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transform: translateY(30px) scale(0.98);
+          transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         section.visible {
