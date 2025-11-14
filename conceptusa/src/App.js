@@ -107,9 +107,13 @@ const ConceptUSACars = () => {
   const getCarImages = (car) => {
     // Prioritize images array, fallback to image_url, then placeholder
     if (car.images && Array.isArray(car.images) && car.images.length > 0) {
-      return car.images;
+      // Filter out empty strings and null values
+      const validImages = car.images.filter(img => img && img.trim() !== '');
+      if (validImages.length > 0) {
+        return validImages;
+      }
     }
-    if (car.image_url) {
+    if (car.image_url && car.image_url.trim() !== '') {
       return [car.image_url];
     }
     return ['https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800'];
