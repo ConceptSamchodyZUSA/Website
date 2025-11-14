@@ -620,7 +620,8 @@ const ConceptUSACars = () => {
                       <img
                         src={mainImage}
                         alt={`${car.brand} ${car.model}`}
-                        className="w-full h-full object-cover hover:scale-110 transition duration-500"
+                        className="w-full h-full object-cover object-center hover:scale-110 transition duration-500"
+                        style={{ objectPosition: 'center 30%' }}
                       />
                       {carImages.length > 1 && (
                         <div className="absolute bottom-4 right-4 bg-black/70 px-3 py-1 rounded-full text-sm">
@@ -893,6 +894,7 @@ const ConceptUSACars = () => {
                 src={getCarImages(selectedCar)[currentImageIndex]}
                 alt={`${selectedCar.brand} ${selectedCar.model} - zdjęcie ${currentImageIndex + 1}`}
                 className="w-full h-96 object-cover rounded-lg"
+                style={{ objectPosition: 'center 30%' }}
               />
 
               {/* Navigation Arrows */}
