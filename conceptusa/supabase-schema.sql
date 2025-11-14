@@ -18,8 +18,8 @@ CREATE TABLE cars (
     description TEXT,
     status VARCHAR(20) NOT NULL DEFAULT 'available', -- available/sold/reserved
     featured BOOLEAN DEFAULT false, -- czy wyróżniony na stronie głównej
-    image_url TEXT, -- główne zdjęcie
-    images JSONB, -- tablica URL-i do dodatkowych zdjęć
+    image_url TEXT, -- główne zdjęcie (DEPRECATED - używaj images[0])
+    images TEXT[], -- tablica URL-i do zdjęć (pierwsze = główne)
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     sold_at TIMESTAMP WITH TIME ZONE

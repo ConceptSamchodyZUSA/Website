@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
 import { carService, inquiryService } from './services';
 import { emailService } from './emailService';
 import backgroundImage from './background.jpg';
@@ -9,6 +9,7 @@ const ConceptUSACars = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedCar, setSelectedCar] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageLoading, setPageLoading] = useState(true);
@@ -100,6 +101,40 @@ const ConceptUSACars = () => {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
     }
+  };
+
+  // Image gallery navigation
+  const getCarImages = (car) => {
+    // Prioritize images array, fallback to image_url, then placeholder
+    if (car.images && Array.isArray(car.images) && car.images.length > 0) {
+      return car.images;
+    }
+    if (car.image_url) {
+      return [car.image_url];
+    }
+    return ['https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800'];
+  };
+
+  const nextImage = () => {
+    if (!selectedCar) return;
+    const images = getCarImages(selectedCar);
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    if (!selectedCar) return;
+    const images = getCarImages(selectedCar);
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const openCarModal = (car) => {
+    setSelectedCar(car);
+    setCurrentImageIndex(0); // Reset to first image
+  };
+
+  const closeCarModal = () => {
+    setSelectedCar(null);
+    setCurrentImageIndex(0);
   };
 
   const handleInputChange = (e) => {
@@ -441,6 +476,39 @@ const ConceptUSACars = () => {
               </div>
             </div>
           </div>
+
+          {/* Faktura VAT i Finansowanie */}
+          <div className="mt-16 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl p-8 text-center">
+            <h3 className="text-3xl font-bold mb-6">💼 Profesjonalna obsługa finansowa</h3>
+            <div className="grid md:grid-cols-2 gap-8 text-left max-w-4xl mx-auto">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <div className="bg-white text-green-600 rounded-full p-3">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold mb-2">Pełna faktura VAT</h4>
+                  <p className="text-green-50">Na każdy sprzedany samochód wystawiamy pełną fakturę VAT. Działamy w pełni legalnie i transparentnie.</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <div className="bg-white text-green-600 rounded-full p-3">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold mb-2">Kredyty i leasingi</h4>
+                  <p className="text-green-50">Oferujemy możliwość finansowania zakupu poprzez kredyt lub leasing. Pomożemy dobrać najlepszą opcję!</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -538,26 +606,35 @@ const ConceptUSACars = () => {
           {/* Cars Grid */}
           {!loading && filteredCars.length > 0 && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredCars.map((car) => (
-                <div
-                  key={car.id}
-                  className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-red-500/20 transition transform hover:scale-105 cursor-pointer"
-                  onClick={() => setSelectedCar(car)}
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={car.image_url || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800'}
-                      alt={`${car.brand} ${car.model}`}
-                      className="w-full h-full object-cover hover:scale-110 transition duration-500"
-                    />
-                    <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold ${
-                      car.status === 'available'
-                        ? 'bg-green-500'
-                        : 'bg-gray-500'
-                    }`}>
-                      {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
+              {filteredCars.map((car) => {
+                const carImages = getCarImages(car);
+                const mainImage = carImages[0];
+
+                return (
+                  <div
+                    key={car.id}
+                    className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-red-500/20 transition transform hover:scale-105 cursor-pointer"
+                    onClick={() => openCarModal(car)}
+                  >
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={mainImage}
+                        alt={`${car.brand} ${car.model}`}
+                        className="w-full h-full object-cover hover:scale-110 transition duration-500"
+                      />
+                      {carImages.length > 1 && (
+                        <div className="absolute bottom-4 right-4 bg-black/70 px-3 py-1 rounded-full text-sm">
+                          📷 {carImages.length}
+                        </div>
+                      )}
+                      <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold ${
+                        car.status === 'available'
+                          ? 'bg-green-500'
+                          : 'bg-gray-500'
+                      }`}>
+                        {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
+                      </div>
                     </div>
-                  </div>
                   <div className="p-6">
                     <h3 className="text-2xl font-bold mb-2">{car.brand} {car.model}</h3>
                     <div className="flex items-center gap-4 text-gray-400 mb-2 flex-wrap">
@@ -591,7 +668,8 @@ const ConceptUSACars = () => {
                     </div>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
@@ -792,28 +870,72 @@ const ConceptUSACars = () => {
         </div>
       </footer>
 
-      {/* Car Detail Modal */}
+      {/* Car Detail Modal with Image Gallery */}
       {selectedCar && (
         <div
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedCar(null)}
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={closeCarModal}
         >
           <div
-            className="bg-gray-800 rounded-xl max-w-2xl w-full p-8 relative max-h-[90vh] overflow-y-auto"
+            className="bg-gray-800 rounded-xl max-w-4xl w-full p-8 relative max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              onClick={() => setSelectedCar(null)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white"
+              onClick={closeCarModal}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white z-10 bg-gray-900/80 rounded-full p-2"
             >
               <X size={24} />
             </button>
 
-            <img
-              src={selectedCar.image_url || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800'}
-              alt={`${selectedCar.brand} ${selectedCar.model}`}
-              className="w-full h-64 object-cover rounded-lg mb-6"
-            />
+            {/* Image Gallery */}
+            <div className="relative mb-6 group">
+              <img
+                src={getCarImages(selectedCar)[currentImageIndex]}
+                alt={`${selectedCar.brand} ${selectedCar.model} - zdjęcie ${currentImageIndex + 1}`}
+                className="w-full h-96 object-cover rounded-lg"
+              />
+
+              {/* Navigation Arrows */}
+              {getCarImages(selectedCar).length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition opacity-0 group-hover:opacity-100"
+                    aria-label="Poprzednie zdjęcie"
+                  >
+                    <ChevronLeft size={24} />
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition opacity-0 group-hover:opacity-100"
+                    aria-label="Następne zdjęcie"
+                  >
+                    <ChevronRight size={24} />
+                  </button>
+
+                  {/* Image Counter */}
+                  <div className="absolute bottom-4 right-4 bg-black/70 px-3 py-1 rounded-full text-sm">
+                    {currentImageIndex + 1} / {getCarImages(selectedCar).length}
+                  </div>
+
+                  {/* Dots Indicator */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                    {getCarImages(selectedCar).map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
+                        className={`w-2 h-2 rounded-full transition ${
+                          index === currentImageIndex
+                            ? 'bg-red-600 w-8'
+                            : 'bg-white/50 hover:bg-white/80'
+                        }`}
+                        aria-label={`Przejdź do zdjęcia ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
 
             <h3 className="text-3xl font-bold mb-4">{selectedCar.brand} {selectedCar.model}</h3>
 

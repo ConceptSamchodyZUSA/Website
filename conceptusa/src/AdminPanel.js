@@ -56,6 +56,18 @@ const AdminPanel = () => {
   const handleDeleteCar = async (id) => {
     if (!window.confirm('Czy na pewno chcesz usunąć ten samochód?')) return;
 
+    // Get car to delete its images from storage
+    const car = cars.find(c => c.id === id);
+    if (car && car.images && Array.isArray(car.images)) {
+      // Extract paths and delete images
+      const paths = car.images
+        .map(url => storageService.extractPathFromUrl(url))
+        .filter(Boolean);
+      if (paths.length > 0) {
+        await storageService.deleteImages(paths);
+      }
+    }
+
     const { error } = await carService.deleteCar(id);
     if (error) {
       alert('Błąd podczas usuwania samochodu');
@@ -64,33 +76,55 @@ const AdminPanel = () => {
     }
   };
 
-  const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+  const handleImagesUpload = async (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
 
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-      alert('Proszę wybrać plik obrazu');
+    // Validate file types
+    const invalidFiles = files.filter(file => !file.type.startsWith('image/'));
+    if (invalidFiles.length > 0) {
+      alert('Wszystkie pliki muszą być obrazami');
       return;
     }
 
-    // Validate file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      alert('Plik jest za duży. Maksymalny rozmiar to 5MB');
+    // Validate file sizes (max 5MB each)
+    const oversizedFiles = files.filter(file => file.size > 5 * 1024 * 1024);
+    if (oversizedFiles.length > 0) {
+      alert('Każdy plik może mieć maksymalnie 5MB');
       return;
     }
 
     setUploadingImage(true);
-    const { data, error } = await storageService.uploadCarImage(file);
+    const { data, error } = await storageService.uploadCarImages(files, editingCar?.id);
     setUploadingImage(false);
 
     if (error) {
       console.error('Upload error:', error);
-      alert('Błąd podczas uploadu zdjęcia');
+      alert('Błąd podczas uploadu zdjęć');
     } else {
-      setEditingCar({...editingCar, image_url: data.url});
-      alert('Zdjęcie zostało przesłane!');
+      const currentImages = editingCar.images || [];
+      const newImageUrls = data.map(img => img.url);
+      setEditingCar({
+        ...editingCar,
+        images: [...currentImages, ...newImageUrls]
+      });
+      alert(`Przesłano ${files.length} zdjęć!`);
     }
+  };
+
+  const handleRemoveImage = (indexToRemove) => {
+    const updatedImages = editingCar.images.filter((_, index) => index !== indexToRemove);
+    setEditingCar({...editingCar, images: updatedImages});
+  };
+
+  const handleMoveImage = (fromIndex, direction) => {
+    const images = [...editingCar.images];
+    const toIndex = direction === 'left' ? fromIndex - 1 : fromIndex + 1;
+
+    if (toIndex < 0 || toIndex >= images.length) return;
+
+    [images[fromIndex], images[toIndex]] = [images[toIndex], images[fromIndex]];
+    setEditingCar({...editingCar, images});
   };
 
   const handleSaveCar = async () => {
@@ -234,7 +268,7 @@ const AdminPanel = () => {
                   color: '',
                   status: 'available',
                   description: '',
-                  image_url: ''
+                  images: []
                 })}
                 className="flex items-center gap-2 bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition"
               >
@@ -455,25 +489,71 @@ const AdminPanel = () => {
                     <option value="reserved">Zarezerwowany</option>
                   </select>
                 </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Zdjęcie samochodu</label>
-                  <div className="space-y-2">
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-semibold mb-2">Zdjęcia samochodu (pierwsze = główne)</label>
+                  <div className="space-y-4">
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={handleImageUpload}
+                      multiple
+                      onChange={handleImagesUpload}
                       disabled={uploadingImage}
                       className="w-full bg-gray-700 border border-gray-600 rounded px-4 py-2 text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-red-600 file:text-white hover:file:bg-red-700 file:cursor-pointer"
                     />
                     {uploadingImage && (
                       <p className="text-sm text-yellow-500 flex items-center gap-2">
                         <Upload size={16} className="animate-pulse" />
-                        Uploading...
+                        Uploading images...
                       </p>
                     )}
-                    {editingCar.image_url && (
-                      <div className="mt-2">
-                        <img src={editingCar.image_url} alt="Preview" className="w-32 h-32 object-cover rounded border border-gray-600" />
+
+                    {/* Image Gallery Preview */}
+                    {editingCar.images && editingCar.images.length > 0 && (
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {editingCar.images.map((imageUrl, index) => (
+                          <div key={index} className="relative group">
+                            <img
+                              src={imageUrl}
+                              alt={`Preview ${index + 1}`}
+                              className="w-full h-32 object-cover rounded border-2 border-gray-600 group-hover:border-red-500 transition"
+                            />
+                            {index === 0 && (
+                              <div className="absolute top-1 left-1 bg-red-600 text-xs px-2 py-1 rounded">
+                                Główne
+                              </div>
+                            )}
+                            <div className="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition">
+                              {index > 0 && (
+                                <button
+                                  onClick={() => handleMoveImage(index, 'left')}
+                                  className="bg-blue-600 hover:bg-blue-700 text-white p-1 rounded text-xs"
+                                  title="Przesuń w lewo"
+                                >
+                                  ←
+                                </button>
+                              )}
+                              {index < editingCar.images.length - 1 && (
+                                <button
+                                  onClick={() => handleMoveImage(index, 'right')}
+                                  className="bg-blue-600 hover:bg-blue-700 text-white p-1 rounded text-xs"
+                                  title="Przesuń w prawo"
+                                >
+                                  →
+                                </button>
+                              )}
+                              <button
+                                onClick={() => handleRemoveImage(index)}
+                                className="bg-red-600 hover:bg-red-700 text-white p-1 rounded text-xs"
+                                title="Usuń"
+                              >
+                                ✕
+                              </button>
+                            </div>
+                            <div className="text-center text-xs text-gray-400 mt-1">
+                              {index + 1}/{editingCar.images.length}
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     )}
                   </div>
