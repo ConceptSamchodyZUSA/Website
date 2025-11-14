@@ -664,8 +664,8 @@ const ConceptUSACars = () => {
                         )}
                       </div>
                     )}
-                    <div className="text-3xl font-bold text-red-600">
-                      {car.price?.toLocaleString()} PLN
+                    <div className="text-3xl font-bold text-blue-500">
+                      {car.price?.toLocaleString()} PLN <span className="text-sm text-gray-400">brutto</span>
                     </div>
                   </div>
                 </div>
@@ -990,7 +990,9 @@ const ConceptUSACars = () => {
               </div>
               <div className="col-span-2">
                 <p className="text-gray-400">Cena</p>
-                <p className="text-3xl font-bold text-red-600">{selectedCar.price?.toLocaleString()} PLN</p>
+                <p className="text-3xl font-bold text-blue-500">
+                  {selectedCar.price?.toLocaleString()} PLN <span className="text-sm text-gray-400">brutto</span>
+                </p>
               </div>
             </div>
 
