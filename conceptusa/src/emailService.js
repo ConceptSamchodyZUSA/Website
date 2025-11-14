@@ -15,7 +15,7 @@ export const emailService = {
 
     try {
       const templateParams = {
-        to_email: 'kuba.pospieszny@gmail.com',
+        to_email: 'sklepelegant26@gmail.com',
         from_name: formData.name,
         from_email: formData.email,
         phone: formData.phone,
@@ -51,7 +51,7 @@ export const emailService = {
 
     try {
       const templateParams = {
-        to_email: 'kuba.pospieszny@gmail.com',
+        to_email: 'sklepelegant26@gmail.com',
         from_name: formData.name,
         from_email: formData.email,
         phone: formData.phone,

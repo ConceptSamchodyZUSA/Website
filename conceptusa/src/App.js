@@ -922,12 +922,12 @@ const ConceptUSACars = () => {
             </a>
 
             <a
-              href="mailto:kuba.pospieszny@gmail.com"
+              href="mailto:sklepelegant26@gmail.com"
               className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
             >
               <Mail size={40} className="mx-auto mb-4 text-blue-500" />
               <h3 className="text-xl font-bold mb-2">Email</h3>
-              <p className="text-gray-400">kuba.pospieszny@gmail.com</p>
+              <p className="text-gray-400">sklepelegant26@gmail.com</p>
             </a>
 
             <a
