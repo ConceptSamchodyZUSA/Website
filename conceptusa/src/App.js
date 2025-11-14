@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown } from 'lucide-react';
 import { carService, inquiryService } from './services';
-import { emailService } from './emailService';
 import backgroundImage from './background.jpg';
 
 const ConceptUSACars = () => {
@@ -218,14 +217,7 @@ const ConceptUSACars = () => {
         return;
       }
 
-      // Send email notification (optional)
-      if (emailService.isConfigured()) {
-        const emailResult = await emailService.sendInquiryEmail(formData);
-        if (!emailResult.success) {
-          console.warn('Email not sent, but inquiry saved to database');
-        }
-      }
-
+      // Email will be sent automatically by database trigger
       console.log('Inquiry submitted:', data);
       alert('Thank you for your inquiry! We will contact you soon.');
 
