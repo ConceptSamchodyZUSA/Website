@@ -462,7 +462,7 @@ const ConceptUSACars = () => {
                   </li>
                   <li className="flex items-start">
                     <span className="text-white mr-2">✓</span>
-                    <span>Odprawa celna</span>
+                    <span>Odprawa celna w porcie Gdynia</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-white mr-2">✓</span>
@@ -479,8 +479,8 @@ const ConceptUSACars = () => {
 
           {/* Faktura VAT i Finansowanie */}
           <div className="mt-16 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl p-8 text-center">
-            <h3 className="text-3xl font-bold mb-6">💼 Profesjonalna obsługa finansowa</h3>
-            <div className="grid md:grid-cols-2 gap-8 text-left max-w-4xl mx-auto">
+            <h3 className="text-3xl font-bold mb-6">💼 Profesjonalna obsługa finansowa i logistyczna</h3>
+            <div className="grid md:grid-cols-3 gap-8 text-left max-w-6xl mx-auto">
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0">
                   <div className="bg-white text-green-600 rounded-full p-3">
@@ -505,6 +505,19 @@ const ConceptUSACars = () => {
                 <div>
                   <h4 className="text-xl font-bold mb-2">Kredyty i leasingi</h4>
                   <p className="text-green-50">Oferujemy możliwość finansowania zakupu poprzez kredyt lub leasing. Pomożemy dobrać najlepszą opcję!</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <div className="bg-white text-green-600 rounded-full p-3">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold mb-2">Port Gdynia</h4>
+                  <p className="text-green-50">Wszystkie odprawy celne realizujemy wyłącznie przez port w Gdyni. Szybko, sprawnie i bezpiecznie!</p>
                 </div>
               </div>
             </div>
@@ -664,8 +677,8 @@ const ConceptUSACars = () => {
                         )}
                       </div>
                     )}
-                    <div className="text-3xl font-bold text-blue-500">
-                      {car.price?.toLocaleString()} PLN <span className="text-sm text-gray-400">brutto</span>
+                    <div className={`text-3xl font-bold ${car.status === 'available' ? 'text-green-500' : 'text-red-500'}`}>
+                      {car.price?.toLocaleString()} PLN <span className="text-sm text-blue-400">brutto</span>
                     </div>
                   </div>
                 </div>
@@ -990,8 +1003,8 @@ const ConceptUSACars = () => {
               </div>
               <div className="col-span-2">
                 <p className="text-gray-400">Cena</p>
-                <p className="text-3xl font-bold text-blue-500">
-                  {selectedCar.price?.toLocaleString()} PLN <span className="text-sm text-gray-400">brutto</span>
+                <p className={`text-3xl font-bold ${selectedCar.status === 'available' ? 'text-green-500' : 'text-red-500'}`}>
+                  {selectedCar.price?.toLocaleString()} PLN <span className="text-sm text-blue-400">brutto</span>
                 </p>
               </div>
             </div>
