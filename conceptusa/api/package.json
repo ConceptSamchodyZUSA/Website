@@ -1,0 +1,9 @@
+{
+  "name": "conceptusa-backend",
+  "version": "1.0.0",
+  "description": "Backend API for email notifications",
+  "type": "module",
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  }
+}

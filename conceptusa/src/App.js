@@ -217,7 +217,17 @@ const ConceptUSACars = () => {
         return;
       }
 
-      // Email will be sent automatically by database trigger
+      // Send email via Vercel serverless function
+      try {
+        await fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+      } catch (emailError) {
+        console.warn('Email not sent, but inquiry saved:', emailError);
+      }
+
       console.log('Inquiry submitted:', data);
       alert('Thank you for your inquiry! We will contact you soon.');
 
