@@ -629,12 +629,11 @@ const ConceptUSACars = () => {
                     className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-red-500/20 transition transform hover:scale-105 cursor-pointer"
                     onClick={() => openCarModal(car)}
                   >
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative h-48 overflow-hidden bg-gray-800">
                       <img
                         src={mainImage}
                         alt={`${car.brand} ${car.model}`}
-                        className="w-full h-full object-cover object-center hover:scale-110 transition duration-500"
-                        style={{ objectPosition: 'center 30%' }}
+                        className="w-full h-full object-contain hover:scale-105 transition duration-500"
                       />
                       {carImages.length > 1 && (
                         <div className="absolute bottom-4 right-4 bg-black/70 px-3 py-1 rounded-full text-sm">
@@ -902,12 +901,11 @@ const ConceptUSACars = () => {
             </button>
 
             {/* Image Gallery */}
-            <div className="relative mb-6 group">
+            <div className="relative mb-6 group bg-gray-800 rounded-lg">
               <img
                 src={getCarImages(selectedCar)[currentImageIndex]}
                 alt={`${selectedCar.brand} ${selectedCar.model} - zdjęcie ${currentImageIndex + 1}`}
-                className="w-full h-96 object-cover rounded-lg"
-                style={{ objectPosition: 'center 30%' }}
+                className="w-full h-96 object-contain rounded-lg"
               />
 
               {/* Navigation Arrows */}
