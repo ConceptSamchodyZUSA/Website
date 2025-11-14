@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown } from 'lucide-react';
 import { carService, inquiryService } from './services';
 import { emailService } from './emailService';
 import backgroundImage from './background.jpg';
@@ -136,6 +136,30 @@ const ConceptUSACars = () => {
       return [car.image_url];
     }
     return ['https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800'];
+  };
+
+  // Drivetrain icon helper
+  const getDrivetrainIcon = (drivetrain) => {
+    if (!drivetrain) return null;
+    const type = drivetrain.toLowerCase();
+    if (type.includes('awd') || type.includes('4wd') || type === '4x4') {
+      return <Settings size={16} className="text-orange-500" />;
+    } else if (type.includes('fwd') || type.includes('front')) {
+      return <ArrowUp size={16} className="text-blue-500" />;
+    } else if (type.includes('rwd') || type.includes('rear')) {
+      return <ArrowDown size={16} className="text-red-500" />;
+    }
+    return null;
+  };
+
+  const getDrivetrainLabel = (drivetrain) => {
+    if (!drivetrain) return '';
+    const type = drivetrain.toLowerCase();
+    if (type.includes('awd')) return 'AWD (napęd na 4 koła)';
+    if (type.includes('4wd') || type === '4x4') return '4WD (napęd na 4 koła)';
+    if (type.includes('fwd') || type.includes('front')) return 'FWD (napęd na przód)';
+    if (type.includes('rwd') || type.includes('rear')) return 'RWD (napęd na tył)';
+    return drivetrain;
   };
 
   const nextImage = () => {
@@ -683,6 +707,12 @@ const ConceptUSACars = () => {
                           <Gauge size={16} />
                           {car.mileage?.toLocaleString()} mil ({Math.round(car.mileage * 1.60934).toLocaleString()} km)
                         </span>
+                        {car.drivetrain && (
+                          <span className="flex items-center gap-1" title={getDrivetrainLabel(car.drivetrain)}>
+                            {getDrivetrainIcon(car.drivetrain)}
+                            {car.drivetrain.toUpperCase()}
+                          </span>
+                        )}
                       </div>
                       {(car.engine_capacity || car.horsepower) && (
                         <div className="flex items-center gap-4 text-gray-400 mb-4 flex-wrap">
@@ -1082,6 +1112,15 @@ const ConceptUSACars = () => {
                 <div>
                   <p className="text-gray-400">Skrzynia biegów</p>
                   <p className="text-xl font-bold capitalize">{selectedCar.transmission}</p>
+                </div>
+              )}
+              {selectedCar.drivetrain && (
+                <div>
+                  <p className="text-gray-400">Napęd</p>
+                  <p className="text-xl font-bold flex items-center gap-2">
+                    {getDrivetrainIcon(selectedCar.drivetrain)}
+                    <span>{getDrivetrainLabel(selectedCar.drivetrain)}</span>
+                  </p>
                 </div>
               )}
               {selectedCar.fuel_type && (

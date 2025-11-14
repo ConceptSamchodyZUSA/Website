@@ -292,6 +292,7 @@ const AdminPanel = () => {
                     engine_capacity: '',
                     horsepower: '',
                     transmission: 'automatic',
+                    drivetrain: 'RWD',
                     fuel_type: 'gasoline',
                     color: '',
                     status: 'available',
@@ -485,6 +486,19 @@ const AdminPanel = () => {
                   >
                     <option value="automatic">Automatyczna</option>
                     <option value="manual">Manualna</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-2">Napęd</label>
+                  <select
+                    value={editingCar.drivetrain || 'RWD'}
+                    onChange={(e) => setEditingCar({...editingCar, drivetrain: e.target.value})}
+                    className="w-full bg-gray-700 border border-gray-600 rounded px-4 py-2"
+                  >
+                    <option value="RWD">RWD (napęd na tył) 🔴</option>
+                    <option value="FWD">FWD (napęd na przód) 🔵</option>
+                    <option value="AWD">AWD (napęd na 4 koła) 🟠</option>
+                    <option value="4WD">4WD (napęd na 4 koła) 🟠</option>
                   </select>
                 </div>
                 <div>
