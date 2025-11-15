@@ -420,6 +420,11 @@ const ConceptUSACars = () => {
             </div>
           </div>
         )}
+
+        {/* Animated gradient bar */}
+        <div className="relative h-1 w-full overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-red-600 via-blue-600 to-red-600 animate-gradient-x"></div>
+        </div>
       </nav>
 
       {/* Hero Section */}
