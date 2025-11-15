@@ -48,7 +48,7 @@ const AdminPanel = () => {
       setIsAuthenticated(true);
       setPassword('');
     } else {
-      alert('Invalid password!');
+      alert('❌ Nieprawidłowe hasło!');
     }
   };
 

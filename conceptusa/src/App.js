@@ -85,7 +85,7 @@ const ConceptUSACars = () => {
     const { data, error } = await carService.getCars();
     if (error) {
       console.error('Error loading cars:', error);
-      alert('Error loading cars. Check Supabase configuration.');
+      alert('⚠️ Błąd ładowania samochodów.\n\nSprawdź połączenie z internetem lub odśwież stronę.');
     } else {
       setCars(data || []);
     }
@@ -194,7 +194,7 @@ const ConceptUSACars = () => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.phone) {
-      alert('Please fill in all required fields (Name, Email, Phone)');
+      alert('⚠️ Wypełnij wymagane pola!\n\nPotrzebujemy: Imię, Email i Telefon');
       return;
     }
 
@@ -213,7 +213,7 @@ const ConceptUSACars = () => {
 
       if (error) {
         console.error('Error submitting inquiry:', error);
-        alert('Error submitting form. Please try again or contact us by phone.');
+        alert('❌ Nie udało się wysłać formularza.\n\nZadzwoń do nas: +48-691-795-116 lub spróbuj ponownie.');
         return;
       }
 
@@ -229,7 +229,7 @@ const ConceptUSACars = () => {
       }
 
       console.log('Inquiry submitted:', data);
-      alert('Thank you for your inquiry! We will contact you soon.');
+      alert('🚗 Dziękujemy! Twoje zapytanie zostało wysłane.\n\nSkontaktujemy się z Tobą w ciągu 24h z ofertą Twojego wymarzonego auta! 🇺🇸');
 
       // Reset form
       setFormData({
@@ -244,7 +244,7 @@ const ConceptUSACars = () => {
       });
     } catch (err) {
       console.error('Unexpected error:', err);
-      alert('Unexpected error occurred. Please try again.');
+      alert('❌ Ups! Coś poszło nie tak.\n\nSpróbuj ponownie lub zadzwoń: +48-691-795-116');
     }
   };
 
