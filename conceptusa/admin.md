@@ -12,22 +12,27 @@
 
 ### EmailJS Setup (Current)
 
-Email notifications use EmailJS service. Configuration required:
+Email notifications use EmailJS service with **auto-reply** feature.
 
 1. **EmailJS Account**: dashboard.emailjs.com
-2. **Environment Variables** (in Vercel):
+2. **Two Email Templates**:
+   - Template 1: Notification to company (conceptusacars@gmail.com)
+   - Template 2: Auto-reply to customer (thank you message)
+
+3. **Environment Variables** (in Vercel):
    - `REACT_APP_EMAILJS_SERVICE_ID` - Gmail service ID
-   - `REACT_APP_EMAILJS_TEMPLATE_ID` - Email template ID
+   - `REACT_APP_EMAILJS_TEMPLATE_ID` - Company notification template
+   - `REACT_APP_EMAILJS_AUTOREPLY_TEMPLATE_ID` - Customer auto-reply template
    - `REACT_APP_EMAILJS_PUBLIC_KEY` - Public API key
 
-3. **Template Variables**:
-   - from_name, from_email, phone
-   - brand, model, year, budget, message
-   - to_email (conceptusacars@gmail.com)
+4. **Features**:
+   - Customer receives instant thank you email
+   - Company receives inquiry notification
+   - Both emails styled with brand colors
 
 **Full setup guide**: See `EMAILJS_SETUP.md`
 
-**Free tier**: 200 emails/month
+**Free tier**: 200 emails/month (100 inquiries = 200 emails)
 
 ## Database (Supabase)
 

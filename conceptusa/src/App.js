@@ -229,25 +229,45 @@ const ConceptUSACars = () => {
         return;
       }
 
-      // Send email via EmailJS
+      // Send emails via EmailJS
       try {
+        const templateParams = {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          brand: formData.brand || 'Nie podano',
+          model: formData.model || 'Nie podano',
+          budget: formData.budget ? `${parseInt(formData.budget).toLocaleString('pl-PL')} PLN` : 'Nie podano',
+          year: formData.year || 'Nie podano',
+          message: formData.message || 'Brak dodatkowych informacji',
+          to_email: 'conceptusacars@gmail.com'
+        };
+
+        // Email 1: To company (notification about new inquiry)
         await emailjs.send(
           process.env.REACT_APP_EMAILJS_SERVICE_ID,
           process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+          templateParams,
+          process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+        );
+
+        // Email 2: Auto-reply to customer (thank you message)
+        await emailjs.send(
+          process.env.REACT_APP_EMAILJS_SERVICE_ID,
+          process.env.REACT_APP_EMAILJS_AUTOREPLY_TEMPLATE_ID,
           {
-            from_name: formData.name,
-            from_email: formData.email,
-            phone: formData.phone,
-            brand: formData.brand || 'Nie podano',
-            model: formData.model || 'Nie podano',
-            budget: formData.budget ? `${parseInt(formData.budget).toLocaleString('pl-PL')} PLN` : 'Nie podano',
-            year: formData.year || 'Nie podano',
-            message: formData.message || 'Brak dodatkowych informacji',
-            to_email: 'conceptusacars@gmail.com'
+            to_name: formData.name,
+            to_email: formData.email,
+            brand: formData.brand || 'dowolnej marki',
+            model: formData.model || 'dowolnego modelu',
+            budget: formData.budget ? `${parseInt(formData.budget).toLocaleString('pl-PL')} PLN` : 'nie określono',
+            year: formData.year || 'dowolnego roku',
+            inquiry_details: `Marka: ${formData.brand || 'Nie podano'}\nModel: ${formData.model || 'Nie podano'}\nRok: ${formData.year || 'Nie podano'}\nBudżet: ${formData.budget ? parseInt(formData.budget).toLocaleString('pl-PL') + ' PLN' : 'Nie podano'}${formData.message ? '\n\nDodatkowe informacje: ' + formData.message : ''}`
           },
           process.env.REACT_APP_EMAILJS_PUBLIC_KEY
         );
-        console.log('Email sent successfully via EmailJS');
+
+        console.log('Emails sent successfully via EmailJS');
       } catch (emailError) {
         console.warn('Email not sent via EmailJS, but inquiry saved:', emailError);
       }
