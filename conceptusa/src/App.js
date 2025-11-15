@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown, Loader2 } from 'lucide-react';
 import { carService, inquiryService } from './services';
 import emailjs from '@emailjs/browser';
 import backgroundImage from './background.jpg';
@@ -16,6 +16,7 @@ const ConceptUSACars = () => {
   const [visibleSections, setVisibleSections] = useState(new Set(['home']));
   const [currentPage, setCurrentPage] = useState(1);
   const carsPerPage = 9; // 3x3 grid
+  const [submittingForm, setSubmittingForm] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -207,6 +208,8 @@ const ConceptUSACars = () => {
       return;
     }
 
+    setSubmittingForm(true); // Start loading
+
     try {
       // Parse budget safely
       const budgetValue = formData.budget ? parseFloat(formData.budget) : null;
@@ -225,6 +228,7 @@ const ConceptUSACars = () => {
 
       if (error) {
         console.error('Error submitting inquiry:', error);
+        setSubmittingForm(false);
         alert('❌ Nie udało się wysłać formularza.\n\nZadzwoń do nas: +48-691-795-116 lub spróbuj ponownie.');
         return;
       }
@@ -272,6 +276,8 @@ const ConceptUSACars = () => {
         console.warn('Email not sent via EmailJS, but inquiry saved:', emailError);
       }
 
+      setSubmittingForm(false); // Stop loading
+
       console.log('Inquiry submitted:', data);
       alert('🚗 Dziękujemy! Twoje zapytanie zostało wysłane.\n\nSkontaktujemy się z Tobą w ciągu 24h z ofertą Twojego wymarzonego auta! 🇺🇸');
 
@@ -288,6 +294,7 @@ const ConceptUSACars = () => {
       });
     } catch (err) {
       console.error('Unexpected error:', err);
+      setSubmittingForm(false); // Stop loading on error
       alert('❌ Ups! Coś poszło nie tak.\n\nSpróbuj ponownie lub zadzwoń: +48-691-795-116');
     }
   };
@@ -976,9 +983,17 @@ const ConceptUSACars = () => {
 
             <button
               onClick={handleSubmit}
-              className="w-full bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 py-4 rounded-lg text-lg font-semibold transition transform hover:scale-105 shadow-lg"
+              disabled={submittingForm}
+              className={`w-full bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 py-4 rounded-lg text-lg font-semibold transition transform hover:scale-105 shadow-lg flex items-center justify-center gap-2 ${submittingForm ? 'opacity-75 cursor-not-allowed' : ''}`}
             >
-              Wyślij zapytanie
+              {submittingForm ? (
+                <>
+                  <Loader2 className="animate-spin" size={24} />
+                  Wysyłanie...
+                </>
+              ) : (
+                'Wyślij zapytanie'
+              )}
             </button>
           </div>
         </div>
