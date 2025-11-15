@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown } from 'lucide-react';
 import { carService, inquiryService } from './services';
+import emailjs from '@emailjs/browser';
 import backgroundImage from './background.jpg';
 
 const ConceptUSACars = () => {
@@ -193,12 +194,23 @@ const ConceptUSACars = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate required fields
     if (!formData.name || !formData.email || !formData.phone) {
       alert('⚠️ Wypełnij wymagane pola!\n\nPotrzebujemy: Imię, Email i Telefon');
       return;
     }
 
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert('⚠️ Nieprawidłowy format email!\n\nPodaj poprawny adres email.');
+      return;
+    }
+
     try {
+      // Parse budget safely
+      const budgetValue = formData.budget ? parseFloat(formData.budget) : null;
+
       // Save inquiry to Supabase
       const { data, error } = await inquiryService.createInquiry({
         name: formData.name,
@@ -206,7 +218,7 @@ const ConceptUSACars = () => {
         phone: formData.phone,
         brand: formData.brand || null,
         model: formData.model || null,
-        budget: formData.budget ? parseFloat(formData.budget) : null,
+        budget: budgetValue,
         year_range: formData.year || null,
         message: formData.message || null
       });
@@ -217,15 +229,27 @@ const ConceptUSACars = () => {
         return;
       }
 
-      // Send email via Vercel serverless function
+      // Send email via EmailJS
       try {
-        await fetch('/api/send-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
-        });
+        await emailjs.send(
+          process.env.REACT_APP_EMAILJS_SERVICE_ID,
+          process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            phone: formData.phone,
+            brand: formData.brand || 'Nie podano',
+            model: formData.model || 'Nie podano',
+            budget: formData.budget ? `${parseInt(formData.budget).toLocaleString('pl-PL')} PLN` : 'Nie podano',
+            year: formData.year || 'Nie podano',
+            message: formData.message || 'Brak dodatkowych informacji',
+            to_email: 'conceptusacars@gmail.com'
+          },
+          process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+        );
+        console.log('Email sent successfully via EmailJS');
       } catch (emailError) {
-        console.warn('Email not sent, but inquiry saved:', emailError);
+        console.warn('Email not sent via EmailJS, but inquiry saved:', emailError);
       }
 
       console.log('Inquiry submitted:', data);
@@ -827,9 +851,9 @@ const ConceptUSACars = () => {
           </p>
 
           <div className="bg-gray-800 p-8 rounded-xl shadow-2xl">
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
               <div>
-                <label className="block text-sm font-semibold mb-2">Imię i nazwisko</label>
+                <label className="block text-sm font-semibold mb-2">Imię i nazwisko *</label>
                 <input
                   type="text"
                   name="name"
@@ -837,10 +861,11 @@ const ConceptUSACars = () => {
                   onChange={handleInputChange}
                   className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
                   placeholder="Jan Kowalski"
+                  required
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold mb-2">Email</label>
+                <label className="block text-sm font-semibold mb-2">Email *</label>
                 <input
                   type="email"
                   name="email"
@@ -848,12 +873,13 @@ const ConceptUSACars = () => {
                   onChange={handleInputChange}
                   className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
                   placeholder="jan@example.com"
+                  required
                 />
               </div>
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-semibold mb-2">Telefon</label>
+              <label className="block text-sm font-semibold mb-2">Telefon *</label>
               <input
                 type="tel"
                 name="phone"
@@ -861,10 +887,11 @@ const ConceptUSACars = () => {
                 onChange={handleInputChange}
                 className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="691 795 116"
+                required
               />
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
               <div>
                 <label className="block text-sm font-semibold mb-2">Marka</label>
                 <input
@@ -889,11 +916,12 @@ const ConceptUSACars = () => {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
               <div>
                 <label className="block text-sm font-semibold mb-2">Budżet (PLN)</label>
                 <input
                   type="number"
+                  inputMode="numeric"
                   name="budget"
                   value={formData.budget}
                   onChange={handleInputChange}

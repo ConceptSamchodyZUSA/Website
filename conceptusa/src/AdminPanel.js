@@ -137,13 +137,25 @@ const AdminPanel = () => {
       return;
     }
 
+    // Validate and parse numbers safely
+    const price = parseFloat(editingCar.price);
+    const year = parseInt(editingCar.year);
+    const mileage = editingCar.mileage ? parseInt(editingCar.mileage) : 0;
+    const engine_capacity = editingCar.engine_capacity ? parseFloat(editingCar.engine_capacity) : null;
+    const horsepower = editingCar.horsepower ? parseInt(editingCar.horsepower) : null;
+
+    if (isNaN(price) || isNaN(year)) {
+      alert('❌ Nieprawidłowe wartości liczbowe!\n\nSprawdź rok i cenę.');
+      return;
+    }
+
     const carData = {
       ...editingCar,
-      price: parseFloat(editingCar.price),
-      year: parseInt(editingCar.year),
-      mileage: parseInt(editingCar.mileage || 0),
-      engine_capacity: editingCar.engine_capacity ? parseFloat(editingCar.engine_capacity) : null,
-      horsepower: editingCar.horsepower ? parseInt(editingCar.horsepower) : null
+      price,
+      year,
+      mileage,
+      engine_capacity,
+      horsepower
     };
 
     let error;
@@ -154,7 +166,8 @@ const AdminPanel = () => {
     }
 
     if (error) {
-      alert('Błąd podczas zapisywania samochodu');
+      console.error('Error saving car:', error);
+      alert('❌ Błąd podczas zapisywania samochodu\n\nSpróbuj ponownie lub odśwież stronę.');
     } else {
       setEditingCar(null);
       loadData();
@@ -399,18 +412,18 @@ const AdminPanel = () => {
 
         {/* Edit Car Modal */}
         {editingCar && (
-          <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 overflow-y-auto">
-            <div className="bg-gray-800 rounded-xl max-w-3xl w-full p-8 my-8">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">
+          <div className="fixed inset-0 bg-black/80 z-50 flex items-start justify-center p-2 sm:p-4 overflow-y-auto">
+            <div className="bg-gray-800 rounded-xl max-w-3xl w-full p-4 sm:p-8 my-4 sm:my-8">
+              <div className="flex justify-between items-center mb-4 sm:mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold">
                   {editingCar.id ? 'Edytuj samochód' : 'Dodaj nowy samochód'}
                 </h2>
-                <button onClick={() => setEditingCar(null)}>
+                <button onClick={() => setEditingCar(null)} className="p-2 hover:bg-gray-700 rounded">
                   <X size={24} />
                 </button>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold mb-2">Marka *</label>
                   <input
@@ -535,7 +548,7 @@ const AdminPanel = () => {
                     <option value="reserved">Zarezerwowany</option>
                   </select>
                 </div>
-                <div className="md:col-span-2">
+                <div className="sm:col-span-2">
                   <label className="block text-sm font-semibold mb-2">Zdjęcia samochodu (pierwsze = główne)</label>
                   <div className="space-y-4">
                     <input
@@ -555,13 +568,13 @@ const AdminPanel = () => {
 
                     {/* Image Gallery Preview */}
                     {editingCar.images && editingCar.images.length > 0 && (
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4">
                         {editingCar.images.map((imageUrl, index) => (
                           <div key={index} className="relative group">
                             <img
                               src={imageUrl}
                               alt={`Preview ${index + 1}`}
-                              className="w-full h-32 object-cover rounded border-2 border-gray-600 group-hover:border-red-500 transition"
+                              className="w-full h-24 sm:h-32 object-cover rounded border-2 border-gray-600 group-hover:border-red-500 transition"
                             />
                             {index === 0 && (
                               <div className="absolute top-1 left-1 bg-red-600 text-xs px-2 py-1 rounded">
@@ -604,7 +617,7 @@ const AdminPanel = () => {
                     )}
                   </div>
                 </div>
-                <div className="md:col-span-2">
+                <div className="sm:col-span-2">
                   <label className="block text-sm font-semibold mb-2">Opis</label>
                   <textarea
                     value={editingCar.description}

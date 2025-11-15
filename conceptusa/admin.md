@@ -10,12 +10,24 @@
 
 **Email Address**: conceptusacars@gmail.com
 
-### Gmail SMTP Setup (Vercel)
-1. Enable 2-Step Verification at https://myaccount.google.com/security
-2. Generate App Password: Security → App passwords → Select "Mail" + "Other"
-3. Add to Vercel Environment Variables:
-   - `GMAIL_USER=conceptusacars@gmail.com`
-   - `GMAIL_APP_PASSWORD=[16-character code]`
+### EmailJS Setup (Current)
+
+Email notifications use EmailJS service. Configuration required:
+
+1. **EmailJS Account**: dashboard.emailjs.com
+2. **Environment Variables** (in Vercel):
+   - `REACT_APP_EMAILJS_SERVICE_ID` - Gmail service ID
+   - `REACT_APP_EMAILJS_TEMPLATE_ID` - Email template ID
+   - `REACT_APP_EMAILJS_PUBLIC_KEY` - Public API key
+
+3. **Template Variables**:
+   - from_name, from_email, phone
+   - brand, model, year, budget, message
+   - to_email (conceptusacars@gmail.com)
+
+**Full setup guide**: See `EMAILJS_SETUP.md`
+
+**Free tier**: 200 emails/month
 
 ## Database (Supabase)
 
@@ -44,7 +56,7 @@ Run in Supabase Dashboard → SQL Editor when needed:
 
 - **Domain**: conceptusa.pl (home.pl DNS)
 - **Auto-deploy**: Pushes to main branch
-- **Functions**: `/api/send-email.js` for contact form
+- **Email**: EmailJS (no server-side functions needed)
 
 ## Car Management
 
