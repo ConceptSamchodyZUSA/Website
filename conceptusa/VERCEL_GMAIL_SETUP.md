@@ -22,7 +22,7 @@
 
 **Zmienna 1:**
 - **Key:** `GMAIL_USER`
-- **Value:** `sklepelegant26@gmail.com`
+- **Value:** `conceptusacars@gmail.com`
 - **Environment:** Production, Preview, Development
 
 **Zmienna 2:**
@@ -53,7 +53,7 @@ Vercel automatycznie zrobi redeploy (~2 minuty).
 
 Teraz gdy ktoś wypełni formularz:
 1. Zapisze się w Supabase
-2. **Natychmiast wyśle email** na `sklepelegant26@gmail.com`
+2. **Natychmiast wyśle email** na `conceptusacars@gmail.com`
 
 **Żadnych dodatkowych stron, kont, API keys** - tylko Gmail i Vercel! 🚀
 

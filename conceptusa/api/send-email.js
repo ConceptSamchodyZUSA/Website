@@ -31,7 +31,7 @@ export default async function handler(req, res) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.GMAIL_USER, // sklepelegant26@gmail.com
+        user: process.env.GMAIL_USER, // conceptusacars@gmail.com
         pass: process.env.GMAIL_APP_PASSWORD, // Hasło aplikacji z Google
       },
     });
@@ -124,7 +124,7 @@ export default async function handler(req, res) {
     // Wysyłka emaila
     const info = await transporter.sendMail({
       from: `"CONCEPT USA Website" <${process.env.GMAIL_USER}>`,
-      to: process.env.GMAIL_USER, // sklepelegant26@gmail.com
+      to: process.env.GMAIL_USER, // conceptusacars@gmail.com
       replyTo: email,
       subject: `🚗 Nowe zapytanie: ${name} - ${brand || 'Ogólne'}`,
       html: htmlContent,
