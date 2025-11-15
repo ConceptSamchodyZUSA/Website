@@ -4,9 +4,15 @@
   "framework": "create-react-app",
   "redirects": [
     {
-      "source": "https://www.conceptusa.pl/:path*",
+      "source": "/(.*)",
       "destination": "https://conceptusa.pl/:path*",
-      "permanent": true
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "www.conceptusa.pl"
+        }
+      ]
     }
   ],
   "headers": [
