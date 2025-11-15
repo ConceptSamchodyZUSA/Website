@@ -2,6 +2,13 @@
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "framework": "create-react-app",
+  "redirects": [
+    {
+      "source": "https://www.conceptusa.pl/:path*",
+      "destination": "https://conceptusa.pl/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/static/(.*)",
