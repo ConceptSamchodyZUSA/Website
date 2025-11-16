@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown, Loader2 } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown, Loader2, Cookie } from 'lucide-react';
 import { carService, inquiryService } from './services';
 import emailjs from '@emailjs/browser';
 import backgroundImage from './background.jpg';
+import CookieConsentBanner from './CookieConsent';
 
 const ConceptUSACars = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -317,6 +318,9 @@ const ConceptUSACars = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
+      {/* Cookie Consent Banner */}
+      <CookieConsentBanner />
+
       {/* Loading Bar */}
       {pageLoading && (
         <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
@@ -1074,8 +1078,27 @@ const ConceptUSACars = () => {
 
       {/* Footer */}
       <footer className="bg-gray-900 py-8 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
-          <p>&copy; 2024 CONCEPT - Samochody z USA. Wszystkie prawa zastrzeżone.</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-400 text-center md:text-left">
+              &copy; 2024 CONCEPT - Samochody z USA. Wszystkie prawa zastrzeżone.
+            </p>
+            <div className="flex gap-4 flex-wrap justify-center">
+              <a
+                href="/privacy-policy"
+                className="text-gray-400 hover:text-blue-400 transition text-sm"
+              >
+                Polityka Prywatności
+              </a>
+              <button
+                onClick={() => window.openCookieSettings && window.openCookieSettings()}
+                className="text-gray-400 hover:text-orange-400 transition text-sm flex items-center gap-1"
+              >
+                <Cookie size={16} />
+                Ustawienia Cookies
+              </button>
+            </div>
+          </div>
         </div>
       </footer>
 

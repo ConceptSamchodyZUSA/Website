@@ -48,13 +48,11 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics - loaded conditionally based on cookie consent -->
+    <!-- Consent is managed by CookieConsent component -->
     <script>
+      // Placeholder for Google Analytics - will be loaded after consent
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
     </script>
 
     <!-- Structured Data - Organization -->
