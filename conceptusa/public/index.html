@@ -61,11 +61,17 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "AutomotiveBusiness",
+      "@type": ["AutomotiveBusiness", "Organization"],
       "name": "CONCEPT - Samochody z USA",
+      "alternateName": "ConceptUSA",
       "description": "Import samochodów z USA. Muscle cars, pickupy, SUVy. Pełna obsługa od A do Z.",
       "url": "https://conceptusa.pl",
-      "logo": "https://conceptusa.pl/logo512.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://conceptusa.pl/logo512.png",
+        "width": 512,
+        "height": 512
+      },
       "image": "https://conceptusa.pl/og-image.jpg",
       "email": "sklepelegant26@gmail.com",
       "telephone": "+48-691-795-116",
