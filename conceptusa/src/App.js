@@ -202,6 +202,12 @@ const ConceptUSACars = () => {
       return;
     }
 
+    // Validate RODO consent
+    if (!formData.rodoConsent) {
+      alert('⚠️ Musisz wyrazić zgodę na przetwarzanie danych osobowych!\n\nZaznacz checkbox z klauzulą RODO.');
+      return;
+    }
+
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
@@ -291,7 +297,8 @@ const ConceptUSACars = () => {
         model: '',
         budget: '',
         year: '',
-        message: ''
+        message: '',
+        rodoConsent: false
       });
     } catch (err) {
       console.error('Unexpected error:', err);
@@ -990,6 +997,30 @@ const ConceptUSACars = () => {
               ></textarea>
             </div>
 
+            {/* RODO Consent */}
+            <div className="mb-6 bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="rodoConsent"
+                  checked={formData.rodoConsent || false}
+                  onChange={handleInputChange}
+                  className="mt-1 w-5 h-5 accent-red-600"
+                  required
+                />
+                <span className="text-sm text-gray-300">
+                  Wyrażam zgodę na przetwarzanie moich danych osobowych przez{' '}
+                  <strong className="text-white">Concept Łukasz Grzenkowski</strong> w celu kontaktu
+                  i prezentacji oferty importu samochodów z USA. Administratorem danych jest Concept Łukasz Grzenkowski,
+                  ul. Długa 24, 84-230 Dębogórze-Wybudowanie. Więcej informacji w{' '}
+                  <a href="/privacy-policy" target="_blank" className="text-blue-400 hover:text-blue-300 underline">
+                    Polityce Prywatności
+                  </a>.
+                  Mam prawo do wycofania zgody, dostępu, sprostowania i usunięcia danych.*
+                </span>
+              </label>
+            </div>
+
             <button
               onClick={handleSubmit}
               disabled={submittingForm}
@@ -1077,27 +1108,86 @@ const ConceptUSACars = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 py-8 border-t border-gray-800">
+      <footer className="bg-gray-900 py-12 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-center md:text-left">
-              &copy; 2024 CONCEPT - Samochody z USA. Wszystkie prawa zastrzeżone.
-            </p>
-            <div className="flex gap-4 flex-wrap justify-center">
-              <a
-                href="/privacy-policy"
-                className="text-gray-400 hover:text-blue-400 transition text-sm"
-              >
-                Polityka Prywatności
-              </a>
-              <button
-                onClick={() => window.openCookieSettings && window.openCookieSettings()}
-                className="text-gray-400 hover:text-orange-400 transition text-sm flex items-center gap-1"
-              >
-                <Cookie size={16} />
-                Ustawienia Cookies
-              </button>
+          {/* Main Footer Content */}
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            {/* Company Info */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4">CONCEPT - Samochody z USA</h3>
+              <div className="space-y-2 text-gray-400 text-sm">
+                <p className="font-semibold text-white">Concept Łukasz Grzenkowski</p>
+                <p>ul. Długa 24</p>
+                <p>84-230 Dębogórze-Wybudowanie</p>
+                <p className="mt-3">NIP: 5881948634</p>
+                <p>REGON: 383279264</p>
+              </div>
             </div>
+
+            {/* Contact */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4">Kontakt</h3>
+              <div className="space-y-2 text-gray-400 text-sm">
+                <p>
+                  <a href="tel:+48691795116" className="hover:text-blue-400 transition">
+                    📞 +48-691-795-116
+                  </a>
+                </p>
+                <p>
+                  <a href="mailto:conceptusacars@gmail.com" className="hover:text-blue-400 transition">
+                    ✉️ conceptusacars@gmail.com
+                  </a>
+                </p>
+                <p className="mt-3 text-xs">
+                  Godziny otwarcia:<br />
+                  Pon-Pt: 09:00-17:00
+                </p>
+              </div>
+            </div>
+
+            {/* Legal Links */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4">Informacje prawne</h3>
+              <div className="space-y-2 text-gray-400 text-sm">
+                <a
+                  href="/terms-of-service"
+                  className="block hover:text-blue-400 transition"
+                >
+                  📄 Regulamin świadczenia usług
+                </a>
+                <a
+                  href="/privacy-policy"
+                  className="block hover:text-blue-400 transition"
+                >
+                  🔒 Polityka Prywatności
+                </a>
+                <button
+                  onClick={() => window.openCookieSettings && window.openCookieSettings()}
+                  className="hover:text-orange-400 transition flex items-center gap-1"
+                >
+                  <Cookie size={16} />
+                  Ustawienia Cookies
+                </button>
+                <a
+                  href="https://ec.europa.eu/consumers/odr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block hover:text-blue-400 transition mt-3"
+                >
+                  🇪🇺 Platforma ODR (rozstrzyganie sporów online)
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="pt-8 border-t border-gray-800 text-center">
+            <p className="text-gray-400 text-sm">
+              &copy; {new Date().getFullYear()} CONCEPT - Samochody z USA. Wszystkie prawa zastrzeżone.
+            </p>
+            <p className="text-gray-500 text-xs mt-2">
+              Import samochodów z USA | Odprawa celna Gdynia | Faktura VAT | Kredyty i leasingi
+            </p>
           </div>
         </div>
       </footer>
