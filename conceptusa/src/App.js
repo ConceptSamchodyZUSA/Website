@@ -1097,11 +1097,11 @@ const ConceptUSACars = () => {
             </button>
 
             {/* Image Gallery */}
-            <div className="relative mb-6 group">
+            <div className="relative mb-6 group bg-gray-950 rounded-lg">
               <img
                 src={getCarImages(selectedCar)[currentImageIndex]}
                 alt={`${selectedCar.brand} ${selectedCar.model} - zdjęcie ${currentImageIndex + 1}`}
-                className="w-full h-96 object-cover rounded-lg"
+                className="w-full h-96 object-contain rounded-lg"
               />
 
               {/* Navigation Arrows */}
