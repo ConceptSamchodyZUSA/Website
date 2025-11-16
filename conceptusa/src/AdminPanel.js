@@ -149,25 +149,34 @@ const AdminPanel = () => {
       return;
     }
 
+    // Prepare car data - remove id for new cars
     const carData = {
-      ...editingCar,
-      price,
+      brand: editingCar.brand,
+      model: editingCar.model,
       year,
+      price,
       mileage,
       engine_capacity,
-      horsepower
+      horsepower,
+      transmission: editingCar.transmission || 'automatic',
+      fuel_type: editingCar.fuel_type || 'gasoline',
+      color: editingCar.color || '',
+      status: editingCar.status || 'available',
+      description: editingCar.description || '',
+      images: editingCar.images || []
     };
 
-    let error;
+    let error, data;
     if (editingCar.id) {
-      ({ error } = await carService.updateCar(editingCar.id, carData));
+      ({ error, data } = await carService.updateCar(editingCar.id, carData));
     } else {
-      ({ error } = await carService.createCar(carData));
+      ({ error, data } = await carService.createCar(carData));
     }
 
     if (error) {
       console.error('Error saving car:', error);
-      alert('❌ Błąd podczas zapisywania samochodu\n\nSpróbuj ponownie lub odśwież stronę.');
+      const errorMsg = error.message || error.hint || 'Nieznany błąd';
+      alert(`❌ Błąd podczas zapisywania samochodu\n\n${errorMsg}\n\nSpróbuj ponownie lub skontaktuj się: +48-691-795-116`);
     } else {
       setEditingCar(null);
       loadData();
@@ -305,7 +314,6 @@ const AdminPanel = () => {
                     engine_capacity: '',
                     horsepower: '',
                     transmission: 'automatic',
-                    drivetrain: 'RWD',
                     fuel_type: 'gasoline',
                     color: '',
                     status: 'available',
@@ -499,19 +507,6 @@ const AdminPanel = () => {
                   >
                     <option value="automatic">Automatyczna</option>
                     <option value="manual">Manualna</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Napęd</label>
-                  <select
-                    value={editingCar.drivetrain || 'RWD'}
-                    onChange={(e) => setEditingCar({...editingCar, drivetrain: e.target.value})}
-                    className="w-full bg-gray-700 border border-gray-600 rounded px-4 py-2"
-                  >
-                    <option value="RWD">RWD (napęd na tył) 🔴</option>
-                    <option value="FWD">FWD (napęd na przód) 🔵</option>
-                    <option value="AWD">AWD (napęd na 4 koła) 🟠</option>
-                    <option value="4WD">4WD (napęd na 4 koła) 🟠</option>
                   </select>
                 </div>
                 <div>
