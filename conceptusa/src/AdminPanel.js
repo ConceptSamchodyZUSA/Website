@@ -159,7 +159,7 @@ const AdminPanel = () => {
       engine_capacity,
       horsepower,
       transmission: editingCar.transmission || 'automatic',
-      fuel_type: editingCar.fuel_type || 'gasoline',
+      fuel_type: editingCar.fuel_type || 'Benzyna',
       color: editingCar.color || '',
       status: editingCar.status || 'available',
       description: editingCar.description || '',
@@ -314,7 +314,7 @@ const AdminPanel = () => {
                     engine_capacity: '',
                     horsepower: '',
                     transmission: 'automatic',
-                    fuel_type: 'gasoline',
+                    fuel_type: 'Benzyna',
                     color: '',
                     status: 'available',
                     description: '',
@@ -516,10 +516,11 @@ const AdminPanel = () => {
                     onChange={(e) => setEditingCar({...editingCar, fuel_type: e.target.value})}
                     className="w-full bg-gray-700 border border-gray-600 rounded px-4 py-2"
                   >
-                    <option value="gasoline">Benzyna</option>
-                    <option value="diesel">Diesel</option>
-                    <option value="electric">Elektryczny</option>
-                    <option value="hybrid">Hybrid</option>
+                    <option value="Benzyna">Benzyna</option>
+                    <option value="Benzyna+LPG">Benzyna+LPG</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Elektryczny">Elektryczny</option>
+                    <option value="Hybrydowy">Hybrydowy</option>
                   </select>
                 </div>
                 <div>

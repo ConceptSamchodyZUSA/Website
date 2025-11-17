@@ -1309,7 +1309,7 @@ const ConceptUSACars = () => {
               {selectedCar.fuel_type && (
                 <div>
                   <p className="text-gray-400">Paliwo</p>
-                  <p className="text-xl font-bold capitalize">{selectedCar.fuel_type}</p>
+                  <p className="text-xl font-bold">{selectedCar.fuel_type}</p>
                 </div>
               )}
               {selectedCar.color && (
