@@ -18,6 +18,7 @@ const ConceptUSACars = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const carsPerPage = 9; // 3x3 grid
   const [submittingForm, setSubmittingForm] = useState(false);
+  const [formLoadTime] = useState(Date.now()); // Track when form was loaded
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,7 +27,8 @@ const ConceptUSACars = () => {
     model: '',
     budget: '',
     year: '',
-    message: ''
+    message: '',
+    website: '' // Honeypot field - should remain empty
   });
 
   // Page loading effect
@@ -196,6 +198,21 @@ const ConceptUSACars = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Honeypot check - if filled, it's a bot
+    if (formData.website) {
+      console.log('Bot detected - honeypot field filled');
+      setSubmittingForm(false);
+      return; // Silently reject without showing error
+    }
+
+    // Time-based check - reject if form submitted too quickly (less than 3 seconds)
+    const timeSpent = (Date.now() - formLoadTime) / 1000;
+    if (timeSpent < 3) {
+      console.log('Bot detected - form submitted too quickly:', timeSpent, 'seconds');
+      setSubmittingForm(false);
+      return; // Silently reject
+    }
+
     // Validate required fields
     if (!formData.name || !formData.email || !formData.phone) {
       alert('⚠️ Wypełnij wymagane pola!\n\nPotrzebujemy: Imię, Email i Telefon');
@@ -222,7 +239,7 @@ const ConceptUSACars = () => {
       const budgetValue = formData.budget ? parseFloat(formData.budget) : null;
 
       // Save inquiry to Supabase
-      const { data, error } = await inquiryService.createInquiry({
+      const { error } = await inquiryService.createInquiry({
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -285,7 +302,7 @@ const ConceptUSACars = () => {
 
       setSubmittingForm(false); // Stop loading
 
-      console.log('Inquiry submitted:', data);
+      console.log('Inquiry submitted successfully');
       alert('🚗 Dziękujemy! Twoje zapytanie zostało wysłane.\n\nSkontaktujemy się z Tobą w ciągu 24h z ofertą Twojego wymarzonego auta! 🇺🇸');
 
       // Reset form
@@ -298,6 +315,7 @@ const ConceptUSACars = () => {
         budget: '',
         year: '',
         message: '',
+        website: '', // Reset honeypot
         rodoConsent: false
       });
     } catch (err) {
@@ -931,6 +949,20 @@ const ConceptUSACars = () => {
                 className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="691 795 116"
                 required
+              />
+            </div>
+
+            {/* Honeypot field - invisible to users, catches bots */}
+            <div style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} aria-hidden="true">
+              <label htmlFor="website">Website</label>
+              <input
+                type="text"
+                id="website"
+                name="website"
+                value={formData.website}
+                onChange={handleInputChange}
+                tabIndex="-1"
+                autoComplete="off"
               />
             </div>
 

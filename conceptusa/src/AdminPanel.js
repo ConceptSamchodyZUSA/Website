@@ -166,11 +166,11 @@ const AdminPanel = () => {
       images: editingCar.images || []
     };
 
-    let error, data;
+    let error;
     if (editingCar.id) {
-      ({ error, data } = await carService.updateCar(editingCar.id, carData));
+      ({ error } = await carService.updateCar(editingCar.id, carData));
     } else {
-      ({ error, data } = await carService.createCar(carData));
+      ({ error } = await carService.createCar(carData));
     }
 
     if (error) {
