@@ -827,10 +827,10 @@ const ConceptUSACars = () => {
                             {car.price?.toLocaleString()} PLN
                           </div>
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="relative px-6 py-2 bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 rounded-lg shadow-xl border border-slate-500/50">
-                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse"></div>
-                              <span className="relative text-white font-bold text-base tracking-wider uppercase">
-                                NIEDOSTĘPNY
+                            <div className="relative px-5 py-1.5 bg-gradient-to-br from-slate-700/95 via-slate-600/95 to-slate-700/95 rounded-full shadow-2xl border border-white/20 backdrop-blur-sm">
+                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse rounded-full"></div>
+                              <span className="relative text-white/90 font-semibold text-xs tracking-wide uppercase drop-shadow-lg">
+                                Niedostępny
                               </span>
                             </div>
                           </div>
@@ -1382,10 +1382,10 @@ const ConceptUSACars = () => {
                       {selectedCar.price?.toLocaleString()} PLN
                     </p>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="relative px-8 py-3 bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 rounded-xl shadow-2xl border border-slate-500/50">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse rounded-xl"></div>
-                        <span className="relative text-white font-bold text-xl tracking-wider uppercase">
-                          NIEDOSTĘPNY
+                      <div className="relative px-8 py-2.5 bg-gradient-to-br from-slate-700/95 via-slate-600/95 to-slate-700/95 rounded-full shadow-2xl border border-white/20 backdrop-blur-sm">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse rounded-full"></div>
+                        <span className="relative text-white/90 font-semibold text-sm tracking-wide uppercase drop-shadow-lg">
+                          Niedostępny
                         </span>
                       </div>
                     </div>
