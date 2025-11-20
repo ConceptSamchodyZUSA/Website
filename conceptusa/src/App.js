@@ -817,9 +817,20 @@ const ConceptUSACars = () => {
                           )}
                         </div>
                       )}
-                      <div className={`text-3xl font-bold ${car.status === 'available' ? 'text-green-500' : 'text-red-500'}`}>
-                        {car.price?.toLocaleString()} PLN <span className="text-sm text-blue-400">brutto</span>
-                      </div>
+                      {car.status === 'available' ? (
+                        <div className="text-3xl font-bold text-green-500">
+                          {car.price?.toLocaleString()} PLN <span className="text-sm text-blue-400">brutto</span>
+                        </div>
+                      ) : (
+                        <div className="relative">
+                          <div className="text-3xl font-bold text-gray-500 blur-sm select-none">
+                            {car.price?.toLocaleString()} PLN
+                          </div>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="text-sm font-semibold text-red-400 bg-gray-900 px-3 py-1 rounded">SPRZEDANY</span>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                   );
@@ -1356,18 +1367,46 @@ const ConceptUSACars = () => {
               </div>
               <div className="col-span-2">
                 <p className="text-gray-400">Cena</p>
-                <p className={`text-3xl font-bold ${selectedCar.status === 'available' ? 'text-green-500' : 'text-red-500'}`}>
-                  {selectedCar.price?.toLocaleString()} PLN <span className="text-sm text-blue-400">brutto</span>
-                </p>
+                {selectedCar.status === 'available' ? (
+                  <p className="text-3xl font-bold text-green-500">
+                    {selectedCar.price?.toLocaleString()} PLN <span className="text-sm text-blue-400">brutto</span>
+                  </p>
+                ) : (
+                  <div className="relative inline-block">
+                    <p className="text-3xl font-bold text-gray-500 blur-md select-none">
+                      {selectedCar.price?.toLocaleString()} PLN
+                    </p>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-lg font-semibold text-red-400">Cena ukryta</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
-            {selectedCar.status === 'available' && (
+            {selectedCar.status === 'available' ? (
               <button
                 onClick={() => inquireAboutCar(selectedCar)}
                 className="w-full bg-red-600 hover:bg-red-700 py-3 rounded-lg font-semibold transition"
               >
                 Zapytaj o ten samochód
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setFormData({
+                    ...formData,
+                    brand: selectedCar.brand || '',
+                    model: '',
+                    message: `Szukam samochodu podobnego do: ${selectedCar.brand} ${selectedCar.model} ${selectedCar.year}`
+                  });
+                  setSelectedCar(null);
+                  scrollToSection('order');
+                }}
+                className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2"
+              >
+                <Mail size={20} />
+                Zapytaj o podobny samochód
               </button>
             )}
           </div>
