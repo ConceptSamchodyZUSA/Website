@@ -31,6 +31,18 @@ const ConceptUSACars = () => {
     website: '' // Honeypot field - should remain empty
   });
 
+  // Console Easter Egg - dla ciekawskich deweloperów 😄
+  useEffect(() => {
+    console.log('%c🚗 CONCEPT USA CARS 🚗', 'font-size: 20px; font-weight: bold; color: #10b981;');
+    console.log('%c⚠️ STOP! ⚠️', 'font-size: 16px; font-weight: bold; color: #ef4444;');
+    console.log('%cJeśli ktoś kazał Ci tutaj coś wkleić, to próbuje Cię oszukać! 🚫', 'font-size: 14px; color: #f59e0b;');
+    console.log('%c\nPróbujesz podejrzeć ceny sprzedanych aut? 🕵️', 'font-size: 14px; font-weight: bold; color: #8b5cf6;');
+    console.log('%cNiestety, te dane są zaszyfrowane po stronie serwera 🔐', 'font-size: 12px; color: #6b7280;');
+    console.log('%cJeśli jesteś zainteresowany podobnym autem, skontaktuj się z nami! 📞', 'font-size: 12px; color: #3b82f6;');
+    console.log('%c\n💡 Szukasz pracy? Jesteśmy otwarci na współpracę!', 'font-size: 12px; color: #10b981;');
+    console.log('%cNapisz do nas: kontakt@conceptusa.pl', 'font-size: 12px; font-style: italic; color: #6b7280;');
+  }, []);
+
   // Page loading effect
   useEffect(() => {
     // Simulate initial page load
@@ -823,8 +835,9 @@ const ConceptUSACars = () => {
                         </div>
                       ) : (
                         <div className="relative h-12 flex items-center justify-center">
-                          <div className="text-3xl font-bold text-gray-600 blur-md select-none pointer-events-none">
-                            {car.price?.toLocaleString()} PLN
+                          <div className="text-3xl font-bold text-gray-600 blur-md select-none pointer-events-none" aria-hidden="true">
+                            {/* Fake price for sold cars - real price hidden */}
+                            999 999 PLN
                           </div>
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="relative px-5 py-1.5 bg-gradient-to-br from-slate-700/95 via-slate-600/95 to-slate-700/95 rounded-full shadow-2xl border border-white/20 backdrop-blur-sm">
@@ -1378,8 +1391,9 @@ const ConceptUSACars = () => {
                   </p>
                 ) : (
                   <div className="relative inline-block min-w-[280px] h-14 flex items-center justify-center">
-                    <p className="text-3xl font-bold text-gray-600 blur-lg select-none pointer-events-none">
-                      {selectedCar.price?.toLocaleString()} PLN
+                    <p className="text-3xl font-bold text-gray-600 blur-lg select-none pointer-events-none" aria-hidden="true">
+                      {/* Fake price for sold cars - real price hidden */}
+                      999 999 PLN
                     </p>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="relative px-8 py-2.5 bg-gradient-to-br from-slate-700/95 via-slate-600/95 to-slate-700/95 rounded-full shadow-2xl border border-white/20 backdrop-blur-sm">
