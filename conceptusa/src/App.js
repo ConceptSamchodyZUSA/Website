@@ -822,12 +822,17 @@ const ConceptUSACars = () => {
                           {car.price?.toLocaleString()} PLN <span className="text-sm text-blue-400">brutto</span>
                         </div>
                       ) : (
-                        <div className="relative">
-                          <div className="text-3xl font-bold text-gray-500 blur-sm select-none">
+                        <div className="relative h-12 flex items-center justify-center">
+                          <div className="text-3xl font-bold text-gray-600 blur-md select-none pointer-events-none">
                             {car.price?.toLocaleString()} PLN
                           </div>
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-sm font-semibold text-red-400 bg-gray-900 px-3 py-1 rounded">SPRZEDANY</span>
+                            <div className="relative px-6 py-2 bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 rounded-lg shadow-xl border border-slate-500/50">
+                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse"></div>
+                              <span className="relative text-white font-bold text-base tracking-wider uppercase">
+                                NIEDOSTĘPNY
+                              </span>
+                            </div>
                           </div>
                         </div>
                       )}
@@ -1372,12 +1377,17 @@ const ConceptUSACars = () => {
                     {selectedCar.price?.toLocaleString()} PLN <span className="text-sm text-blue-400">brutto</span>
                   </p>
                 ) : (
-                  <div className="relative inline-block">
-                    <p className="text-3xl font-bold text-gray-500 blur-md select-none">
+                  <div className="relative inline-block min-w-[280px] h-14 flex items-center justify-center">
+                    <p className="text-3xl font-bold text-gray-600 blur-lg select-none pointer-events-none">
                       {selectedCar.price?.toLocaleString()} PLN
                     </p>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-lg font-semibold text-red-400">Cena ukryta</span>
+                      <div className="relative px-8 py-3 bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 rounded-xl shadow-2xl border border-slate-500/50">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse rounded-xl"></div>
+                        <span className="relative text-white font-bold text-xl tracking-wider uppercase">
+                          NIEDOSTĘPNY
+                        </span>
+                      </div>
                     </div>
                   </div>
                 )}
