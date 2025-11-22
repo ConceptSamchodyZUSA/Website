@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, FileText, Car, Shield, AlertCircle, Scale } from 'lucide-react';
 
 const TermsOfService = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white">
+      <Helmet>
+        <title>Regulamin | CONCEPT - Samochody z USA</title>
+        <meta name="description" content="Regulamin świadczenia usług importu samochodów z USA. Warunki współpracy, gwarancje, obowiązki stron." />
+        <link rel="canonical" href="https://conceptusa.pl/terms-of-service" />
+      </Helmet>
+
       {/* Header */}
       <div className="bg-gradient-to-r from-red-900 to-blue-900 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

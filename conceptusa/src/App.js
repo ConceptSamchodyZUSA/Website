@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown, Loader2, Cookie } from 'lucide-react';
 import { carService, inquiryService } from './services';
 import emailjs from '@emailjs/browser';
@@ -358,6 +359,16 @@ const ConceptUSACars = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
+      <Helmet>
+        <title>CONCEPT - Samochody z USA | Import Dodge, Ford, Jeep z Ameryki</title>
+        <meta name="description" content="Sprowadzamy samochody z USA. Muscle cars, pickupy, SUVy. Pełna obsługa: faktura VAT, kredyty, leasingi. Odprawa celna port Gdynia." />
+        <link rel="canonical" href="https://conceptusa.pl/" />
+        <meta property="og:title" content="CONCEPT - Samochody z USA | Import aut z Ameryki" />
+        <meta property="og:description" content="Sprowadzamy samochody z USA. Muscle cars, pickupy, SUVy. Faktura VAT, kredyty, leasingi. Port Gdynia." />
+        <meta property="og:url" content="https://conceptusa.pl/" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
       {/* Cookie Consent Banner */}
       <CookieConsentBanner />
 

@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build && npm run postbuild:prerender",
+  "buildCommand": "npm run build",
   "outputDirectory": "build",
   "framework": "create-react-app",
   "rewrites": [

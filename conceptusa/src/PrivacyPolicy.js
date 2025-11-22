@@ -1,9 +1,16 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Shield, Cookie, Lock, Eye, FileText, Mail } from 'lucide-react';
 
 const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
+      <Helmet>
+        <title>Polityka Prywatności | CONCEPT - Samochody z USA</title>
+        <meta name="description" content="Polityka prywatności i ochrony danych osobowych ConceptUSA. RODO, cookies, bezpieczeństwo danych." />
+        <link rel="canonical" href="https://conceptusa.pl/privacy-policy" />
+      </Helmet>
+
       {/* Header */}
       <div className="bg-gradient-to-r from-red-600 to-blue-600 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
