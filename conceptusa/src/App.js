@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown, Loader2, Cookie } from 'lucide-react';
 import { carService, inquiryService } from './services';
 import emailjs from '@emailjs/browser';
-import backgroundImage from './background.jpg';
 import CookieConsentBanner from './CookieConsent';
+
+// Use WebP for better performance (30% smaller)
+const backgroundImageWebP = '/optimized-images/background-1200w.webp';
+const backgroundImageFallback = '/background.jpg';
 
 const ConceptUSACars = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -471,14 +474,17 @@ const ConceptUSACars = () => {
       {/* Hero Section */}
       <section id="home" className={`relative h-screen flex items-center justify-center overflow-hidden ${visibleSections.has('home') ? 'visible' : ''}`}>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-gray-900 to-red-900/50"></div>
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        ></div>
+        <div className="absolute inset-0 opacity-30">
+          <picture>
+            <source srcSet={backgroundImageWebP} type="image/webp" />
+            <img
+              src={backgroundImageFallback}
+              alt="Background"
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+          </picture>
+        </div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
