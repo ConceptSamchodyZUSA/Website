@@ -24,14 +24,6 @@ const ConceptUSACars = () => {
   const [submittingForm, setSubmittingForm] = useState(false);
   const [formLoadTime] = useState(Date.now()); // Track when form was loaded
 
-  // Number counter animation state
-  const [stats, setStats] = useState({
-    carsImported: 0,
-    happyClients: 0,
-    yearsExperience: 0
-  });
-  const [hasCountedStats, setHasCountedStats] = useState(false);
-
   // Parallax scroll effect
   const [scrollY, setScrollY] = useState(0);
 
@@ -80,12 +72,6 @@ const ConceptUSACars = () => {
         if (entry.isIntersecting) {
           // Section entering viewport - add to visible
           setVisibleSections(prev => new Set([...prev, entry.target.id]));
-
-          // Trigger counter animation when about section is visible
-          if (entry.target.id === 'about' && !hasCountedStats) {
-            setHasCountedStats(true);
-            animateStats();
-          }
         } else {
           // Section leaving viewport - remove from visible (for reverse effect)
           setVisibleSections(prev => {
@@ -95,9 +81,7 @@ const ConceptUSACars = () => {
           });
         }
       });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    };    const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     // Observe all sections
     const sections = document.querySelectorAll('section[id]');
@@ -175,37 +159,6 @@ const ConceptUSACars = () => {
       return [car.image_url];
     }
     return ['https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800'];
-  };
-
-  // Animate statistics counter
-  const animateStats = () => {
-    const targets = {
-      carsImported: 300,
-      happyClients: 250,
-      yearsExperience: 5
-    };
-
-    const duration = 2000; // 2 seconds
-    const steps = 60;
-    const stepDuration = duration / steps;
-
-    let currentStep = 0;
-
-    const interval = setInterval(() => {
-      currentStep++;
-      const progress = currentStep / steps;
-
-      setStats({
-        carsImported: Math.floor(targets.carsImported * progress),
-        happyClients: Math.floor(targets.happyClients * progress),
-        yearsExperience: Math.floor(targets.yearsExperience * progress)
-      });
-
-      if (currentStep >= steps) {
-        clearInterval(interval);
-        setStats(targets); // Ensure final values are exact
-      }
-    }, stepDuration);
   };
 
   // Drivetrain icon helper
@@ -487,15 +440,36 @@ const ConceptUSACars = () => {
         .delay-400 { animation-delay: 0.4s; opacity: 0; }
         .delay-500 { animation-delay: 0.5s; opacity: 0; }
 
-        /* 3D Tilt Effect for car cards */
-        .card-3d {
-          perspective: 1000px;
-          transform-style: preserve-3d;
-          transition: transform 0.3s ease;
+        /* Police lights effect for car cards 🚨 */
+        @keyframes policeLights {
+          0%, 100% {
+            box-shadow:
+              0 0 20px rgba(220, 38, 38, 0.8),
+              0 0 40px rgba(220, 38, 38, 0.6),
+              0 0 60px rgba(220, 38, 38, 0.4);
+          }
+          25% {
+            box-shadow:
+              0 0 30px rgba(220, 38, 38, 1),
+              0 0 60px rgba(220, 38, 38, 0.8),
+              0 0 90px rgba(220, 38, 38, 0.6);
+          }
+          50% {
+            box-shadow:
+              0 0 20px rgba(59, 130, 246, 0.8),
+              0 0 40px rgba(59, 130, 246, 0.6),
+              0 0 60px rgba(59, 130, 246, 0.4);
+          }
+          75% {
+            box-shadow:
+              0 0 30px rgba(59, 130, 246, 1),
+              0 0 60px rgba(59, 130, 246, 0.8),
+              0 0 90px rgba(59, 130, 246, 0.6);
+          }
         }
 
-        .card-3d:hover {
-          transform: scale(1.05) rotateY(2deg) rotateX(-2deg);
+        .police-lights:hover {
+          animation: policeLights 1s ease-in-out infinite;
         }
 
         /* RED LED Effects for CONCEPT */
@@ -855,24 +829,6 @@ const ConceptUSACars = () => {
             ))}
           </div>
 
-          {/* Statistics Counter */}
-          <div className="mt-16 bg-gradient-to-r from-red-600 via-blue-600 to-red-600 rounded-xl p-12">
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div>
-                <div className="text-6xl font-bold mb-2">{stats.carsImported}+</div>
-                <p className="text-xl text-gray-100">Sprowadzonych aut</p>
-              </div>
-              <div>
-                <div className="text-6xl font-bold mb-2">{stats.happyClients}+</div>
-                <p className="text-xl text-gray-100">Zadowolonych klientów</p>
-              </div>
-              <div>
-                <div className="text-6xl font-bold mb-2">{stats.yearsExperience}</div>
-                <p className="text-xl text-gray-100">Lat doświadczenia</p>
-              </div>
-            </div>
-          </div>
-
           {/* Specjalizacja */}
           <div className="mt-20">
             <h3 className="text-3xl font-bold text-center mb-8">
@@ -1132,7 +1088,7 @@ const ConceptUSACars = () => {
                   return (
                     <div
                       key={car.id}
-                      className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-red-500/20 transition cursor-pointer card-3d"
+                      className="bg-gray-900 rounded-xl overflow-hidden transition cursor-pointer police-lights"
                       onClick={() => openCarModal(car)}
                     >
                       <div className="relative h-48 overflow-hidden">
