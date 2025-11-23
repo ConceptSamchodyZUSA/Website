@@ -709,22 +709,18 @@ const ConceptUSACars = () => {
                 </div>
               ) : (
                 <div className="text-xl font-bold flex items-center gap-3">
-                  {/* CONCEPT z czerwonym LED */}
-                  <div className="relative inline-block">
-                    <span className="text-red-500 animate-led-glow-red">
+                  {/* CONCEPT z czerwoną świetlówką */}
+                  <div className="neon-tube-red starting">
+                    <span className="neon-tube-red-text text-red-500 font-bold">
                       CONCEPT
                     </span>
-                    <div className="absolute -inset-x-2 -top-0.5 h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-snake-top"></div>
-                    <div className="absolute -inset-x-2 -bottom-0.5 h-0.5 bg-gradient-to-r from-transparent via-red-400 to-transparent opacity-40 blur-sm animate-led-snake-bottom"></div>
                   </div>
 
-                  {/* Samochody z USA z niebieskim LED */}
-                  <div className="relative inline-block text-sm">
-                    <span className="text-blue-400 animate-led-glow-blue">
+                  {/* Samochody z USA z niebieską świetlówką */}
+                  <div className="neon-tube-blue starting text-sm">
+                    <span className="neon-tube-blue-text text-blue-400 font-semibold">
                       Samochody z USA
                     </span>
-                    <div className="absolute -inset-x-2 -top-0.5 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60 blur-sm animate-led-snake-top-blue"></div>
-                    <div className="absolute -inset-x-2 -bottom-0.5 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-40 blur-sm animate-led-snake-bottom-blue"></div>
                   </div>
                 </div>
               )}
@@ -791,24 +787,18 @@ const ConceptUSACars = () => {
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            {/* CONCEPT with red LED effect */}
-            <div className="relative inline-block mb-2">
-              <div className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-600 animate-led-glow-red">
+            {/* CONCEPT z czerwoną świetlówką */}
+            <div className="neon-tube-red neon-tube-red-large starting mb-4">
+              <span className="neon-tube-red-text text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-600">
                 CONCEPT
-              </div>
-              {/* LED snake effect - starts as snake, then pulses */}
-              <div className="absolute -inset-x-4 -top-2 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-80 blur-sm animate-led-snake-top"></div>
-              <div className="absolute -inset-x-4 -bottom-2 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-snake-bottom"></div>
+              </span>
             </div>
 
-            {/* Samochody z USA with blue LED effect */}
-            <div className="relative inline-block text-4xl md:text-5xl mt-4">
-              <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 animate-led-glow-blue">
+            {/* Samochody z USA z niebieską świetlówką */}
+            <div className="neon-tube-blue neon-tube-blue-large starting text-4xl md:text-5xl mt-4">
+              <span className="neon-tube-blue-text text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500">
                 Samochody z USA
-              </div>
-              {/* Blue LED strips */}
-              <div className="absolute -inset-x-4 -top-1 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-70 blur-sm animate-led-snake-top-blue"></div>
-              <div className="absolute -inset-x-4 -bottom-1 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-50 blur-sm animate-led-snake-bottom-blue"></div>
+              </span>
             </div>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-300">

@@ -36,3 +36,343 @@
     transform: rotate(360deg);
   }
 }
+
+/* ========================================
+   ANIMACJA ŚWIETLÓWKI - "CONCEPT" (CZERWONA)
+   ======================================== */
+
+.neon-tube-red {
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  border-radius: 30px;
+  border: 2px solid rgba(239, 68, 68, 0.15);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.neon-tube-red::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.neon-tube-red-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* Animacja startowa dla czerwonej świetlówki */
+.neon-tube-red.starting .neon-tube-red-text {
+  animation:
+    flicker-start-red 3.5s ease-in-out forwards,
+    glow-pulse-red 1.5s ease-in-out 3.5s infinite;
+}
+
+@keyframes flicker-start-red {
+  0% {
+    opacity: 0;
+    text-shadow: none;
+    filter: brightness(0.3);
+  }
+  2% {
+    opacity: 0.3;
+    text-shadow:
+      0 0 3px rgba(239, 68, 68, 0.8),
+      0 0 6px rgba(239, 68, 68, 0.6);
+    filter: brightness(0.5);
+  }
+  4% {
+    opacity: 0;
+    text-shadow: none;
+    filter: brightness(0.2);
+  }
+  8% {
+    opacity: 0.4;
+    text-shadow:
+      0 0 3px rgba(239, 68, 68, 0.8),
+      0 0 6px rgba(239, 68, 68, 0.6);
+    filter: brightness(0.6);
+  }
+  10% {
+    opacity: 0.1;
+    text-shadow: none;
+    filter: brightness(0.3);
+  }
+  15% {
+    opacity: 0.6;
+    text-shadow:
+      0 0 5px rgba(239, 68, 68, 1),
+      0 0 10px rgba(239, 68, 68, 0.8),
+      0 0 15px rgba(239, 68, 68, 0.6);
+    filter: brightness(0.85);
+  }
+  18% {
+    opacity: 0.3;
+    text-shadow:
+      0 0 3px rgba(239, 68, 68, 0.6);
+    filter: brightness(0.5);
+  }
+  22% {
+    opacity: 0.8;
+    text-shadow:
+      0 0 5px rgba(239, 68, 68, 1),
+      0 0 10px rgba(239, 68, 68, 0.9),
+      0 0 20px rgba(239, 68, 68, 0.7),
+      0 0 30px rgba(239, 68, 68, 0.5);
+    filter: brightness(1);
+  }
+  25% {
+    opacity: 0.4;
+    text-shadow:
+      0 0 3px rgba(239, 68, 68, 0.6);
+    filter: brightness(0.6);
+  }
+  30% {
+    opacity: 0.9;
+    text-shadow:
+      0 0 5px rgba(239, 68, 68, 1),
+      0 0 10px rgba(239, 68, 68, 0.9),
+      0 0 20px rgba(239, 68, 68, 0.8),
+      0 0 30px rgba(239, 68, 68, 0.6),
+      0 0 40px rgba(239, 68, 68, 0.4);
+    filter: brightness(1.1);
+  }
+  35% {
+    opacity: 0.5;
+    filter: brightness(0.7);
+  }
+  40%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px rgba(239, 68, 68, 1),
+      0 0 10px rgba(239, 68, 68, 0.9),
+      0 0 20px rgba(239, 68, 68, 0.8),
+      0 0 30px rgba(239, 68, 68, 0.7),
+      0 0 40px rgba(239, 68, 68, 0.5),
+      0 0 50px rgba(239, 68, 68, 0.3);
+    filter: brightness(1.25);
+  }
+}
+
+@keyframes glow-pulse-red {
+  0%, 100% {
+    text-shadow:
+      0 0 5px rgba(239, 68, 68, 1),
+      0 0 10px rgba(239, 68, 68, 0.9),
+      0 0 20px rgba(239, 68, 68, 0.8),
+      0 0 30px rgba(239, 68, 68, 0.7),
+      0 0 40px rgba(239, 68, 68, 0.5);
+    filter: brightness(1.25);
+  }
+  50% {
+    text-shadow:
+      0 0 4px rgba(239, 68, 68, 0.9),
+      0 0 8px rgba(239, 68, 68, 0.8),
+      0 0 16px rgba(239, 68, 68, 0.7),
+      0 0 25px rgba(239, 68, 68, 0.6),
+      0 0 35px rgba(239, 68, 68, 0.4);
+    filter: brightness(1.15);
+  }
+}
+
+/* ========================================
+   ANIMACJA ŚWIETLÓWKI - "Samochody z USA" (NIEBIESKA)
+   ======================================== */
+
+.neon-tube-blue {
+  position: relative;
+  display: inline-block;
+  padding: 6px 18px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  border-radius: 25px;
+  border: 2px solid rgba(59, 130, 246, 0.15);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.neon-tube-blue::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.neon-tube-blue-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* Animacja startowa dla niebieskiej świetlówki */
+.neon-tube-blue.starting .neon-tube-blue-text {
+  animation:
+    flicker-start-blue 3.8s ease-in-out 0.3s forwards,
+    glow-pulse-blue 1.7s ease-in-out 4.1s infinite;
+}
+
+@keyframes flicker-start-blue {
+  0% {
+    opacity: 0;
+    text-shadow: none;
+    filter: brightness(0.3);
+  }
+  2% {
+    opacity: 0.3;
+    text-shadow:
+      0 0 3px rgba(59, 130, 246, 0.8),
+      0 0 6px rgba(59, 130, 246, 0.6);
+    filter: brightness(0.5);
+  }
+  4% {
+    opacity: 0;
+    text-shadow: none;
+    filter: brightness(0.2);
+  }
+  8% {
+    opacity: 0.4;
+    text-shadow:
+      0 0 3px rgba(59, 130, 246, 0.8),
+      0 0 6px rgba(59, 130, 246, 0.6);
+    filter: brightness(0.6);
+  }
+  10% {
+    opacity: 0.1;
+    text-shadow: none;
+    filter: brightness(0.3);
+  }
+  15% {
+    opacity: 0.6;
+    text-shadow:
+      0 0 5px rgba(59, 130, 246, 1),
+      0 0 10px rgba(59, 130, 246, 0.8),
+      0 0 15px rgba(59, 130, 246, 0.6);
+    filter: brightness(0.85);
+  }
+  18% {
+    opacity: 0.3;
+    text-shadow:
+      0 0 3px rgba(59, 130, 246, 0.6);
+    filter: brightness(0.5);
+  }
+  22% {
+    opacity: 0.8;
+    text-shadow:
+      0 0 5px rgba(59, 130, 246, 1),
+      0 0 10px rgba(59, 130, 246, 0.9),
+      0 0 20px rgba(59, 130, 246, 0.7),
+      0 0 30px rgba(59, 130, 246, 0.5);
+    filter: brightness(1);
+  }
+  25% {
+    opacity: 0.4;
+    text-shadow:
+      0 0 3px rgba(59, 130, 246, 0.6);
+    filter: brightness(0.6);
+  }
+  30% {
+    opacity: 0.9;
+    text-shadow:
+      0 0 5px rgba(59, 130, 246, 1),
+      0 0 10px rgba(59, 130, 246, 0.9),
+      0 0 20px rgba(59, 130, 246, 0.8),
+      0 0 30px rgba(59, 130, 246, 0.6),
+      0 0 40px rgba(59, 130, 246, 0.4);
+    filter: brightness(1.1);
+  }
+  35% {
+    opacity: 0.5;
+    filter: brightness(0.7);
+  }
+  40%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px rgba(59, 130, 246, 1),
+      0 0 10px rgba(59, 130, 246, 0.9),
+      0 0 20px rgba(59, 130, 246, 0.8),
+      0 0 30px rgba(59, 130, 246, 0.7),
+      0 0 40px rgba(59, 130, 246, 0.5),
+      0 0 50px rgba(59, 130, 246, 0.3);
+    filter: brightness(1.25);
+  }
+}
+
+@keyframes glow-pulse-blue {
+  0%, 100% {
+    text-shadow:
+      0 0 5px rgba(59, 130, 246, 1),
+      0 0 10px rgba(59, 130, 246, 0.9),
+      0 0 20px rgba(59, 130, 246, 0.8),
+      0 0 30px rgba(59, 130, 246, 0.7),
+      0 0 40px rgba(59, 130, 246, 0.5);
+    filter: brightness(1.25);
+  }
+  50% {
+    text-shadow:
+      0 0 4px rgba(59, 130, 246, 0.9),
+      0 0 8px rgba(59, 130, 246, 0.8),
+      0 0 16px rgba(59, 130, 246, 0.7),
+      0 0 25px rgba(59, 130, 246, 0.6),
+      0 0 35px rgba(59, 130, 246, 0.4);
+    filter: brightness(1.15);
+  }
+}
+
+/* ========================================
+   WIĘKSZE WERSJE DLA HERO SECTION
+   ======================================== */
+
+.neon-tube-red-large {
+  padding: 12px 30px;
+  border-radius: 40px;
+  border: 3px solid rgba(239, 68, 68, 0.2);
+}
+
+.neon-tube-red-large::before {
+  height: 3px;
+  top: 5px;
+}
+
+.neon-tube-blue-large {
+  padding: 10px 25px;
+  border-radius: 35px;
+  border: 3px solid rgba(59, 130, 246, 0.2);
+}
+
+.neon-tube-blue-large::before {
+  height: 3px;
+  top: 5px;
+}
