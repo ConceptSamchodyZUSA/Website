@@ -60,6 +60,20 @@ const ConceptUSACars = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    // Uruchom animację świetlówki po załadowaniu strony
+    const timer = setTimeout(() => {
+      const neonElements = document.querySelectorAll('.neon-tube-red, .neon-tube-blue');
+      neonElements.forEach(el => {
+        if (!el.classList.contains('starting')) {
+          el.classList.add('starting');
+        }
+      });
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Intersection Observer for scroll animations (bi-directional)
   useEffect(() => {
     const observerOptions = {
