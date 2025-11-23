@@ -214,6 +214,19 @@ const ConceptUSACars = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Rate limiting - prevent spam (60 seconds between submissions)
+    const lastSubmitTime = localStorage.getItem('lastSubmitTime');
+    const now = Date.now();
+
+    if (lastSubmitTime) {
+      const timeSinceLastSubmit = (now - parseInt(lastSubmitTime)) / 1000;
+      if (timeSinceLastSubmit < 60) {
+        const remainingSeconds = Math.ceil(60 - timeSinceLastSubmit);
+        alert(`⏰ Poczekaj jeszcze ${remainingSeconds} sekund przed kolejnym zapytaniem!\n\nOchrona przed spamem.`);
+        return;
+      }
+    }
+
     // Honeypot check - if filled, it's a bot
     if (formData.website) {
       console.log('Bot detected - honeypot field filled');
@@ -316,6 +329,9 @@ const ConceptUSACars = () => {
         console.warn('Email not sent via EmailJS, but inquiry saved:', emailError);
       }
 
+      // Save submission timestamp for rate limiting
+      localStorage.setItem('lastSubmitTime', now.toString());
+
       setSubmittingForm(false); // Stop loading
 
       console.log('Inquiry submitted successfully');
@@ -398,8 +414,8 @@ const ConceptUSACars = () => {
           }
         }
 
-        /* LED Glow Effect - pulsujący czerwony blask */
-        @keyframes ledGlow {
+        /* RED LED Effects for CONCEPT */
+        @keyframes ledGlowRed {
           0%, 100% {
             filter: brightness(1) drop-shadow(0 0 10px rgba(239, 68, 68, 0.8));
             text-shadow: 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4);
@@ -410,46 +426,150 @@ const ConceptUSACars = () => {
           }
         }
 
-        /* LED Scanning - pasek przesuwa się w prawo */
-        @keyframes ledScan {
+        /* LED Snake - wąż idzie w prawo, potem pulsuje */
+        @keyframes ledSnakeTop {
           0% {
-            transform: translateX(-100%);
+            transform: translateX(-120%) scaleX(0.5);
             opacity: 0;
           }
-          50% {
+          15% {
+            transform: translateX(-60%) scaleX(1);
             opacity: 1;
           }
-          100% {
-            transform: translateX(200%);
-            opacity: 0;
-          }
-        }
-
-        /* LED Scanning Reverse - pasek przesuwa się w lewo */
-        @keyframes ledScanReverse {
-          0% {
-            transform: translateX(200%);
-            opacity: 0;
-          }
-          50% {
+          30% {
+            transform: translateX(0%) scaleX(1);
             opacity: 1;
           }
-          100% {
-            transform: translateX(-100%);
+          45% {
+            transform: translateX(60%) scaleX(1);
+            opacity: 1;
+          }
+          60% {
+            transform: translateX(120%) scaleX(0.5);
             opacity: 0;
+          }
+          70%, 100% {
+            transform: translateX(0%);
+            opacity: 0.8;
           }
         }
 
-        .animate-led-glow {
-          animation: ledGlow 2s ease-in-out infinite;
+        @keyframes ledSnakeBottom {
+          0% {
+            transform: translateX(120%) scaleX(0.5);
+            opacity: 0;
+          }
+          15% {
+            transform: translateX(60%) scaleX(1);
+            opacity: 1;
+          }
+          30% {
+            transform: translateX(0%) scaleX(1);
+            opacity: 1;
+          }
+          45% {
+            transform: translateX(-60%) scaleX(1);
+            opacity: 1;
+          }
+          60% {
+            transform: translateX(-120%) scaleX(0.5);
+            opacity: 0;
+          }
+          70%, 100% {
+            transform: translateX(0%);
+            opacity: 0.6;
+          }
         }
 
-        .animate-led-scan {
-          animation: ledScan 3s ease-in-out infinite;
+        /* BLUE LED Effects for Samochody z USA */
+        @keyframes ledGlowBlue {
+          0%, 100% {
+            filter: brightness(1) drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+            text-shadow: 0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.4);
+          }
+          50% {
+            filter: brightness(1.15) drop-shadow(0 0 15px rgba(59, 130, 246, 1));
+            text-shadow: 0 0 25px rgba(59, 130, 246, 0.9), 0 0 50px rgba(59, 130, 246, 0.6), 0 0 70px rgba(59, 130, 246, 0.4);
+          }
         }
 
-        .animate-led-scan-reverse {
-          animation: ledScanReverse 3s ease-in-out infinite 1.5s;
+        @keyframes ledSnakeTopBlue {
+          0% {
+            transform: translateX(-120%) scaleX(0.5);
+            opacity: 0;
+          }
+          15% {
+            transform: translateX(-60%) scaleX(1);
+            opacity: 1;
+          }
+          30% {
+            transform: translateX(0%) scaleX(1);
+            opacity: 1;
+          }
+          45% {
+            transform: translateX(60%) scaleX(1);
+            opacity: 1;
+          }
+          60% {
+            transform: translateX(120%) scaleX(0.5);
+            opacity: 0;
+          }
+          70%, 100% {
+            transform: translateX(0%);
+            opacity: 0.7;
+          }
+        }
+
+        @keyframes ledSnakeBottomBlue {
+          0% {
+            transform: translateX(120%) scaleX(0.5);
+            opacity: 0;
+          }
+          15% {
+            transform: translateX(60%) scaleX(1);
+            opacity: 1;
+          }
+          30% {
+            transform: translateX(0%) scaleX(1);
+            opacity: 1;
+          }
+          45% {
+            transform: translateX(-60%) scaleX(1);
+            opacity: 1;
+          }
+          60% {
+            transform: translateX(-120%) scaleX(0.5);
+            opacity: 0;
+          }
+          70%, 100% {
+            transform: translateX(0%);
+            opacity: 0.5;
+          }
+        }
+
+        /* Apply animations */
+        .animate-led-glow-red {
+          animation: ledGlowRed 2.5s ease-in-out infinite 1s;
+        }
+
+        .animate-led-snake-top {
+          animation: ledSnakeTop 4s ease-in-out infinite;
+        }
+
+        .animate-led-snake-bottom {
+          animation: ledSnakeBottom 4s ease-in-out infinite;
+        }
+
+        .animate-led-glow-blue {
+          animation: ledGlowBlue 2.8s ease-in-out infinite 1.2s;
+        }
+
+        .animate-led-snake-top-blue {
+          animation: ledSnakeTopBlue 4.2s ease-in-out infinite 0.3s;
+        }
+
+        .animate-led-snake-bottom-blue {
+          animation: ledSnakeBottomBlue 4.2s ease-in-out infinite 0.3s;
         }
 
         .animate-fade-in-up {
@@ -530,11 +650,7 @@ const ConceptUSACars = () => {
           </div>
         )}
 
-        {/* Animated LED stripe under navigation */}
-        <div className="relative h-1 w-full overflow-hidden bg-gray-950">
-          <div className="absolute inset-0 h-full w-1/3 bg-gradient-to-r from-transparent via-red-600 to-transparent animate-led-scan blur-sm"></div>
-          <div className="absolute inset-0 h-full w-1/4 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-led-scan-reverse blur-sm"></div>
-        </div>
+        {/* Removed animated stripe - cleaner look */}
       </nav>
 
       {/* Hero Section */}
@@ -554,16 +670,24 @@ const ConceptUSACars = () => {
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <div className="relative inline-block">
-              <div className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-600 animate-led-glow">
+            {/* CONCEPT with red LED effect */}
+            <div className="relative inline-block mb-2">
+              <div className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-600 animate-led-glow-red">
                 CONCEPT
               </div>
-              {/* LED strips effect */}
-              <div className="absolute -inset-x-4 -top-2 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-80 blur-sm animate-led-scan"></div>
-              <div className="absolute -inset-x-4 -bottom-2 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-scan-reverse"></div>
+              {/* LED snake effect - starts as snake, then pulses */}
+              <div className="absolute -inset-x-4 -top-2 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-80 blur-sm animate-led-snake-top"></div>
+              <div className="absolute -inset-x-4 -bottom-2 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-snake-bottom"></div>
             </div>
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-blue-500 text-4xl md:text-5xl mt-4">
-              Samochody z USA
+
+            {/* Samochody z USA with blue LED effect */}
+            <div className="relative inline-block text-4xl md:text-5xl mt-4">
+              <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 animate-led-glow-blue">
+                Samochody z USA
+              </div>
+              {/* Blue LED strips */}
+              <div className="absolute -inset-x-4 -top-1 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-70 blur-sm animate-led-snake-top-blue"></div>
+              <div className="absolute -inset-x-4 -bottom-1 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-50 blur-sm animate-led-snake-bottom-blue"></div>
             </div>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-300">
@@ -824,11 +948,36 @@ const ConceptUSACars = () => {
             </button>
           </div>
 
-          {/* Loading */}
+          {/* Loading Skeletons */}
           {loading && (
-            <div className="text-center py-20">
-              <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-red-600"></div>
-              <p className="mt-4 text-gray-400">Ładowanie samochodów...</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="bg-gray-900 rounded-xl overflow-hidden animate-pulse">
+                  {/* Image skeleton */}
+                  <div className="h-48 bg-gray-700"></div>
+
+                  {/* Content skeleton */}
+                  <div className="p-6 space-y-4">
+                    {/* Title */}
+                    <div className="h-6 bg-gray-700 rounded w-3/4"></div>
+
+                    {/* Meta info */}
+                    <div className="flex gap-4">
+                      <div className="h-4 bg-gray-700 rounded w-20"></div>
+                      <div className="h-4 bg-gray-700 rounded w-24"></div>
+                    </div>
+
+                    {/* Engine info */}
+                    <div className="flex gap-4">
+                      <div className="h-4 bg-gray-700 rounded w-16"></div>
+                      <div className="h-4 bg-gray-700 rounded w-20"></div>
+                    </div>
+
+                    {/* Price */}
+                    <div className="h-8 bg-gray-700 rounded w-1/2 mt-4"></div>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
 
