@@ -725,14 +725,14 @@ const ConceptUSACars = () => {
                 <div className="text-xl font-bold flex items-center gap-3">
                   {/* CONCEPT z czerwoną świetlówką */}
                   <div className="neon-tube-red starting">
-                    <span className="neon-tube-red-text text-red-500 font-bold">
+                    <span className="neon-tube-red-text text-red-500">
                       CONCEPT
                     </span>
                   </div>
 
                   {/* Samochody z USA z niebieską świetlówką */}
                   <div className="neon-tube-blue starting text-sm">
-                    <span className="neon-tube-blue-text text-blue-400 font-semibold">
+                    <span className="neon-tube-blue-text text-blue-400">
                       Samochody z USA
                     </span>
                   </div>
@@ -803,14 +803,14 @@ const ConceptUSACars = () => {
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             {/* CONCEPT z czerwoną świetlówką */}
             <div className="neon-tube-red neon-tube-red-large starting mb-4">
-              <span className="neon-tube-red-text text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-600">
+              <span className="neon-tube-red-text text-red-500">
                 CONCEPT
               </span>
             </div>
 
             {/* Samochody z USA z niebieską świetlówką */}
             <div className="neon-tube-blue neon-tube-blue-large starting text-4xl md:text-5xl mt-4">
-              <span className="neon-tube-blue-text text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500">
+              <span className="neon-tube-blue-text text-blue-400">
                 Samochody z USA
               </span>
             </div>
