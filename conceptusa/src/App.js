@@ -398,6 +398,60 @@ const ConceptUSACars = () => {
           }
         }
 
+        /* LED Glow Effect - pulsujący czerwony blask */
+        @keyframes ledGlow {
+          0%, 100% {
+            filter: brightness(1) drop-shadow(0 0 10px rgba(239, 68, 68, 0.8));
+            text-shadow: 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4);
+          }
+          50% {
+            filter: brightness(1.2) drop-shadow(0 0 20px rgba(239, 68, 68, 1));
+            text-shadow: 0 0 30px rgba(239, 68, 68, 0.9), 0 0 60px rgba(239, 68, 68, 0.6), 0 0 80px rgba(239, 68, 68, 0.4);
+          }
+        }
+
+        /* LED Scanning - pasek przesuwa się w prawo */
+        @keyframes ledScan {
+          0% {
+            transform: translateX(-100%);
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(200%);
+            opacity: 0;
+          }
+        }
+
+        /* LED Scanning Reverse - pasek przesuwa się w lewo */
+        @keyframes ledScanReverse {
+          0% {
+            transform: translateX(200%);
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(-100%);
+            opacity: 0;
+          }
+        }
+
+        .animate-led-glow {
+          animation: ledGlow 2s ease-in-out infinite;
+        }
+
+        .animate-led-scan {
+          animation: ledScan 3s ease-in-out infinite;
+        }
+
+        .animate-led-scan-reverse {
+          animation: ledScanReverse 3s ease-in-out infinite 1.5s;
+        }
+
         .animate-fade-in-up {
           animation: fadeInUp 0.4s ease-out forwards;
         }
@@ -476,9 +530,10 @@ const ConceptUSACars = () => {
           </div>
         )}
 
-        {/* Animated gradient bar */}
-        <div className="relative h-1 w-full overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-red-600 via-blue-600 to-red-600 animate-gradient-x"></div>
+        {/* Animated LED stripe under navigation */}
+        <div className="relative h-1 w-full overflow-hidden bg-gray-950">
+          <div className="absolute inset-0 h-full w-1/3 bg-gradient-to-r from-transparent via-red-600 to-transparent animate-led-scan blur-sm"></div>
+          <div className="absolute inset-0 h-full w-1/4 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-led-scan-reverse blur-sm"></div>
         </div>
       </nav>
 
@@ -498,11 +553,16 @@ const ConceptUSACars = () => {
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-600">
-              CONCEPT
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <div className="relative inline-block">
+              <div className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-600 animate-led-glow">
+                CONCEPT
+              </div>
+              {/* LED strips effect */}
+              <div className="absolute -inset-x-4 -top-2 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-80 blur-sm animate-led-scan"></div>
+              <div className="absolute -inset-x-4 -bottom-2 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-scan-reverse"></div>
             </div>
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-blue-500 text-4xl md:text-5xl mt-2">
+            <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-blue-500 text-4xl md:text-5xl mt-4">
               Samochody z USA
             </div>
           </h1>
