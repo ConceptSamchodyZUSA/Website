@@ -701,7 +701,7 @@ const ConceptUSACars = () => {
                 <div className="text-xl font-bold flex items-center gap-3">
                   {/* CONCEPT z czerwonym LED */}
                   <div className="relative inline-block">
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600 animate-led-glow-red">
+                    <span className="text-red-500 animate-led-glow-red">
                       CONCEPT
                     </span>
                     <div className="absolute -inset-x-2 -top-0.5 h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-snake-top"></div>
@@ -710,7 +710,7 @@ const ConceptUSACars = () => {
 
                   {/* Samochody z USA z niebieskim LED */}
                   <div className="relative inline-block text-sm">
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500 animate-led-glow-blue">
+                    <span className="text-blue-400 animate-led-glow-blue">
                       Samochody z USA
                     </span>
                     <div className="absolute -inset-x-2 -top-0.5 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60 blur-sm animate-led-snake-top-blue"></div>
