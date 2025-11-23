@@ -472,15 +472,20 @@ const ConceptUSACars = () => {
           animation: policeLights 2s ease-in-out infinite;
         }
 
-        /* RED LED Effects for CONCEPT */
+        /* RED LED Effects for CONCEPT - only text-shadow (no drop-shadow for mobile fix) */
         @keyframes ledGlowRed {
           0%, 100% {
-            filter: brightness(1) drop-shadow(0 0 10px rgba(239, 68, 68, 0.8));
-            text-shadow: 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4);
+            text-shadow:
+              0 0 10px rgba(239, 68, 68, 0.8),
+              0 0 20px rgba(239, 68, 68, 0.6),
+              0 0 40px rgba(239, 68, 68, 0.4);
           }
           50% {
-            filter: brightness(1.2) drop-shadow(0 0 20px rgba(239, 68, 68, 1));
-            text-shadow: 0 0 30px rgba(239, 68, 68, 0.9), 0 0 60px rgba(239, 68, 68, 0.6), 0 0 80px rgba(239, 68, 68, 0.4);
+            text-shadow:
+              0 0 15px rgba(239, 68, 68, 1),
+              0 0 30px rgba(239, 68, 68, 0.9),
+              0 0 60px rgba(239, 68, 68, 0.6),
+              0 0 80px rgba(239, 68, 68, 0.4);
           }
         }
 
@@ -539,15 +544,20 @@ const ConceptUSACars = () => {
           }
         }
 
-        /* BLUE LED Effects for Samochody z USA */
+        /* BLUE LED Effects for Samochody z USA - only text-shadow (no drop-shadow for mobile fix) */
         @keyframes ledGlowBlue {
           0%, 100% {
-            filter: brightness(1) drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
-            text-shadow: 0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.4);
+            text-shadow:
+              0 0 8px rgba(59, 130, 246, 0.8),
+              0 0 15px rgba(59, 130, 246, 0.6),
+              0 0 30px rgba(59, 130, 246, 0.4);
           }
           50% {
-            filter: brightness(1.15) drop-shadow(0 0 15px rgba(59, 130, 246, 1));
-            text-shadow: 0 0 25px rgba(59, 130, 246, 0.9), 0 0 50px rgba(59, 130, 246, 0.6), 0 0 70px rgba(59, 130, 246, 0.4);
+            text-shadow:
+              0 0 12px rgba(59, 130, 246, 1),
+              0 0 25px rgba(59, 130, 246, 0.9),
+              0 0 50px rgba(59, 130, 246, 0.6),
+              0 0 70px rgba(59, 130, 246, 0.4);
           }
         }
 
