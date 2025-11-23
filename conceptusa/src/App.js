@@ -23,6 +23,18 @@ const ConceptUSACars = () => {
   const carsPerPage = 9; // 3x3 grid
   const [submittingForm, setSubmittingForm] = useState(false);
   const [formLoadTime] = useState(Date.now()); // Track when form was loaded
+
+  // Number counter animation state
+  const [stats, setStats] = useState({
+    carsImported: 0,
+    happyClients: 0,
+    yearsExperience: 0
+  });
+  const [hasCountedStats, setHasCountedStats] = useState(false);
+
+  // Parallax scroll effect
+  const [scrollY, setScrollY] = useState(0);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -68,6 +80,12 @@ const ConceptUSACars = () => {
         if (entry.isIntersecting) {
           // Section entering viewport - add to visible
           setVisibleSections(prev => new Set([...prev, entry.target.id]));
+
+          // Trigger counter animation when about section is visible
+          if (entry.target.id === 'about' && !hasCountedStats) {
+            setHasCountedStats(true);
+            animateStats();
+          }
         } else {
           // Section leaving viewport - remove from visible (for reverse effect)
           setVisibleSections(prev => {
@@ -96,6 +114,7 @@ const ConceptUSACars = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      setScrollY(window.scrollY); // Track scroll position for parallax
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -156,6 +175,37 @@ const ConceptUSACars = () => {
       return [car.image_url];
     }
     return ['https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800'];
+  };
+
+  // Animate statistics counter
+  const animateStats = () => {
+    const targets = {
+      carsImported: 300,
+      happyClients: 250,
+      yearsExperience: 5
+    };
+
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const stepDuration = duration / steps;
+
+    let currentStep = 0;
+
+    const interval = setInterval(() => {
+      currentStep++;
+      const progress = currentStep / steps;
+
+      setStats({
+        carsImported: Math.floor(targets.carsImported * progress),
+        happyClients: Math.floor(targets.happyClients * progress),
+        yearsExperience: Math.floor(targets.yearsExperience * progress)
+      });
+
+      if (currentStep >= steps) {
+        clearInterval(interval);
+        setStats(targets); // Ensure final values are exact
+      }
+    }, stepDuration);
   };
 
   // Drivetrain icon helper
@@ -414,6 +464,40 @@ const ConceptUSACars = () => {
           }
         }
 
+        /* Staggered fade-in animation for steps */
+        @keyframes slideUpFade {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-slide-up-fade {
+          animation: slideUpFade 0.6s ease-out forwards;
+        }
+
+        /* Delays for staggered effect */
+        .delay-100 { animation-delay: 0.1s; opacity: 0; }
+        .delay-200 { animation-delay: 0.2s; opacity: 0; }
+        .delay-300 { animation-delay: 0.3s; opacity: 0; }
+        .delay-400 { animation-delay: 0.4s; opacity: 0; }
+        .delay-500 { animation-delay: 0.5s; opacity: 0; }
+
+        /* 3D Tilt Effect for car cards */
+        .card-3d {
+          perspective: 1000px;
+          transform-style: preserve-3d;
+          transition: transform 0.3s ease;
+        }
+
+        .card-3d:hover {
+          transform: scale(1.05) rotateY(2deg) rotateX(-2deg);
+        }
+
         /* RED LED Effects for CONCEPT */
         @keyframes ledGlowRed {
           0%, 100% {
@@ -598,6 +682,32 @@ const ConceptUSACars = () => {
         section:not(#home) {
           margin-top: -1px; /* Remove gap between sections */
         }
+
+        /* Fade-in animation for sections */
+        section {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* Enhanced glow effect for CTA buttons */
+        @keyframes buttonGlow {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.5), 0 0 40px rgba(220, 38, 38, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.8), 0 0 60px rgba(220, 38, 38, 0.5), 0 0 80px rgba(220, 38, 38, 0.3);
+          }
+        }
+
+        .cta-glow:hover {
+          animation: buttonGlow 1.5s ease-in-out infinite;
+        }
       `}</style>
 
       {/* Navigation */}
@@ -656,7 +766,12 @@ const ConceptUSACars = () => {
       {/* Hero Section */}
       <section id="home" className={`relative h-screen flex items-center justify-center overflow-hidden ${visibleSections.has('home') ? 'visible' : ''}`}>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-gray-900 to-red-900/50"></div>
-        <div className="absolute inset-0 opacity-30">
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)` // Parallax effect: moves slower than scroll
+          }}
+        >
           <picture>
             <source srcSet={backgroundImageWebP} type="image/webp" />
             <img
@@ -696,13 +811,13 @@ const ConceptUSACars = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => scrollToSection('portfolio')}
-              className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105 shadow-lg"
+              className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105 shadow-lg cta-glow"
             >
               Zobacz portfolio
             </button>
             <button
               onClick={() => scrollToSection('order')}
-              className="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full text-lg font-semibold transition"
+              className="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105"
             >
               Zamów auto
             </button>
@@ -738,6 +853,24 @@ const ConceptUSACars = () => {
                 <p className="text-gray-400">{item.desc}</p>
               </div>
             ))}
+          </div>
+
+          {/* Statistics Counter */}
+          <div className="mt-16 bg-gradient-to-r from-red-600 via-blue-600 to-red-600 rounded-xl p-12">
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="text-6xl font-bold mb-2">{stats.carsImported}+</div>
+                <p className="text-xl text-gray-100">Sprowadzonych aut</p>
+              </div>
+              <div>
+                <div className="text-6xl font-bold mb-2">{stats.happyClients}+</div>
+                <p className="text-xl text-gray-100">Zadowolonych klientów</p>
+              </div>
+              <div>
+                <div className="text-6xl font-bold mb-2">{stats.yearsExperience}</div>
+                <p className="text-xl text-gray-100">Lat doświadczenia</p>
+              </div>
+            </div>
           </div>
 
           {/* Specjalizacja */}
@@ -887,7 +1020,7 @@ const ConceptUSACars = () => {
               { num: '04', title: 'Transport', desc: 'Sprowadzamy do Polski' },
               { num: '05', title: 'Odbiór', desc: 'Odbierasz swoje auto' }
             ].map((step, idx) => (
-              <div key={idx} className="relative">
+              <div key={idx} className={`relative animate-slide-up-fade delay-${(idx + 1) * 100}`}>
                 <div className="bg-gradient-to-br from-red-600 to-blue-600 p-6 rounded-xl text-center hover:shadow-xl hover:shadow-red-500/20 transition">
                   <div className="text-5xl font-bold mb-4 opacity-50">{step.num}</div>
                   <h3 className="text-xl font-bold mb-2">{step.title}</h3>
@@ -999,7 +1132,7 @@ const ConceptUSACars = () => {
                   return (
                     <div
                       key={car.id}
-                      className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-red-500/20 transition transform hover:scale-105 cursor-pointer"
+                      className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-red-500/20 transition cursor-pointer card-3d"
                       onClick={() => openCarModal(car)}
                     >
                       <div className="relative h-48 overflow-hidden">
