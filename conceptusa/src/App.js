@@ -440,36 +440,36 @@ const ConceptUSACars = () => {
         .delay-400 { animation-delay: 0.4s; opacity: 0; }
         .delay-500 { animation-delay: 0.5s; opacity: 0; }
 
-        /* Police lights effect for car cards 🚨 */
+        /* Police lights effect for car cards 🚨 - delikatna i płynna */
         @keyframes policeLights {
           0%, 100% {
             box-shadow:
-              0 0 20px rgba(220, 38, 38, 0.8),
-              0 0 40px rgba(220, 38, 38, 0.6),
-              0 0 60px rgba(220, 38, 38, 0.4);
+              0 0 15px rgba(220, 38, 38, 0.4),
+              0 0 30px rgba(220, 38, 38, 0.3),
+              0 0 50px rgba(220, 38, 38, 0.2);
           }
           25% {
             box-shadow:
-              0 0 30px rgba(220, 38, 38, 1),
-              0 0 60px rgba(220, 38, 38, 0.8),
-              0 0 90px rgba(220, 38, 38, 0.6);
+              0 0 20px rgba(220, 38, 38, 0.6),
+              0 0 40px rgba(220, 38, 38, 0.4),
+              0 0 70px rgba(220, 38, 38, 0.3);
           }
           50% {
             box-shadow:
-              0 0 20px rgba(59, 130, 246, 0.8),
-              0 0 40px rgba(59, 130, 246, 0.6),
-              0 0 60px rgba(59, 130, 246, 0.4);
+              0 0 15px rgba(59, 130, 246, 0.4),
+              0 0 30px rgba(59, 130, 246, 0.3),
+              0 0 50px rgba(59, 130, 246, 0.2);
           }
           75% {
             box-shadow:
-              0 0 30px rgba(59, 130, 246, 1),
-              0 0 60px rgba(59, 130, 246, 0.8),
-              0 0 90px rgba(59, 130, 246, 0.6);
+              0 0 20px rgba(59, 130, 246, 0.6),
+              0 0 40px rgba(59, 130, 246, 0.4),
+              0 0 70px rgba(59, 130, 246, 0.3);
           }
         }
 
         .police-lights:hover {
-          animation: policeLights 1s ease-in-out infinite;
+          animation: policeLights 2s ease-in-out infinite;
         }
 
         /* RED LED Effects for CONCEPT */
@@ -692,10 +692,32 @@ const ConceptUSACars = () => {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="text-2xl font-bold">
-                <span className="text-red-600">CONCEPT</span>
-                <span className="text-blue-500 text-sm ml-2">Samochody z USA</span>
-              </div>
+              {!isScrolled ? (
+                <div className="text-2xl font-bold">
+                  <span className="text-red-600">CONCEPT</span>
+                  <span className="text-blue-500 text-sm ml-2">Samochody z USA</span>
+                </div>
+              ) : (
+                <div className="text-xl font-bold flex items-center gap-3">
+                  {/* CONCEPT z czerwonym LED */}
+                  <div className="relative inline-block">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600 animate-led-glow-red">
+                      CONCEPT
+                    </span>
+                    <div className="absolute -inset-x-2 -top-0.5 h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-snake-top"></div>
+                    <div className="absolute -inset-x-2 -bottom-0.5 h-0.5 bg-gradient-to-r from-transparent via-red-400 to-transparent opacity-40 blur-sm animate-led-snake-bottom"></div>
+                  </div>
+
+                  {/* Samochody z USA z niebieskim LED */}
+                  <div className="relative inline-block text-sm">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500 animate-led-glow-blue">
+                      Samochody z USA
+                    </span>
+                    <div className="absolute -inset-x-2 -top-0.5 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60 blur-sm animate-led-snake-top-blue"></div>
+                    <div className="absolute -inset-x-2 -bottom-0.5 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-40 blur-sm animate-led-snake-bottom-blue"></div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Desktop Menu */}
