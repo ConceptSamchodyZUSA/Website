@@ -152,9 +152,11 @@
         });
       }
 
-      // Pokaż instrukcje instalacji dla iOS lub przycisk dla innych
+      // Pokaż instrukcje instalacji DLA ADMIN PANELU tylko
       window.addEventListener('load', () => {
         const isAdminPanel = window.location.pathname.includes('/admin');
+
+        // WYJDŹ jeśli nie jesteś w admin panelu lub już zainstalowano
         if (!isAdminPanel || isStandalone()) return;
 
         if (isIOS()) {
