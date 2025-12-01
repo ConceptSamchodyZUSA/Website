@@ -33,7 +33,7 @@
     }
   ],
   "start_url": "/admin",
-  "scope": "/",
+  "scope": "/admin",
   "display": "standalone",
   "orientation": "any",
   "theme_color": "#dc2626",
@@ -44,14 +44,14 @@
       "name": "Dodaj samochód",
       "short_name": "Dodaj",
       "description": "Szybko dodaj nowy samochód",
-      "url": "/admin.html#add",
+      "url": "/admin#add",
       "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
     },
     {
       "name": "Lista samochodów",
       "short_name": "Lista",
       "description": "Zobacz wszystkie samochody",
-      "url": "/admin.html#list",
+      "url": "/admin#list",
       "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
     }
   ]

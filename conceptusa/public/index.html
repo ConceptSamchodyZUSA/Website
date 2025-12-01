@@ -55,7 +55,20 @@
     <meta property="twitter:image" content="https://conceptusa.pl/og-image.jpg" />
 
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" id="app-manifest" />
+
+    <!-- Dynamically load admin manifest for /admin route -->
+    <script>
+      // MUSI być PRZED załadowaniem Reacta!
+      (function() {
+        if (window.location.pathname.includes('/admin')) {
+          const manifestLink = document.getElementById('app-manifest');
+          if (manifestLink) {
+            manifestLink.href = '/manifest-admin.json';
+          }
+        }
+      })();
+    </script>
 
     <!-- Google Analytics - loaded conditionally based on cookie consent -->
     <!-- Consent is managed by CookieConsent component -->

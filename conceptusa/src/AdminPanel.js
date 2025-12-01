@@ -22,26 +22,18 @@ const AdminPanel = () => {
   // To change: node generate-password-hash.js "YourNewPassword"
   const ADMIN_PASSWORD_HASH = '$2b$10$htMN/d9XtcPPiEp62dLcl.57HA8o2S6CgOcjVGy2BgujYagjY2Icu';
 
-  // PWA: Dynamicznie załaduj admin manifest
+  // PWA: Zmień theme color dla admin panelu
   useEffect(() => {
-    // Dodaj link do admin manifestu
-    const manifestLink = document.createElement('link');
-    manifestLink.rel = 'manifest';
-    manifestLink.href = '/manifest-admin.json';
-    manifestLink.id = 'admin-manifest';
-    document.head.appendChild(manifestLink);
-
-    // Zmień theme color na admin
+    // Zmień theme color na admin (czerwony)
     const themeMetaTag = document.querySelector('meta[name="theme-color"]');
     if (themeMetaTag) {
       themeMetaTag.setAttribute('content', '#dc2626');
     }
 
-    // Cleanup przy unmount
+    // Przywróć domyślny kolor przy unmount
     return () => {
-      const existingManifest = document.getElementById('admin-manifest');
-      if (existingManifest) {
-        existingManifest.remove();
+      if (themeMetaTag) {
+        themeMetaTag.setAttribute('content', '#dc2626');
       }
     };
   }, []);
