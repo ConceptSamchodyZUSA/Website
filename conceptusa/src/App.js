@@ -782,7 +782,7 @@ const ConceptUSACars = () => {
             <source srcSet={backgroundImageWebP} type="image/webp" />
             <img
               src={backgroundImageFallback}
-              alt="Background"
+              alt="Import samochodów z USA - Muscle cars, pickupy i SUVy - CONCEPT Trójmiasto Pomorskie"
               className="w-full h-full object-cover"
               loading="eager"
             />
@@ -1126,7 +1126,7 @@ const ConceptUSACars = () => {
                       <div className="relative h-48 overflow-hidden">
                         <img
                           src={mainImage}
-                          alt={`${car.brand} ${car.model}`}
+                          alt={`${car.brand} ${car.model} ${car.year} - Import z USA - CONCEPT Trójmiasto`}
                           className="w-full h-full object-cover hover:scale-110 transition duration-500"
                           loading="lazy"
                           decoding="async"
@@ -1623,7 +1623,7 @@ const ConceptUSACars = () => {
             <div className="relative mb-6 group bg-gray-950 rounded-lg">
               <img
                 src={getCarImages(selectedCar)[currentImageIndex]}
-                alt={`${selectedCar.brand} ${selectedCar.model} - zdjęcie ${currentImageIndex + 1}`}
+                alt={`${selectedCar.brand} ${selectedCar.model} ${selectedCar.year} - Import z USA Trójmiasto - Zdjęcie ${currentImageIndex + 1}`}
                 className="w-full h-96 object-contain rounded-lg"
                 loading="lazy"
                 decoding="async"
