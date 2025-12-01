@@ -472,528 +472,7 @@ const ConceptUSACars = () => {
           animation: policeLights 2s ease-in-out infinite;
         }
 
-        /* NEON TUBE FLICKER - realistyczna świetlówka 💡 */
-        @keyframes neonFlickerRed {
-          /* Tekst czarny na start - rurka szara */
-          0% {
-            color: #1f2937;
-            text-shadow: none;
-            border-color: rgba(156, 163, 175, 0.3);
-            background: linear-gradient(to bottom,
-              rgba(156, 163, 175, 0) 0%,
-              rgba(156, 163, 175, 0.1) 50%,
-              rgba(156, 163, 175, 0) 100%
-            );
-          }
-          /* Faza migania - nabiera kolory */
-          2% {
-            color: #ef4444;
-            text-shadow: 0 0 10px #ef4444;
-            border-color: rgba(239, 68, 68, 0.4);
-            background: linear-gradient(to bottom,
-              rgba(239, 68, 68, 0) 0%,
-              rgba(239, 68, 68, 0.15) 50%,
-              rgba(239, 68, 68, 0) 100%
-            );
-          }
-          4% {
-            color: #1f2937;
-            text-shadow: none;
-            border-color: rgba(156, 163, 175, 0.3);
-            background: linear-gradient(to bottom,
-              rgba(156, 163, 175, 0) 0%,
-              rgba(156, 163, 175, 0.1) 50%,
-              rgba(156, 163, 175, 0) 100%
-            );
-          }
-          6% {
-            color: #ef4444;
-            text-shadow: 0 0 15px #ef4444;
-            border-color: rgba(239, 68, 68, 0.5);
-            background: linear-gradient(to bottom,
-              rgba(239, 68, 68, 0) 0%,
-              rgba(239, 68, 68, 0.2) 50%,
-              rgba(239, 68, 68, 0) 100%
-            );
-          }
-          8% {
-            color: #7f1d1d;
-            text-shadow: 0 0 5px #ef4444;
-            border-color: rgba(239, 68, 68, 0.2);
-          }
-          10% {
-            color: #1f2937;
-            text-shadow: none;
-            border-color: rgba(156, 163, 175, 0.3);
-            background: linear-gradient(to bottom,
-              rgba(156, 163, 175, 0) 0%,
-              rgba(156, 163, 175, 0.1) 50%,
-              rgba(156, 163, 175, 0) 100%
-            );
-          }
-          12% {
-            color: #ef4444;
-            text-shadow: 0 0 20px #ef4444;
-            border-color: rgba(239, 68, 68, 0.6);
-            background: linear-gradient(to bottom,
-              rgba(239, 68, 68, 0) 0%,
-              rgba(239, 68, 68, 0.25) 50%,
-              rgba(239, 68, 68, 0) 100%
-            );
-          }
-          14% {
-            color: #b91c1c;
-            text-shadow: 0 0 10px #ef4444;
-            border-color: rgba(239, 68, 68, 0.3);
-          }
-          16% {
-            color: #1f2937;
-            text-shadow: none;
-            border-color: rgba(156, 163, 175, 0.3);
-            background: linear-gradient(to bottom,
-              rgba(156, 163, 175, 0) 0%,
-              rgba(156, 163, 175, 0.1) 50%,
-              rgba(156, 163, 175, 0) 100%
-            );
-          }
-          /* Zapala się - pełny kolor z rurką */
-          18% {
-            color: #ef4444;
-            text-shadow:
-              0 0 10px #ef4444,
-              0 0 20px #ef4444,
-              0 0 40px #ef4444;
-            border-color: rgba(239, 68, 68, 0.7);
-            background: linear-gradient(to bottom,
-              rgba(239, 68, 68, 0) 0%,
-              rgba(239, 68, 68, 0.3) 20%,
-              rgba(239, 68, 68, 0.4) 50%,
-              rgba(239, 68, 68, 0.3) 80%,
-              rgba(239, 68, 68, 0) 100%
-            );
-          }
-          /* Stabilne świecenie */
-          20%, 100% {
-            color: #ef4444;
-            text-shadow:
-              0 0 10px #ef4444,
-              0 0 20px #ef4444,
-              0 0 40px #ef4444,
-              0 0 60px #ef4444;
-            border-color: rgba(239, 68, 68, 0.8);
-            background: linear-gradient(to bottom,
-              rgba(239, 68, 68, 0) 0%,
-              rgba(239, 68, 68, 0.3) 20%,
-              rgba(239, 68, 68, 0.5) 50%,
-              rgba(239, 68, 68, 0.3) 80%,
-              rgba(239, 68, 68, 0) 100%
-            );
-          }
-        }
-
-        @keyframes neonFlickerBlue {
-          /* Tekst czarny na start - rurka szara */
-          0% {
-            color: #1f2937;
-            text-shadow: none;
-            border-color: rgba(156, 163, 175, 0.3);
-            background: linear-gradient(to bottom,
-              rgba(156, 163, 175, 0) 0%,
-              rgba(156, 163, 175, 0.1) 50%,
-              rgba(156, 163, 175, 0) 100%
-            );
-          }
-          /* Faza migania - nabiera kolory */
-          2% {
-            color: #3b82f6;
-            text-shadow: 0 0 10px #3b82f6;
-            border-color: rgba(59, 130, 246, 0.4);
-            background: linear-gradient(to bottom,
-              rgba(59, 130, 246, 0) 0%,
-              rgba(59, 130, 246, 0.15) 50%,
-              rgba(59, 130, 246, 0) 100%
-            );
-          }
-          4% {
-            color: #1f2937;
-            text-shadow: none;
-            border-color: rgba(156, 163, 175, 0.3);
-            background: linear-gradient(to bottom,
-              rgba(156, 163, 175, 0) 0%,
-              rgba(156, 163, 175, 0.1) 50%,
-              rgba(156, 163, 175, 0) 100%
-            );
-          }
-          6% {
-            color: #3b82f6;
-            text-shadow: 0 0 15px #3b82f6;
-            border-color: rgba(59, 130, 246, 0.5);
-            background: linear-gradient(to bottom,
-              rgba(59, 130, 246, 0) 0%,
-              rgba(59, 130, 246, 0.2) 50%,
-              rgba(59, 130, 246, 0) 100%
-            );
-          }
-          8% {
-            color: #1e3a8a;
-            text-shadow: 0 0 5px #3b82f6;
-            border-color: rgba(59, 130, 246, 0.2);
-          }
-          10% {
-            color: #1f2937;
-            text-shadow: none;
-            border-color: rgba(156, 163, 175, 0.3);
-            background: linear-gradient(to bottom,
-              rgba(156, 163, 175, 0) 0%,
-              rgba(156, 163, 175, 0.1) 50%,
-              rgba(156, 163, 175, 0) 100%
-            );
-          }
-          12% {
-            color: #3b82f6;
-            text-shadow: 0 0 20px #3b82f6;
-            border-color: rgba(59, 130, 246, 0.6);
-            background: linear-gradient(to bottom,
-              rgba(59, 130, 246, 0) 0%,
-              rgba(59, 130, 246, 0.25) 50%,
-              rgba(59, 130, 246, 0) 100%
-            );
-          }
-          14% {
-            color: #2563eb;
-            text-shadow: 0 0 10px #3b82f6;
-            border-color: rgba(59, 130, 246, 0.3);
-          }
-          16% {
-            color: #1f2937;
-            text-shadow: none;
-            border-color: rgba(156, 163, 175, 0.3);
-            background: linear-gradient(to bottom,
-              rgba(156, 163, 175, 0) 0%,
-              rgba(156, 163, 175, 0.1) 50%,
-              rgba(156, 163, 175, 0) 100%
-            );
-          }
-          /* Zapala się - pełny kolor z rurką */
-          18% {
-            color: #3b82f6;
-            text-shadow:
-              0 0 10px #3b82f6,
-              0 0 20px #3b82f6,
-              0 0 40px #3b82f6;
-            border-color: rgba(59, 130, 246, 0.7);
-            background: linear-gradient(to bottom,
-              rgba(59, 130, 246, 0) 0%,
-              rgba(59, 130, 246, 0.3) 20%,
-              rgba(59, 130, 246, 0.4) 50%,
-              rgba(59, 130, 246, 0.3) 80%,
-              rgba(59, 130, 246, 0) 100%
-            );
-          }
-          /* Stabilne świecenie */
-          20%, 100% {
-            color: #3b82f6;
-            text-shadow:
-              0 0 10px #3b82f6,
-              0 0 20px #3b82f6,
-              0 0 40px #3b82f6,
-              0 0 60px #3b82f6;
-            border-color: rgba(59, 130, 246, 0.8);
-            background: linear-gradient(to bottom,
-              rgba(59, 130, 246, 0) 0%,
-              rgba(59, 130, 246, 0.3) 20%,
-              rgba(59, 130, 246, 0.5) 50%,
-              rgba(59, 130, 246, 0.3) 80%,
-              rgba(59, 130, 246, 0) 100%
-            );
-          }
-        }
-
-        /* Efekt przepływu energii przez świetlówkę */
-        @keyframes neonPulseRed {
-          0%, 100% {
-            text-shadow:
-              0 0 10px #ef4444,
-              0 0 20px #ef4444,
-              0 0 40px #ef4444,
-              0 0 60px #ef4444;
-            border-color: rgba(239, 68, 68, 0.8);
-            background: linear-gradient(to bottom,
-              rgba(239, 68, 68, 0) 0%,
-              rgba(239, 68, 68, 0.3) 20%,
-              rgba(239, 68, 68, 0.5) 50%,
-              rgba(239, 68, 68, 0.3) 80%,
-              rgba(239, 68, 68, 0) 100%
-            );
-          }
-          50% {
-            text-shadow:
-              0 0 15px #ef4444,
-              0 0 30px #ef4444,
-              0 0 60px #ef4444,
-              0 0 90px #ef4444;
-            border-color: rgba(239, 68, 68, 1);
-            background: linear-gradient(to bottom,
-              rgba(239, 68, 68, 0) 0%,
-              rgba(239, 68, 68, 0.4) 20%,
-              rgba(239, 68, 68, 0.6) 50%,
-              rgba(239, 68, 68, 0.4) 80%,
-              rgba(239, 68, 68, 0) 100%
-            );
-          }
-        }
-
-        @keyframes neonPulseBlue {
-          0%, 100% {
-            text-shadow:
-              0 0 10px #3b82f6,
-              0 0 20px #3b82f6,
-              0 0 40px #3b82f6,
-              0 0 60px #3b82f6;
-            border-color: rgba(59, 130, 246, 0.8);
-            background: linear-gradient(to bottom,
-              rgba(59, 130, 246, 0) 0%,
-              rgba(59, 130, 246, 0.3) 20%,
-              rgba(59, 130, 246, 0.5) 50%,
-              rgba(59, 130, 246, 0.3) 80%,
-              rgba(59, 130, 246, 0) 100%
-            );
-          }
-          50% {
-            text-shadow:
-              0 0 15px #3b82f6,
-              0 0 30px #3b82f6,
-              0 0 60px #3b82f6,
-              0 0 90px #3b82f6;
-            border-color: rgba(59, 130, 246, 1);
-            background: linear-gradient(to bottom,
-              rgba(59, 130, 246, 0) 0%,
-              rgba(59, 130, 246, 0.4) 20%,
-              rgba(59, 130, 246, 0.6) 50%,
-              rgba(59, 130, 246, 0.4) 80%,
-              rgba(59, 130, 246, 0) 100%
-            );
-          }
-        }
-
-        .neon-red {
-          color: #1f2937;
-          font-weight: 700;
-          letter-spacing: 0.15em;
-          /* Styl świetlówki - rurka neonowa */
-          background: linear-gradient(to bottom,
-            rgba(239, 68, 68, 0) 0%,
-            rgba(239, 68, 68, 0.1) 20%,
-            rgba(239, 68, 68, 0.2) 50%,
-            rgba(239, 68, 68, 0.1) 80%,
-            rgba(239, 68, 68, 0) 100%
-          );
-          padding: 0.3em 0.5em;
-          border-radius: 50px;
-          border: 2px solid transparent;
-          display: inline-block;
-          position: relative;
-          animation:
-            neonFlickerRed 2s ease-in-out forwards,
-            neonPulseRed 3s ease-in-out 2s infinite;
-        }
-
-        .neon-red::before {
-          content: '';
-          position: absolute;
-          inset: -2px;
-          border-radius: 50px;
-          padding: 2px;
-          background: linear-gradient(90deg,
-            transparent,
-            rgba(239, 68, 68, 0.3),
-            transparent
-          );
-          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          opacity: 0;
-          transition: opacity 0.3s;
-        }
-
-        .neon-blue {
-          color: #1f2937;
-          font-weight: 700;
-          letter-spacing: 0.15em;
-          /* Styl świetlówki - rurka neonowa */
-          background: linear-gradient(to bottom,
-            rgba(59, 130, 246, 0) 0%,
-            rgba(59, 130, 246, 0.1) 20%,
-            rgba(59, 130, 246, 0.2) 50%,
-            rgba(59, 130, 246, 0.1) 80%,
-            rgba(59, 130, 246, 0) 100%
-          );
-          padding: 0.3em 0.5em;
-          border-radius: 50px;
-          border: 2px solid transparent;
-          display: inline-block;
-          position: relative;
-          animation:
-            neonFlickerBlue 2s ease-in-out 0.3s forwards,
-            neonPulseBlue 3s ease-in-out 2.3s infinite;
-        }
-
-        .neon-blue::before {
-          content: '';
-          position: absolute;
-          inset: -2px;
-          border-radius: 50px;
-          padding: 2px;
-          background: linear-gradient(90deg,
-            transparent,
-            rgba(59, 130, 246, 0.3),
-            transparent
-          );
-          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          opacity: 0;
-          transition: opacity 0.3s;
-        }        /* Neonowe efekty dla kafelków - subtelne */
-        @keyframes neonBorderGlow {
-          0%, 100% {
-            box-shadow:
-              0 0 3px rgba(239, 68, 68, 0.3),
-              0 0 6px rgba(239, 68, 68, 0.2),
-              inset 0 0 3px rgba(239, 68, 68, 0.05);
-          }
-          50% {
-            box-shadow:
-              0 0 6px rgba(239, 68, 68, 0.5),
-              0 0 12px rgba(239, 68, 68, 0.3),
-              inset 0 0 6px rgba(239, 68, 68, 0.1);
-          }
-        }
-
-        @keyframes neonBorderGlowBlue {
-          0%, 100% {
-            box-shadow:
-              0 0 3px rgba(59, 130, 246, 0.3),
-              0 0 6px rgba(59, 130, 246, 0.2),
-              inset 0 0 3px rgba(59, 130, 246, 0.05);
-          }
-          50% {
-            box-shadow:
-              0 0 6px rgba(59, 130, 246, 0.5),
-              0 0 12px rgba(59, 130, 246, 0.3),
-              inset 0 0 6px rgba(59, 130, 246, 0.1);
-          }
-        }
-
-        @keyframes neonBorderGlowPurple {
-          0%, 100% {
-            box-shadow:
-              0 0 3px rgba(168, 85, 247, 0.3),
-              0 0 6px rgba(168, 85, 247, 0.2),
-              inset 0 0 3px rgba(168, 85, 247, 0.05);
-          }
-          50% {
-            box-shadow:
-              0 0 6px rgba(168, 85, 247, 0.5),
-              0 0 12px rgba(168, 85, 247, 0.3),
-              inset 0 0 6px rgba(168, 85, 247, 0.1);
-          }
-        }
-
-        .neon-card {
-          position: relative;
-          border: 1px solid rgba(239, 68, 68, 0.2);
-          animation: neonBorderGlow 4s ease-in-out infinite;
-          transition: all 0.3s ease;
-        }
-
-        .neon-card::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at center, rgba(239, 68, 68, 0.02), transparent 70%);
-          pointer-events: none;
-          border-radius: inherit;
-        }
-
-        .neon-card:hover {
-          border-color: rgba(239, 68, 68, 0.4);
-          transform: translateY(-3px);
-          box-shadow:
-            0 0 10px rgba(239, 68, 68, 0.4),
-            0 0 20px rgba(239, 68, 68, 0.2),
-            0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .neon-card-blue {
-          border: 1px solid rgba(59, 130, 246, 0.2);
-          animation: neonBorderGlowBlue 4s ease-in-out infinite;
-        }
-
-        .neon-card-blue::before {
-          background: radial-gradient(circle at center, rgba(59, 130, 246, 0.02), transparent 70%);
-        }
-
-        .neon-card-blue:hover {
-          border-color: rgba(59, 130, 246, 0.4);
-          transform: translateY(-3px);
-          box-shadow:
-            0 0 10px rgba(59, 130, 246, 0.4),
-            0 0 20px rgba(59, 130, 246, 0.2),
-            0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .neon-card-purple {
-          border: 1px solid rgba(168, 85, 247, 0.2);
-          animation: neonBorderGlowPurple 4s ease-in-out infinite;
-        }
-
-        .neon-card-purple::before {
-          background: radial-gradient(circle at center, rgba(168, 85, 247, 0.02), transparent 70%);
-        }
-
-        .neon-card-purple:hover {
-          border-color: rgba(168, 85, 247, 0.4);
-          transform: translateY(-3px);
-          box-shadow:
-            0 0 10px rgba(168, 85, 247, 0.4),
-            0 0 20px rgba(168, 85, 247, 0.2),
-            0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Neonowy efekt dla kafelków samochodów - subtelny */
-        .neon-car-card {
-          position: relative;
-          border: 1px solid rgba(239, 68, 68, 0.15);
-          background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95));
-          transition: all 0.4s ease;
-        }
-
-        .neon-car-card::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.03), transparent 50%),
-                      radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.03), transparent 50%);
-          pointer-events: none;
-          border-radius: inherit;
-          opacity: 0.4;
-        }
-
-        .neon-car-card:hover {
-          border-color: rgba(239, 68, 68, 0.3);
-          transform: translateY(-5px);
-          box-shadow:
-            0 0 15px rgba(239, 68, 68, 0.3),
-            0 0 30px rgba(239, 68, 68, 0.15),
-            0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .neon-car-card:hover::before {
-          opacity: 0.7;
-        }
-
-        /* OLD LED Effects - keeping for snake animation */
+        /* RED LED Effects for CONCEPT - only text-shadow (no drop-shadow for mobile fix) */
         @keyframes ledGlowRed {
           0%, 100% {
             text-shadow:
@@ -1230,18 +709,22 @@ const ConceptUSACars = () => {
                 </div>
               ) : (
                 <div className="text-xl font-bold flex items-center gap-3">
-                  {/* CONCEPT with neon tube flicker effect */}
-                  <div className="inline-block">
-                    <span className="neon-red">
+                  {/* CONCEPT z czerwonym LED */}
+                  <div className="relative inline-block">
+                    <span className="text-red-500 animate-led-glow-red">
                       CONCEPT
                     </span>
+                    <div className="absolute -inset-x-2 -top-0.5 h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-snake-top"></div>
+                    <div className="absolute -inset-x-2 -bottom-0.5 h-0.5 bg-gradient-to-r from-transparent via-red-400 to-transparent opacity-40 blur-sm animate-led-snake-bottom"></div>
                   </div>
 
-                  {/* Samochody z USA with neon tube flicker effect */}
-                  <div className="inline-block text-sm">
-                    <span className="neon-blue">
+                  {/* Samochody z USA z niebieskim LED */}
+                  <div className="relative inline-block text-sm">
+                    <span className="text-blue-400 animate-led-glow-blue">
                       Samochody z USA
                     </span>
+                    <div className="absolute -inset-x-2 -top-0.5 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60 blur-sm animate-led-snake-top-blue"></div>
+                    <div className="absolute -inset-x-2 -bottom-0.5 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-40 blur-sm animate-led-snake-bottom-blue"></div>
                   </div>
                 </div>
               )}
@@ -1308,18 +791,24 @@ const ConceptUSACars = () => {
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            {/* CONCEPT with neon tube flicker effect */}
-            <div className="inline-block mb-2">
-              <div className="neon-red">
+            {/* CONCEPT with red LED effect */}
+            <div className="relative inline-block mb-2">
+              <div className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-600 animate-led-glow-red">
                 CONCEPT
               </div>
+              {/* LED snake effect - starts as snake, then pulses */}
+              <div className="absolute -inset-x-4 -top-2 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-80 blur-sm animate-led-snake-top"></div>
+              <div className="absolute -inset-x-4 -bottom-2 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-snake-bottom"></div>
             </div>
 
-            {/* Samochody z USA with neon tube flicker effect */}
-            <div className="inline-block text-4xl md:text-5xl mt-4">
-              <div className="neon-blue">
+            {/* Samochody z USA with blue LED effect */}
+            <div className="relative inline-block text-4xl md:text-5xl mt-4">
+              <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 animate-led-glow-blue">
                 Samochody z USA
               </div>
+              {/* Blue LED strips */}
+              <div className="absolute -inset-x-4 -top-1 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-70 blur-sm animate-led-snake-top-blue"></div>
+              <div className="absolute -inset-x-4 -bottom-1 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-50 blur-sm animate-led-snake-bottom-blue"></div>
             </div>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-300">
@@ -1356,16 +845,16 @@ const ConceptUSACars = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja', color: 'red' },
-              { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników', color: 'blue' },
-              { icon: <Truck size={40} />, title: 'Pełna obsługa', desc: 'Od zakupu po rejestrację - wszystko załatwiamy', color: 'purple' },
-              { icon: <Star size={40} />, title: 'Doświadczenie', desc: 'Setki zadowolonych klientów i sprowadzonych aut', color: 'red' }
+              { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja' },
+              { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników' },
+              { icon: <Truck size={40} />, title: 'Pełna obsługa', desc: 'Od zakupu po rejestrację - wszystko załatwiamy' },
+              { icon: <Star size={40} />, title: 'Doświadczenie', desc: 'Setki zadowolonych klientów i sprowadzonych aut' }
             ].map((item, idx) => (
               <div
                 key={idx}
-                className={`bg-gray-900/50 p-8 rounded-xl text-center cursor-pointer neon-card${item.color === 'blue' ? '-blue' : item.color === 'purple' ? '-purple' : ''}`}
+                className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105 cursor-pointer"
               >
-                <div className={`flex justify-center mb-4 ${item.color === 'red' ? 'text-red-500' : item.color === 'blue' ? 'text-blue-500' : 'text-purple-500'}`}>{item.icon}</div>
+                <div className="text-red-600 flex justify-center mb-4">{item.icon}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-gray-400">{item.desc}</p>
               </div>
@@ -1513,21 +1002,21 @@ const ConceptUSACars = () => {
 
           <div className="grid md:grid-cols-5 gap-6">
             {[
-              { num: '01', title: 'Kontakt', desc: 'Powiedz nam czego szukasz', color: 'red' },
-              { num: '02', title: 'Wyszukiwanie', desc: 'Znajdujemy idealne auto', color: 'blue' },
-              { num: '03', title: 'Weryfikacja', desc: 'Sprawdzamy historię i stan', color: 'purple' },
-              { num: '04', title: 'Transport', desc: 'Sprowadzamy do Polski', color: 'red' },
-              { num: '05', title: 'Odbiór', desc: 'Odbierasz swoje auto', color: 'blue' }
+              { num: '01', title: 'Kontakt', desc: 'Powiedz nam czego szukasz' },
+              { num: '02', title: 'Wyszukiwanie', desc: 'Znajdujemy idealne auto' },
+              { num: '03', title: 'Weryfikacja', desc: 'Sprawdzamy historię i stan' },
+              { num: '04', title: 'Transport', desc: 'Sprowadzamy do Polski' },
+              { num: '05', title: 'Odbiór', desc: 'Odbierasz swoje auto' }
             ].map((step, idx) => (
               <div key={idx} className={`relative animate-slide-up-fade delay-${(idx + 1) * 100}`}>
-                <div className={`bg-gray-900/50 p-6 rounded-xl text-center neon-card${step.color === 'blue' ? '-blue' : step.color === 'purple' ? '-purple' : ''}`}>
-                  <div className={`text-5xl font-bold mb-4 ${step.color === 'red' ? 'text-red-500/50' : step.color === 'blue' ? 'text-blue-500/50' : 'text-purple-500/50'}`}>{step.num}</div>
+                <div className="bg-gradient-to-br from-red-600 to-blue-600 p-6 rounded-xl text-center hover:shadow-xl hover:shadow-red-500/20 transition">
+                  <div className="text-5xl font-bold mb-4 opacity-50">{step.num}</div>
                   <h3 className="text-xl font-bold mb-2">{step.title}</h3>
                   <p className="text-sm text-gray-300">{step.desc}</p>
                 </div>
                 {idx < 4 && (
                   <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2">
-                    <ChevronDown className={`rotate-[-90deg] ${step.color === 'red' ? 'text-red-500' : step.color === 'blue' ? 'text-blue-500' : 'text-purple-500'}`} size={24} />
+                    <ChevronDown className="rotate-[-90deg] text-red-500" size={24} />
                   </div>
                 )}
               </div>
@@ -1631,7 +1120,7 @@ const ConceptUSACars = () => {
                   return (
                     <div
                       key={car.id}
-                      className="neon-car-card rounded-xl overflow-hidden cursor-pointer"
+                      className="bg-gray-900 rounded-xl overflow-hidden transition cursor-pointer police-lights"
                       onClick={() => openCarModal(car)}
                     >
                       <div className="relative h-48 overflow-hidden">
@@ -1970,16 +1459,16 @@ const ConceptUSACars = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <a
               href="tel:691795116"
-              className="bg-gray-900/50 p-8 rounded-xl text-center neon-card"
+              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
             >
-              <Phone size={40} className="mx-auto mb-4 text-red-500" />
+              <Phone size={40} className="mx-auto mb-4 text-red-600" />
               <h3 className="text-xl font-bold mb-2">Telefon</h3>
               <p className="text-gray-400">691 795 116</p>
             </a>
 
             <a
               href="mailto:conceptusacars@gmail.com"
-              className="bg-gray-900/50 p-8 rounded-xl text-center neon-card-blue"
+              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
             >
               <Mail size={40} className="mx-auto mb-4 text-blue-500" />
               <h3 className="text-xl font-bold mb-2">Email</h3>
@@ -1990,9 +1479,9 @@ const ConceptUSACars = () => {
               href="https://facebook.com/Loveusacar"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gray-900/50 p-8 rounded-xl text-center neon-card-purple"
+              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
             >
-              <Facebook size={40} className="mx-auto mb-4 text-purple-500" />
+              <Facebook size={40} className="mx-auto mb-4 text-blue-600" />
               <h3 className="text-xl font-bold mb-2">Facebook</h3>
               <p className="text-gray-400">Loveusacar</p>
             </a>
