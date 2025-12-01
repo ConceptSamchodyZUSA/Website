@@ -120,6 +120,31 @@
       }
     }
     </script>
+
+    <!-- Structured Data - Logo (for Google Search) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://conceptusa.pl",
+      "logo": "https://conceptusa.pl/logo512.png"
+    }
+    </script>
+
+    <!-- Structured Data - Website -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "CONCEPT - Samochody z USA",
+      "url": "https://conceptusa.pl",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://conceptusa.pl/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
