@@ -102,5 +102,94 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          // Sprawdź czy jesteśmy w admin panelu
+          const isAdminPanel = window.location.pathname.includes('/admin');
+          const swPath = isAdminPanel ? '/sw-admin.js' : '/service-worker.js';
+
+          navigator.serviceWorker
+            .register(swPath)
+            .then((registration) => {
+              console.log('SW registered:', registration);
+
+              // Sprawdź aktualizacje co godzinę
+              setInterval(() => {
+                registration.update();
+              }, 60 * 60 * 1000);
+            })
+            .catch((error) => {
+              console.log('SW registration failed:', error);
+            });
+        });
+
+        // Powiadomienie o dostępności offline
+        navigator.serviceWorker.ready.then(() => {
+          console.log('App działa w trybie PWA! 📱');
+        });
+      }
+
+      // Dodaj przycisk "Zainstaluj aplikację" dla admin panelu
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+
+        // Pokaż przycisk instalacji tylko w admin panelu
+        if (window.location.pathname.includes('/admin')) {
+          showInstallButton();
+        }
+      });
+
+      function showInstallButton() {
+        const installBtn = document.createElement('button');
+        installBtn.innerHTML = '📱 Zainstaluj aplikację';
+        installBtn.style.cssText = `
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          padding: 12px 24px;
+          background: linear-gradient(135deg, #dc2626, #3b82f6);
+          color: white;
+          border: none;
+          border-radius: 50px;
+          font-weight: bold;
+          cursor: pointer;
+          box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+          z-index: 9999;
+          animation: pulse 2s infinite;
+        `;
+
+        installBtn.addEventListener('click', async () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`Użytkownik ${outcome === 'accepted' ? 'zainstalował' : 'odrzucił'} aplikację`);
+            deferredPrompt = null;
+            installBtn.remove();
+          }
+        });
+
+        document.body.appendChild(installBtn);
+
+        // Usuń przycisk po 10 sekundach jeśli nie został kliknięty
+        setTimeout(() => {
+          if (installBtn.parentElement) {
+            installBtn.style.transition = 'opacity 0.5s';
+            installBtn.style.opacity = '0';
+            setTimeout(() => installBtn.remove(), 500);
+          }
+        }, 10000);
+      }
+
+      // Wykryj kiedy aplikacja zostanie zainstalowana
+      window.addEventListener('appinstalled', () => {
+        console.log('✅ Aplikacja została zainstalowana!');
+        deferredPrompt = null;
+      });
+    </script>
   </body>
 </html>

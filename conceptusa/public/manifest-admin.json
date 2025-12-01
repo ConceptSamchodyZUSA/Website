@@ -1,0 +1,58 @@
+{
+  "short_name": "Admin Panel",
+  "name": "CONCEPT - Admin Panel",
+  "description": "Panel administracyjny do zarządzania samochodami",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "256x256 128x128 64x64 48x48 32x32 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ],
+  "start_url": "/admin",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#dc2626",
+  "background_color": "#0f172a",
+  "categories": ["productivity", "business"],
+  "shortcuts": [
+    {
+      "name": "Dodaj samochód",
+      "short_name": "Dodaj",
+      "description": "Szybko dodaj nowy samochód",
+      "url": "/admin.html#add",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Lista samochodów",
+      "short_name": "Lista",
+      "description": "Zobacz wszystkie samochody",
+      "url": "/admin.html#list",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    }
+  ]
+}
