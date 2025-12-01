@@ -474,143 +474,224 @@ const ConceptUSACars = () => {
 
         /* NEON TUBE FLICKER - realistyczna świetlówka 💡 */
         @keyframes neonFlickerRed {
-          0%, 100% {
-            text-shadow:
-              0 0 4px #fff,
-              0 0 10px #fff,
-              0 0 20px #ef4444,
-              0 0 40px #ef4444,
-              0 0 80px #ef4444;
-            opacity: 1;
+          /* Tekst czarny na start */
+          0% {
+            color: #1f2937;
+            text-shadow: none;
           }
-          /* Miganie na początku */
-          0% { opacity: 0.4; }
-          2% { opacity: 1; }
-          4% { opacity: 0.3; }
-          6% { opacity: 1; }
-          8% { opacity: 0.5; }
-          10% { opacity: 0.2; }
-          12% { opacity: 1; }
-          14% { opacity: 0.6; }
-          16% { opacity: 0; }
-          18% { opacity: 1; }
+          /* Faza migania - nabiera kolory */
+          2% {
+            color: #ef4444;
+            text-shadow: 0 0 10px #ef4444;
+          }
+          4% {
+            color: #1f2937;
+            text-shadow: none;
+          }
+          6% {
+            color: #ef4444;
+            text-shadow: 0 0 15px #ef4444;
+          }
+          8% {
+            color: #7f1d1d;
+            text-shadow: 0 0 5px #ef4444;
+          }
+          10% {
+            color: #1f2937;
+            text-shadow: none;
+          }
+          12% {
+            color: #ef4444;
+            text-shadow: 0 0 20px #ef4444;
+          }
+          14% {
+            color: #b91c1c;
+            text-shadow: 0 0 10px #ef4444;
+          }
+          16% {
+            color: #1f2937;
+            text-shadow: none;
+          }
+          /* Zapala się - pełny kolor */
+          18% {
+            color: #ef4444;
+            text-shadow:
+              0 0 10px #ef4444,
+              0 0 20px #ef4444,
+              0 0 40px #ef4444;
+          }
           /* Stabilne świecenie */
           20%, 100% {
-            opacity: 1;
+            color: #ef4444;
             text-shadow:
-              0 0 4px #fff,
-              0 0 10px #fff,
+              0 0 10px #ef4444,
               0 0 20px #ef4444,
               0 0 40px #ef4444,
-              0 0 80px #ef4444,
-              0 0 120px #ef4444;
+              0 0 60px #ef4444;
           }
         }
 
         @keyframes neonFlickerBlue {
-          0%, 100% {
-            text-shadow:
-              0 0 4px #fff,
-              0 0 10px #fff,
-              0 0 20px #3b82f6,
-              0 0 40px #3b82f6,
-              0 0 80px #3b82f6;
-            opacity: 1;
+          /* Tekst czarny na start */
+          0% {
+            color: #1f2937;
+            text-shadow: none;
           }
-          /* Miganie na początku */
-          0% { opacity: 0.4; }
-          2% { opacity: 1; }
-          4% { opacity: 0.3; }
-          6% { opacity: 1; }
-          8% { opacity: 0.5; }
-          10% { opacity: 0.2; }
-          12% { opacity: 1; }
-          14% { opacity: 0.6; }
-          16% { opacity: 0; }
-          18% { opacity: 1; }
+          /* Faza migania - nabiera kolory */
+          2% {
+            color: #3b82f6;
+            text-shadow: 0 0 10px #3b82f6;
+          }
+          4% {
+            color: #1f2937;
+            text-shadow: none;
+          }
+          6% {
+            color: #3b82f6;
+            text-shadow: 0 0 15px #3b82f6;
+          }
+          8% {
+            color: #1e3a8a;
+            text-shadow: 0 0 5px #3b82f6;
+          }
+          10% {
+            color: #1f2937;
+            text-shadow: none;
+          }
+          12% {
+            color: #3b82f6;
+            text-shadow: 0 0 20px #3b82f6;
+          }
+          14% {
+            color: #2563eb;
+            text-shadow: 0 0 10px #3b82f6;
+          }
+          16% {
+            color: #1f2937;
+            text-shadow: none;
+          }
+          /* Zapala się - pełny kolor */
+          18% {
+            color: #3b82f6;
+            text-shadow:
+              0 0 10px #3b82f6,
+              0 0 20px #3b82f6,
+              0 0 40px #3b82f6;
+          }
           /* Stabilne świecenie */
           20%, 100% {
-            opacity: 1;
+            color: #3b82f6;
             text-shadow:
-              0 0 4px #fff,
-              0 0 10px #fff,
+              0 0 10px #3b82f6,
               0 0 20px #3b82f6,
               0 0 40px #3b82f6,
-              0 0 80px #3b82f6,
-              0 0 120px #3b82f6;
+              0 0 60px #3b82f6;
+          }
+        }
+
+        /* Efekt przepływu energii przez świetlówkę */
+        @keyframes neonPulseRed {
+          0%, 100% {
+            text-shadow:
+              0 0 10px #ef4444,
+              0 0 20px #ef4444,
+              0 0 40px #ef4444,
+              0 0 60px #ef4444;
+          }
+          50% {
+            text-shadow:
+              0 0 15px #ef4444,
+              0 0 30px #ef4444,
+              0 0 60px #ef4444,
+              0 0 90px #ef4444;
+          }
+        }
+
+        @keyframes neonPulseBlue {
+          0%, 100% {
+            text-shadow:
+              0 0 10px #3b82f6,
+              0 0 20px #3b82f6,
+              0 0 40px #3b82f6,
+              0 0 60px #3b82f6;
+          }
+          50% {
+            text-shadow:
+              0 0 15px #3b82f6,
+              0 0 30px #3b82f6,
+              0 0 60px #3b82f6,
+              0 0 90px #3b82f6;
           }
         }
 
         .neon-red {
-          animation: neonFlickerRed 3s ease-in-out;
-          color: #ef4444;
+          color: #1f2937;
           font-weight: 700;
           letter-spacing: 0.05em;
+          animation:
+            neonFlickerRed 2s ease-in-out forwards,
+            neonPulseRed 3s ease-in-out 2s infinite;
         }
 
         .neon-blue {
-          animation: neonFlickerBlue 3s ease-in-out 0.5s;
-          color: #3b82f6;
+          color: #1f2937;
           font-weight: 700;
           letter-spacing: 0.05em;
+          animation:
+            neonFlickerBlue 2s ease-in-out 0.3s forwards,
+            neonPulseBlue 3s ease-in-out 2.3s infinite;
         }
 
-        /* Neonowe efekty dla kafelków */
+        /* Neonowe efekty dla kafelków - subtelne */
         @keyframes neonBorderGlow {
           0%, 100% {
             box-shadow:
-              0 0 5px rgba(239, 68, 68, 0.5),
-              0 0 10px rgba(239, 68, 68, 0.3),
-              0 0 15px rgba(239, 68, 68, 0.2),
-              inset 0 0 5px rgba(239, 68, 68, 0.1);
+              0 0 3px rgba(239, 68, 68, 0.3),
+              0 0 6px rgba(239, 68, 68, 0.2),
+              inset 0 0 3px rgba(239, 68, 68, 0.05);
           }
           50% {
             box-shadow:
-              0 0 10px rgba(239, 68, 68, 0.8),
-              0 0 20px rgba(239, 68, 68, 0.6),
-              0 0 30px rgba(239, 68, 68, 0.4),
-              inset 0 0 10px rgba(239, 68, 68, 0.2);
+              0 0 6px rgba(239, 68, 68, 0.5),
+              0 0 12px rgba(239, 68, 68, 0.3),
+              inset 0 0 6px rgba(239, 68, 68, 0.1);
           }
         }
 
         @keyframes neonBorderGlowBlue {
           0%, 100% {
             box-shadow:
-              0 0 5px rgba(59, 130, 246, 0.5),
-              0 0 10px rgba(59, 130, 246, 0.3),
-              0 0 15px rgba(59, 130, 246, 0.2),
-              inset 0 0 5px rgba(59, 130, 246, 0.1);
+              0 0 3px rgba(59, 130, 246, 0.3),
+              0 0 6px rgba(59, 130, 246, 0.2),
+              inset 0 0 3px rgba(59, 130, 246, 0.05);
           }
           50% {
             box-shadow:
-              0 0 10px rgba(59, 130, 246, 0.8),
-              0 0 20px rgba(59, 130, 246, 0.6),
-              0 0 30px rgba(59, 130, 246, 0.4),
-              inset 0 0 10px rgba(59, 130, 246, 0.2);
+              0 0 6px rgba(59, 130, 246, 0.5),
+              0 0 12px rgba(59, 130, 246, 0.3),
+              inset 0 0 6px rgba(59, 130, 246, 0.1);
           }
         }
 
         @keyframes neonBorderGlowPurple {
           0%, 100% {
             box-shadow:
-              0 0 5px rgba(168, 85, 247, 0.5),
-              0 0 10px rgba(168, 85, 247, 0.3),
-              0 0 15px rgba(168, 85, 247, 0.2),
-              inset 0 0 5px rgba(168, 85, 247, 0.1);
+              0 0 3px rgba(168, 85, 247, 0.3),
+              0 0 6px rgba(168, 85, 247, 0.2),
+              inset 0 0 3px rgba(168, 85, 247, 0.05);
           }
           50% {
             box-shadow:
-              0 0 10px rgba(168, 85, 247, 0.8),
-              0 0 20px rgba(168, 85, 247, 0.6),
-              0 0 30px rgba(168, 85, 247, 0.4),
-              inset 0 0 10px rgba(168, 85, 247, 0.2);
+              0 0 6px rgba(168, 85, 247, 0.5),
+              0 0 12px rgba(168, 85, 247, 0.3),
+              inset 0 0 6px rgba(168, 85, 247, 0.1);
           }
         }
 
         .neon-card {
           position: relative;
-          border: 2px solid rgba(239, 68, 68, 0.3);
-          animation: neonBorderGlow 3s ease-in-out infinite;
+          border: 1px solid rgba(239, 68, 68, 0.2);
+          animation: neonBorderGlow 4s ease-in-out infinite;
           transition: all 0.3s ease;
         }
 
@@ -618,61 +699,60 @@ const ConceptUSACars = () => {
           content: '';
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at center, rgba(239, 68, 68, 0.05), transparent 70%);
+          background: radial-gradient(circle at center, rgba(239, 68, 68, 0.02), transparent 70%);
           pointer-events: none;
           border-radius: inherit;
         }
 
         .neon-card:hover {
-          border-color: rgba(239, 68, 68, 0.6);
-          transform: translateY(-5px) scale(1.02);
+          border-color: rgba(239, 68, 68, 0.4);
+          transform: translateY(-3px);
           box-shadow:
-            0 0 20px rgba(239, 68, 68, 0.8),
-            0 0 40px rgba(239, 68, 68, 0.6),
-            0 0 60px rgba(239, 68, 68, 0.4),
-            inset 0 0 20px rgba(239, 68, 68, 0.2);
+            0 0 10px rgba(239, 68, 68, 0.4),
+            0 0 20px rgba(239, 68, 68, 0.2),
+            0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         .neon-card-blue {
-          border: 2px solid rgba(59, 130, 246, 0.3);
-          animation: neonBorderGlowBlue 3s ease-in-out infinite;
+          border: 1px solid rgba(59, 130, 246, 0.2);
+          animation: neonBorderGlowBlue 4s ease-in-out infinite;
         }
 
         .neon-card-blue::before {
-          background: radial-gradient(circle at center, rgba(59, 130, 246, 0.05), transparent 70%);
+          background: radial-gradient(circle at center, rgba(59, 130, 246, 0.02), transparent 70%);
         }
 
         .neon-card-blue:hover {
-          border-color: rgba(59, 130, 246, 0.6);
+          border-color: rgba(59, 130, 246, 0.4);
+          transform: translateY(-3px);
           box-shadow:
-            0 0 20px rgba(59, 130, 246, 0.8),
-            0 0 40px rgba(59, 130, 246, 0.6),
-            0 0 60px rgba(59, 130, 246, 0.4),
-            inset 0 0 20px rgba(59, 130, 246, 0.2);
+            0 0 10px rgba(59, 130, 246, 0.4),
+            0 0 20px rgba(59, 130, 246, 0.2),
+            0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         .neon-card-purple {
-          border: 2px solid rgba(168, 85, 247, 0.3);
-          animation: neonBorderGlowPurple 3s ease-in-out infinite;
+          border: 1px solid rgba(168, 85, 247, 0.2);
+          animation: neonBorderGlowPurple 4s ease-in-out infinite;
         }
 
         .neon-card-purple::before {
-          background: radial-gradient(circle at center, rgba(168, 85, 247, 0.05), transparent 70%);
+          background: radial-gradient(circle at center, rgba(168, 85, 247, 0.02), transparent 70%);
         }
 
         .neon-card-purple:hover {
-          border-color: rgba(168, 85, 247, 0.6);
+          border-color: rgba(168, 85, 247, 0.4);
+          transform: translateY(-3px);
           box-shadow:
-            0 0 20px rgba(168, 85, 247, 0.8),
-            0 0 40px rgba(168, 85, 247, 0.6),
-            0 0 60px rgba(168, 85, 247, 0.4),
-            inset 0 0 20px rgba(168, 85, 247, 0.2);
+            0 0 10px rgba(168, 85, 247, 0.4),
+            0 0 20px rgba(168, 85, 247, 0.2),
+            0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Neonowy efekt dla kafelków samochodów */
+        /* Neonowy efekt dla kafelków samochodów - subtelny */
         .neon-car-card {
           position: relative;
-          border: 2px solid rgba(239, 68, 68, 0.2);
+          border: 1px solid rgba(239, 68, 68, 0.15);
           background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95));
           transition: all 0.4s ease;
         }
@@ -681,24 +761,24 @@ const ConceptUSACars = () => {
           content: '';
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.1), transparent 50%),
-                      radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.1), transparent 50%);
+          background: radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.03), transparent 50%),
+                      radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.03), transparent 50%);
           pointer-events: none;
           border-radius: inherit;
-          opacity: 0.6;
+          opacity: 0.4;
         }
 
         .neon-car-card:hover {
-          border-color: rgba(239, 68, 68, 0.5);
-          transform: translateY(-8px) scale(1.02);
+          border-color: rgba(239, 68, 68, 0.3);
+          transform: translateY(-5px);
           box-shadow:
-            0 0 30px rgba(239, 68, 68, 0.6),
-            0 0 60px rgba(239, 68, 68, 0.3),
-            0 10px 40px rgba(0, 0, 0, 0.5);
+            0 0 15px rgba(239, 68, 68, 0.3),
+            0 0 30px rgba(239, 68, 68, 0.15),
+            0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .neon-car-card:hover::before {
-          opacity: 1;
+          opacity: 0.7;
         }
 
         /* OLD LED Effects - keeping for snake animation */
