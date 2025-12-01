@@ -472,7 +472,236 @@ const ConceptUSACars = () => {
           animation: policeLights 2s ease-in-out infinite;
         }
 
-        /* RED LED Effects for CONCEPT - only text-shadow (no drop-shadow for mobile fix) */
+        /* NEON TUBE FLICKER - realistyczna świetlówka 💡 */
+        @keyframes neonFlickerRed {
+          0%, 100% {
+            text-shadow:
+              0 0 4px #fff,
+              0 0 10px #fff,
+              0 0 20px #ef4444,
+              0 0 40px #ef4444,
+              0 0 80px #ef4444;
+            opacity: 1;
+          }
+          /* Miganie na początku */
+          0% { opacity: 0.4; }
+          2% { opacity: 1; }
+          4% { opacity: 0.3; }
+          6% { opacity: 1; }
+          8% { opacity: 0.5; }
+          10% { opacity: 0.2; }
+          12% { opacity: 1; }
+          14% { opacity: 0.6; }
+          16% { opacity: 0; }
+          18% { opacity: 1; }
+          /* Stabilne świecenie */
+          20%, 100% {
+            opacity: 1;
+            text-shadow:
+              0 0 4px #fff,
+              0 0 10px #fff,
+              0 0 20px #ef4444,
+              0 0 40px #ef4444,
+              0 0 80px #ef4444,
+              0 0 120px #ef4444;
+          }
+        }
+
+        @keyframes neonFlickerBlue {
+          0%, 100% {
+            text-shadow:
+              0 0 4px #fff,
+              0 0 10px #fff,
+              0 0 20px #3b82f6,
+              0 0 40px #3b82f6,
+              0 0 80px #3b82f6;
+            opacity: 1;
+          }
+          /* Miganie na początku */
+          0% { opacity: 0.4; }
+          2% { opacity: 1; }
+          4% { opacity: 0.3; }
+          6% { opacity: 1; }
+          8% { opacity: 0.5; }
+          10% { opacity: 0.2; }
+          12% { opacity: 1; }
+          14% { opacity: 0.6; }
+          16% { opacity: 0; }
+          18% { opacity: 1; }
+          /* Stabilne świecenie */
+          20%, 100% {
+            opacity: 1;
+            text-shadow:
+              0 0 4px #fff,
+              0 0 10px #fff,
+              0 0 20px #3b82f6,
+              0 0 40px #3b82f6,
+              0 0 80px #3b82f6,
+              0 0 120px #3b82f6;
+          }
+        }
+
+        .neon-red {
+          animation: neonFlickerRed 3s ease-in-out;
+          color: #ef4444;
+          font-weight: 700;
+          letter-spacing: 0.05em;
+        }
+
+        .neon-blue {
+          animation: neonFlickerBlue 3s ease-in-out 0.5s;
+          color: #3b82f6;
+          font-weight: 700;
+          letter-spacing: 0.05em;
+        }
+
+        /* Neonowe efekty dla kafelków */
+        @keyframes neonBorderGlow {
+          0%, 100% {
+            box-shadow:
+              0 0 5px rgba(239, 68, 68, 0.5),
+              0 0 10px rgba(239, 68, 68, 0.3),
+              0 0 15px rgba(239, 68, 68, 0.2),
+              inset 0 0 5px rgba(239, 68, 68, 0.1);
+          }
+          50% {
+            box-shadow:
+              0 0 10px rgba(239, 68, 68, 0.8),
+              0 0 20px rgba(239, 68, 68, 0.6),
+              0 0 30px rgba(239, 68, 68, 0.4),
+              inset 0 0 10px rgba(239, 68, 68, 0.2);
+          }
+        }
+
+        @keyframes neonBorderGlowBlue {
+          0%, 100% {
+            box-shadow:
+              0 0 5px rgba(59, 130, 246, 0.5),
+              0 0 10px rgba(59, 130, 246, 0.3),
+              0 0 15px rgba(59, 130, 246, 0.2),
+              inset 0 0 5px rgba(59, 130, 246, 0.1);
+          }
+          50% {
+            box-shadow:
+              0 0 10px rgba(59, 130, 246, 0.8),
+              0 0 20px rgba(59, 130, 246, 0.6),
+              0 0 30px rgba(59, 130, 246, 0.4),
+              inset 0 0 10px rgba(59, 130, 246, 0.2);
+          }
+        }
+
+        @keyframes neonBorderGlowPurple {
+          0%, 100% {
+            box-shadow:
+              0 0 5px rgba(168, 85, 247, 0.5),
+              0 0 10px rgba(168, 85, 247, 0.3),
+              0 0 15px rgba(168, 85, 247, 0.2),
+              inset 0 0 5px rgba(168, 85, 247, 0.1);
+          }
+          50% {
+            box-shadow:
+              0 0 10px rgba(168, 85, 247, 0.8),
+              0 0 20px rgba(168, 85, 247, 0.6),
+              0 0 30px rgba(168, 85, 247, 0.4),
+              inset 0 0 10px rgba(168, 85, 247, 0.2);
+          }
+        }
+
+        .neon-card {
+          position: relative;
+          border: 2px solid rgba(239, 68, 68, 0.3);
+          animation: neonBorderGlow 3s ease-in-out infinite;
+          transition: all 0.3s ease;
+        }
+
+        .neon-card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, rgba(239, 68, 68, 0.05), transparent 70%);
+          pointer-events: none;
+          border-radius: inherit;
+        }
+
+        .neon-card:hover {
+          border-color: rgba(239, 68, 68, 0.6);
+          transform: translateY(-5px) scale(1.02);
+          box-shadow:
+            0 0 20px rgba(239, 68, 68, 0.8),
+            0 0 40px rgba(239, 68, 68, 0.6),
+            0 0 60px rgba(239, 68, 68, 0.4),
+            inset 0 0 20px rgba(239, 68, 68, 0.2);
+        }
+
+        .neon-card-blue {
+          border: 2px solid rgba(59, 130, 246, 0.3);
+          animation: neonBorderGlowBlue 3s ease-in-out infinite;
+        }
+
+        .neon-card-blue::before {
+          background: radial-gradient(circle at center, rgba(59, 130, 246, 0.05), transparent 70%);
+        }
+
+        .neon-card-blue:hover {
+          border-color: rgba(59, 130, 246, 0.6);
+          box-shadow:
+            0 0 20px rgba(59, 130, 246, 0.8),
+            0 0 40px rgba(59, 130, 246, 0.6),
+            0 0 60px rgba(59, 130, 246, 0.4),
+            inset 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .neon-card-purple {
+          border: 2px solid rgba(168, 85, 247, 0.3);
+          animation: neonBorderGlowPurple 3s ease-in-out infinite;
+        }
+
+        .neon-card-purple::before {
+          background: radial-gradient(circle at center, rgba(168, 85, 247, 0.05), transparent 70%);
+        }
+
+        .neon-card-purple:hover {
+          border-color: rgba(168, 85, 247, 0.6);
+          box-shadow:
+            0 0 20px rgba(168, 85, 247, 0.8),
+            0 0 40px rgba(168, 85, 247, 0.6),
+            0 0 60px rgba(168, 85, 247, 0.4),
+            inset 0 0 20px rgba(168, 85, 247, 0.2);
+        }
+
+        /* Neonowy efekt dla kafelków samochodów */
+        .neon-car-card {
+          position: relative;
+          border: 2px solid rgba(239, 68, 68, 0.2);
+          background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95));
+          transition: all 0.4s ease;
+        }
+
+        .neon-car-card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.1), transparent 50%),
+                      radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.1), transparent 50%);
+          pointer-events: none;
+          border-radius: inherit;
+          opacity: 0.6;
+        }
+
+        .neon-car-card:hover {
+          border-color: rgba(239, 68, 68, 0.5);
+          transform: translateY(-8px) scale(1.02);
+          box-shadow:
+            0 0 30px rgba(239, 68, 68, 0.6),
+            0 0 60px rgba(239, 68, 68, 0.3),
+            0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .neon-car-card:hover::before {
+          opacity: 1;
+        }
+
+        /* OLD LED Effects - keeping for snake animation */
         @keyframes ledGlowRed {
           0%, 100% {
             text-shadow:
@@ -709,22 +938,18 @@ const ConceptUSACars = () => {
                 </div>
               ) : (
                 <div className="text-xl font-bold flex items-center gap-3">
-                  {/* CONCEPT z czerwonym LED */}
-                  <div className="relative inline-block">
-                    <span className="text-red-500 animate-led-glow-red">
+                  {/* CONCEPT with neon tube flicker effect */}
+                  <div className="inline-block">
+                    <span className="neon-red">
                       CONCEPT
                     </span>
-                    <div className="absolute -inset-x-2 -top-0.5 h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-snake-top"></div>
-                    <div className="absolute -inset-x-2 -bottom-0.5 h-0.5 bg-gradient-to-r from-transparent via-red-400 to-transparent opacity-40 blur-sm animate-led-snake-bottom"></div>
                   </div>
 
-                  {/* Samochody z USA z niebieskim LED */}
-                  <div className="relative inline-block text-sm">
-                    <span className="text-blue-400 animate-led-glow-blue">
+                  {/* Samochody z USA with neon tube flicker effect */}
+                  <div className="inline-block text-sm">
+                    <span className="neon-blue">
                       Samochody z USA
                     </span>
-                    <div className="absolute -inset-x-2 -top-0.5 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60 blur-sm animate-led-snake-top-blue"></div>
-                    <div className="absolute -inset-x-2 -bottom-0.5 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-40 blur-sm animate-led-snake-bottom-blue"></div>
                   </div>
                 </div>
               )}
@@ -791,24 +1016,18 @@ const ConceptUSACars = () => {
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            {/* CONCEPT with red LED effect */}
-            <div className="relative inline-block mb-2">
-              <div className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-600 animate-led-glow-red">
+            {/* CONCEPT with neon tube flicker effect */}
+            <div className="inline-block mb-2">
+              <div className="neon-red">
                 CONCEPT
               </div>
-              {/* LED snake effect - starts as snake, then pulses */}
-              <div className="absolute -inset-x-4 -top-2 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-80 blur-sm animate-led-snake-top"></div>
-              <div className="absolute -inset-x-4 -bottom-2 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-snake-bottom"></div>
             </div>
 
-            {/* Samochody z USA with blue LED effect */}
-            <div className="relative inline-block text-4xl md:text-5xl mt-4">
-              <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 animate-led-glow-blue">
+            {/* Samochody z USA with neon tube flicker effect */}
+            <div className="inline-block text-4xl md:text-5xl mt-4">
+              <div className="neon-blue">
                 Samochody z USA
               </div>
-              {/* Blue LED strips */}
-              <div className="absolute -inset-x-4 -top-1 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-70 blur-sm animate-led-snake-top-blue"></div>
-              <div className="absolute -inset-x-4 -bottom-1 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-50 blur-sm animate-led-snake-bottom-blue"></div>
             </div>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-300">
@@ -845,16 +1064,16 @@ const ConceptUSACars = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja' },
-              { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników' },
-              { icon: <Truck size={40} />, title: 'Pełna obsługa', desc: 'Od zakupu po rejestrację - wszystko załatwiamy' },
-              { icon: <Star size={40} />, title: 'Doświadczenie', desc: 'Setki zadowolonych klientów i sprowadzonych aut' }
+              { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja', color: 'red' },
+              { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników', color: 'blue' },
+              { icon: <Truck size={40} />, title: 'Pełna obsługa', desc: 'Od zakupu po rejestrację - wszystko załatwiamy', color: 'purple' },
+              { icon: <Star size={40} />, title: 'Doświadczenie', desc: 'Setki zadowolonych klientów i sprowadzonych aut', color: 'red' }
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105 cursor-pointer"
+                className={`bg-gray-900/50 p-8 rounded-xl text-center cursor-pointer neon-card${item.color === 'blue' ? '-blue' : item.color === 'purple' ? '-purple' : ''}`}
               >
-                <div className="text-red-600 flex justify-center mb-4">{item.icon}</div>
+                <div className={`flex justify-center mb-4 ${item.color === 'red' ? 'text-red-500' : item.color === 'blue' ? 'text-blue-500' : 'text-purple-500'}`}>{item.icon}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-gray-400">{item.desc}</p>
               </div>
@@ -1002,21 +1221,21 @@ const ConceptUSACars = () => {
 
           <div className="grid md:grid-cols-5 gap-6">
             {[
-              { num: '01', title: 'Kontakt', desc: 'Powiedz nam czego szukasz' },
-              { num: '02', title: 'Wyszukiwanie', desc: 'Znajdujemy idealne auto' },
-              { num: '03', title: 'Weryfikacja', desc: 'Sprawdzamy historię i stan' },
-              { num: '04', title: 'Transport', desc: 'Sprowadzamy do Polski' },
-              { num: '05', title: 'Odbiór', desc: 'Odbierasz swoje auto' }
+              { num: '01', title: 'Kontakt', desc: 'Powiedz nam czego szukasz', color: 'red' },
+              { num: '02', title: 'Wyszukiwanie', desc: 'Znajdujemy idealne auto', color: 'blue' },
+              { num: '03', title: 'Weryfikacja', desc: 'Sprawdzamy historię i stan', color: 'purple' },
+              { num: '04', title: 'Transport', desc: 'Sprowadzamy do Polski', color: 'red' },
+              { num: '05', title: 'Odbiór', desc: 'Odbierasz swoje auto', color: 'blue' }
             ].map((step, idx) => (
               <div key={idx} className={`relative animate-slide-up-fade delay-${(idx + 1) * 100}`}>
-                <div className="bg-gradient-to-br from-red-600 to-blue-600 p-6 rounded-xl text-center hover:shadow-xl hover:shadow-red-500/20 transition">
-                  <div className="text-5xl font-bold mb-4 opacity-50">{step.num}</div>
+                <div className={`bg-gray-900/50 p-6 rounded-xl text-center neon-card${step.color === 'blue' ? '-blue' : step.color === 'purple' ? '-purple' : ''}`}>
+                  <div className={`text-5xl font-bold mb-4 ${step.color === 'red' ? 'text-red-500/50' : step.color === 'blue' ? 'text-blue-500/50' : 'text-purple-500/50'}`}>{step.num}</div>
                   <h3 className="text-xl font-bold mb-2">{step.title}</h3>
                   <p className="text-sm text-gray-300">{step.desc}</p>
                 </div>
                 {idx < 4 && (
                   <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2">
-                    <ChevronDown className="rotate-[-90deg] text-red-500" size={24} />
+                    <ChevronDown className={`rotate-[-90deg] ${step.color === 'red' ? 'text-red-500' : step.color === 'blue' ? 'text-blue-500' : 'text-purple-500'}`} size={24} />
                   </div>
                 )}
               </div>
@@ -1120,7 +1339,7 @@ const ConceptUSACars = () => {
                   return (
                     <div
                       key={car.id}
-                      className="bg-gray-900 rounded-xl overflow-hidden transition cursor-pointer police-lights"
+                      className="neon-car-card rounded-xl overflow-hidden cursor-pointer"
                       onClick={() => openCarModal(car)}
                     >
                       <div className="relative h-48 overflow-hidden">
@@ -1459,16 +1678,16 @@ const ConceptUSACars = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <a
               href="tel:691795116"
-              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
+              className="bg-gray-900/50 p-8 rounded-xl text-center neon-card"
             >
-              <Phone size={40} className="mx-auto mb-4 text-red-600" />
+              <Phone size={40} className="mx-auto mb-4 text-red-500" />
               <h3 className="text-xl font-bold mb-2">Telefon</h3>
               <p className="text-gray-400">691 795 116</p>
             </a>
 
             <a
               href="mailto:conceptusacars@gmail.com"
-              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
+              className="bg-gray-900/50 p-8 rounded-xl text-center neon-card-blue"
             >
               <Mail size={40} className="mx-auto mb-4 text-blue-500" />
               <h3 className="text-xl font-bold mb-2">Email</h3>
@@ -1479,9 +1698,9 @@ const ConceptUSACars = () => {
               href="https://facebook.com/Loveusacar"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
+              className="bg-gray-900/50 p-8 rounded-xl text-center neon-card-purple"
             >
-              <Facebook size={40} className="mx-auto mb-4 text-blue-600" />
+              <Facebook size={40} className="mx-auto mb-4 text-purple-500" />
               <h3 className="text-xl font-bold mb-2">Facebook</h3>
               <p className="text-gray-400">Loveusacar</p>
             </a>
