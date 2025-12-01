@@ -32,8 +32,8 @@
       "sizes": "180x180"
     }
   ],
-  "start_url": "/admin",
-  "scope": "/admin",
+  "start_url": "https://conceptusa.pl/admin",
+  "scope": "/admin/",
   "display": "standalone",
   "orientation": "any",
   "theme_color": "#dc2626",

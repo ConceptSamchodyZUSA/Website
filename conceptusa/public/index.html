@@ -8,14 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#dc2626" />
 
-    <!-- iOS PWA Meta Tags -->
+    <!-- iOS PWA Meta Tags - dynamically set based on route -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="CONCEPT Admin" />
+    <meta name="apple-mobile-web-app-title" content="CONCEPT" id="app-title" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="152x152" href="%PUBLIC_URL%/logo192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="167x167" href="%PUBLIC_URL%/logo192.png" />
+
+    <script>
+      // Ustaw tytuł aplikacji iOS na podstawie ścieżki
+      if (window.location.pathname.includes('/admin')) {
+        document.getElementById('app-title').setAttribute('content', 'CONCEPT Admin');
+      }
+    </script>
 
     <!-- Primary Meta Tags -->
     <title>CONCEPT - Samochody z USA | Import aut prosto z Ameryki</title>
@@ -64,7 +71,8 @@
         if (window.location.pathname.includes('/admin')) {
           const manifestLink = document.getElementById('app-manifest');
           if (manifestLink) {
-            manifestLink.href = '/manifest-admin.json';
+            // Cache busting - dodaj timestamp żeby iOS przeładował manifest
+            manifestLink.href = '/manifest-admin.json?v=' + Date.now();
           }
         }
       })();
