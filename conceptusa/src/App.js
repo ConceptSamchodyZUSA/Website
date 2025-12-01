@@ -27,6 +27,12 @@ const ConceptUSACars = () => {
   // Parallax scroll effect
   const [scrollY, setScrollY] = useState(0);
 
+  // Scroll progress bar
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Image loading state for blur effect
+  const [loadedImages, setLoadedImages] = useState(new Set());
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -99,6 +105,11 @@ const ConceptUSACars = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       setScrollY(window.scrollY); // Track scroll position for parallax
+
+      // Calculate scroll progress percentage
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
+      setScrollProgress(progress);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -205,6 +216,11 @@ const ConceptUSACars = () => {
   const closeCarModal = () => {
     setSelectedCar(null);
     setCurrentImageIndex(0);
+  };
+
+  // Handle image load for blur effect
+  const handleImageLoad = (src) => {
+    setLoadedImages(prev => new Set([...prev, src]));
   };
 
   const handleInputChange = (e) => {
@@ -662,6 +678,17 @@ const ConceptUSACars = () => {
           scroll-behavior: smooth;
         }
 
+        /* Shimmer effect for loading states */
+        @keyframes shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+        .animate-shimmer {
+          background: linear-gradient(90deg, #374151 0%, #4b5563 50%, #374151 100%);
+          background-size: 200% 100%;
+          animation: shimmer 2s infinite;
+        }
+
         /* Add spacing between sections */
         section:not(#home) {
           margin-top: -1px; /* Remove gap between sections */
@@ -693,6 +720,12 @@ const ConceptUSACars = () => {
           animation: buttonGlow 1.5s ease-in-out infinite;
         }
       `}</style>
+
+      {/* Scroll Progress Bar */}
+      <div
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-red-600 via-blue-500 to-red-600 z-[60] transition-all duration-300"
+        style={{ width: `${scrollProgress}%` }}
+      />
 
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${
@@ -753,18 +786,28 @@ const ConceptUSACars = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-gray-900/98 backdrop-blur-sm">
-            <div className="px-4 pt-2 pb-6 space-y-3">
-              <button onClick={() => scrollToSection('home')} className="block w-full text-left py-2 hover:text-red-500">Start</button>
-              <button onClick={() => scrollToSection('about')} className="block w-full text-left py-2 hover:text-red-500">O nas</button>
-              <button onClick={() => scrollToSection('process')} className="block w-full text-left py-2 hover:text-red-500">Jak to działa</button>
-              <button onClick={() => scrollToSection('portfolio')} className="block w-full text-left py-2 hover:text-red-500">Portfolio</button>
-              <button onClick={() => scrollToSection('order')} className="block w-full text-left py-2 hover:text-red-500">Zamów auto</button>
-              <button onClick={() => scrollToSection('contact')} className="block w-full text-left py-2 bg-red-600 px-4 rounded-lg mt-4">Kontakt</button>
+        <div className={`md:hidden fixed inset-0 bg-gray-900/98 backdrop-blur-sm z-40 transition-transform duration-300 ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+          <div className="flex flex-col h-full">
+            {/* Close button */}
+            <div className="flex justify-end p-4">
+              <button onClick={() => setIsMenuOpen(false)} className="text-white p-2">
+                <X size={28} />
+              </button>
+            </div>
+
+            {/* Menu items */}
+            <div className="px-4 pt-8 pb-6 space-y-4 flex-1">
+              <button onClick={() => scrollToSection('home')} className="block w-full text-left py-3 px-4 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition text-lg">Start</button>
+              <button onClick={() => scrollToSection('about')} className="block w-full text-left py-3 px-4 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition text-lg">O nas</button>
+              <button onClick={() => scrollToSection('process')} className="block w-full text-left py-3 px-4 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition text-lg">Jak to działa</button>
+              <button onClick={() => scrollToSection('portfolio')} className="block w-full text-left py-3 px-4 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition text-lg">Portfolio</button>
+              <button onClick={() => scrollToSection('order')} className="block w-full text-left py-3 px-4 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition text-lg">Zamów auto</button>
+              <button onClick={() => scrollToSection('contact')} className="block w-full text-left py-3 px-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-lg mt-6 text-lg font-semibold shadow-lg">Kontakt</button>
             </div>
           </div>
-        )}
+        </div>
 
         {/* Removed animated stripe - cleaner look */}
       </nav>
@@ -817,19 +860,19 @@ const ConceptUSACars = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => scrollToSection('portfolio')}
-              className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105 shadow-lg cta-glow"
+              className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-red-500/50"
             >
               Zobacz portfolio
             </button>
             <button
               onClick={() => scrollToSection('order')}
-              className="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-blue-500/50"
             >
               Zamów auto
             </button>
           </div>
 
-          <div className="mt-12 flex items-center justify-center gap-2 text-gray-400">
+          <div className="mt-12 flex items-center justify-center gap-2 text-gray-300">
             <ChevronDown className="animate-bounce" />
             <span>Przewiń w dół</span>
           </div>
@@ -856,7 +899,7 @@ const ConceptUSACars = () => {
               >
                 <div className="text-red-600 flex justify-center mb-4">{item.icon}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                <p className="text-gray-400">{item.desc}</p>
+                <p className="text-gray-300">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -877,7 +920,7 @@ const ConceptUSACars = () => {
                 <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Fiat</span>
                 <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Alfa Romeo</span>
               </div>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-300 text-sm">
                 oraz inne marki amerykańskie jak <span className="text-white font-semibold">Ford</span> i więcej
               </p>
             </div>
@@ -1031,7 +1074,7 @@ const ConceptUSACars = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
             Nasze <span className="text-red-600">Portfolio</span>
           </h2>
-          <p className="text-center text-gray-400 mb-12 text-lg">
+          <p className="text-center text-gray-300 mb-12 text-lg">
             Sprowadzone samochody, które czekają na nowych właścicieli
           </p>
 
@@ -1073,29 +1116,29 @@ const ConceptUSACars = () => {
           {loading && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="bg-gray-900 rounded-xl overflow-hidden animate-pulse">
+                <div key={i} className="bg-gray-900 rounded-xl overflow-hidden">
                   {/* Image skeleton */}
-                  <div className="h-48 bg-gray-700"></div>
+                  <div className="h-48 animate-shimmer"></div>
 
                   {/* Content skeleton */}
                   <div className="p-6 space-y-4">
                     {/* Title */}
-                    <div className="h-6 bg-gray-700 rounded w-3/4"></div>
+                    <div className="h-6 animate-shimmer rounded w-3/4"></div>
 
                     {/* Meta info */}
                     <div className="flex gap-4">
-                      <div className="h-4 bg-gray-700 rounded w-20"></div>
-                      <div className="h-4 bg-gray-700 rounded w-24"></div>
+                      <div className="h-4 animate-shimmer rounded w-20"></div>
+                      <div className="h-4 animate-shimmer rounded w-24"></div>
                     </div>
 
                     {/* Engine info */}
                     <div className="flex gap-4">
-                      <div className="h-4 bg-gray-700 rounded w-16"></div>
-                      <div className="h-4 bg-gray-700 rounded w-20"></div>
+                      <div className="h-4 animate-shimmer rounded w-16"></div>
+                      <div className="h-4 animate-shimmer rounded w-20"></div>
                     </div>
 
                     {/* Price */}
-                    <div className="h-8 bg-gray-700 rounded w-1/2 mt-4"></div>
+                    <div className="h-8 animate-shimmer rounded w-1/2 mt-4"></div>
                   </div>
                 </div>
               ))}
@@ -1105,7 +1148,7 @@ const ConceptUSACars = () => {
           {/* No cars message */}
           {!loading && filteredCars.length === 0 && (
             <div className="text-center py-20">
-              <p className="text-xl text-gray-400">Brak samochodów w tej kategorii</p>
+              <p className="text-xl text-gray-300">Brak samochodów w tej kategorii</p>
             </div>
           )}
 
@@ -1127,26 +1170,29 @@ const ConceptUSACars = () => {
                         <img
                           src={mainImage}
                           alt={`${car.brand} ${car.model} ${car.year} - Import z USA - CONCEPT Trójmiasto`}
-                          className="w-full h-full object-cover hover:scale-110 transition duration-500"
+                          className={`w-full h-full object-cover hover:scale-110 transition duration-500 ${
+                            !loadedImages.has(mainImage) ? 'blur-lg' : ''
+                          }`}
                           loading="lazy"
                           decoding="async"
+                          onLoad={() => handleImageLoad(mainImage)}
                         />
                         {carImages.length > 1 && (
-                          <div className="absolute bottom-4 right-4 bg-black/70 px-3 py-1 rounded-full text-sm">
+                          <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-sm px-3 py-1 rounded-full text-sm border border-white/20">
                             📷 {carImages.length}
                           </div>
                         )}
-                        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold ${
+                        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-md shadow-lg ${
                           car.status === 'available'
-                            ? 'bg-green-500'
-                            : 'bg-gray-500'
+                            ? 'bg-green-500/90 border border-green-400/50'
+                            : 'bg-gray-500/90 border border-gray-400/50'
                         }`}>
                           {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
                         </div>
                       </div>
                     <div className="p-6">
                       <h3 className="text-2xl font-bold mb-2">{car.brand} {car.model}</h3>
-                      <div className="flex items-center gap-4 text-gray-400 mb-2 flex-wrap">
+                      <div className="flex items-center gap-4 text-gray-300 mb-2 flex-wrap">
                         <span className="flex items-center gap-1">
                           <Calendar size={16} />
                           {car.year}
@@ -1163,7 +1209,7 @@ const ConceptUSACars = () => {
                         )}
                       </div>
                       {(car.engine_capacity || car.horsepower) && (
-                        <div className="flex items-center gap-4 text-gray-400 mb-4 flex-wrap">
+                        <div className="flex items-center gap-4 text-gray-300 mb-4 flex-wrap">
                           {car.engine_capacity && (
                             <span className="flex items-center gap-1">
                               <Fuel size={16} />
@@ -1239,10 +1285,10 @@ const ConceptUSACars = () => {
                             setCurrentPage(pageNum);
                             scrollToSection('portfolio');
                           }}
-                          className={`min-w-[40px] h-10 rounded-lg font-semibold transition ${
+                          className={`min-w-[40px] h-10 rounded-lg font-semibold transition transform ${
                             currentPage === pageNum
-                              ? 'bg-gradient-to-r from-red-600 to-blue-600 text-white scale-110'
-                              : 'bg-gray-700 hover:bg-gray-600 text-white'
+                              ? 'bg-gradient-to-r from-red-600 to-blue-600 text-white scale-110 shadow-lg shadow-red-500/50'
+                              : 'bg-gray-700 hover:bg-gray-600 text-white hover:scale-105'
                           }`}
                         >
                           {pageNum}
@@ -1285,7 +1331,7 @@ const ConceptUSACars = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
             Zamów <span className="text-blue-500">swoje auto</span>
           </h2>
-          <p className="text-center text-gray-400 mb-12 text-lg">
+          <p className="text-center text-gray-300 mb-12 text-lg">
             Powiedz nam czego szukasz, a my znajdziemy idealne auto dla Ciebie
           </p>
 
@@ -1298,7 +1344,7 @@ const ConceptUSACars = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
                   placeholder="Jan Kowalski"
                   required
                 />
@@ -1310,7 +1356,7 @@ const ConceptUSACars = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
                   placeholder="jan@example.com"
                   required
                 />
@@ -1324,7 +1370,7 @@ const ConceptUSACars = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
                 placeholder="691 795 116"
                 required
               />
@@ -1352,7 +1398,7 @@ const ConceptUSACars = () => {
                   name="brand"
                   value={formData.brand}
                   onChange={handleInputChange}
-                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
                   placeholder="np. Ford, Chevrolet"
                 />
               </div>
@@ -1363,7 +1409,7 @@ const ConceptUSACars = () => {
                   name="model"
                   value={formData.model}
                   onChange={handleInputChange}
-                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
                   placeholder="np. Mustang"
                 />
               </div>
@@ -1378,7 +1424,7 @@ const ConceptUSACars = () => {
                   name="budget"
                   value={formData.budget}
                   onChange={handleInputChange}
-                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
                   placeholder="150000"
                 />
               </div>
@@ -1389,7 +1435,7 @@ const ConceptUSACars = () => {
                   name="year"
                   value={formData.year}
                   onChange={handleInputChange}
-                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
                   placeholder="2020-2024"
                 />
               </div>
@@ -1402,7 +1448,7 @@ const ConceptUSACars = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
                 placeholder="Opisz swoje preferencje, wymagania dotyczące pojazdu..."
               ></textarea>
             </div>
@@ -1463,7 +1509,7 @@ const ConceptUSACars = () => {
             >
               <Phone size={40} className="mx-auto mb-4 text-red-600" />
               <h3 className="text-xl font-bold mb-2">Telefon</h3>
-              <p className="text-gray-400">691 795 116</p>
+              <p className="text-gray-300">691 795 116</p>
             </a>
 
             <a
@@ -1472,7 +1518,7 @@ const ConceptUSACars = () => {
             >
               <Mail size={40} className="mx-auto mb-4 text-blue-500" />
               <h3 className="text-xl font-bold mb-2">Email</h3>
-              <p className="text-gray-400">conceptusacars@gmail.com</p>
+              <p className="text-gray-300">conceptusacars@gmail.com</p>
             </a>
 
             <a
@@ -1483,14 +1529,14 @@ const ConceptUSACars = () => {
             >
               <Facebook size={40} className="mx-auto mb-4 text-blue-600" />
               <h3 className="text-xl font-bold mb-2">Facebook</h3>
-              <p className="text-gray-400">Loveusacar</p>
+              <p className="text-gray-300">Loveusacar</p>
             </a>
           </div>
 
           {/* Google Maps */}
           <div className="bg-gray-900 p-4 rounded-xl">
             <h3 className="text-2xl font-bold mb-4 text-center">Nasza lokalizacja</h3>
-            <p className="text-center text-gray-400 mb-4">Długa 24, 84-230 Dębogórze-Wybudowanie</p>
+            <p className="text-center text-gray-300 mb-4">Długa 24, 84-230 Dębogórze-Wybudowanie</p>
             <div className="aspect-video w-full rounded-lg overflow-hidden">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.234567!2d18.1234567!3d54.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd09e3c3e0b0b9%3A0x1234567890abcdef!2zRMWCdWdhIDI0LCA4NC0yMzAgRMSZYm9nw7NyemUtV3lidWRvd2FuaWU!5e0!3m2!1spl!2spl!4v1234567890123!5m2!1spl!2spl"
@@ -1525,7 +1571,7 @@ const ConceptUSACars = () => {
             {/* Company Info */}
             <div>
               <h3 className="text-xl font-bold text-white mb-4">CONCEPT - Samochody z USA</h3>
-              <div className="space-y-2 text-gray-400 text-sm">
+              <div className="space-y-2 text-gray-300 text-sm">
                 <p className="font-semibold text-white">Concept Łukasz Grzenkowski</p>
                 <p>ul. Długa 24</p>
                 <p>84-230 Dębogórze-Wybudowanie</p>
@@ -1537,7 +1583,7 @@ const ConceptUSACars = () => {
             {/* Contact */}
             <div>
               <h3 className="text-xl font-bold text-white mb-4">Kontakt</h3>
-              <div className="space-y-2 text-gray-400 text-sm">
+              <div className="space-y-2 text-gray-300 text-sm">
                 <p>
                   <a href="tel:+48691795116" className="hover:text-blue-400 transition">
                     📞 +48-691-795-116
@@ -1558,7 +1604,7 @@ const ConceptUSACars = () => {
             {/* Legal Links */}
             <div>
               <h3 className="text-xl font-bold text-white mb-4">Informacje prawne</h3>
-              <div className="space-y-2 text-gray-400 text-sm">
+              <div className="space-y-2 text-gray-300 text-sm">
                 <a
                   href="/terms-of-service"
                   className="block hover:text-blue-400 transition"
@@ -1592,7 +1638,7 @@ const ConceptUSACars = () => {
 
           {/* Bottom Bar */}
           <div className="pt-8 border-t border-gray-800 text-center">
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-300 text-sm">
               &copy; {new Date().getFullYear()} CONCEPT - Samochody z USA. Wszystkie prawa zastrzeżone.
             </p>
             <p className="text-gray-500 text-xs mt-2">
@@ -1614,7 +1660,7 @@ const ConceptUSACars = () => {
           >
             <button
               onClick={closeCarModal}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white z-10 bg-gray-900/80 rounded-full p-2"
+              className="absolute top-4 right-4 text-gray-300 hover:text-white z-10 bg-gray-900/80 rounded-full p-2"
             >
               <X size={24} />
             </button>
@@ -1624,9 +1670,12 @@ const ConceptUSACars = () => {
               <img
                 src={getCarImages(selectedCar)[currentImageIndex]}
                 alt={`${selectedCar.brand} ${selectedCar.model} ${selectedCar.year} - Import z USA Trójmiasto - Zdjęcie ${currentImageIndex + 1}`}
-                className="w-full h-96 object-contain rounded-lg"
+                className={`w-full h-96 object-contain rounded-lg transition duration-500 ${
+                  !loadedImages.has(getCarImages(selectedCar)[currentImageIndex]) ? 'blur-lg' : ''
+                }`}
                 loading="lazy"
                 decoding="async"
+                onLoad={() => handleImageLoad(getCarImages(selectedCar)[currentImageIndex])}
               />
 
               {/* Navigation Arrows */}
@@ -1634,14 +1683,14 @@ const ConceptUSACars = () => {
                 <>
                   <button
                     onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition opacity-0 group-hover:opacity-100"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white p-4 rounded-full transition shadow-2xl shadow-red-500/30 hover:scale-110"
                     aria-label="Poprzednie zdjęcie"
                   >
                     <ChevronLeft size={24} />
                   </button>
                   <button
                     onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition opacity-0 group-hover:opacity-100"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white p-4 rounded-full transition shadow-2xl shadow-blue-500/30 hover:scale-110"
                     aria-label="Następne zdjęcie"
                   >
                     <ChevronRight size={24} />
@@ -1679,39 +1728,39 @@ const ConceptUSACars = () => {
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div>
-                <p className="text-gray-400">Rok produkcji</p>
+                <p className="text-gray-300">Rok produkcji</p>
                 <p className="text-xl font-bold">{selectedCar.year}</p>
               </div>
               <div>
-                <p className="text-gray-400">Przebieg</p>
+                <p className="text-gray-300">Przebieg</p>
                 <p className="text-xl font-bold">
                   {selectedCar.mileage?.toLocaleString()} mil
-                  <span className="text-sm text-gray-400 ml-2">
+                  <span className="text-sm text-gray-300 ml-2">
                     ({Math.round(selectedCar.mileage * 1.60934).toLocaleString()} km)
                   </span>
                 </p>
               </div>
               {selectedCar.engine_capacity && (
                 <div>
-                  <p className="text-gray-400">Pojemność silnika</p>
+                  <p className="text-gray-300">Pojemność silnika</p>
                   <p className="text-xl font-bold">{selectedCar.engine_capacity}L</p>
                 </div>
               )}
               {selectedCar.horsepower && (
                 <div>
-                  <p className="text-gray-400">Moc</p>
+                  <p className="text-gray-300">Moc</p>
                   <p className="text-xl font-bold">{selectedCar.horsepower} KM</p>
                 </div>
               )}
               {selectedCar.transmission && (
                 <div>
-                  <p className="text-gray-400">Skrzynia biegów</p>
+                  <p className="text-gray-300">Skrzynia biegów</p>
                   <p className="text-xl font-bold capitalize">{selectedCar.transmission}</p>
                 </div>
               )}
               {selectedCar.drivetrain && (
                 <div>
-                  <p className="text-gray-400">Napęd</p>
+                  <p className="text-gray-300">Napęd</p>
                   <p className="text-xl font-bold flex items-center gap-2">
                     {getDrivetrainIcon(selectedCar.drivetrain)}
                     <span>{getDrivetrainLabel(selectedCar.drivetrain)}</span>
@@ -1720,22 +1769,22 @@ const ConceptUSACars = () => {
               )}
               {selectedCar.fuel_type && (
                 <div>
-                  <p className="text-gray-400">Paliwo</p>
+                  <p className="text-gray-300">Paliwo</p>
                   <p className="text-xl font-bold">{selectedCar.fuel_type}</p>
                 </div>
               )}
               {selectedCar.color && (
                 <div>
-                  <p className="text-gray-400">Kolor</p>
+                  <p className="text-gray-300">Kolor</p>
                   <p className="text-xl font-bold capitalize">{selectedCar.color}</p>
                 </div>
               )}
               <div>
-                <p className="text-gray-400">Status</p>
+                <p className="text-gray-300">Status</p>
                 <p className="text-xl font-bold">{selectedCar.status === 'available' ? 'Dostępny' : 'Sprzedany'}</p>
               </div>
               <div className="col-span-2">
-                <p className="text-gray-400">Cena</p>
+                <p className="text-gray-300">Cena</p>
                 {selectedCar.status === 'available' ? (
                   <p className="text-3xl font-bold text-green-500">
                     {selectedCar.price?.toLocaleString()} PLN <span className="text-sm text-blue-400">brutto</span>
@@ -1790,7 +1839,7 @@ const ConceptUSACars = () => {
 
       {/* Footer with author info */}
       <footer className="bg-gray-900 text-center py-6 mt-12 border-t border-gray-800">
-        <p className="text-gray-400 text-sm">
+        <p className="text-gray-300 text-sm">
           Built by{' '}
           <a
             href="https://github.com/Kobeep"
