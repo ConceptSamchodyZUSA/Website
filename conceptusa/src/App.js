@@ -474,51 +474,103 @@ const ConceptUSACars = () => {
 
         /* NEON TUBE FLICKER - realistyczna świetlówka 💡 */
         @keyframes neonFlickerRed {
-          /* Tekst czarny na start */
+          /* Tekst czarny na start - rurka szara */
           0% {
             color: #1f2937;
             text-shadow: none;
+            border-color: rgba(156, 163, 175, 0.3);
+            background: linear-gradient(to bottom,
+              rgba(156, 163, 175, 0) 0%,
+              rgba(156, 163, 175, 0.1) 50%,
+              rgba(156, 163, 175, 0) 100%
+            );
           }
           /* Faza migania - nabiera kolory */
           2% {
             color: #ef4444;
             text-shadow: 0 0 10px #ef4444;
+            border-color: rgba(239, 68, 68, 0.4);
+            background: linear-gradient(to bottom,
+              rgba(239, 68, 68, 0) 0%,
+              rgba(239, 68, 68, 0.15) 50%,
+              rgba(239, 68, 68, 0) 100%
+            );
           }
           4% {
             color: #1f2937;
             text-shadow: none;
+            border-color: rgba(156, 163, 175, 0.3);
+            background: linear-gradient(to bottom,
+              rgba(156, 163, 175, 0) 0%,
+              rgba(156, 163, 175, 0.1) 50%,
+              rgba(156, 163, 175, 0) 100%
+            );
           }
           6% {
             color: #ef4444;
             text-shadow: 0 0 15px #ef4444;
+            border-color: rgba(239, 68, 68, 0.5);
+            background: linear-gradient(to bottom,
+              rgba(239, 68, 68, 0) 0%,
+              rgba(239, 68, 68, 0.2) 50%,
+              rgba(239, 68, 68, 0) 100%
+            );
           }
           8% {
             color: #7f1d1d;
             text-shadow: 0 0 5px #ef4444;
+            border-color: rgba(239, 68, 68, 0.2);
           }
           10% {
             color: #1f2937;
             text-shadow: none;
+            border-color: rgba(156, 163, 175, 0.3);
+            background: linear-gradient(to bottom,
+              rgba(156, 163, 175, 0) 0%,
+              rgba(156, 163, 175, 0.1) 50%,
+              rgba(156, 163, 175, 0) 100%
+            );
           }
           12% {
             color: #ef4444;
             text-shadow: 0 0 20px #ef4444;
+            border-color: rgba(239, 68, 68, 0.6);
+            background: linear-gradient(to bottom,
+              rgba(239, 68, 68, 0) 0%,
+              rgba(239, 68, 68, 0.25) 50%,
+              rgba(239, 68, 68, 0) 100%
+            );
           }
           14% {
             color: #b91c1c;
             text-shadow: 0 0 10px #ef4444;
+            border-color: rgba(239, 68, 68, 0.3);
           }
           16% {
             color: #1f2937;
             text-shadow: none;
+            border-color: rgba(156, 163, 175, 0.3);
+            background: linear-gradient(to bottom,
+              rgba(156, 163, 175, 0) 0%,
+              rgba(156, 163, 175, 0.1) 50%,
+              rgba(156, 163, 175, 0) 100%
+            );
           }
-          /* Zapala się - pełny kolor */
+          /* Zapala się - pełny kolor z rurką */
           18% {
             color: #ef4444;
             text-shadow:
               0 0 10px #ef4444,
               0 0 20px #ef4444,
               0 0 40px #ef4444;
+            border-color: rgba(239, 68, 68, 0.7);
+            background: linear-gradient(to bottom,
+              rgba(239, 68, 68, 0) 0%,
+              rgba(239, 68, 68, 0.3) 20%,
+              rgba(239, 68, 68, 0.4) 50%,
+              rgba(239, 68, 68, 0.3) 80%,
+              rgba(239, 68, 68, 0) 100%
+            );
           }
           /* Stabilne świecenie */
           20%, 100% {
@@ -528,55 +580,115 @@ const ConceptUSACars = () => {
               0 0 20px #ef4444,
               0 0 40px #ef4444,
               0 0 60px #ef4444;
+            border-color: rgba(239, 68, 68, 0.8);
+            background: linear-gradient(to bottom,
+              rgba(239, 68, 68, 0) 0%,
+              rgba(239, 68, 68, 0.3) 20%,
+              rgba(239, 68, 68, 0.5) 50%,
+              rgba(239, 68, 68, 0.3) 80%,
+              rgba(239, 68, 68, 0) 100%
+            );
           }
         }
 
         @keyframes neonFlickerBlue {
-          /* Tekst czarny na start */
+          /* Tekst czarny na start - rurka szara */
           0% {
             color: #1f2937;
             text-shadow: none;
+            border-color: rgba(156, 163, 175, 0.3);
+            background: linear-gradient(to bottom,
+              rgba(156, 163, 175, 0) 0%,
+              rgba(156, 163, 175, 0.1) 50%,
+              rgba(156, 163, 175, 0) 100%
+            );
           }
           /* Faza migania - nabiera kolory */
           2% {
             color: #3b82f6;
             text-shadow: 0 0 10px #3b82f6;
+            border-color: rgba(59, 130, 246, 0.4);
+            background: linear-gradient(to bottom,
+              rgba(59, 130, 246, 0) 0%,
+              rgba(59, 130, 246, 0.15) 50%,
+              rgba(59, 130, 246, 0) 100%
+            );
           }
           4% {
             color: #1f2937;
             text-shadow: none;
+            border-color: rgba(156, 163, 175, 0.3);
+            background: linear-gradient(to bottom,
+              rgba(156, 163, 175, 0) 0%,
+              rgba(156, 163, 175, 0.1) 50%,
+              rgba(156, 163, 175, 0) 100%
+            );
           }
           6% {
             color: #3b82f6;
             text-shadow: 0 0 15px #3b82f6;
+            border-color: rgba(59, 130, 246, 0.5);
+            background: linear-gradient(to bottom,
+              rgba(59, 130, 246, 0) 0%,
+              rgba(59, 130, 246, 0.2) 50%,
+              rgba(59, 130, 246, 0) 100%
+            );
           }
           8% {
             color: #1e3a8a;
             text-shadow: 0 0 5px #3b82f6;
+            border-color: rgba(59, 130, 246, 0.2);
           }
           10% {
             color: #1f2937;
             text-shadow: none;
+            border-color: rgba(156, 163, 175, 0.3);
+            background: linear-gradient(to bottom,
+              rgba(156, 163, 175, 0) 0%,
+              rgba(156, 163, 175, 0.1) 50%,
+              rgba(156, 163, 175, 0) 100%
+            );
           }
           12% {
             color: #3b82f6;
             text-shadow: 0 0 20px #3b82f6;
+            border-color: rgba(59, 130, 246, 0.6);
+            background: linear-gradient(to bottom,
+              rgba(59, 130, 246, 0) 0%,
+              rgba(59, 130, 246, 0.25) 50%,
+              rgba(59, 130, 246, 0) 100%
+            );
           }
           14% {
             color: #2563eb;
             text-shadow: 0 0 10px #3b82f6;
+            border-color: rgba(59, 130, 246, 0.3);
           }
           16% {
             color: #1f2937;
             text-shadow: none;
+            border-color: rgba(156, 163, 175, 0.3);
+            background: linear-gradient(to bottom,
+              rgba(156, 163, 175, 0) 0%,
+              rgba(156, 163, 175, 0.1) 50%,
+              rgba(156, 163, 175, 0) 100%
+            );
           }
-          /* Zapala się - pełny kolor */
+          /* Zapala się - pełny kolor z rurką */
           18% {
             color: #3b82f6;
             text-shadow:
               0 0 10px #3b82f6,
               0 0 20px #3b82f6,
               0 0 40px #3b82f6;
+            border-color: rgba(59, 130, 246, 0.7);
+            background: linear-gradient(to bottom,
+              rgba(59, 130, 246, 0) 0%,
+              rgba(59, 130, 246, 0.3) 20%,
+              rgba(59, 130, 246, 0.4) 50%,
+              rgba(59, 130, 246, 0.3) 80%,
+              rgba(59, 130, 246, 0) 100%
+            );
           }
           /* Stabilne świecenie */
           20%, 100% {
@@ -586,6 +698,14 @@ const ConceptUSACars = () => {
               0 0 20px #3b82f6,
               0 0 40px #3b82f6,
               0 0 60px #3b82f6;
+            border-color: rgba(59, 130, 246, 0.8);
+            background: linear-gradient(to bottom,
+              rgba(59, 130, 246, 0) 0%,
+              rgba(59, 130, 246, 0.3) 20%,
+              rgba(59, 130, 246, 0.5) 50%,
+              rgba(59, 130, 246, 0.3) 80%,
+              rgba(59, 130, 246, 0) 100%
+            );
           }
         }
 
@@ -597,6 +717,14 @@ const ConceptUSACars = () => {
               0 0 20px #ef4444,
               0 0 40px #ef4444,
               0 0 60px #ef4444;
+            border-color: rgba(239, 68, 68, 0.8);
+            background: linear-gradient(to bottom,
+              rgba(239, 68, 68, 0) 0%,
+              rgba(239, 68, 68, 0.3) 20%,
+              rgba(239, 68, 68, 0.5) 50%,
+              rgba(239, 68, 68, 0.3) 80%,
+              rgba(239, 68, 68, 0) 100%
+            );
           }
           50% {
             text-shadow:
@@ -604,6 +732,14 @@ const ConceptUSACars = () => {
               0 0 30px #ef4444,
               0 0 60px #ef4444,
               0 0 90px #ef4444;
+            border-color: rgba(239, 68, 68, 1);
+            background: linear-gradient(to bottom,
+              rgba(239, 68, 68, 0) 0%,
+              rgba(239, 68, 68, 0.4) 20%,
+              rgba(239, 68, 68, 0.6) 50%,
+              rgba(239, 68, 68, 0.4) 80%,
+              rgba(239, 68, 68, 0) 100%
+            );
           }
         }
 
@@ -614,6 +750,14 @@ const ConceptUSACars = () => {
               0 0 20px #3b82f6,
               0 0 40px #3b82f6,
               0 0 60px #3b82f6;
+            border-color: rgba(59, 130, 246, 0.8);
+            background: linear-gradient(to bottom,
+              rgba(59, 130, 246, 0) 0%,
+              rgba(59, 130, 246, 0.3) 20%,
+              rgba(59, 130, 246, 0.5) 50%,
+              rgba(59, 130, 246, 0.3) 80%,
+              rgba(59, 130, 246, 0) 100%
+            );
           }
           50% {
             text-shadow:
@@ -621,28 +765,96 @@ const ConceptUSACars = () => {
               0 0 30px #3b82f6,
               0 0 60px #3b82f6,
               0 0 90px #3b82f6;
+            border-color: rgba(59, 130, 246, 1);
+            background: linear-gradient(to bottom,
+              rgba(59, 130, 246, 0) 0%,
+              rgba(59, 130, 246, 0.4) 20%,
+              rgba(59, 130, 246, 0.6) 50%,
+              rgba(59, 130, 246, 0.4) 80%,
+              rgba(59, 130, 246, 0) 100%
+            );
           }
         }
 
         .neon-red {
           color: #1f2937;
           font-weight: 700;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.15em;
+          /* Styl świetlówki - rurka neonowa */
+          background: linear-gradient(to bottom,
+            rgba(239, 68, 68, 0) 0%,
+            rgba(239, 68, 68, 0.1) 20%,
+            rgba(239, 68, 68, 0.2) 50%,
+            rgba(239, 68, 68, 0.1) 80%,
+            rgba(239, 68, 68, 0) 100%
+          );
+          padding: 0.3em 0.5em;
+          border-radius: 50px;
+          border: 2px solid transparent;
+          display: inline-block;
+          position: relative;
           animation:
             neonFlickerRed 2s ease-in-out forwards,
             neonPulseRed 3s ease-in-out 2s infinite;
         }
 
+        .neon-red::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: 50px;
+          padding: 2px;
+          background: linear-gradient(90deg,
+            transparent,
+            rgba(239, 68, 68, 0.3),
+            transparent
+          );
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
         .neon-blue {
           color: #1f2937;
           font-weight: 700;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.15em;
+          /* Styl świetlówki - rurka neonowa */
+          background: linear-gradient(to bottom,
+            rgba(59, 130, 246, 0) 0%,
+            rgba(59, 130, 246, 0.1) 20%,
+            rgba(59, 130, 246, 0.2) 50%,
+            rgba(59, 130, 246, 0.1) 80%,
+            rgba(59, 130, 246, 0) 100%
+          );
+          padding: 0.3em 0.5em;
+          border-radius: 50px;
+          border: 2px solid transparent;
+          display: inline-block;
+          position: relative;
           animation:
             neonFlickerBlue 2s ease-in-out 0.3s forwards,
             neonPulseBlue 3s ease-in-out 2.3s infinite;
         }
 
-        /* Neonowe efekty dla kafelków - subtelne */
+        .neon-blue::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: 50px;
+          padding: 2px;
+          background: linear-gradient(90deg,
+            transparent,
+            rgba(59, 130, 246, 0.3),
+            transparent
+          );
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }        /* Neonowe efekty dla kafelków - subtelne */
         @keyframes neonBorderGlow {
           0%, 100% {
             box-shadow:
