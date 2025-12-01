@@ -8,6 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#dc2626" />
 
+    <!-- iOS PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="CONCEPT Admin" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="%PUBLIC_URL%/logo192.png" />
+
     <!-- Primary Meta Tags -->
     <title>CONCEPT - Samochody z USA | Import aut prosto z Ameryki</title>
     <meta
@@ -105,6 +114,17 @@
 
     <!-- PWA Service Worker Registration -->
     <script>
+      // Wykryj iOS
+      function isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      }
+
+      // Wykryj czy jest standalone (zainstalowane)
+      function isStandalone() {
+        return window.matchMedia('(display-mode: standalone)').matches ||
+               window.navigator.standalone === true;
+      }
+
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           // Sprawdź czy jesteśmy w admin panelu
@@ -132,17 +152,102 @@
         });
       }
 
-      // Dodaj przycisk "Zainstaluj aplikację" dla admin panelu
-      let deferredPrompt;
-      window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
+      // Pokaż instrukcje instalacji dla iOS lub przycisk dla innych
+      window.addEventListener('load', () => {
+        const isAdminPanel = window.location.pathname.includes('/admin');
+        if (!isAdminPanel || isStandalone()) return;
 
-        // Pokaż przycisk instalacji tylko w admin panelu
-        if (window.location.pathname.includes('/admin')) {
-          showInstallButton();
+        if (isIOS()) {
+          // iOS - pokaż instrukcje manualne
+          showIOSInstructions();
+        } else {
+          // Android/Desktop - pokaż przycisk po beforeinstallprompt
+          setupInstallPrompt();
         }
       });
+
+      // Instrukcje dla iOS
+      function showIOSInstructions() {
+        // Poczekaj 2 sekundy zanim pokażesz
+        setTimeout(() => {
+          const iosModal = document.createElement('div');
+          iosModal.innerHTML = `
+            <div style="
+              position: fixed;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background: linear-gradient(135deg, #dc2626, #3b82f6);
+              color: white;
+              padding: 20px;
+              box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+              z-index: 10000;
+              animation: slideUp 0.3s ease-out;
+            ">
+              <div style="max-width: 600px; margin: 0 auto;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                  <div style="font-size: 18px; font-weight: bold;">
+                    📱 Zainstaluj Admin Panel
+                  </div>
+                  <button onclick="this.closest('div').parentElement.remove()" style="
+                    background: rgba(255,255,255,0.2);
+                    border: none;
+                    color: white;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    font-size: 20px;
+                  ">×</button>
+                </div>
+                <div style="font-size: 14px; line-height: 1.6;">
+                  <p style="margin: 8px 0;">Na iOS (Safari):</p>
+                  <ol style="margin: 0; padding-left: 20px;">
+                    <li>Kliknij przycisk <strong>"Udostępnij"</strong>
+                      <span style="display: inline-block; padding: 2px 6px; background: rgba(255,255,255,0.2); border-radius: 4px; margin: 0 4px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/>
+                        </svg>
+                      </span>
+                      w dolnym pasku</li>
+                    <li>Wybierz <strong>"Dodaj do ekranu głównego"</strong></li>
+                    <li>Kliknij <strong>"Dodaj"</strong></li>
+                  </ol>
+                  <p style="margin: 12px 0 4px; font-size: 12px; opacity: 0.9;">
+                    Aplikacja pojawi się na ekranie głównym! 🎉
+                  </p>
+                </div>
+              </div>
+            </div>
+            <style>
+              @keyframes slideUp {
+                from { transform: translateY(100%); }
+                to { transform: translateY(0); }
+              }
+            </style>
+          `;
+          document.body.appendChild(iosModal);
+
+          // Auto-zamknij po 15 sekundach
+          setTimeout(() => {
+            if (iosModal.parentElement) {
+              iosModal.style.transition = 'transform 0.3s ease-out';
+              iosModal.style.transform = 'translateY(100%)';
+              setTimeout(() => iosModal.remove(), 300);
+            }
+          }, 15000);
+        }, 2000);
+      }
+
+      // Setup dla Android/Desktop
+      let deferredPrompt;
+      function setupInstallPrompt() {
+        window.addEventListener('beforeinstallprompt', (e) => {
+          e.preventDefault();
+          deferredPrompt = e;
+          showInstallButton();
+        });
+      }
 
       function showInstallButton() {
         const installBtn = document.createElement('button');
@@ -167,7 +272,7 @@
           if (deferredPrompt) {
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
-            console.log(`Użytkownik ${outcome === 'accepted' ? 'zainstalował' : 'odrzucił'} aplikację`);
+            console.log('Użytkownik ' + (outcome === 'accepted' ? 'zainstalował' : 'odrzucił') + ' aplikację');
             deferredPrompt = null;
             installBtn.remove();
           }
