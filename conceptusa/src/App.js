@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Menu, X, Phone, Mail, Facebook, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown, Loader2, Cookie } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, Instagram, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown, Loader2, Cookie } from 'lucide-react';
 import { carService, inquiryService } from './services';
 import emailjs from '@emailjs/browser';
 import CookieConsentBanner from './CookieConsent';
@@ -1522,14 +1522,25 @@ const ConceptUSACars = () => {
             </a>
 
             <a
-              href="https://facebook.com/Loveusacar"
+              href="https://facebook.com/conceptsamochodyzusa"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
             >
               <Facebook size={40} className="mx-auto mb-4 text-blue-600" />
               <h3 className="text-xl font-bold mb-2">Facebook</h3>
-              <p className="text-gray-300">Loveusacar</p>
+              <p className="text-gray-300">conceptsamochodyzusa</p>
+            </a>
+
+            <a
+              href="https://instagram.com/concept_samochody_z_usa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
+            >
+              <Instagram size={40} className="mx-auto mb-4 text-pink-500" />
+              <h3 className="text-xl font-bold mb-2">Instagram</h3>
+              <p className="text-gray-300">@concept_samochody_z_usa</p>
             </a>
           </div>
 
@@ -1594,6 +1605,26 @@ const ConceptUSACars = () => {
                     ✉️ conceptusacars@gmail.com
                   </a>
                 </p>
+                <div className="mt-4 flex gap-3">
+                  <a
+                    href="https://facebook.com/conceptsamochodyzusa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-blue-600 transition"
+                    aria-label="Facebook"
+                  >
+                    <Facebook size={24} />
+                  </a>
+                  <a
+                    href="https://instagram.com/concept_samochody_z_usa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-pink-500 transition"
+                    aria-label="Instagram"
+                  >
+                    <Instagram size={24} />
+                  </a>
+                </div>
                 <p className="mt-3 text-xs">
                   Godziny otwarcia:<br />
                   Pon-Pt: 09:00-17:00
