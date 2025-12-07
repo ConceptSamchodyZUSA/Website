@@ -721,102 +721,75 @@ const ConceptUSACars = () => {
         }
 
         /* Independent transforms for "O nas" cards */
-        @keyframes floatX {
-          0%, 100% { transform: translateX(0px); }
-          50% { transform: translateX(10px); }
+        /* Modern Interactive Transform - One expands, others shrink */
+        .about-card {
+          transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                      box-shadow 0.6s ease,
+                      background-color 0.3s ease;
+          transform-origin: center center;
         }
 
-        @keyframes floatY {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
+        /* When hovering one card, it grows and others shrink */
+        .about-cards-container:has(.about-card:hover) .about-card:not(:hover) {
+          transform: scale(0.85) translateY(10px);
+          opacity: 0.6;
+          filter: blur(2px);
         }
 
-        @keyframes rotateZ {
-          0%, 100% { transform: rotate(0deg); }
-          50% { transform: rotate(2deg); }
+        .about-card:hover {
+          transform: scale(1.15) translateY(-15px) rotateX(5deg);
+          box-shadow: 0 30px 60px rgba(220, 38, 38, 0.4),
+                      0 15px 30px rgba(59, 130, 246, 0.3);
+          z-index: 10;
+          position: relative;
         }
 
-        @keyframes floatCard1 {
+        /* Subtle continuous float animation as base */
+        @keyframes subtleFloat {
           0%, 100% {
-            transform: translateY(0px) translateX(0px) rotate(0deg);
-          }
-          25% {
-            transform: translateY(-10px) translateX(5px) rotate(1deg);
+            transform: translateY(0px);
           }
           50% {
-            transform: translateY(-15px) translateX(0px) rotate(0deg);
-          }
-          75% {
-            transform: translateY(-10px) translateX(-5px) rotate(-1deg);
+            transform: translateY(-8px);
           }
         }
 
-        @keyframes floatCard2 {
-          0%, 100% {
-            transform: translateY(0px) translateX(0px) rotate(0deg);
-          }
-          25% {
-            transform: translateY(-12px) translateX(-5px) rotate(-1deg);
-          }
-          50% {
-            transform: translateY(-18px) translateX(0px) rotate(0deg);
-          }
-          75% {
-            transform: translateY(-12px) translateX(5px) rotate(1deg);
-          }
+        .about-card {
+          animation: subtleFloat 4s ease-in-out infinite;
         }
 
-        @keyframes floatCard3 {
-          0%, 100% {
-            transform: translateY(0px) translateX(0px) rotate(0deg);
-          }
-          25% {
-            transform: translateY(-8px) translateX(3px) rotate(0.5deg);
-          }
-          50% {
-            transform: translateY(-12px) translateX(-3px) rotate(-0.5deg);
-          }
-          75% {
-            transform: translateY(-8px) translateX(0px) rotate(0deg);
-          }
-        }
+        .about-card:nth-child(1) { animation-delay: 0s; }
+        .about-card:nth-child(2) { animation-delay: 0.5s; }
+        .about-card:nth-child(3) { animation-delay: 1s; }
+        .about-card:nth-child(4) { animation-delay: 1.5s; }
 
-        @keyframes floatCard4 {
-          0%, 100% {
-            transform: translateY(0px) translateX(0px) rotate(0deg);
-          }
-          25% {
-            transform: translateY(-14px) translateX(-3px) rotate(-0.8deg);
-          }
-          50% {
-            transform: translateY(-20px) translateX(3px) rotate(0.8deg);
-          }
-          75% {
-            transform: translateY(-14px) translateX(0px) rotate(0deg);
-          }
-        }
-
-        .float-card-1 {
-          animation: floatCard1 6s ease-in-out infinite;
-        }
-
-        .float-card-2 {
-          animation: floatCard2 7s ease-in-out infinite 0.5s;
-        }
-
-        .float-card-3 {
-          animation: floatCard3 5.5s ease-in-out infinite 1s;
-        }
-
-        .float-card-4 {
-          animation: floatCard4 6.5s ease-in-out infinite 1.5s;
-        }
-
-        .float-card-1:hover,
-        .float-card-2:hover,
-        .float-card-3:hover,
-        .float-card-4:hover {
+        /* Pause float on hover */
+        .about-card:hover {
           animation-play-state: paused;
+        }
+
+        /* Modern glow effect on active card */
+        .about-card:hover::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          background: linear-gradient(45deg, #dc2626, #3b82f6, #dc2626);
+          border-radius: 0.75rem;
+          z-index: -1;
+          opacity: 0.5;
+          filter: blur(10px);
+          animation: rotateGlow 3s linear infinite;
+        }
+
+        @keyframes rotateGlow {
+          0% { transform: rotate(0deg) scale(1); }
+          50% { transform: rotate(180deg) scale(1.1); }
+          100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Smooth perspective for 3D effect */
+        .about-cards-container {
+          perspective: 1000px;
         }
       `}</style>
 
@@ -985,16 +958,16 @@ const ConceptUSACars = () => {
             Dlaczego <span className="text-red-600">CONCEPT</span>?
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 about-cards-container">
             {[
-              { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja', animation: 'float-card-1' },
-              { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników', animation: 'float-card-2' },
-              { icon: <Truck size={40} />, title: 'Pełna obsługa', desc: 'Od zakupu po rejestrację - wszystko załatwiamy', animation: 'float-card-3' },
-              { icon: <Star size={40} />, title: 'Doświadczenie', desc: 'Setki zadowolonych klientów i sprowadzonych aut', animation: 'float-card-4' }
+              { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja' },
+              { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników' },
+              { icon: <Truck size={40} />, title: 'Pełna obsługa', desc: 'Od zakupu po rejestrację - wszystko załatwiamy' },
+              { icon: <Star size={40} />, title: 'Doświadczenie', desc: 'Setki zadowolonych klientów i sprowadzonych aut' }
             ].map((item, idx) => (
               <div
                 key={idx}
-                className={`bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-red-500/20 ${item.animation}`}
+                className="about-card bg-gray-900 p-8 rounded-xl text-center cursor-pointer relative overflow-hidden"
               >
                 <div className="text-red-600 flex justify-center mb-4">{item.icon}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
