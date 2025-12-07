@@ -977,83 +977,112 @@ const ConceptUSACars = () => {
         className={`md:hidden fixed inset-0 z-[100] transition-all duration-500 ${
           isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
-        style={{ backgroundColor: '#0a0a0a' }}
       >
+        {/* Gradient background matching the site */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-950 to-gray-900" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-red-950/30 via-transparent to-blue-950/30" />
+
+        {/* Animated corner accents */}
+        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-red-600/20 to-transparent blur-2xl" />
+        <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-blue-600/20 to-transparent blur-2xl" />
+
         {/* Menu content */}
-        <div className={`relative h-full flex flex-col transition-transform duration-500 ${
-          isMenuOpen ? 'translate-y-0' : '-translate-y-10'
+        <div className={`relative h-full flex flex-col transition-all duration-500 ${
+          isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'
         }`}>
-          {/* Header with logo and close button */}
-          <div className="flex justify-between items-center p-6 border-b border-gray-800">
-            <div className="text-xl font-bold">
-              <span className="text-red-500">CONCEPT</span>
-              <span className="text-blue-400 text-sm ml-2">USA</span>
+          {/* Header with animated logo and close button */}
+          <div className="flex justify-between items-center p-6 border-b border-gray-800/50">
+            {/* Animated LED Logo */}
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-600 animate-led-glow-red">
+                  CONCEPT
+                </span>
+                <div className="absolute -inset-x-2 -top-1 h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 blur-sm animate-led-snake-top" />
+                <div className="absolute -inset-x-2 -bottom-1 h-0.5 bg-gradient-to-r from-transparent via-red-400 to-transparent opacity-40 blur-sm animate-led-snake-bottom" />
+              </div>
+              <div className="relative">
+                <span className="text-sm font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500 animate-led-glow-blue">
+                  USA
+                </span>
+                <div className="absolute -inset-x-1 -bottom-0.5 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-50 blur-sm animate-led-snake-bottom-blue" />
+              </div>
             </div>
+
+            {/* Close button with glow */}
             <button
               onClick={() => setIsMenuOpen(false)}
-              className="w-12 h-12 flex items-center justify-center bg-gray-800 hover:bg-red-600 rounded-full transition-colors"
+              className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900 hover:from-red-600 hover:to-red-700 rounded-full transition-all duration-300 border border-gray-700 hover:border-red-500 hover:shadow-lg hover:shadow-red-500/30"
             >
               <X size={24} />
             </button>
           </div>
 
-          {/* Menu items - centered */}
-          <div className="flex-1 flex flex-col justify-center px-8 space-y-2">
+          {/* Menu items - centered with gradient hover */}
+          <div className="flex-1 flex flex-col justify-center px-6 space-y-3">
             {[
-              { id: 'home', label: 'Start', icon: '🏠' },
-              { id: 'about', label: 'O nas', icon: '🏢' },
-              { id: 'process', label: 'Jak to działa', icon: '⚙️' },
-              { id: 'portfolio', label: 'Portfolio', icon: '🚗' },
-              { id: 'order', label: 'Zamów auto', icon: '📝' },
+              { id: 'home', label: 'Start', icon: '🏠', color: 'red' },
+              { id: 'about', label: 'O nas', icon: '🏢', color: 'blue' },
+              { id: 'process', label: 'Jak to działa', icon: '⚙️', color: 'red' },
+              { id: 'portfolio', label: 'Portfolio', icon: '🚗', color: 'blue' },
+              { id: 'order', label: 'Zamów auto', icon: '📝', color: 'red' },
             ].map((item, index) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="flex items-center gap-4 py-4 px-6 text-xl font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all duration-300"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className={`group flex items-center gap-4 py-4 px-6 text-xl font-medium rounded-xl transition-all duration-300 border border-transparent ${
+                  item.color === 'red'
+                    ? 'hover:bg-gradient-to-r hover:from-red-600/20 hover:to-transparent hover:border-red-500/30'
+                    : 'hover:bg-gradient-to-r hover:from-blue-600/20 hover:to-transparent hover:border-blue-500/30'
+                }`}
               >
-                <span className="text-2xl">{item.icon}</span>
-                <span>{item.label}</span>
+                <span className="text-3xl group-hover:scale-125 transition-transform duration-300">{item.icon}</span>
+                <span className="text-gray-200 group-hover:text-white">{item.label}</span>
+                <ChevronRight size={20} className={`ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 ${
+                  item.color === 'red' ? 'text-red-500' : 'text-blue-500'
+                }`} />
               </button>
             ))}
 
-            {/* Contact button - highlighted */}
+            {/* Contact button - gradient with glow */}
             <button
               onClick={() => scrollToSection('contact')}
-              className="flex items-center justify-center gap-3 py-5 px-6 mt-6 text-xl font-bold bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-xl shadow-lg shadow-red-900/30 transition-all duration-300"
+              className="flex items-center justify-center gap-3 py-5 px-6 mt-4 text-xl font-bold bg-gradient-to-r from-red-600 via-red-500 to-blue-600 hover:from-red-500 hover:via-red-400 hover:to-blue-500 rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 hover:scale-[1.02] border border-red-400/30"
             >
-              <Phone size={24} />
+              <Phone size={24} className="animate-pulse" />
               <span>Kontakt</span>
             </button>
           </div>
 
           {/* Footer with social links */}
-          <div className="p-6 border-t border-gray-800">
-            <div className="flex justify-center gap-6">
+          <div className="p-6 border-t border-gray-800/50">
+            <div className="flex justify-center gap-5">
               <a
                 href="https://www.facebook.com/conceptsamochodyzusa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 flex items-center justify-center bg-gray-800 hover:bg-blue-600 rounded-full transition-colors"
+                className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900 hover:from-blue-600 hover:to-blue-700 rounded-full transition-all duration-300 border border-gray-700 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-110"
               >
-                <Facebook size={22} />
+                <Facebook size={24} />
               </a>
               <a
                 href="https://www.instagram.com/concept_samochody_z_usa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 flex items-center justify-center bg-gray-800 hover:bg-pink-600 rounded-full transition-colors"
+                className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900 hover:from-pink-600 hover:to-purple-600 rounded-full transition-all duration-300 border border-gray-700 hover:border-pink-400 hover:shadow-lg hover:shadow-pink-500/30 hover:scale-110"
               >
-                <Instagram size={22} />
+                <Instagram size={24} />
               </a>
               <a
                 href="tel:+48690049846"
-                className="w-12 h-12 flex items-center justify-center bg-gray-800 hover:bg-green-600 rounded-full transition-colors"
+                className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900 hover:from-green-600 hover:to-green-700 rounded-full transition-all duration-300 border border-gray-700 hover:border-green-400 hover:shadow-lg hover:shadow-green-500/30 hover:scale-110"
               >
-                <Phone size={22} />
+                <Phone size={24} />
               </a>
             </div>
-            <p className="text-center text-gray-500 text-sm mt-4">© 2024 CONCEPT USA</p>
+            <p className="text-center text-gray-500 text-sm mt-4">
+              © 2024 <span className="text-red-500">CONCEPT</span> <span className="text-blue-400">USA</span>
+            </p>
           </div>
         </div>
       </div>
