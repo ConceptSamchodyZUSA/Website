@@ -719,6 +719,186 @@ const ConceptUSACars = () => {
         .cta-glow:hover {
           animation: buttonGlow 1.5s ease-in-out infinite;
         }
+
+        /* Formy zakupu - Interactive 3D transforms */
+        .purchase-cards-container {
+          perspective: 1200px;
+        }
+
+        .purchase-card {
+          transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                      box-shadow 0.5s ease,
+                      filter 0.5s ease;
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
+        }
+
+        /* When hovering one card - it expands with 3D rotation, other shrinks */
+        .purchase-cards-container:has(.purchase-card:hover) .purchase-card:not(:hover) {
+          transform: scale(0.9) rotateY(15deg) translateZ(-50px);
+          filter: brightness(0.7) blur(1px);
+        }
+
+        .purchase-card:hover {
+          transform: scale(1.08) rotateY(-5deg) rotateX(2deg) translateZ(30px);
+          z-index: 10;
+        }
+
+        /* Red card specific hover */
+        .purchase-card.card-red:hover {
+          box-shadow: 0 40px 80px rgba(220, 38, 38, 0.5),
+                      0 20px 40px rgba(220, 38, 38, 0.4),
+                      inset 0 -5px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Blue card specific hover */
+        .purchase-card.card-blue:hover {
+          box-shadow: 0 40px 80px rgba(59, 130, 246, 0.5),
+                      0 20px 40px rgba(59, 130, 246, 0.4),
+                      inset 0 -5px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animated gradient border on hover */
+        .purchase-card::before {
+          content: '';
+          position: absolute;
+          inset: -3px;
+          border-radius: 1rem;
+          background: conic-gradient(from var(--angle, 0deg), #dc2626, #3b82f6, #dc2626);
+          z-index: -1;
+          opacity: 0;
+          transition: opacity 0.5s ease;
+        }
+
+        .purchase-card:hover::before {
+          opacity: 1;
+          animation: spinBorder 3s linear infinite;
+        }
+
+        @property --angle {
+          syntax: '<angle>';
+          initial-value: 0deg;
+          inherits: false;
+        }
+
+        @keyframes spinBorder {
+          to { --angle: 360deg; }
+        }
+
+        /* ===== FORMY ZAKUPU - MODERN 3D TRANSFORMS ===== */
+        .purchase-cards-container {
+          perspective: 2000px;
+        }
+
+        .purchase-card {
+          transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+          transform-style: preserve-3d;
+          backface-visibility: visible;
+        }
+
+        /* Card 1 - Red - Tilt Left on hover */
+        .card-red:hover {
+          transform: rotateY(-15deg) rotateX(5deg) translateZ(50px) scale(1.05);
+          box-shadow: 30px 30px 60px rgba(220, 38, 38, 0.4),
+                      -5px -5px 30px rgba(220, 38, 38, 0.2);
+        }
+
+        /* Card 2 - Blue - Tilt Right on hover */
+        .card-blue:hover {
+          transform: rotateY(15deg) rotateX(5deg) translateZ(50px) scale(1.05);
+          box-shadow: -30px 30px 60px rgba(59, 130, 246, 0.4),
+                      5px -5px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        /* When one card is hovered, the other shrinks */
+        .purchase-cards-container:has(.card-red:hover) .card-blue {
+          transform: scale(0.9) translateX(20px) rotateY(5deg);
+          opacity: 0.7;
+          filter: blur(1px);
+        }
+
+        .purchase-cards-container:has(.card-blue:hover) .card-red {
+          transform: scale(0.9) translateX(-20px) rotateY(-5deg);
+          opacity: 0.7;
+          filter: blur(1px);
+        }
+
+        /* Glow effect on hover */
+        .card-red::after,
+        .card-blue::after {
+          content: '';
+          position: absolute;
+          inset: -3px;
+          border-radius: 0.75rem;
+          opacity: 0;
+          transition: opacity 0.5s ease;
+          z-index: -1;
+        }
+
+        .card-red::after {
+          background: linear-gradient(45deg, #dc2626, #f97316, #dc2626);
+          filter: blur(15px);
+        }
+
+        .card-blue::after {
+          background: linear-gradient(45deg, #3b82f6, #06b6d4, #3b82f6);
+          filter: blur(15px);
+        }
+
+        .card-red:hover::after,
+        .card-blue:hover::after {
+          opacity: 0.6;
+          animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+          0%, 100% { transform: scale(1); opacity: 0.6; }
+          50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        /* Finance card - Green - Special 3D effect */
+        .finance-card {
+          transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+          transform-style: preserve-3d;
+          position: relative;
+        }
+
+        .finance-card:hover {
+          transform: translateY(-20px) scale(1.02);
+          box-shadow: 0 40px 80px rgba(16, 185, 129, 0.3),
+                      0 20px 40px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Finance card inner items - staggered animation */
+        .finance-item {
+          transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .finance-card:hover .finance-item:nth-child(1) {
+          transform: translateY(-10px) translateX(-5px);
+        }
+
+        .finance-card:hover .finance-item:nth-child(2) {
+          transform: translateY(-15px);
+          transition-delay: 0.1s;
+        }
+
+        .finance-card:hover .finance-item:nth-child(3) {
+          transform: translateY(-10px) translateX(5px);
+          transition-delay: 0.2s;
+        }
+
+        /* Icon bounce on parent hover */
+        .finance-card:hover .finance-icon {
+          animation: iconBounce 0.6s ease;
+        }
+
+        @keyframes iconBounce {
+          0%, 100% { transform: scale(1) rotate(0deg); }
+          25% { transform: scale(1.2) rotate(-10deg); }
+          50% { transform: scale(1.3) rotate(10deg); }
+          75% { transform: scale(1.1) rotate(-5deg); }
+        }
       `}</style>
 
       {/* Scroll Progress Bar */}
@@ -931,8 +1111,8 @@ const ConceptUSACars = () => {
             <h3 className="text-3xl font-bold text-center mb-12">
               <span className="text-blue-500">Formy zakupu</span>
             </h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-gradient-to-br from-red-600 to-red-700 rounded-xl p-8 hover:shadow-2xl hover:shadow-red-500/30 transition transform hover:scale-105">
+            <div className="grid md:grid-cols-2 gap-8 purchase-cards-container">
+              <div className="purchase-card card-red bg-gradient-to-br from-red-600 to-red-700 rounded-xl p-8 relative overflow-visible">
                 <div className="text-4xl mb-4">🚗✨</div>
                 <h4 className="text-2xl font-bold mb-4">Auto na gotowo</h4>
                 <ul className="space-y-3 text-gray-100">
@@ -959,7 +1139,7 @@ const ConceptUSACars = () => {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-8 hover:shadow-2xl hover:shadow-blue-500/30 transition transform hover:scale-105">
+              <div className="purchase-card card-blue bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-8 relative overflow-visible">
                 <div className="text-4xl mb-4">🚚💰</div>
                 <h4 className="text-2xl font-bold mb-4">Samochód pod dom</h4>
                 <ul className="space-y-3 text-gray-100">
@@ -989,12 +1169,12 @@ const ConceptUSACars = () => {
           </div>
 
           {/* Faktura VAT i Finansowanie */}
-          <div className="mt-16 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl p-8 text-center">
+          <div className="mt-16 finance-card bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl p-8 text-center cursor-pointer">
             <h3 className="text-3xl font-bold mb-6">💼 Profesjonalna obsługa finansowa i logistyczna</h3>
             <div className="grid md:grid-cols-3 gap-8 text-left max-w-6xl mx-auto">
-              <div className="flex items-start space-x-4">
+              <div className="finance-item flex items-start space-x-4">
                 <div className="flex-shrink-0">
-                  <div className="bg-white text-green-600 rounded-full p-3">
+                  <div className="finance-icon bg-white text-green-600 rounded-full p-3">
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
@@ -1005,9 +1185,9 @@ const ConceptUSACars = () => {
                   <p className="text-green-50">Na każdy sprzedany samochód wystawiamy pełną fakturę VAT. Działamy w pełni legalnie i transparentnie.</p>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
+              <div className="finance-item flex items-start space-x-4">
                 <div className="flex-shrink-0">
-                  <div className="bg-white text-green-600 rounded-full p-3">
+                  <div className="finance-icon bg-white text-green-600 rounded-full p-3">
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
@@ -1018,9 +1198,9 @@ const ConceptUSACars = () => {
                   <p className="text-green-50">Oferujemy możliwość finansowania zakupu poprzez kredyt lub leasing. Pomożemy dobrać najlepszą opcję!</p>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
+              <div className="finance-item flex items-start space-x-4">
                 <div className="flex-shrink-0">
-                  <div className="bg-white text-green-600 rounded-full p-3">
+                  <div className="finance-icon bg-white text-green-600 rounded-full p-3">
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
