@@ -1117,8 +1117,8 @@ const ConceptUSACars = () => {
             </h3>
             <p className="text-center text-gray-400 mb-8">Kliknij, aby zobaczyć szczegóły</p>
 
-            <div className="purchase-grid">
-              {/* Card Headers */}
+            <div className="purchase-grid" style={{gridTemplateColumns: 'repeat(2, 1fr)'}}>
+              {/* Card Headers - Only Red and Blue */}
               <div
                 className={`purchase-card-header card-red bg-gradient-to-br from-red-600 to-red-700 ${expandedCard === 0 ? 'active' : ''}`}
                 onClick={() => toggleCard(0)}
@@ -1136,17 +1136,6 @@ const ConceptUSACars = () => {
               >
                 <div className="card-emoji">🚚💰</div>
                 <h4 className="card-title">Samochód pod dom</h4>
-                <span className="card-hint">
-                  <ChevronDown size={16} className="expand-icon" />
-                </span>
-              </div>
-
-              <div
-                className={`purchase-card-header card-green bg-gradient-to-br from-green-600 to-emerald-600 ${expandedCard === 2 ? 'active' : ''}`}
-                onClick={() => toggleCard(2)}
-              >
-                <div className="card-emoji">�📋</div>
-                <h4 className="card-title">Obsługa finansowa</h4>
                 <span className="card-hint">
                   <ChevronDown size={16} className="expand-icon" />
                 </span>
@@ -1225,42 +1214,51 @@ const ConceptUSACars = () => {
                   </div>
                 )}
               </div>
+            </div>
 
-              {/* Expanded Content - Green */}
-              <div className={`purchase-content-wrapper ${expandedCard === 2 ? 'expanded' : ''}`}>
-                {expandedCard === 2 && (
-                  <div className="purchase-content card-green-content">
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="text-4xl">💼📋</span>
-                      <div>
-                        <h4 className="text-2xl font-bold">Obsługa finansowa</h4>
-                        <p className="text-green-100 opacity-80">Profesjonalna obsługa od A do Z</p>
-                      </div>
+            {/* Obsługa finansowa - Always visible, separate section */}
+            <div className="mt-12 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl p-8 text-center">
+              <h3 className="text-3xl font-bold mb-6">💼 Profesjonalna obsługa finansowa i logistyczna</h3>
+              <div className="grid md:grid-cols-3 gap-8 text-left max-w-6xl mx-auto">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="bg-white text-green-600 rounded-full p-3">
+                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
                     </div>
-                    <ul className="space-y-3 text-white">
-                      <li className="flex items-center">
-                        <span className="check-icon">✓</span>
-                        <span>Pełna faktura VAT</span>
-                      </li>
-                      <li className="flex items-center">
-                        <span className="check-icon">✓</span>
-                        <span>Kredyty i leasingi</span>
-                      </li>
-                      <li className="flex items-center">
-                        <span className="check-icon">✓</span>
-                        <span>Odprawa celna w porcie Gdynia</span>
-                      </li>
-                      <li className="flex items-center">
-                        <span className="check-icon">✓</span>
-                        <span>Transparentne koszty</span>
-                      </li>
-                      <li className="flex items-center">
-                        <span className="check-icon">✓</span>
-                        <span className="font-bold">Profesjonalna obsługa od A do Z!</span>
-                      </li>
-                    </ul>
                   </div>
-                )}
+                  <div>
+                    <h4 className="text-xl font-bold mb-2">Pełna faktura VAT</h4>
+                    <p className="text-green-50">Na każdy sprzedany samochód wystawiamy pełną fakturę VAT. Działamy w pełni legalnie i transparentnie.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="bg-white text-green-600 rounded-full p-3">
+                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-2">Kredyty i leasingi</h4>
+                    <p className="text-green-50">Oferujemy możliwość finansowania zakupu poprzez kredyt lub leasing. Pomożemy dobrać najlepszą opcję!</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="bg-white text-green-600 rounded-full p-3">
+                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-2">Port Gdynia</h4>
+                    <p className="text-green-50">Wszystkie odprawy celne realizujemy wyłącznie przez port w Gdyni. Szybko, sprawnie i bezpiecznie!</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
