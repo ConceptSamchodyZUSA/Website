@@ -969,26 +969,91 @@ const ConceptUSACars = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <div className={`md:hidden fixed inset-0 bg-gray-900/98 backdrop-blur-sm z-40 transition-transform duration-300 ${
-          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        {/* Mobile Menu - Full Screen Overlay */}
+        <div className={`md:hidden fixed inset-0 z-50 transition-all duration-500 ${
+          isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}>
-          <div className="flex flex-col h-full">
-            {/* Close button */}
-            <div className="flex justify-end p-4">
-              <button onClick={() => setIsMenuOpen(false)} className="text-white p-2">
-                <X size={28} />
+          {/* Dark overlay background */}
+          <div
+            className="absolute inset-0 bg-gray-950"
+            onClick={() => setIsMenuOpen(false)}
+          />
+
+          {/* Menu content */}
+          <div className={`relative h-full flex flex-col transition-transform duration-500 ${
+            isMenuOpen ? 'translate-y-0' : '-translate-y-10'
+          }`}>
+            {/* Header with logo and close button */}
+            <div className="flex justify-between items-center p-6 border-b border-gray-800">
+              <div className="text-xl font-bold">
+                <span className="text-red-500">CONCEPT</span>
+                <span className="text-blue-400 text-sm ml-2">USA</span>
+              </div>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="w-12 h-12 flex items-center justify-center bg-gray-800 hover:bg-red-600 rounded-full transition-colors"
+              >
+                <X size={24} />
               </button>
             </div>
 
-            {/* Menu items */}
-            <div className="px-4 pt-8 pb-6 space-y-4 flex-1">
-              <button onClick={() => scrollToSection('home')} className="block w-full text-left py-3 px-4 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition text-lg">Start</button>
-              <button onClick={() => scrollToSection('about')} className="block w-full text-left py-3 px-4 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition text-lg">O nas</button>
-              <button onClick={() => scrollToSection('process')} className="block w-full text-left py-3 px-4 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition text-lg">Jak to działa</button>
-              <button onClick={() => scrollToSection('portfolio')} className="block w-full text-left py-3 px-4 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition text-lg">Portfolio</button>
-              <button onClick={() => scrollToSection('order')} className="block w-full text-left py-3 px-4 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition text-lg">Zamów auto</button>
-              <button onClick={() => scrollToSection('contact')} className="block w-full text-left py-3 px-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-lg mt-6 text-lg font-semibold shadow-lg">Kontakt</button>
+            {/* Menu items - centered */}
+            <div className="flex-1 flex flex-col justify-center px-8 space-y-2">
+              {[
+                { id: 'home', label: 'Start', icon: '🏠' },
+                { id: 'about', label: 'O nas', icon: '🏢' },
+                { id: 'process', label: 'Jak to działa', icon: '⚙️' },
+                { id: 'portfolio', label: 'Portfolio', icon: '🚗' },
+                { id: 'order', label: 'Zamów auto', icon: '📝' },
+              ].map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="flex items-center gap-4 py-4 px-6 text-xl font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all duration-300"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <span className="text-2xl">{item.icon}</span>
+                  <span>{item.label}</span>
+                </button>
+              ))}
+
+              {/* Contact button - highlighted */}
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="flex items-center justify-center gap-3 py-5 px-6 mt-6 text-xl font-bold bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-xl shadow-lg shadow-red-900/30 transition-all duration-300"
+              >
+                <Phone size={24} />
+                <span>Kontakt</span>
+              </button>
+            </div>
+
+            {/* Footer with social links */}
+            <div className="p-6 border-t border-gray-800">
+              <div className="flex justify-center gap-6">
+                <a
+                  href="https://www.facebook.com/conceptsamochodyzusa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 flex items-center justify-center bg-gray-800 hover:bg-blue-600 rounded-full transition-colors"
+                >
+                  <Facebook size={22} />
+                </a>
+                <a
+                  href="https://www.instagram.com/concept_samochody_z_usa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 flex items-center justify-center bg-gray-800 hover:bg-pink-600 rounded-full transition-colors"
+                >
+                  <Instagram size={22} />
+                </a>
+                <a
+                  href="tel:+48690049846"
+                  className="w-12 h-12 flex items-center justify-center bg-gray-800 hover:bg-green-600 rounded-full transition-colors"
+                >
+                  <Phone size={22} />
+                </a>
+              </div>
+              <p className="text-center text-gray-500 text-sm mt-4">© 2024 CONCEPT USA</p>
             </div>
           </div>
         </div>
