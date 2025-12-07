@@ -1502,7 +1502,8 @@ const ConceptUSACars = () => {
             <span className="text-red-600">Kontakt</span>
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {/* Top row: Telefon, Facebook, Instagram */}
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
             <a
               href="tel:691795116"
               className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
@@ -1510,15 +1511,6 @@ const ConceptUSACars = () => {
               <Phone size={40} className="mx-auto mb-4 text-red-600" />
               <h3 className="text-xl font-bold mb-2">Telefon</h3>
               <p className="text-gray-300">691 795 116</p>
-            </a>
-
-            <a
-              href="mailto:conceptusacars@gmail.com"
-              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
-            >
-              <Mail size={40} className="mx-auto mb-4 text-blue-500" />
-              <h3 className="text-xl font-bold mb-2">Email</h3>
-              <p className="text-gray-300">conceptusacars@gmail.com</p>
             </a>
 
             <a
@@ -1541,6 +1533,18 @@ const ConceptUSACars = () => {
               <Instagram size={40} className="mx-auto mb-4 text-pink-500" />
               <h3 className="text-xl font-bold mb-2">Instagram</h3>
               <p className="text-gray-300">@concept_samochody_z_usa</p>
+            </a>
+          </div>
+
+          {/* Bottom row: Email full width */}
+          <div className="mb-12">
+            <a
+              href="mailto:conceptusacars@gmail.com"
+              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105 block"
+            >
+              <Mail size={40} className="mx-auto mb-4 text-blue-500" />
+              <h3 className="text-xl font-bold mb-2">Email</h3>
+              <p className="text-gray-300">conceptusacars@gmail.com</p>
             </a>
           </div>
 
