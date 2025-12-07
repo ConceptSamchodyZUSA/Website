@@ -719,6 +719,105 @@ const ConceptUSACars = () => {
         .cta-glow:hover {
           animation: buttonGlow 1.5s ease-in-out infinite;
         }
+
+        /* Independent transforms for "O nas" cards */
+        @keyframes floatX {
+          0%, 100% { transform: translateX(0px); }
+          50% { transform: translateX(10px); }
+        }
+
+        @keyframes floatY {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+        }
+
+        @keyframes rotateZ {
+          0%, 100% { transform: rotate(0deg); }
+          50% { transform: rotate(2deg); }
+        }
+
+        @keyframes floatCard1 {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px) rotate(0deg);
+          }
+          25% {
+            transform: translateY(-10px) translateX(5px) rotate(1deg);
+          }
+          50% {
+            transform: translateY(-15px) translateX(0px) rotate(0deg);
+          }
+          75% {
+            transform: translateY(-10px) translateX(-5px) rotate(-1deg);
+          }
+        }
+
+        @keyframes floatCard2 {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px) rotate(0deg);
+          }
+          25% {
+            transform: translateY(-12px) translateX(-5px) rotate(-1deg);
+          }
+          50% {
+            transform: translateY(-18px) translateX(0px) rotate(0deg);
+          }
+          75% {
+            transform: translateY(-12px) translateX(5px) rotate(1deg);
+          }
+        }
+
+        @keyframes floatCard3 {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px) rotate(0deg);
+          }
+          25% {
+            transform: translateY(-8px) translateX(3px) rotate(0.5deg);
+          }
+          50% {
+            transform: translateY(-12px) translateX(-3px) rotate(-0.5deg);
+          }
+          75% {
+            transform: translateY(-8px) translateX(0px) rotate(0deg);
+          }
+        }
+
+        @keyframes floatCard4 {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px) rotate(0deg);
+          }
+          25% {
+            transform: translateY(-14px) translateX(-3px) rotate(-0.8deg);
+          }
+          50% {
+            transform: translateY(-20px) translateX(3px) rotate(0.8deg);
+          }
+          75% {
+            transform: translateY(-14px) translateX(0px) rotate(0deg);
+          }
+        }
+
+        .float-card-1 {
+          animation: floatCard1 6s ease-in-out infinite;
+        }
+
+        .float-card-2 {
+          animation: floatCard2 7s ease-in-out infinite 0.5s;
+        }
+
+        .float-card-3 {
+          animation: floatCard3 5.5s ease-in-out infinite 1s;
+        }
+
+        .float-card-4 {
+          animation: floatCard4 6.5s ease-in-out infinite 1.5s;
+        }
+
+        .float-card-1:hover,
+        .float-card-2:hover,
+        .float-card-3:hover,
+        .float-card-4:hover {
+          animation-play-state: paused;
+        }
       `}</style>
 
       {/* Scroll Progress Bar */}
@@ -888,14 +987,14 @@ const ConceptUSACars = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja' },
-              { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników' },
-              { icon: <Truck size={40} />, title: 'Pełna obsługa', desc: 'Od zakupu po rejestrację - wszystko załatwiamy' },
-              { icon: <Star size={40} />, title: 'Doświadczenie', desc: 'Setki zadowolonych klientów i sprowadzonych aut' }
+              { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja', animation: 'float-card-1' },
+              { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników', animation: 'float-card-2' },
+              { icon: <Truck size={40} />, title: 'Pełna obsługa', desc: 'Od zakupu po rejestrację - wszystko załatwiamy', animation: 'float-card-3' },
+              { icon: <Star size={40} />, title: 'Doświadczenie', desc: 'Setki zadowolonych klientów i sprowadzonych aut', animation: 'float-card-4' }
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105 cursor-pointer"
+                className={`bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-red-500/20 ${item.animation}`}
               >
                 <div className="text-red-600 flex justify-center mb-4">{item.icon}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
