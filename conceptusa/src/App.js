@@ -33,9 +33,13 @@ const ConceptUSACars = () => {
   // Image loading state for blur effect
   const [loadedImages, setLoadedImages] = useState(new Set());
 
-  // Carousel animation for purchase cards
-  const [activeCardIndex, setActiveCardIndex] = useState(0);
-  const totalPurchaseCards = 3; // Red, Blue, Green cards
+  // Expandable cards - null means no card expanded
+  const [expandedCard, setExpandedCard] = useState(null);
+
+  // Toggle card expansion
+  const toggleCard = (cardIndex) => {
+    setExpandedCard(expandedCard === cardIndex ? null : cardIndex);
+  };
 
   const [formData, setFormData] = useState({
     name: '',
@@ -118,15 +122,6 @@ const ConceptUSACars = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Auto-rotate purchase cards carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveCardIndex(prev => (prev + 1) % totalPurchaseCards);
-    }, 4000); // Switch every 4 seconds
-
-    return () => clearInterval(interval);
-  }, [totalPurchaseCards]);
 
   const fetchCars = async () => {
     setLoading(true);
@@ -733,129 +728,180 @@ const ConceptUSACars = () => {
           animation: buttonGlow 1.5s ease-in-out infinite;
         }
 
-        /* ===== FORMY ZAKUPU - CAROUSEL ANIMATION ===== */
-        .purchase-cards-container {
-          display: flex;
-          flex-direction: column;
+        /* ===== FORMY ZAKUPU - CLICK TO EXPAND CARDS ===== */
+        .purchase-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
           gap: 1rem;
         }
 
-        @media (min-width: 768px) {
-          .purchase-cards-container {
-            flex-direction: row;
-            gap: 1.5rem;
+        @media (max-width: 768px) {
+          .purchase-grid {
+            grid-template-columns: 1fr;
           }
         }
 
-        .purchase-card {
+        .purchase-card-header {
           position: relative;
-          overflow: hidden;
-          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Collapsed state - card is small with hidden content */
-        .purchase-card.collapsed {
-          flex: 0 0 auto;
-          width: 100%;
           padding: 1.5rem;
+          border-radius: 1rem;
+          cursor: pointer;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          min-height: 140px;
+          justify-content: center;
         }
 
-        @media (min-width: 768px) {
-          .purchase-card.collapsed {
-            width: 120px;
-            padding: 2rem 1.5rem;
-          }
+        .purchase-card-header:hover {
+          transform: translateY(-8px) scale(1.02);
         }
 
-        .purchase-card.collapsed .card-content {
-          opacity: 0;
-          max-height: 0;
-          overflow: hidden;
-          transition: opacity 0.4s ease, max-height 0.6s ease;
+        .purchase-card-header.active {
+          transform: translateY(-4px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .purchase-card.collapsed .card-title {
-          font-size: 1rem;
-          writing-mode: horizontal-tb;
-          transition: all 0.5s ease;
+        /* Glow effects based on card color */
+        .purchase-card-header.card-red:hover,
+        .purchase-card-header.card-red.active {
+          box-shadow: 0 20px 50px rgba(220, 38, 38, 0.5);
         }
 
-        @media (min-width: 768px) {
-          .purchase-card.collapsed .card-title {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
-            white-space: nowrap;
-          }
+        .purchase-card-header.card-blue:hover,
+        .purchase-card-header.card-blue.active {
+          box-shadow: 0 20px 50px rgba(59, 130, 246, 0.5);
         }
 
-        .purchase-card.collapsed .card-emoji {
-          font-size: 2rem;
+        .purchase-card-header.card-green:hover,
+        .purchase-card-header.card-green.active {
+          box-shadow: 0 20px 50px rgba(16, 185, 129, 0.5);
+        }
+
+        .purchase-card-header .card-emoji {
+          font-size: 2.5rem;
+          margin-bottom: 0.75rem;
+          transition: transform 0.3s ease;
+        }
+
+        .purchase-card-header:hover .card-emoji {
+          transform: scale(1.2) rotate(-5deg);
+        }
+
+        .purchase-card-header.active .card-emoji {
+          animation: emojiPop 0.5s ease;
+        }
+
+        @keyframes emojiPop {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.3) rotate(10deg); }
+        }
+
+        .purchase-card-header .card-title {
+          font-size: 1.1rem;
+          font-weight: 700;
           margin-bottom: 0.5rem;
-          transition: all 0.5s ease;
         }
 
-        /* Expanded state - card takes more space with visible content */
-        .purchase-card.expanded {
-          flex: 1;
-          padding: 2rem;
+        .purchase-card-header .card-hint {
+          font-size: 0.75rem;
+          opacity: 0.7;
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
         }
 
-        .purchase-card.expanded .card-content {
+        .purchase-card-header .expand-icon {
+          transition: transform 0.3s ease;
+        }
+
+        .purchase-card-header.active .expand-icon {
+          transform: rotate(180deg);
+        }
+
+        /* Expanded content panel */
+        .purchase-content-wrapper {
+          grid-column: 1 / -1;
+          overflow: hidden;
+          max-height: 0;
+          opacity: 0;
+          transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                      opacity 0.4s ease,
+                      margin 0.4s ease;
+          margin-top: 0;
+        }
+
+        .purchase-content-wrapper.expanded {
+          max-height: 400px;
           opacity: 1;
-          max-height: 500px;
-          transition: opacity 0.6s ease 0.2s, max-height 0.8s ease;
+          margin-top: 1rem;
         }
 
-        .purchase-card.expanded .card-title {
-          font-size: 1.5rem;
-          writing-mode: horizontal-tb;
-          transform: rotate(0deg);
-          margin-bottom: 1rem;
-          transition: all 0.5s ease;
+        .purchase-content {
+          padding: 2rem;
+          border-radius: 1rem;
+          animation: slideDown 0.5s ease;
         }
 
-        .purchase-card.expanded .card-emoji {
-          font-size: 3rem;
-          margin-bottom: 1rem;
-          transition: all 0.5s ease;
-        }
-
-        /* Glow effect for expanded card */
-        .purchase-card.expanded.card-red {
-          box-shadow: 0 20px 50px rgba(220, 38, 38, 0.4);
-        }
-
-        .purchase-card.expanded.card-blue {
-          box-shadow: 0 20px 50px rgba(59, 130, 246, 0.4);
-        }
-
-        .purchase-card.expanded.card-green {
-          box-shadow: 0 20px 50px rgba(16, 185, 129, 0.4);
-        }
-
-        /* Subtle indicator for collapsed cards */
-        .purchase-card.collapsed::after {
-          content: '';
-          position: absolute;
-          bottom: 10px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 30px;
-          height: 4px;
-          background: rgba(255, 255, 255, 0.3);
-          border-radius: 2px;
-        }
-
-        @media (min-width: 768px) {
-          .purchase-card.collapsed::after {
-            bottom: auto;
-            top: 50%;
-            left: auto;
-            right: 10px;
-            transform: translateY(-50%) rotate(90deg);
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
           }
         }
+
+        .purchase-content.card-red-content {
+          background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+          box-shadow: 0 10px 40px rgba(220, 38, 38, 0.3);
+        }
+
+        .purchase-content.card-blue-content {
+          background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+          box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .purchase-content.card-green-content {
+          background: linear-gradient(135deg, #059669 0%, #047857 100%);
+          box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Content items animation */
+        .purchase-content li {
+          opacity: 0;
+          transform: translateX(-20px);
+          animation: slideInItem 0.4s ease forwards;
+        }
+
+        .purchase-content li:nth-child(1) { animation-delay: 0.1s; }
+        .purchase-content li:nth-child(2) { animation-delay: 0.15s; }
+        .purchase-content li:nth-child(3) { animation-delay: 0.2s; }
+        .purchase-content li:nth-child(4) { animation-delay: 0.25s; }
+        .purchase-content li:nth-child(5) { animation-delay: 0.3s; }
+
+        @keyframes slideInItem {
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        /* Check icon animation */
+        .purchase-content .check-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 24px;
+          height: 24px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 50%;
+          margin-right: 0.75rem;
+          flex-shrink: 0;
         }
       `}</style>
 
@@ -1064,126 +1110,158 @@ const ConceptUSACars = () => {
             </div>
           </div>
 
-          {/* Formy zakupu - Carousel Animation */}
+          {/* Formy zakupu - Click to Expand Cards */}
           <div className="mt-16">
-            <h3 className="text-3xl font-bold text-center mb-12">
+            <h3 className="text-3xl font-bold text-center mb-4">
               <span className="text-blue-500">Formy zakupu</span>
             </h3>
-            <div className="purchase-cards-container">
-              {/* Card 1 - Auto na gotowo (Red) */}
+            <p className="text-center text-gray-400 mb-8">Kliknij, aby zobaczyć szczegóły</p>
+
+            <div className="purchase-grid">
+              {/* Card Headers */}
               <div
-                className={`purchase-card card-red bg-gradient-to-br from-red-600 to-red-700 rounded-xl cursor-pointer ${activeCardIndex === 0 ? 'expanded' : 'collapsed'}`}
-                onClick={() => setActiveCardIndex(0)}
+                className={`purchase-card-header card-red bg-gradient-to-br from-red-600 to-red-700 ${expandedCard === 0 ? 'active' : ''}`}
+                onClick={() => toggleCard(0)}
               >
                 <div className="card-emoji">🚗✨</div>
-                <h4 className="card-title font-bold">Auto na gotowo</h4>
-                <div className="card-content">
-                  <ul className="space-y-3 text-gray-100 mt-4">
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Sprowadzone z USA</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Naprawione i sprawdzone</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Zarejestrowane w Polsce</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Wszystkie opłaty uregulowane</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span className="font-semibold">Gotowe do jazdy!</span>
-                    </li>
-                  </ul>
-                </div>
+                <h4 className="card-title">Auto na gotowo</h4>
+                <span className="card-hint">
+                  <ChevronDown size={16} className="expand-icon" />
+                </span>
               </div>
 
-              {/* Card 2 - Samochód pod dom (Blue) */}
               <div
-                className={`purchase-card card-blue bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl cursor-pointer ${activeCardIndex === 1 ? 'expanded' : 'collapsed'}`}
-                onClick={() => setActiveCardIndex(1)}
+                className={`purchase-card-header card-blue bg-gradient-to-br from-blue-600 to-blue-700 ${expandedCard === 1 ? 'active' : ''}`}
+                onClick={() => toggleCard(1)}
               >
                 <div className="card-emoji">🚚💰</div>
-                <h4 className="card-title font-bold">Samochód pod dom</h4>
-                <div className="card-content">
-                  <ul className="space-y-3 text-gray-100 mt-4">
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Zakup w USA według Twoich wymagań</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Transport do Polski</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Odprawa celna w porcie Gdynia</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Bez naprawy i rejestracji</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span className="font-semibold">Niższa cena - większa elastyczność!</span>
-                    </li>
-                  </ul>
-                </div>
+                <h4 className="card-title">Samochód pod dom</h4>
+                <span className="card-hint">
+                  <ChevronDown size={16} className="expand-icon" />
+                </span>
               </div>
 
-              {/* Card 3 - Obsługa finansowa (Green) */}
               <div
-                className={`purchase-card card-green bg-gradient-to-br from-green-600 to-emerald-600 rounded-xl cursor-pointer ${activeCardIndex === 2 ? 'expanded' : 'collapsed'}`}
-                onClick={() => setActiveCardIndex(2)}
+                className={`purchase-card-header card-green bg-gradient-to-br from-green-600 to-emerald-600 ${expandedCard === 2 ? 'active' : ''}`}
+                onClick={() => toggleCard(2)}
               >
-                <div className="card-emoji">💼📋</div>
-                <h4 className="card-title font-bold">Obsługa finansowa</h4>
-                <div className="card-content">
-                  <ul className="space-y-3 text-gray-100 mt-4">
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Pełna faktura VAT</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Kredyty i leasingi</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Odprawa celna w porcie Gdynia</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span>Transparentne koszty</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-white mr-2">✓</span>
-                      <span className="font-semibold">Profesjonalna obsługa od A do Z!</span>
-                    </li>
-                  </ul>
-                </div>
+                <div className="card-emoji">�📋</div>
+                <h4 className="card-title">Obsługa finansowa</h4>
+                <span className="card-hint">
+                  <ChevronDown size={16} className="expand-icon" />
+                </span>
               </div>
-            </div>
 
-            {/* Carousel indicators */}
-            <div className="flex justify-center gap-3 mt-8">
-              {[0, 1, 2].map((index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveCardIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    activeCardIndex === index
-                      ? index === 0 ? 'bg-red-500 w-8' : index === 1 ? 'bg-blue-500 w-8' : 'bg-green-500 w-8'
-                      : 'bg-gray-600 hover:bg-gray-500'
-                  }`}
-                  aria-label={`Przejdź do karty ${index + 1}`}
-                />
-              ))}
+              {/* Expanded Content - Red */}
+              <div className={`purchase-content-wrapper ${expandedCard === 0 ? 'expanded' : ''}`}>
+                {expandedCard === 0 && (
+                  <div className="purchase-content card-red-content">
+                    <div className="flex items-center gap-4 mb-6">
+                      <span className="text-4xl">🚗✨</span>
+                      <div>
+                        <h4 className="text-2xl font-bold">Auto na gotowo</h4>
+                        <p className="text-red-100 opacity-80">Gotowe do jazdy od pierwszego dnia</p>
+                      </div>
+                    </div>
+                    <ul className="space-y-3 text-white">
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Sprowadzone z USA</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Naprawione i sprawdzone</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Zarejestrowane w Polsce</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Wszystkie opłaty uregulowane</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span className="font-bold">Gotowe do jazdy!</span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+
+              {/* Expanded Content - Blue */}
+              <div className={`purchase-content-wrapper ${expandedCard === 1 ? 'expanded' : ''}`}>
+                {expandedCard === 1 && (
+                  <div className="purchase-content card-blue-content">
+                    <div className="flex items-center gap-4 mb-6">
+                      <span className="text-4xl">🚚💰</span>
+                      <div>
+                        <h4 className="text-2xl font-bold">Samochód pod dom</h4>
+                        <p className="text-blue-100 opacity-80">Niższa cena, większa kontrola</p>
+                      </div>
+                    </div>
+                    <ul className="space-y-3 text-white">
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Zakup w USA według Twoich wymagań</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Transport do Polski</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Odprawa celna w porcie Gdynia</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Bez naprawy i rejestracji</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span className="font-bold">Niższa cena - większa elastyczność!</span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+
+              {/* Expanded Content - Green */}
+              <div className={`purchase-content-wrapper ${expandedCard === 2 ? 'expanded' : ''}`}>
+                {expandedCard === 2 && (
+                  <div className="purchase-content card-green-content">
+                    <div className="flex items-center gap-4 mb-6">
+                      <span className="text-4xl">💼📋</span>
+                      <div>
+                        <h4 className="text-2xl font-bold">Obsługa finansowa</h4>
+                        <p className="text-green-100 opacity-80">Profesjonalna obsługa od A do Z</p>
+                      </div>
+                    </div>
+                    <ul className="space-y-3 text-white">
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Pełna faktura VAT</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Kredyty i leasingi</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Odprawa celna w porcie Gdynia</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span>Transparentne koszty</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="check-icon">✓</span>
+                        <span className="font-bold">Profesjonalna obsługa od A do Z!</span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
