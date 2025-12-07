@@ -970,15 +970,12 @@ const ConceptUSACars = () => {
         </div>
 
         {/* Mobile Menu - Full Screen Overlay */}
-        <div className={`md:hidden fixed inset-0 z-50 transition-all duration-500 ${
-          isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-        }`}>
-          {/* Dark overlay background */}
-          <div
-            className="absolute inset-0 bg-gray-950"
-            onClick={() => setIsMenuOpen(false)}
-          />
-
+        <div
+          className={`md:hidden fixed inset-0 z-50 transition-all duration-500 ${
+            isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+          }`}
+          style={{ backgroundColor: '#0a0a0a' }}
+        >
           {/* Menu content */}
           <div className={`relative h-full flex flex-col transition-transform duration-500 ${
             isMenuOpen ? 'translate-y-0' : '-translate-y-10'
