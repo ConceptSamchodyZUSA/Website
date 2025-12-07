@@ -947,15 +947,43 @@ const ConceptUSACars = () => {
               )}
             </div>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              <button onClick={() => scrollToSection('home')} className="hover:text-red-500 transition">Start</button>
-              <button onClick={() => scrollToSection('about')} className="hover:text-red-500 transition">O nas</button>
-              <button onClick={() => scrollToSection('process')} className="hover:text-red-500 transition">Jak to działa</button>
-              <button onClick={() => scrollToSection('portfolio')} className="hover:text-red-500 transition">Portfolio</button>
-              <button onClick={() => scrollToSection('order')} className="hover:text-red-500 transition">Zamów auto</button>
-              <button onClick={() => scrollToSection('contact')} className="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-full transition transform hover:scale-105">
-                Kontakt
+            {/* Desktop Menu - LED Glow Effect */}
+            <div className="hidden md:flex items-center space-x-6">
+              {[
+                { id: 'home', label: 'Start', color: 'red' },
+                { id: 'about', label: 'O nas', color: 'blue' },
+                { id: 'process', label: 'Jak to działa', color: 'red' },
+                { id: 'portfolio', label: 'Portfolio', color: 'blue' },
+                { id: 'order', label: 'Zamów auto', color: 'red' },
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`relative px-3 py-2 font-medium transition-all duration-300 group ${
+                    item.color === 'red'
+                      ? 'hover:text-red-400 hover:drop-shadow-[0_0_10px_rgba(239,68,68,0.8)]'
+                      : 'hover:text-blue-400 hover:drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]'
+                  }`}
+                >
+                  {item.label}
+                  {/* LED underline glow */}
+                  <span className={`absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
+                    item.color === 'red'
+                      ? 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]'
+                      : 'bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]'
+                  }`} />
+                </button>
+              ))}
+
+              {/* Contact button with LED glow */}
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="relative px-6 py-2.5 rounded-full font-semibold bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 transition-all duration-300 hover:shadow-[0_0_20px_rgba(239,68,68,0.6)] hover:scale-105 border border-red-500/50"
+              >
+                <span className="flex items-center gap-2">
+                  <Phone size={16} />
+                  Kontakt
+                </span>
               </button>
             </div>
 
