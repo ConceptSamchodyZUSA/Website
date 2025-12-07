@@ -719,78 +719,6 @@ const ConceptUSACars = () => {
         .cta-glow:hover {
           animation: buttonGlow 1.5s ease-in-out infinite;
         }
-
-        /* Independent transforms for "O nas" cards */
-        /* Modern Interactive Transform - One expands, others shrink */
-        .about-card {
-          transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-                      box-shadow 0.6s ease,
-                      background-color 0.3s ease;
-          transform-origin: center center;
-        }
-
-        /* When hovering one card, it grows and others shrink */
-        .about-cards-container:has(.about-card:hover) .about-card:not(:hover) {
-          transform: scale(0.85) translateY(10px);
-          opacity: 0.6;
-          filter: blur(2px);
-        }
-
-        .about-card:hover {
-          transform: scale(1.15) translateY(-15px) rotateX(5deg);
-          box-shadow: 0 30px 60px rgba(220, 38, 38, 0.4),
-                      0 15px 30px rgba(59, 130, 246, 0.3);
-          z-index: 10;
-          position: relative;
-        }
-
-        /* Subtle continuous float animation as base */
-        @keyframes subtleFloat {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-8px);
-          }
-        }
-
-        .about-card {
-          animation: subtleFloat 4s ease-in-out infinite;
-        }
-
-        .about-card:nth-child(1) { animation-delay: 0s; }
-        .about-card:nth-child(2) { animation-delay: 0.5s; }
-        .about-card:nth-child(3) { animation-delay: 1s; }
-        .about-card:nth-child(4) { animation-delay: 1.5s; }
-
-        /* Pause float on hover */
-        .about-card:hover {
-          animation-play-state: paused;
-        }
-
-        /* Modern glow effect on active card */
-        .about-card:hover::before {
-          content: '';
-          position: absolute;
-          inset: -2px;
-          background: linear-gradient(45deg, #dc2626, #3b82f6, #dc2626);
-          border-radius: 0.75rem;
-          z-index: -1;
-          opacity: 0.5;
-          filter: blur(10px);
-          animation: rotateGlow 3s linear infinite;
-        }
-
-        @keyframes rotateGlow {
-          0% { transform: rotate(0deg) scale(1); }
-          50% { transform: rotate(180deg) scale(1.1); }
-          100% { transform: rotate(360deg) scale(1); }
-        }
-
-        /* Smooth perspective for 3D effect */
-        .about-cards-container {
-          perspective: 1000px;
-        }
       `}</style>
 
       {/* Scroll Progress Bar */}
@@ -958,7 +886,7 @@ const ConceptUSACars = () => {
             Dlaczego <span className="text-red-600">CONCEPT</span>?
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 about-cards-container">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja' },
               { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników' },
@@ -967,7 +895,7 @@ const ConceptUSACars = () => {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="about-card bg-gray-900 p-8 rounded-xl text-center cursor-pointer relative overflow-hidden"
+                className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105 cursor-pointer"
               >
                 <div className="text-red-600 flex justify-center mb-4">{item.icon}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
