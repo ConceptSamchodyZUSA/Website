@@ -410,6 +410,41 @@ const ConceptUSACars = () => {
         <meta property="og:description" content="Sprowadzamy samochody z USA. Muscle cars, pickupy, SUVy. Faktura VAT, kredyty, leasingi. Port Gdynia." />
         <meta property="og:url" content="https://conceptusa.pl/" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://conceptusa.pl/facebook-cover.png" />
+        <meta property="og:image:width" content="1702" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="CONCEPT - Samochody z USA" />
+
+        {/* Schema.org markup for Google */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "CONCEPT - Samochody z USA",
+            "url": "https://conceptusa.pl",
+            "logo": "https://conceptusa.pl/logo-facebook.png",
+            "image": "https://conceptusa.pl/logo-facebook.png",
+            "description": "Import samochodów z USA. Muscle cars, pickupy, SUVy. Pełna obsługa od zakupu do rejestracji.",
+            "sameAs": [
+              "https://www.facebook.com/conceptsamochodyzusa",
+              "https://www.instagram.com/concept_samochody_z_usa"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+48-691-795-116",
+              "contactType": "customer service",
+              "areaServed": "PL",
+              "availableLanguage": "Polish"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "ul. Długa 24",
+              "addressLocality": "Dębogórze-Wybudowanie",
+              "postalCode": "84-230",
+              "addressCountry": "PL"
+            }
+          })}
+        </script>
       </Helmet>
 
       {/* Cookie Consent Banner */}

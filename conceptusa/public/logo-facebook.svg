@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <!-- Background -->
+  <rect width="800" height="800" fill="#111827"/>
+
+  <!-- Main Text "CONCEPT" -->
+  <text x="400" y="380" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="130" fill="#dc2626" text-anchor="middle">CONCEPT</text>
+
+  <!-- Subtitle "Samochody z USA" -->
+  <text x="400" y="480" font-family="Arial, Helvetica, sans-serif" font-weight="normal" font-size="55" fill="#3b82f6" text-anchor="middle">Samochody z USA</text>
+</svg>

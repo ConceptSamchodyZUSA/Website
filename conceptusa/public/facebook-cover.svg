@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 851 315">
+  <!-- Background -->
+  <rect width="851" height="315" fill="#111827"/>
+
+  <!-- Left Side: Logo (Moved to x=100 for mobile safety) -->
+  <g transform="translate(100, 80)">
+    <text x="0" y="65" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="70" fill="#dc2626">CONCEPT</text>
+    <text x="5" y="100" font-family="Arial, Helvetica, sans-serif" font-weight="normal" font-size="30" fill="#3b82f6">Samochody z USA</text>
+  </g>
+
+  <!-- Divider Line (Centered) -->
+  <line x1="460" y1="40" x2="460" y2="275" stroke="#374151" stroke-width="2"/>
+
+  <!-- Right Side: Contact Info (Moved left to fit within safe zone) -->
+  <g transform="translate(500, 40)" font-family="Arial, Helvetica, sans-serif" fill="#e5e7eb">
+    <!-- 1. Phone -->
+    <g transform="translate(0, 0)">
+       <text x="30" y="20" font-size="18" font-weight="bold">+48 691 795 116</text>
+       <path d="M5 15 C5 15 8 25 15 25 C22 25 25 15 25 15" stroke="#3b82f6" stroke-width="2" fill="none"/>
+    </g>
+
+    <!-- 2. Email -->
+    <g transform="translate(0, 40)">
+       <text x="30" y="20" font-size="14">conceptusacars@gmail.com</text>
+       <rect x="2" y="5" width="20" height="16" rx="2" stroke="#3b82f6" stroke-width="2" fill="none"/>
+    </g>
+
+    <!-- 3. Facebook -->
+    <g transform="translate(0, 80)">
+       <rect x="4" y="4" width="16" height="16" rx="2" fill="#3b82f6"/>
+       <text x="8" y="16" font-family="Courier, monospace" font-weight="bold" font-size="14" fill="white">f</text>
+       <text x="30" y="16" font-size="12">/conceptsamochodyzusa</text>
+    </g>
+
+    <!-- 4. Instagram -->
+    <g transform="translate(0, 110)">
+       <rect x="4" y="4" width="16" height="16" rx="4" stroke="#ec4899" stroke-width="2" fill="none"/>
+       <circle cx="12" cy="12" r="3" stroke="#ec4899" stroke-width="2" fill="none"/>
+       <circle cx="17" cy="7" r="1" fill="#ec4899"/>
+       <text x="30" y="16" font-size="12">@concept_samochody_z_usa</text>
+    </g>
+
+    <!-- 5. Address -->
+    <g transform="translate(0, 150)">
+       <text x="30" y="15" font-size="12">ul. Długa 24</text>
+       <text x="30" y="30" font-size="12">84-230 Dębogórze-Wybudowanie</text>
+       <path d="M12 2 A 8 8 0 0 1 20 10 C 20 16 12 24 12 24 C 12 24 4 16 4 10 A 8 8 0 0 1 12 2 Z" stroke="#3b82f6" stroke-width="2" fill="none"/>
+       <circle cx="12" cy="10" r="3" fill="#3b82f6"/>
+    </g>
+
+    <!-- 6. Hours -->
+    <g transform="translate(0, 195)">
+       <text x="30" y="20" font-size="12" fill="#9ca3af">Pon-Pt: 09:00 - 17:00</text>
+       <circle cx="12" cy="14" r="8" stroke="#9ca3af" stroke-width="1.5" fill="none"/>
+       <path d="M12 14 L12 10 M12 14 L15 14" stroke="#9ca3af" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>
