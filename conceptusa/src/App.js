@@ -1188,7 +1188,7 @@ const ConceptUSACars = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => scrollToSection('portfolio')}
-              className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-red-500/50"
+              className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-red-500/50 animate-pulse hover:animate-none"
             >
               Zobacz portfolio
             </button>
@@ -1216,16 +1216,18 @@ const ConceptUSACars = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja' },
-              { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników' },
-              { icon: <Truck size={40} />, title: 'Pełna obsługa', desc: 'Od zakupu po rejestrację - wszystko załatwiamy' },
-              { icon: <Star size={40} />, title: 'Doświadczenie', desc: 'Setki zadowolonych klientów i sprowadzonych aut' }
+              { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja', gradient: 'from-green-400 to-green-600' },
+              { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników', gradient: 'from-yellow-400 to-orange-500' },
+              { icon: <Truck size={40} />, title: 'Pełna obsługa', desc: 'Od zakupu po rejestrację - wszystko załatwiamy', gradient: 'from-blue-400 to-blue-600' },
+              { icon: <Star size={40} />, title: 'Doświadczenie', desc: 'Setki zadowolonych klientów i sprowadzonych aut', gradient: 'from-purple-400 to-pink-500' }
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105 cursor-pointer"
+                className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 cursor-pointer border border-gray-800 hover:border-gray-700 group"
               >
-                <div className="text-red-600 flex justify-center mb-4">{item.icon}</div>
+                <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br ${item.gradient} mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
+                  <div className="text-white">{item.icon}</div>
+                </div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-gray-300">{item.desc}</p>
               </div>
@@ -1237,20 +1239,30 @@ const ConceptUSACars = () => {
             <h3 className="text-3xl font-bold text-center mb-8">
               Nasza <span className="text-red-600">specjalizacja</span>
             </h3>
-            <div className="bg-gray-900 rounded-xl p-8 text-center">
-              <p className="text-xl text-gray-300 mb-6">
+            <div className="bg-gray-900 rounded-xl p-8 border border-gray-700">
+              <p className="text-xl text-gray-300 mb-8 text-center">
                 Specjalizujemy się głównie w markach grupy <span className="text-blue-500 font-bold">Stellantis</span>
               </p>
-              <div className="flex flex-wrap justify-center gap-6 text-lg mb-8">
-                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Chrysler</span>
-                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Dodge</span>
-                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Jeep</span>
-                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Fiat</span>
-                <span className="bg-red-600 px-6 py-3 rounded-full font-semibold">Alfa Romeo</span>
+              <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 mb-8">
+                {[
+                  { name: 'Chrysler', emoji: '🚙', desc: 'Luksusowe sedany i minivany' },
+                  { name: 'Dodge', emoji: '🏎️', desc: 'Muscle cars i SUVy' },
+                  { name: 'Jeep', emoji: '🚙', desc: 'Legendarny off-road' },
+                  { name: 'Fiat', emoji: '🚗', desc: 'Kompaktowe i miejskie' },
+                  { name: 'Alfa Romeo', emoji: '🏎️', desc: 'Włoska sportowa elegancja' }
+                ].map((brand, idx) => (
+                  <div key={idx} className="bg-gray-800 p-6 rounded-xl text-center hover:bg-gray-700 transition-all hover:scale-105 border border-gray-700 hover:border-red-500/50">
+                    <div className="text-5xl mb-3">{brand.emoji}</div>
+                    <h4 className="text-lg font-bold text-red-500 mb-2">{brand.name}</h4>
+                    <p className="text-xs text-gray-400">{brand.desc}</p>
+                  </div>
+                ))}
               </div>
-              <p className="text-gray-300 text-sm">
-                oraz inne marki amerykańskie jak <span className="text-white font-semibold">Ford</span> i więcej
-              </p>
+              <div className="text-center">
+                <p className="text-gray-400 text-sm">
+                  oraz inne marki amerykańskie jak <span className="text-white font-semibold">Ford, Chevrolet, GMC</span> i więcej
+                </p>
+              </div>
             </div>
           </div>
 
@@ -1409,7 +1421,38 @@ const ConceptUSACars = () => {
         </div>
       </section>
 
-      {/* Process Section */}
+      {/* Stats Section - Animowane liczniki */}
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            {(() => {
+              // Oblicz lata działalności od 01.05.2019
+              const startDate = new Date('2019-05-01');
+              const currentDate = new Date();
+              const yearsOfExperience = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24 * 365.25));
+
+              return [
+                { icon: '🚗', number: '500+', label: 'Sprowadzonych aut', color: 'from-red-500 to-red-600' },
+                { icon: '⭐', number: `${yearsOfExperience}`, label: 'Lat doświadczenia', color: 'from-yellow-500 to-orange-500' },
+                { icon: '😊', number: '450+', label: 'Zadowolonych klientów', color: 'from-green-500 to-emerald-600' },
+                { icon: '🇺🇸', number: '100%', label: 'Bezpośrednio z USA', color: 'from-blue-500 to-blue-600' }
+              ];
+            })().map((stat, idx) => (
+              <div key={idx} className="text-center group">
+                <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br ${stat.color} mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
+                  <span className="text-4xl">{stat.icon}</span>
+                </div>
+                <div className="text-5xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                  {stat.number}
+                </div>
+                <p className="text-gray-400 text-lg">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}}
       <section id="process" className={`py-20 bg-gray-900 ${visibleSections.has('process') ? 'visible' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-6">
@@ -1562,26 +1605,39 @@ const ConceptUSACars = () => {
                   return (
                     <div
                       key={car.id}
-                      className="bg-gray-900 rounded-xl overflow-hidden transition cursor-pointer police-lights"
+                      className="bg-gray-900 rounded-xl overflow-hidden transition cursor-pointer police-lights group"
                       onClick={() => openCarModal(car)}
                     >
                       <div className="relative h-48 overflow-hidden">
+                        {/* Gradient overlay na dole */}
+                        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
+
                         <img
                           src={mainImage}
                           alt={`${car.brand} ${car.model} ${car.year} - Import z USA - CONCEPT Trójmiasto`}
-                          className={`w-full h-full object-cover hover:scale-110 transition duration-500 ${
+                          className={`w-full h-full object-cover group-hover:scale-110 transition duration-500 ${
                             !loadedImages.has(mainImage) ? 'blur-lg' : ''
                           }`}
                           loading="lazy"
                           decoding="async"
                           onLoad={() => handleImageLoad(mainImage)}
                         />
+
+                        {/* Badge NOWOŚĆ - sprawdzamy czy auto dodane ostatnie 7 dni */}
+                        {car.created_at && (new Date() - new Date(car.created_at)) / (1000 * 60 * 60 * 24) < 7 && (
+                          <div className="absolute top-4 left-4 z-20">
+                            <div className="bg-gradient-to-r from-yellow-400 to-orange-500 px-3 py-1 rounded-full text-xs font-bold text-black shadow-lg animate-pulse">
+                              ✨ NOWOŚĆ
+                            </div>
+                          </div>
+                        )}
+
                         {carImages.length > 1 && (
-                          <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-sm px-3 py-1 rounded-full text-sm border border-white/20">
+                          <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-sm px-3 py-1 rounded-full text-sm border border-white/20 z-20">
                             📷 {carImages.length}
                           </div>
                         )}
-                        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-md shadow-lg ${
+                        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-md shadow-lg z-20 ${
                           car.status === 'available'
                             ? 'bg-green-500/90 border border-green-400/50'
                             : 'bg-gray-500/90 border border-gray-400/50'
