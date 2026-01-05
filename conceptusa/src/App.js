@@ -24,9 +24,6 @@ const ConceptUSACars = () => {
   const [submittingForm, setSubmittingForm] = useState(false);
   const [formLoadTime] = useState(Date.now()); // Track when form was loaded
 
-  // Parallax scroll effect
-  const [scrollY, setScrollY] = useState(0);
-
   // Image loading state for blur effect
   const [loadedImages, setLoadedImages] = useState(new Set());
 
@@ -111,7 +108,6 @@ const ConceptUSACars = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      setScrollY(window.scrollY); // Track scroll position for parallax
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -1146,12 +1142,7 @@ const ConceptUSACars = () => {
       {/* Hero Section */}
       <section id="home" className={`relative h-screen flex items-center justify-center overflow-hidden ${visibleSections.has('home') ? 'visible' : ''}`}>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-gray-900 to-red-900/50"></div>
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            transform: `translateY(${scrollY * 0.5}px)` // Parallax effect: moves slower than scroll
-          }}
-        >
+        <div className="absolute inset-0 opacity-30">
           <picture>
             <source
               srcSet="/optimized-images/background-400w.webp 400w,
