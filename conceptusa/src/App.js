@@ -27,9 +27,6 @@ const ConceptUSACars = () => {
   // Parallax scroll effect
   const [scrollY, setScrollY] = useState(0);
 
-  // Scroll progress bar
-  const [scrollProgress, setScrollProgress] = useState(0);
-
   // Image loading state for blur effect
   const [loadedImages, setLoadedImages] = useState(new Set());
 
@@ -115,11 +112,6 @@ const ConceptUSACars = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       setScrollY(window.scrollY); // Track scroll position for parallax
-
-      // Calculate scroll progress percentage
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
-      setScrollProgress(progress);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -947,12 +939,6 @@ const ConceptUSACars = () => {
         }
       `}</style>
 
-      {/* Scroll Progress Bar */}
-      <div
-        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-red-600 via-blue-500 to-red-600 z-[60] transition-all duration-300"
-        style={{ width: `${scrollProgress}%` }}
-      />
-
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
@@ -1435,31 +1421,56 @@ const ConceptUSACars = () => {
       {/* Process Section */}
       <section id="process" className={`py-20 bg-gray-900 ${visibleSections.has('process') ? 'visible' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-6">
             Jak to <span className="text-blue-500">działa</span>?
           </h2>
+          <p className="text-center text-gray-400 mb-16 text-lg">5 prostych kroków do Twojego amerykańskiego auta</p>
 
-          <div className="grid md:grid-cols-5 gap-6">
-            {[
-              { num: '01', title: 'Kontakt', desc: 'Powiedz nam czego szukasz' },
-              { num: '02', title: 'Wyszukiwanie', desc: 'Znajdujemy idealne auto' },
-              { num: '03', title: 'Weryfikacja', desc: 'Sprawdzamy historię i stan' },
-              { num: '04', title: 'Transport', desc: 'Sprowadzamy do Polski' },
-              { num: '05', title: 'Odbiór', desc: 'Odbierasz swoje auto' }
-            ].map((step, idx) => (
-              <div key={idx} className={`relative animate-slide-up-fade delay-${(idx + 1) * 100}`}>
-                <div className="bg-gradient-to-br from-red-600 to-blue-600 p-6 rounded-xl text-center hover:shadow-xl hover:shadow-red-500/20 transition">
-                  <div className="text-5xl font-bold mb-4 opacity-50">{step.num}</div>
-                  <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                  <p className="text-sm text-gray-300">{step.desc}</p>
-                </div>
-                {idx < 4 && (
-                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2">
-                    <ChevronDown className="rotate-[-90deg] text-red-500" size={24} />
+          {/* Timeline container */}
+          <div className="relative">
+            {/* Connecting line - desktop only */}
+            <div className="hidden md:block absolute top-16 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-purple-500 to-blue-600 rounded-full" />
+
+            <div className="grid md:grid-cols-5 gap-8 md:gap-4">
+              {[
+                { num: '01', title: 'Kontakt', desc: 'Powiedz nam czego szukasz', icon: '📞', color: 'from-red-500 to-red-600' },
+                { num: '02', title: 'Wyszukiwanie', desc: 'Znajdujemy idealne auto', icon: '🔍', color: 'from-orange-500 to-red-500' },
+                { num: '03', title: 'Weryfikacja', desc: 'Sprawdzamy historię i stan', icon: '✅', color: 'from-yellow-500 to-orange-500' },
+                { num: '04', title: 'Transport', desc: 'Sprowadzamy do Polski', icon: '🚢', color: 'from-blue-500 to-purple-500' },
+                { num: '05', title: 'Odbiór', desc: 'Odbierasz swoje auto!', icon: '🚗', color: 'from-green-500 to-blue-500' }
+              ].map((step, idx) => (
+                <div key={idx} className="relative flex flex-col items-center text-center group">
+                  {/* Circle with number */}
+                  <div className={`relative z-10 w-32 h-32 rounded-full bg-gradient-to-br ${step.color} flex flex-col items-center justify-center shadow-xl group-hover:scale-110 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-red-500/30`}>
+                    <span className="text-4xl mb-1">{step.icon}</span>
+                    <span className="text-xs font-bold opacity-70">{step.num}</span>
                   </div>
-                )}
-              </div>
-            ))}
+
+                  {/* Content below */}
+                  <div className="mt-6">
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-red-400 transition-colors">{step.title}</h3>
+                    <p className="text-sm text-gray-400">{step.desc}</p>
+                  </div>
+
+                  {/* Arrow - mobile */}
+                  {idx < 4 && (
+                    <div className="md:hidden mt-4 mb-2">
+                      <ChevronDown className="text-red-500 animate-bounce" size={24} />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="text-center mt-16">
+            <button
+              onClick={() => scrollToSection('order')}
+              className="bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-500 hover:to-blue-500 px-10 py-4 rounded-full text-lg font-bold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-red-500/30"
+            >
+              Rozpocznij proces →
+            </button>
           </div>
         </div>
       </section>
@@ -1895,61 +1906,88 @@ const ConceptUSACars = () => {
       {/* Contact Section */}
       <section id="contact" className={`py-20 bg-gray-800 ${visibleSections.has('contact') ? 'visible' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            <span className="text-red-600">Kontakt</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-6">
+            <span className="text-red-600">Skontaktuj się</span> z nami
           </h2>
+          <p className="text-center text-gray-400 mb-16 text-lg">Odpowiadamy w ciągu 24h!</p>
 
-          {/* Top row: Telefon, Facebook, Instagram */}
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          {/* Main contact cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {/* Phone - Primary */}
             <a
-              href="tel:691795116"
-              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
+              href="tel:+48691795116"
+              className="group bg-gradient-to-br from-red-600 to-red-700 p-8 rounded-2xl text-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-red-500/40"
             >
-              <Phone size={40} className="mx-auto mb-4 text-red-600" />
-              <h3 className="text-xl font-bold mb-2">Telefon</h3>
-              <p className="text-gray-300">691 795 116</p>
+              <div className="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Phone size={36} className="text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Zadzwoń</h3>
+              <p className="text-red-100 text-lg font-semibold">+48 691 795 116</p>
+              <p className="text-red-200 text-sm mt-2">Pon-Pt: 9:00-17:00</p>
             </a>
 
+            {/* Email */}
+            <a
+              href="mailto:conceptusacars@gmail.com"
+              className="group bg-gray-900 p-8 rounded-2xl text-center hover:scale-105 transition-all duration-300 border border-gray-700 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/20"
+            >
+              <div className="w-20 h-20 mx-auto mb-4 bg-blue-600/20 rounded-full flex items-center justify-center group-hover:bg-blue-600/40 transition-colors">
+                <Mail size={36} className="text-blue-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Email</h3>
+              <p className="text-gray-300">conceptusacars@gmail.com</p>
+              <p className="text-gray-500 text-sm mt-2">Odpisujemy w 24h</p>
+            </a>
+
+            {/* Facebook */}
             <a
               href="https://facebook.com/conceptsamochodyzusa"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
+              className="group bg-gray-900 p-8 rounded-2xl text-center hover:scale-105 transition-all duration-300 border border-gray-700 hover:border-blue-600/50 hover:shadow-xl hover:shadow-blue-600/20"
             >
-              <Facebook size={40} className="mx-auto mb-4 text-blue-600" />
+              <div className="w-20 h-20 mx-auto mb-4 bg-blue-700/20 rounded-full flex items-center justify-center group-hover:bg-blue-700/40 transition-colors">
+                <Facebook size={36} className="text-blue-600" />
+              </div>
               <h3 className="text-xl font-bold mb-2">Facebook</h3>
               <p className="text-gray-300">conceptsamochodyzusa</p>
+              <p className="text-gray-500 text-sm mt-2">Napisz wiadomość</p>
             </a>
 
+            {/* Instagram */}
             <a
               href="https://instagram.com/concept_samochody_z_usa"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105"
+              className="group bg-gray-900 p-8 rounded-2xl text-center hover:scale-105 transition-all duration-300 border border-gray-700 hover:border-pink-500/50 hover:shadow-xl hover:shadow-pink-500/20"
             >
-              <Instagram size={40} className="mx-auto mb-4 text-pink-500" />
+              <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-purple-600/20 to-pink-500/20 rounded-full flex items-center justify-center group-hover:from-purple-600/40 group-hover:to-pink-500/40 transition-colors">
+                <Instagram size={36} className="text-pink-500" />
+              </div>
               <h3 className="text-xl font-bold mb-2">Instagram</h3>
               <p className="text-gray-300">@concept_samochody_z_usa</p>
-            </a>
-          </div>
-
-          {/* Bottom row: Email full width */}
-          <div className="mb-12">
-            <a
-              href="mailto:conceptusacars@gmail.com"
-              className="bg-gray-900 p-8 rounded-xl text-center hover:bg-gray-700 transition transform hover:scale-105 block"
-            >
-              <Mail size={40} className="mx-auto mb-4 text-blue-500" />
-              <h3 className="text-xl font-bold mb-2">Email</h3>
-              <p className="text-gray-300">conceptusacars@gmail.com</p>
+              <p className="text-gray-500 text-sm mt-2">Śledź nasze realizacje</p>
             </a>
           </div>
 
           {/* Google Maps */}
-          <div className="bg-gray-900 p-4 rounded-xl">
-            <h3 className="text-2xl font-bold mb-4 text-center">Nasza lokalizacja</h3>
-            <p className="text-center text-gray-300 mb-4">Długa 24, 84-230 Dębogórze-Wybudowanie</p>
-            <div className="aspect-video w-full rounded-lg overflow-hidden">
+          <div className="bg-gray-900 p-6 rounded-2xl border border-gray-700">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+              <div>
+                <h3 className="text-2xl font-bold mb-2">Nasza lokalizacja</h3>
+                <p className="text-gray-400">ul. Długa 24, 84-230 Dębogórze-Wybudowanie</p>
+              </div>
+              <a
+                href="https://maps.app.goo.gl/Cjt7ecape4DMaosh8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 md:mt-0 inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 px-6 py-3 rounded-full transition-all hover:scale-105"
+              >
+                <span>Otwórz w Google Maps</span>
+                <ChevronRight size={20} />
+              </a>
+            </div>
+            <div className="aspect-video w-full rounded-xl overflow-hidden">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.234567!2d18.1234567!3d54.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd09e3c3e0b0b9%3A0x1234567890abcdef!2zRMWCdWdhIDI0LCA4NC0yMzAgRMSZYm9nw7NyemUtV3lidWRvd2FuaWU!5e0!3m2!1spl!2spl!4v1234567890123!5m2!1spl!2spl"
                 width="100%"
@@ -1960,16 +1998,6 @@ const ConceptUSACars = () => {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Mapa lokalizacji CONCEPT Samochody z USA - Długa 24, Dębogórze-Wybudowanie"
               ></iframe>
-            </div>
-            <div className="text-center mt-4">
-              <a
-                href="https://maps.app.goo.gl/Cjt7ecape4DMaosh8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-red-600 hover:bg-red-700 px-6 py-2 rounded-full transition"
-              >
-                Otwórz w Google Maps
-              </a>
             </div>
           </div>
         </div>
@@ -2075,17 +2103,6 @@ const ConceptUSACars = () => {
             </p>
             <p className="text-gray-500 text-xs mt-2">
               Import samochodów z USA | Odprawa celna Gdynia | Faktura VAT | Kredyty i leasingi
-            </p>
-            <p className="text-gray-600 text-xs mt-3">
-              Built by{' '}
-              <a
-                href="https://github.com/Kobeep"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:text-blue-400 transition"
-              >
-                Kobeep
-              </a>
             </p>
           </div>
         </div>
