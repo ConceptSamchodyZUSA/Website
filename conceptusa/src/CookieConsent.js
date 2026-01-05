@@ -49,11 +49,13 @@ const CookieConsentBanner = () => {
 
   const enableGoogleAnalytics = () => {
     // Enable Google Analytics
+    // TODO: Zastąp 'G-XXXXXXXXXX' rzeczywistym ID Google Analytics
+    const GA_MEASUREMENT_ID = process.env.REACT_APP_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
     window.dataLayer = window.dataLayer || [];
     function gtag(){window.dataLayer.push(arguments);}
     window.gtag = gtag;
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX', {
+    gtag('config', GA_MEASUREMENT_ID, {
       'anonymize_ip': true,
       'cookie_flags': 'SameSite=None;Secure'
     });
@@ -62,7 +64,8 @@ const CookieConsentBanner = () => {
 
   const disableGoogleAnalytics = () => {
     // Disable Google Analytics
-    window['ga-disable-G-XXXXXXXXXX'] = true;
+    const GA_MEASUREMENT_ID = process.env.REACT_APP_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
+    window['ga-disable-' + GA_MEASUREMENT_ID] = true;
     console.log('Google Analytics disabled');
   };
 

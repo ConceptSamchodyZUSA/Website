@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Menu, X, Phone, Mail, Facebook, Instagram, ChevronDown, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, ChevronRight, Settings, ArrowUp, ArrowDown, Loader2, Cookie } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, Instagram, ChevronDown, ChevronRight, Star, Shield, Truck, DollarSign, Calendar, Gauge, Fuel, Zap, ChevronLeft, Settings, ArrowUp, ArrowDown, Loader2, Cookie } from 'lucide-react';
 import { carService, inquiryService } from './services';
 import emailjs from '@emailjs/browser';
 import CookieConsentBanner from './CookieConsent';
@@ -55,14 +55,16 @@ const ConceptUSACars = () => {
 
   // Console Easter Egg - dla ciekawskich deweloperów 😄
   useEffect(() => {
-    console.log('%c🚗 CONCEPT USA CARS 🚗', 'font-size: 20px; font-weight: bold; color: #10b981;');
-    console.log('%c⚠️ STOP! ⚠️', 'font-size: 16px; font-weight: bold; color: #ef4444;');
-    console.log('%cJeśli ktoś kazał Ci tutaj coś wkleić, to próbuje Cię oszukać! 🚫', 'font-size: 14px; color: #f59e0b;');
-    console.log('%c\nPróbujesz podejrzeć ceny sprzedanych aut? 🕵️', 'font-size: 14px; font-weight: bold; color: #8b5cf6;');
-    console.log('%cNiestety, te dane są zaszyfrowane po stronie serwera 🔐', 'font-size: 12px; color: #6b7280;');
-    console.log('%cJeśli jesteś zainteresowany podobnym autem, skontaktuj się z nami! 📞', 'font-size: 12px; color: #3b82f6;');
-    console.log('%c\n💡 Szukasz pracy? Jesteśmy otwarci na współpracę!', 'font-size: 12px; color: #10b981;');
-    console.log('%cNapisz do nas: kontakt@conceptusa.pl', 'font-size: 12px; font-style: italic; color: #6b7280;');
+    if (process.env.NODE_ENV === 'production') {
+      console.log('%c🚗 CONCEPT USA CARS 🚗', 'font-size: 20px; font-weight: bold; color: #10b981;');
+      console.log('%c⚠️ STOP! ⚠️', 'font-size: 16px; font-weight: bold; color: #ef4444;');
+      console.log('%cJeśli ktoś kazał Ci tutaj coś wkleić, to próbuje Cię oszukać! 🚫', 'font-size: 14px; color: #f59e0b;');
+      console.log('%c\nPróbujesz podejrzeć ceny sprzedanych aut? 🕵️', 'font-size: 14px; font-weight: bold; color: #8b5cf6;');
+      console.log('%cNiestety, te dane są zaszyfrowane po stronie serwera 🔐', 'font-size: 12px; color: #6b7280;');
+      console.log('%cJeśli jesteś zainteresowany podobnym autem, skontaktuj się z nami! 📞', 'font-size: 12px; color: #3b82f6;');
+      console.log('%c\n💡 Szukasz pracy? Jesteśmy otwarci na współpracę!', 'font-size: 12px; color: #10b981;');
+      console.log('%cNapisz do nas: kontakt@conceptusa.pl', 'font-size: 12px; font-style: italic; color: #6b7280;');
+    }
   }, []);
 
   // Page loading effect
@@ -402,6 +404,11 @@ const ConceptUSACars = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
+      {/* Skip to content link - accessibility */}
+      <a href="#home" className="skip-to-content">
+        Przejdź do głównej treści
+      </a>
+
       <Helmet>
         <title>CONCEPT - Samochody z USA | Import Dodge, Ford, Jeep z Ameryki</title>
         <meta name="description" content="Sprowadzamy samochody z USA. Muscle cars, pickupy, SUVy. Pełna obsługa: faktura VAT, kredyty, leasingi. Odprawa celna port Gdynia." />
@@ -1144,7 +1151,7 @@ const ConceptUSACars = () => {
               </a>
             </div>
             <p className="text-center text-gray-500 text-sm mt-4">
-              © 2024 <span className="text-red-500">CONCEPT</span> <span className="text-blue-400">USA</span>
+              © {new Date().getFullYear()} <span className="text-red-500">CONCEPT</span> <span className="text-blue-400">USA</span>
             </p>
           </div>
         </div>
@@ -1160,7 +1167,13 @@ const ConceptUSACars = () => {
           }}
         >
           <picture>
-            <source srcSet={backgroundImageWebP} type="image/webp" />
+            <source
+              srcSet="/optimized-images/background-400w.webp 400w,
+                      /optimized-images/background-800w.webp 800w,
+                      /optimized-images/background-1200w.webp 1200w"
+              sizes="100vw"
+              type="image/webp"
+            />
             <img
               src={backgroundImageFallback}
               alt="Import samochodów z USA - Muscle cars, pickupy i SUVy - CONCEPT Trójmiasto Pomorskie"
@@ -1497,9 +1510,10 @@ const ConceptUSACars = () => {
 
           {/* Loading Skeletons */}
           {loading && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="status" aria-label="Ładowanie samochodów">
+              <span className="sr-only">Ładowanie listy samochodów...</span>
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="bg-gray-900 rounded-xl overflow-hidden">
+                <div key={i} className="bg-gray-900 rounded-xl overflow-hidden" aria-hidden="true">
                   {/* Image skeleton */}
                   <div className="h-48 animate-shimmer"></div>
 
@@ -1944,7 +1958,7 @@ const ConceptUSACars = () => {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Google Maps - CONCEPT Samochody z USA"
+                title="Mapa lokalizacji CONCEPT Samochody z USA - Długa 24, Dębogórze-Wybudowanie"
               ></iframe>
             </div>
             <div className="text-center mt-4">
@@ -2061,6 +2075,17 @@ const ConceptUSACars = () => {
             </p>
             <p className="text-gray-500 text-xs mt-2">
               Import samochodów z USA | Odprawa celna Gdynia | Faktura VAT | Kredyty i leasingi
+            </p>
+            <p className="text-gray-600 text-xs mt-3">
+              Built by{' '}
+              <a
+                href="https://github.com/Kobeep"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-400 transition"
+              >
+                Kobeep
+              </a>
             </p>
           </div>
         </div>

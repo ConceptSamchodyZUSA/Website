@@ -2,6 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* Screen reader only - for accessibility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Skip to content link - shows on focus */
+  .skip-to-content {
+    @apply sr-only;
+  }
+
+  .skip-to-content:focus {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    padding: 1rem 1.5rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    background: #dc2626;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Focus visible styles for accessibility */
+  *:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+}
+
 @layer utilities {
   @keyframes gradient-x {
     0%, 100% {

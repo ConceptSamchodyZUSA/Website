@@ -33,7 +33,7 @@
     }
   ],
   "start_url": ".",
-  "display": "browser",
+  "display": "standalone",
   "theme_color": "#dc2626",
   "background_color": "#0f172a"
 }
