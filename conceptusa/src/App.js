@@ -1425,19 +1425,12 @@ const ConceptUSACars = () => {
       <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
-            {(() => {
-              // Oblicz lata działalności od 01.05.2019
-              const startDate = new Date('2019-05-01');
-              const currentDate = new Date();
-              const yearsOfExperience = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24 * 365.25));
-
-              return [
-                { icon: '🚗', number: '500+', label: 'Sprowadzonych aut', color: 'from-red-500 to-red-600' },
-                { icon: '⭐', number: `${yearsOfExperience}`, label: 'Lat doświadczenia', color: 'from-yellow-500 to-orange-500' },
-                { icon: '😊', number: '450+', label: 'Zadowolonych klientów', color: 'from-green-500 to-emerald-600' },
-                { icon: '🇺🇸', number: '100%', label: 'Bezpośrednio z USA', color: 'from-blue-500 to-blue-600' }
-              ];
-            })().map((stat, idx) => (
+            {[
+              { icon: '🚗', number: '300+', label: 'Sprowadzonych aut', color: 'from-red-500 to-red-600' },
+              { icon: '⭐', number: '10', label: 'Lat doświadczenia', color: 'from-yellow-500 to-orange-500' },
+              { icon: '😊', number: '400+', label: 'Zadowolonych klientów', color: 'from-green-500 to-emerald-600' },
+              { icon: '🇺🇸', number: '100%', label: 'Bezpośrednio z USA', color: 'from-blue-500 to-blue-600' }
+            ].map((stat, idx) => (
               <div key={idx} className="text-center group">
                 <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br ${stat.color} mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
                   <span className="text-4xl">{stat.icon}</span>
