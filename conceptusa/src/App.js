@@ -30,6 +30,9 @@ const ConceptUSACars = () => {
   // Expandable cards - null means no card expanded
   const [expandedCard, setExpandedCard] = useState(null);
 
+  // Process type for "Jak to działa" section
+  const [processType, setProcessType] = useState('ready'); // 'ready' or 'custom'
+
   // Toggle card expansion
   const toggleCard = (cardIndex) => {
     setExpandedCard(expandedCard === cardIndex ? null : cardIndex);
@@ -1412,56 +1415,158 @@ const ConceptUSACars = () => {
       {/* Process Section */}
       <section id="process" className={`py-20 bg-gray-900 ${visibleSections.has('process') ? 'visible' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
             Jak to <span className="text-blue-500">działa</span>?
           </h2>
-          <p className="text-center text-gray-400 mb-16 text-lg">5 prostych kroków do Twojego amerykańskiego auta</p>
+          <p className="text-center text-gray-400 mb-12 text-lg">
+            Wybierz opcję, która Cię interesuje
+          </p>
 
-          {/* Timeline container */}
-          <div className="relative">
-            {/* Connecting line - desktop only */}
-            <div className="hidden md:block absolute top-16 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-purple-500 to-blue-600 rounded-full" />
+          {/* Toggle Buttons */}
+          <div className="flex justify-center gap-4 mb-16">
+            <button
+              onClick={() => setProcessType('ready')}
+              className={`px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
+                processType === 'ready'
+                  ? 'bg-gradient-to-r from-green-600 to-green-500 shadow-lg shadow-green-500/50 scale-105'
+                  : 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+              }`}
+            >
+              🚗 Auto na gotowo
+            </button>
+            <button
+              onClick={() => setProcessType('custom')}
+              className={`px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
+                processType === 'custom'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-500/50 scale-105'
+                  : 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+              }`}
+            >
+              🎯 Auto pod dom
+            </button>
+          </div>
 
-            <div className="grid md:grid-cols-5 gap-8 md:gap-4">
+          {/* Process Steps - Auto na gotowo */}
+          {processType === 'ready' && (
+            <div className="grid md:grid-cols-6 gap-4 animate-slide-up-fade">
               {[
-                { num: '01', title: 'Kontakt', desc: 'Powiedz nam czego szukasz', icon: '📞', color: 'from-red-500 to-red-600' },
-                { num: '02', title: 'Wyszukiwanie', desc: 'Znajdujemy idealne auto', icon: '🔍', color: 'from-orange-500 to-red-500' },
-                { num: '03', title: 'Weryfikacja', desc: 'Sprawdzamy historię i stan', icon: '✅', color: 'from-yellow-500 to-orange-500' },
-                { num: '04', title: 'Transport', desc: 'Sprowadzamy do Polski', icon: '🚢', color: 'from-blue-500 to-purple-500' },
-                { num: '05', title: 'Odbiór', desc: 'Odbierasz swoje auto!', icon: '🚗', color: 'from-green-500 to-blue-500' }
+                {
+                  num: '01',
+                  title: 'Zakup w USA',
+                  desc: 'Kupujemy auto na aukcjach w USA',
+                  icon: '🇺🇸'
+                },
+                {
+                  num: '02',
+                  title: 'Transport',
+                  desc: 'Sprowadzamy do portu Gdynia',
+                  icon: '🚢'
+                },
+                {
+                  num: '03',
+                  title: 'Odprawa celna',
+                  desc: 'Odprawiamy celnie w Gdyni',
+                  icon: '📋'
+                },
+                {
+                  num: '04',
+                  title: 'Naprawa',
+                  desc: 'Naprawiamy i sprawdzamy',
+                  icon: '🔨'
+                },
+                {
+                  num: '05',
+                  title: 'Rejestracja',
+                  desc: 'Rejestrujemy w Polsce',
+                  icon: '📝'
+                },
+                {
+                  num: '06',
+                  title: 'Odbiór',
+                  desc: 'Gotowe do jazdy od ręki!',
+                  icon: '🎉'
+                }
               ].map((step, idx) => (
-                <div key={idx} className="relative flex flex-col items-center text-center group">
-                  {/* Circle with number */}
-                  <div className={`relative z-10 w-32 h-32 rounded-full bg-gradient-to-br ${step.color} flex flex-col items-center justify-center shadow-xl group-hover:scale-110 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-red-500/30`}>
-                    <span className="text-4xl mb-1">{step.icon}</span>
-                    <span className="text-xs font-bold opacity-70">{step.num}</span>
+                <div key={idx} className={`relative animate-slide-up-fade delay-${(idx + 1) * 100}`}>
+                  <div className="bg-gradient-to-br from-green-600 to-green-500 p-4 rounded-xl text-center hover:shadow-xl hover:shadow-green-500/30 transition-all hover:scale-105">
+                    <div className="text-4xl mb-2">{step.icon}</div>
+                    <div className="text-2xl font-bold mb-2 opacity-70">{step.num}</div>
+                    <h3 className="text-lg font-bold mb-1">{step.title}</h3>
+                    <p className="text-xs text-green-50">{step.desc}</p>
                   </div>
-
-                  {/* Content below */}
-                  <div className="mt-6">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-red-400 transition-colors">{step.title}</h3>
-                    <p className="text-sm text-gray-400">{step.desc}</p>
-                  </div>
-
-                  {/* Arrow - mobile */}
-                  {idx < 4 && (
-                    <div className="md:hidden mt-4 mb-2">
-                      <ChevronDown className="text-red-500 animate-bounce" size={24} />
+                  {idx < 5 && (
+                    <div className="hidden md:block absolute top-1/2 -right-2 transform -translate-y-1/2 z-10">
+                      <ChevronDown className="rotate-[-90deg] text-green-400" size={24} />
                     </div>
                   )}
                 </div>
               ))}
             </div>
-          </div>
+          )}
 
-          {/* CTA Button */}
-          <div className="text-center mt-16">
-            <button
-              onClick={() => scrollToSection('order')}
-              className="bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-500 hover:to-blue-500 px-10 py-4 rounded-full text-lg font-bold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-red-500/30"
-            >
-              Rozpocznij proces →
-            </button>
+          {/* Process Steps - Auto pod dom */}
+          {processType === 'custom' && (
+            <div className="grid md:grid-cols-4 gap-6 animate-slide-up-fade">
+              {[
+                {
+                  num: '01',
+                  title: 'Kontakt',
+                  desc: 'Powiedz nam czego szukasz',
+                  icon: '💬'
+                },
+                {
+                  num: '02',
+                  title: 'Wyszukiwanie i zakup',
+                  desc: 'Znajdujemy i kupujemy auto w USA',
+                  icon: '🔎'
+                },
+                {
+                  num: '03',
+                  title: 'Transport i odprawa',
+                  desc: 'Sprowadzamy i odprawiamy celnie w Gdyni',
+                  icon: '🚢'
+                },
+                {
+                  num: '04',
+                  title: 'Odbiór',
+                  desc: 'Odbierasz auto - ty zajmujesz się naprawą i rejestracją',
+                  icon: '🎊'
+                }
+              ].map((step, idx) => (
+                <div key={idx} className={`relative animate-slide-up-fade delay-${(idx + 1) * 100}`}>
+                  <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-6 rounded-xl text-center hover:shadow-xl hover:shadow-blue-500/30 transition-all hover:scale-105">
+                    <div className="text-5xl mb-3">{step.icon}</div>
+                    <div className="text-3xl font-bold mb-3 opacity-70">{step.num}</div>
+                    <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                    <p className="text-sm text-blue-50">{step.desc}</p>
+                  </div>
+                  {idx < 3 && (
+                    <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                      <ChevronDown className="rotate-[-90deg] text-blue-400" size={28} />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Info Box */}
+          <div className={`mt-12 p-6 rounded-xl text-center ${
+            processType === 'ready'
+              ? 'bg-green-900/30 border border-green-500/30'
+              : 'bg-blue-900/30 border border-blue-500/30'
+          }`}>
+            {processType === 'ready' ? (
+              <p className="text-lg text-gray-300">
+                ⚡ <strong>Pełna obsługa!</strong> Wszystko robimy my - od zakupu w USA, przez naprawę i rejestrację, aż do oddania kluczyków.
+                Auto gotowe do jazdy <span className="text-green-400 font-bold">od pierwszego dnia</span>!
+              </p>
+            ) : (
+              <p className="text-lg text-gray-300">
+                💰 <strong>Niższa cena!</strong> Zajmujemy się zakupem, transportem i odprawą celną.
+                Ty sam decydujesz o <span className="text-blue-400 font-bold">naprawie i rejestracji</span> - większa kontrola nad kosztami!
+              </p>
+            )}
           </div>
         </div>
       </section>
