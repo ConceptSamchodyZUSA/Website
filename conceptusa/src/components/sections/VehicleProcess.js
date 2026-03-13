@@ -5,8 +5,12 @@ const VehicleProcess = ({ isVisible }) => {
   const [processType, setProcessType] = useState('ready');
 
   return (
-    <section id="process" className={`py-24 bg-concept-dark/95 relative ${isVisible ? 'visible' : ''}`}>
+    <section id="process" className={`py-24 bg-concept-dark/95 relative overflow-hidden ${isVisible ? 'visible' : ''}`}>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/5 to-transparent pointer-events-none"></div>
+
+      {/* Dynamic Background Glows */}
+      <div className="absolute top-1/4 -right-48 w-[500px] h-[500px] bg-teal-500/10 rounded-full mix-blend-screen filter blur-[120px] opacity-50 pointer-events-none animate-pulse-slow"></div>
+      <div className="absolute bottom-1/4 -left-48 w-[500px] h-[500px] bg-concept-blue/10 rounded-full mix-blend-screen filter blur-[120px] opacity-50 pointer-events-none animate-pulse-slow" style={{ animationDelay: '1.5s' }}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 font-heading">
@@ -21,8 +25,8 @@ const VehicleProcess = ({ isVisible }) => {
           <button
             onClick={() => setProcessType('ready')}
             className={`px-10 py-5 rounded-2xl font-bold tracking-widest text-sm transition-all duration-300 border ${processType === 'ready'
-                ? 'bg-gradient-to-br from-teal-500/20 to-teal-600/10 border-teal-500/50 text-white shadow-[0_0_30px_rgba(20,184,166,0.2)]'
-                : 'glass border-white/5 text-slate-400 hover:text-white hover:bg-white/5'
+              ? 'bg-gradient-to-br from-teal-500/20 to-teal-600/10 border-teal-500/50 text-white shadow-[0_0_30px_rgba(20,184,166,0.2)]'
+              : 'glass border-white/5 text-slate-400 hover:text-white hover:bg-white/5'
               }`}
           >
             <span className="mr-3 text-xl">🚗</span> AUTO NA GOTOWO
@@ -30,8 +34,8 @@ const VehicleProcess = ({ isVisible }) => {
           <button
             onClick={() => setProcessType('custom')}
             className={`px-10 py-5 rounded-2xl font-bold tracking-widest text-sm transition-all duration-300 border ${processType === 'custom'
-                ? 'bg-gradient-to-br from-concept-blue/20 to-blue-600/10 border-concept-blue/50 text-white shadow-[0_0_30px_rgba(59,130,246,0.2)]'
-                : 'glass border-white/5 text-slate-400 hover:text-white hover:bg-white/5'
+              ? 'bg-gradient-to-br from-concept-blue/20 to-blue-600/10 border-concept-blue/50 text-white shadow-[0_0_30px_rgba(59,130,246,0.2)]'
+              : 'glass border-white/5 text-slate-400 hover:text-white hover:bg-white/5'
               }`}
           >
             <span className="mr-3 text-xl">🎯</span> AUTO POD DOM
@@ -94,8 +98,8 @@ const VehicleProcess = ({ isVisible }) => {
 
         {/* Info Box */}
         <div className={`mt-16 glass p-8 md:p-10 rounded-2xl text-center max-w-4xl mx-auto transition-all duration-500 ${processType === 'ready'
-            ? 'border-l-4 border-l-teal-500'
-            : 'border-l-4 border-l-concept-blue'
+          ? 'border-l-4 border-l-teal-500'
+          : 'border-l-4 border-l-concept-blue'
           }`}>
           {processType === 'ready' ? (
             <p className="text-lg md:text-xl text-slate-300 font-light leading-relaxed">

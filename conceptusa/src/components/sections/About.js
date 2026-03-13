@@ -9,8 +9,13 @@ const About = ({ isVisible }) => {
   };
 
   return (
-    <section id="about" className={`py-24 bg-concept-dark relative z-10 ${isVisible ? 'visible' : ''}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className={`py-24 bg-concept-dark relative z-10 overflow-hidden ${isVisible ? 'visible' : ''}`}>
+      {/* Dynamic Background Glows */}
+      <div className="absolute top-0 right-0 w-full h-[500px] bg-gradient-to-b from-concept-red/5 to-transparent pointer-events-none"></div>
+      <div className="absolute top-1/3 -left-48 w-[500px] h-[500px] bg-concept-blue/10 rounded-full mix-blend-screen filter blur-[120px] opacity-60 pointer-events-none animate-pulse-slow"></div>
+      <div className="absolute bottom-0 -right-48 w-[600px] h-[600px] bg-concept-red/10 rounded-full mix-blend-screen filter blur-[150px] opacity-40 pointer-events-none" style={{ animationDelay: '2s' }}></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 font-heading">
           Dlaczego <span className="text-concept-red">CONCEPT</span>?
         </h2>
@@ -69,8 +74,8 @@ const About = ({ isVisible }) => {
             <div className="flex flex-col">
               <div
                 className={`flex flex-col items-center justify-center p-8 rounded-2xl cursor-pointer transition-all duration-300 border backdrop-blur-md ${expandedCard === 0
-                    ? 'bg-concept-red/20 border-concept-red/50 shadow-[0_0_30px_rgba(220,38,38,0.2)] -translate-y-2'
-                    : 'glass border-white/5 hover:bg-white/10 hover:-translate-y-1'
+                  ? 'bg-concept-red/20 border-concept-red/50 shadow-[0_0_30px_rgba(220,38,38,0.2)] -translate-y-2'
+                  : 'glass border-white/5 hover:bg-white/10 hover:-translate-y-1'
                   }`}
                 onClick={() => toggleCard(0)}
               >
@@ -97,8 +102,8 @@ const About = ({ isVisible }) => {
             <div className="flex flex-col">
               <div
                 className={`flex flex-col items-center justify-center p-8 rounded-2xl cursor-pointer transition-all duration-300 border backdrop-blur-md ${expandedCard === 1
-                    ? 'bg-concept-blue/20 border-concept-blue/50 shadow-[0_0_30px_rgba(59,130,246,0.2)] -translate-y-2'
-                    : 'glass border-white/5 hover:bg-white/10 hover:-translate-y-1'
+                  ? 'bg-concept-blue/20 border-concept-blue/50 shadow-[0_0_30px_rgba(59,130,246,0.2)] -translate-y-2'
+                  : 'glass border-white/5 hover:bg-white/10 hover:-translate-y-1'
                   }`}
                 onClick={() => toggleCard(1)}
               >

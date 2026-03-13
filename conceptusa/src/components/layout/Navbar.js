@@ -12,19 +12,17 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
             {/* Logo */}
             <div className="flex items-center space-x-3 cursor-pointer" onClick={() => scrollToSection('home')}>
               {!isScrolled ? (
-                <div className="text-2xl font-bold font-heading">
-                  <span className="text-white">CONCEPT</span>
-                  <span className="text-concept-slate text-sm ml-2 font-sans font-medium">Samochody z USA</span>
+                <div className="text-3xl font-bold font-heading">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x">CONCEPT</span>
+                  <span className="text-white text-sm ml-2 font-sans font-medium">Samochody z USA</span>
                 </div>
               ) : (
-                <div className="text-xl font-bold flex items-center gap-3 font-heading">
+                <div className="text-2xl font-bold flex items-center gap-3 font-heading">
                   <div className="relative inline-block">
-                    <span className="text-white tracking-widest text-shadow-sm">CONCEPT</span>
-                    {/* Subtle red accent line */}
-                    <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-concept-red/80"></div>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x tracking-widest text-shadow-sm">CONCEPT</span>
                   </div>
                   <div className="relative inline-block text-sm font-sans font-medium">
-                    <span className="text-slate-300">USA</span>
+                    <span className="text-white">USA</span>
                   </div>
                 </div>
               )}
@@ -83,9 +81,8 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
           }`}>
           {/* Header */}
           <div className="flex justify-between items-center p-6 border-b border-white/5">
-            <div className="flex items-center gap-2 font-heading font-bold text-2xl tracking-widest">
-              <span className="text-white">CONCEPT</span>
-              <span className="text-concept-red">.</span>
+            <div className="flex items-center gap-2 font-heading font-bold text-3xl tracking-widest">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x">CONCEPT</span>
             </div>
             <button
               onClick={() => setIsMenuOpen(false)}
