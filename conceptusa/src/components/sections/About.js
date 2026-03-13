@@ -31,7 +31,7 @@ const About = ({ isVisible }) => {
               <div className="text-concept-red mb-4 group-hover:-translate-y-1 transition-transform duration-300">
                 <Shield size={32} />
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-white tracking-wide">Bezpieczeństwo na pierwszy rzutu oka</h3>
+              <h3 className="text-2xl font-bold mb-3 text-white tracking-wide">Bezpieczeństwo na pierwszy rzut oka</h3>
               <p className="text-slate-400 font-light leading-relaxed">Każdy sprowadzany przez nas samochód posiada sprawdzoną historię CarFax i pełną dokumentację aukcyjną. Nie ma miejsca na domysły.</p>
             </div>
           </div>
