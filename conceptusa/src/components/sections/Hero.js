@@ -35,7 +35,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
       <div className="absolute top-1/4 right-[10%] lg:right-[15%] hidden md:block animate-float z-20">
         <div className="glass-panel px-6 py-4 rounded-2xl border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center gap-4 backdrop-blur-xl">
           <div className="w-12 h-12 rounded-full bg-gradient-to-br from-concept-red to-orange-500 flex items-center justify-center text-white font-bold text-xl shadow-[0_0_20px_rgba(220,38,38,0.5)]">
-            +100
+            +400
           </div>
           <div>
             <p className="text-white font-bold tracking-wide">Sprowadzonych</p>
