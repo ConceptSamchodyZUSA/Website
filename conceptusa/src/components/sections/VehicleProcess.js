@@ -24,21 +24,31 @@ const VehicleProcess = ({ isVisible }) => {
         <div className="flex flex-col sm:flex-row justify-center gap-6 mb-20">
           <button
             onClick={() => setProcessType('ready')}
-            className={`px-10 py-5 rounded-2xl font-bold tracking-widest text-sm transition-all duration-300 border ${processType === 'ready'
-              ? 'bg-gradient-to-br from-teal-500/20 to-teal-600/10 border-teal-500/50 text-white shadow-[0_0_30px_rgba(20,184,166,0.2)]'
-              : 'glass border-white/5 text-slate-400 hover:text-white hover:bg-white/5'
+            className={`relative px-10 py-5 rounded-2xl font-bold tracking-widest text-sm transition-all duration-500 overflow-hidden group ${processType === 'ready'
+              ? 'bg-gradient-to-br from-teal-900/40 to-teal-800/20 text-white shadow-[0_0_40px_rgba(20,184,166,0.3)]'
+              : 'glass border border-white/5 text-slate-400 hover:text-white hover:bg-white/10'
               }`}
           >
-            <span className="mr-3 text-xl">🚗</span> AUTO NA GOTOWO
+            {processType === 'ready' && (
+              <div className="absolute inset-0 border-2 border-transparent rounded-2xl [background:linear-gradient(theme(colors.teal.400),theme(colors.teal.600))_border-box] [mask:linear-gradient(#fff_0_0)_padding-box,linear-gradient(#fff_0_0)] mask-composite-exclude opacity-70 animate-pulse-slow"></div>
+            )}
+            <span className="relative z-10 flex items-center justify-center">
+              <span className="mr-3 text-xl group-hover:scale-110 transition-transform">🚗</span> AUTO NA GOTOWO
+            </span>
           </button>
           <button
             onClick={() => setProcessType('custom')}
-            className={`px-10 py-5 rounded-2xl font-bold tracking-widest text-sm transition-all duration-300 border ${processType === 'custom'
-              ? 'bg-gradient-to-br from-concept-blue/20 to-blue-600/10 border-concept-blue/50 text-white shadow-[0_0_30px_rgba(59,130,246,0.2)]'
-              : 'glass border-white/5 text-slate-400 hover:text-white hover:bg-white/5'
+            className={`relative px-10 py-5 rounded-2xl font-bold tracking-widest text-sm transition-all duration-500 overflow-hidden group ${processType === 'custom'
+              ? 'bg-gradient-to-br from-concept-blue/40 to-blue-900/20 text-white shadow-[0_0_40px_rgba(59,130,246,0.3)]'
+              : 'glass border border-white/5 text-slate-400 hover:text-white hover:bg-white/10'
               }`}
           >
-            <span className="mr-3 text-xl">🎯</span> AUTO POD DOM
+            {processType === 'custom' && (
+              <div className="absolute inset-0 border-2 border-transparent rounded-2xl [background:linear-gradient(theme(colors.blue.400),theme(colors.blue.600))_border-box] [mask:linear-gradient(#fff_0_0)_padding-box,linear-gradient(#fff_0_0)] mask-composite-exclude opacity-70 animate-pulse-slow"></div>
+            )}
+            <span className="relative z-10 flex items-center justify-center">
+              <span className="mr-3 text-xl group-hover:scale-110 transition-transform">🎯</span> AUTO POD DOM
+            </span>
           </button>
         </div>
 

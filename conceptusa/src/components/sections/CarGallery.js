@@ -36,30 +36,41 @@ const CarGallery = ({
         <div className="flex justify-center gap-4 mb-16 flex-wrap">
           <button
             onClick={() => setActiveFilter('all')}
-            className={`px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-300 ${activeFilter === 'all'
-                ? 'bg-concept-red text-white shadow-[0_0_15px_rgba(220,38,38,0.4)]'
-                : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/5'
+            className={`relative px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-500 overflow-hidden group ${activeFilter === 'all'
+              ? 'bg-gradient-to-r from-concept-red to-red-700 text-white shadow-[0_0_20px_rgba(220,38,38,0.5)] border border-red-500/50 scale-105'
+              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20'
               }`}
           >
-            Wszystkie
+            {activeFilter === 'all' && (
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-scan"></div>
+            )}
+            <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 block">Wszystkie</span>
           </button>
+
           <button
             onClick={() => setActiveFilter('available')}
-            className={`px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-300 ${activeFilter === 'available'
-                ? 'bg-concept-red text-white shadow-[0_0_15px_rgba(220,38,38,0.4)]'
-                : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/5'
+            className={`relative px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-500 overflow-hidden group ${activeFilter === 'available'
+              ? 'bg-gradient-to-r from-teal-500 to-teal-700 text-white shadow-[0_0_20px_rgba(20,184,166,0.5)] border border-teal-400/50 scale-105'
+              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20'
               }`}
           >
-            Dostępne
+            {activeFilter === 'available' && (
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-scan"></div>
+            )}
+            <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 block">Dostępne</span>
           </button>
+
           <button
             onClick={() => setActiveFilter('sold')}
-            className={`px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-300 ${activeFilter === 'sold'
-                ? 'bg-concept-red text-white shadow-[0_0_15px_rgba(220,38,38,0.4)]'
-                : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/5'
+            className={`relative px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-500 overflow-hidden group ${activeFilter === 'sold'
+              ? 'bg-gradient-to-r from-slate-500 to-slate-700 text-white shadow-[0_0_20px_rgba(100,116,139,0.5)] border border-slate-400/50 scale-105'
+              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20'
               }`}
           >
-            Sprzedane
+            {activeFilter === 'sold' && (
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-scan"></div>
+            )}
+            <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 block">Sprzedane</span>
           </button>
         </div>
 
@@ -123,8 +134,8 @@ const CarGallery = ({
               }}
               disabled={currentPage === 1}
               className={`p-3 rounded-xl transition-all duration-300 ${currentPage === 1
-                  ? 'bg-white/5 opacity-50 cursor-not-allowed text-slate-500'
-                  : 'bg-white/10 hover:bg-concept-red text-white'
+                ? 'bg-white/5 opacity-50 cursor-not-allowed text-slate-500'
+                : 'bg-white/10 hover:bg-concept-red text-white'
                 }`}
             >
               <ChevronLeft size={20} />
@@ -145,8 +156,8 @@ const CarGallery = ({
                       scrollToSection('portfolio');
                     }}
                     className={`min-w-[44px] h-[44px] rounded-xl font-semibold transition-all duration-300 ${currentPage === pageNum
-                        ? 'bg-concept-red text-white shadow-[0_0_15px_rgba(220,38,38,0.4)] scale-110'
-                        : 'bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/5'
+                      ? 'bg-concept-red text-white shadow-[0_0_15px_rgba(220,38,38,0.4)] scale-110'
+                      : 'bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/5'
                       }`}
                   >
                     {pageNum}
@@ -168,8 +179,8 @@ const CarGallery = ({
               }}
               disabled={currentPage === totalPages}
               className={`p-3 rounded-xl transition-all duration-300 ${currentPage === totalPages
-                  ? 'bg-white/5 opacity-50 cursor-not-allowed text-slate-500'
-                  : 'bg-white/10 hover:bg-concept-red text-white'
+                ? 'bg-white/5 opacity-50 cursor-not-allowed text-slate-500'
+                : 'bg-white/10 hover:bg-concept-red text-white'
                 }`}
             >
               <ChevronRight size={20} />

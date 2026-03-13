@@ -15,9 +15,12 @@ const CarCard = ({
 
   return (
     <div
-      className="glass group rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] border border-white/5"
+      className="glass group rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 relative"
       onClick={() => openCarModal(car)}
     >
+      {/* Dynamic Hover Glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-concept-red/0 via-transparent to-concept-blue/0 group-hover:from-concept-red/10 group-hover:to-concept-blue/10 transition-colors duration-700 pointer-events-none z-10 mix-blend-screen"></div>
+
       <div className="relative h-56 overflow-hidden bg-black/50">
         <img
           src={mainImage}
@@ -30,7 +33,10 @@ const CarCard = ({
         />
 
         {/* Absolute Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-concept-dark via-transparent to-transparent opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-concept-dark via-concept-dark/20 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-700 z-10"></div>
+
+        {/* Scanning line effect on hover */}
+        <div className="absolute inset-0 w-full h-[2px] bg-white/40 shadow-[0_0_15px_rgba(255,255,255,0.8)] -translate-y-full group-hover:animate-[scan_2s_ease-in-out_infinite] z-20"></div>
 
         {carImages.length > 1 && (
           <div className="absolute bottom-4 right-4 glass px-3 py-1.5 rounded-full text-xs font-medium tracking-wide flex items-center gap-2 border-white/20 text-white">
