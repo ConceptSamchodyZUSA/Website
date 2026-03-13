@@ -10,19 +10,19 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <div className="flex items-center space-x-3 cursor-pointer" onClick={() => scrollToSection('home')}>
+            <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => scrollToSection('home')}>
               {!isScrolled ? (
-                <div className="text-2xl font-bold font-heading">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x">CONCEPT</span>
-                  <span className="text-white text-xs ml-2 font-sans font-medium">Samochody z USA</span>
+                <div className="text-xl md:text-2xl font-extrabold font-heading tracking-widest">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x group-hover:drop-shadow-[0_0_15px_rgba(220,38,38,0.5)] transition-all duration-500">CONCEPT</span>
+                  <span className="text-white/80 text-[0.65rem] md:text-xs ml-3 font-sans font-medium uppercase tracking-[0.2em]">Samochody z USA</span>
                 </div>
               ) : (
-                <div className="text-xl font-bold flex items-center gap-3 font-heading">
+                <div className="text-lg md:text-xl font-extrabold flex items-center gap-3 font-heading tracking-widest">
                   <div className="relative inline-block">
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x tracking-widest text-shadow-sm">CONCEPT</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x text-shadow-sm group-hover:drop-shadow-[0_0_10px_rgba(220,38,38,0.4)] transition-all duration-500">CONCEPT</span>
                   </div>
-                  <div className="relative inline-block text-xs font-sans font-medium">
-                    <span className="text-white">USA</span>
+                  <div className="relative inline-block text-[0.65rem] md:text-xs font-sans font-medium uppercase tracking-[0.2em]">
+                    <span className="text-white/80">USA</span>
                   </div>
                 </div>
               )}
@@ -81,7 +81,7 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
           }`}>
           {/* Header */}
           <div className="flex justify-between items-center p-6 border-b border-white/5">
-            <div className="flex items-center gap-2 font-heading font-bold text-2xl tracking-widest">
+            <div className="flex items-center gap-2 font-heading font-extrabold text-xl tracking-widest">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x">CONCEPT</span>
             </div>
             <button

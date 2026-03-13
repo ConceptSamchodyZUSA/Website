@@ -56,37 +56,39 @@ const Hero = ({ isVisible, scrollToSection }) => {
         </div>
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-bold mb-6 font-heading tracking-tight drop-shadow-2xl leading-none opacity-0 animate-fade-in-up">
-          <div className="relative inline-block mb-2 text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x drop-shadow-[0_0_30px_rgba(220,38,38,0.4)]">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-12 md:mt-20">
+        <h1 className="text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold mb-5 font-heading tracking-widest drop-shadow-2xl leading-none opacity-0 animate-fade-in-up">
+          <div className="relative inline-block mb-4 text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x drop-shadow-[0_0_30px_rgba(220,38,38,0.4)] px-4">
+            {/* Added a subtle glow behind the text to make it pop more elegantly without being massive */}
+            <div className="absolute inset-0 bg-white/5 blur-xl rounded-full -z-10 animate-pulse-slow"></div>
             CONCEPT
           </div>
           <br />
-          <div className="relative inline-block mt-4">
-            <span className="text-white text-4xl md:text-6xl lg:text-7xl tracking-wide font-sans font-light text-shadow-xl">
+          <div className="relative inline-block mt-3">
+            <span className="text-white text-2xl md:text-3xl lg:text-4xl tracking-[0.2em] font-sans font-medium text-shadow-xl uppercase">
               Samochody z USA
             </span>
           </div>
         </h1>
 
-        <p className="text-xl md:text-2xl mb-14 text-slate-300 font-light max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards]">
+        <p className="text-base md:text-lg mb-10 text-slate-300 font-light max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards] tracking-wide">
           Premium import amerykańskiej motoryzacji. Dostarczamy emocje prosto do Twojego garażu.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">
+        <div className="flex flex-col sm:flex-row gap-5 justify-center opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards] mb-8">
           <button
             onClick={() => scrollToSection('portfolio')}
-            className="group relative overflow-hidden glass rounded-full px-10 py-5 transition-all duration-500 hover:bg-white/10 border-white/20 hover:border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+            className="group relative overflow-hidden glass rounded-full px-8 py-4 transition-all duration-500 hover:bg-white/10 border-white/20 hover:border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]"
           >
             <div className="absolute inset-0 w-1/2 h-full -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
-            <span className="relative text-lg font-medium text-white tracking-widest uppercase">
+            <span className="relative text-base font-medium text-white tracking-[0.2em] uppercase">
               Zobacz portfolio
             </span>
           </button>
 
           <button
             onClick={() => scrollToSection('order')}
-            className="group relative overflow-hidden px-10 py-5 rounded-full text-lg font-bold tracking-widest uppercase text-white bg-gradient-to-r from-concept-red to-red-700 transition-all duration-500 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] hover:-translate-y-1 border border-red-500/50"
+            className="group relative overflow-hidden px-8 py-4 rounded-full text-base font-bold tracking-[0.2em] uppercase text-white bg-gradient-to-r from-concept-red to-red-700 transition-all duration-500 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] hover:-translate-y-1 border border-red-500/50"
           >
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-scan"></div>
             <span className="relative z-10 flex items-center gap-3">
@@ -96,9 +98,10 @@ const Hero = ({ isVisible, scrollToSection }) => {
           </button>
         </div>
 
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 opacity-60 hover:opacity-100 cursor-pointer hover:text-white transition-all duration-300" onClick={() => scrollToSection('about')}>
-          <span className="text-xs font-bold tracking-[0.3em] uppercase">Odkryj</span>
-          <ChevronDown className="animate-bounce mt-1 text-concept-red" size={24} />
+        {/* Adjusted bottom spacing to prevent overlapping */}
+        <div className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 opacity-60 hover:opacity-100 cursor-pointer hover:text-white transition-all duration-300 z-30" onClick={() => scrollToSection('about')}>
+          <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase">Odkryj</span>
+          <ChevronDown className="animate-bounce mt-1 text-concept-red" size={20} />
         </div>
       </div>
     </section>
