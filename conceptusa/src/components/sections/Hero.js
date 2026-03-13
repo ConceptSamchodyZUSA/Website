@@ -56,16 +56,30 @@ const Hero = ({ isVisible, scrollToSection }) => {
         </div>
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-12 md:mt-20">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         <h1 className="text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold mb-5 font-heading tracking-widest drop-shadow-2xl leading-none opacity-0 animate-fade-in-up">
-          <div className="relative inline-block mb-4 text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x drop-shadow-[0_0_30px_rgba(220,38,38,0.4)] px-4">
-            {/* Added a subtle glow behind the text to make it pop more elegantly without being massive */}
-            <div className="absolute inset-0 bg-white/5 blur-xl rounded-full -z-10 animate-pulse-slow"></div>
-            CONCEPT
+          {/* Premium logo with flanking decorative lines */}
+          <div className="relative inline-flex items-center gap-4 md:gap-6 mb-4">
+            {/* Left decorative line */}
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="w-8 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-concept-red/60"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-concept-red/80"></div>
+            </div>
+
+            <div className="relative text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x drop-shadow-[0_0_30px_rgba(220,38,38,0.4)] px-2">
+              <div className="absolute inset-0 bg-white/5 blur-xl rounded-full -z-10 animate-pulse-slow"></div>
+              CONCEPT
+            </div>
+
+            {/* Right decorative line */}
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-concept-blue/80"></div>
+              <div className="w-8 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-concept-blue/60"></div>
+            </div>
           </div>
           <br />
-          <div className="relative inline-block mt-3">
-            <span className="text-white text-2xl md:text-3xl lg:text-4xl tracking-[0.2em] font-sans font-medium text-shadow-xl uppercase">
+          <div className="relative inline-block mt-1">
+            <span className="text-white text-2xl md:text-3xl lg:text-4xl tracking-[0.3em] font-sans font-light text-shadow-xl uppercase">
               Samochody z USA
             </span>
           </div>
@@ -97,13 +111,12 @@ const Hero = ({ isVisible, scrollToSection }) => {
             </span>
           </button>
         </div>
+      </div>
 
-        {/* Adjusted bottom spacing to prevent overlapping on smaller screens */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-400 opacity-60 hover:opacity-100 cursor-pointer hover:text-white transition-all duration-300 z-30" onClick={() => scrollToSection('about')}>
-          <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase hidden sm:block">Odkryj</span>
-          <ChevronDown className="animate-bounce mt-1 text-concept-red hidden sm:block" size={20} />
-          <ChevronDown className="animate-bounce mt-1 text-concept-red sm:hidden" size={16} />
-        </div>
+      {/* Odkryj arrow — positioned relative to the SECTION (h-screen), NOT the content container */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-400 opacity-60 hover:opacity-100 cursor-pointer hover:text-white transition-all duration-300 z-30" onClick={() => scrollToSection('about')}>
+        <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase">Odkryj</span>
+        <ChevronDown className="animate-bounce mt-1 text-concept-red" size={20} />
       </div>
     </section>
   );
