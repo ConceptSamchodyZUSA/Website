@@ -67,7 +67,7 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   placeholder="Imię i nazwisko"
                   required
                 />
-                <label htmlFor="name" className="absolute left-0 top-3 text-slate-500 text-sm font-light transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
+                <label htmlFor="name" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
                   Imię i nazwisko *
                 </label>
               </div>
@@ -82,7 +82,7 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   placeholder="Email"
                   required
                 />
-                <label htmlFor="email" className="absolute left-0 top-3 text-slate-500 text-sm font-light transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs">
+                <label htmlFor="email" className="absolute left-0 -top-3.5 text-concept-blue text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs">
                   Email *
                 </label>
               </div>
@@ -99,7 +99,7 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                 placeholder="Telefon"
                 required
               />
-              <label htmlFor="phone" className="absolute left-0 top-3 text-slate-500 text-sm font-light transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
+              <label htmlFor="phone" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
                 Telefon *
               </label>
             </div>
@@ -129,7 +129,7 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-blue transition-colors font-light placeholder-transparent"
                   placeholder="Marka"
                 />
-                <label htmlFor="brand" className="absolute left-0 top-3 text-slate-500 text-sm font-light transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs">
+                <label htmlFor="brand" className="absolute left-0 -top-3.5 text-concept-blue text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs">
                   Marka (np. Dodge)
                 </label>
               </div>
@@ -143,7 +143,7 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent"
                   placeholder="Model"
                 />
-                <label htmlFor="model" className="absolute left-0 top-3 text-slate-500 text-sm font-light transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
+                <label htmlFor="model" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
                   Model (np. Challenger)
                 </label>
               </div>
@@ -161,7 +161,7 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent"
                   placeholder="Budżet"
                 />
-                <label htmlFor="budget" className="absolute left-0 top-3 text-slate-500 text-sm font-light transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
+                <label htmlFor="budget" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
                   Budżet (PLN)
                 </label>
               </div>
@@ -175,7 +175,7 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-blue transition-colors font-light placeholder-transparent"
                   placeholder="Rok produkcji"
                 />
-                <label htmlFor="year" className="absolute left-0 top-3 text-slate-500 text-sm font-light transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs">
+                <label htmlFor="year" className="absolute left-0 -top-3.5 text-concept-blue text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs">
                   Rok produkcji
                 </label>
               </div>
@@ -191,7 +191,7 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                 className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent resize-none"
                 placeholder="Wiadomość"
               ></textarea>
-              <label htmlFor="message" className="absolute left-0 top-3 text-slate-500 text-sm font-light transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
+              <label htmlFor="message" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
                 Dodatkowe informacje, pytania...
               </label>
             </div>

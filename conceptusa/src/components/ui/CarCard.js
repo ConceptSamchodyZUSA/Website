@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calendar, Gauge, Fuel, Zap } from 'lucide-react';
+import { useTilt } from '../../hooks/useAnimations';
 
 const CarCard = ({
   car,
@@ -12,11 +13,16 @@ const CarCard = ({
 }) => {
   const carImages = getCarImages(car);
   const mainImage = carImages[0];
+  const { ref: tiltRef, style: tiltStyle, onMouseMove, onMouseLeave } = useTilt(6);
 
   return (
     <div
-      className="glass group rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 relative"
+      ref={tiltRef}
+      className="glass group rounded-2xl overflow-hidden cursor-pointer border border-white/5 relative"
       onClick={() => openCarModal(car)}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      style={tiltStyle}
     >
       {/* Dynamic Hover Glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-concept-red/0 via-transparent to-concept-blue/0 group-hover:from-concept-red/10 group-hover:to-concept-blue/10 transition-colors duration-700 pointer-events-none z-10 mix-blend-screen"></div>

@@ -7,7 +7,12 @@
     @apply font-sans antialiased text-slate-200 selection:bg-concept-red selection:text-white;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading tracking-tight text-white;
   }
 
@@ -73,9 +78,12 @@
   }
 
   @keyframes gradient-x {
-    0%, 100% {
+
+    0%,
+    100% {
       background-position: 0% 50%;
     }
+
     50% {
       background-position: 100% 50%;
     }
@@ -84,5 +92,86 @@
   .animate-gradient-x {
     background-size: 200% 100%;
     animation: gradient-x 3s ease infinite;
+  }
+
+  /* Scroll entrance animations */
+  section[id] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  section[id].visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered children inside visible sections */
+  section[id].visible>div>* {
+    animation: fadeInChild 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  section[id].visible>div>*:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+
+  section[id].visible>div>*:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  section[id].visible>div>*:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+
+  section[id].visible>div>*:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+
+  section[id].visible>div>*:nth-child(5) {
+    animation-delay: 0.25s;
+  }
+
+  @keyframes fadeInChild {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hero is always visible (first section) */
+  section#home {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Hide scrollbar for thumbnail strips */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Scan animation for CTA buttons */
+  @keyframes scan {
+    0% {
+      transform: translateX(-100%);
+    }
+
+    100% {
+      transform: translateX(100%);
+    }
   }
 }

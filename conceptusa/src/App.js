@@ -475,6 +475,19 @@ const ConceptUSACars = () => {
 
       <Footer />
 
+      {/* Sticky Mobile CTA */}
+      {isScrolled && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 md:hidden">
+          <button
+            onClick={() => scrollToSection('order')}
+            className="bg-gradient-to-r from-concept-red to-red-700 text-white px-8 py-3.5 rounded-full font-bold text-sm tracking-widest uppercase shadow-[0_0_30px_rgba(220,38,38,0.5)] border border-red-500/50 flex items-center gap-2 animate-pulse-slow"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            Zamów auto
+          </button>
+        </div>
+      )}
+
       <Modal
         selectedCar={selectedCar}
         closeCarModal={closeCarModal}

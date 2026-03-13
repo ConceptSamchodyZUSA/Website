@@ -1,9 +1,13 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
+import { useCountUp } from '../../hooks/useAnimations';
 
 const backgroundImageFallback = '/background.jpg';
 
 const Hero = ({ isVisible, scrollToSection }) => {
+  const { ref: carsCountRef, count: carsCount } = useCountUp(400, 2200);
+  const { ref: safetyCountRef, count: safetyCount } = useCountUp(100, 1800);
+
   return (
     <section id="home" className={`relative h-screen flex items-center justify-center overflow-hidden ${isVisible ? 'visible' : ''}`}>
       <div className="absolute inset-0 bg-concept-dark/80 z-0"></div>
@@ -34,8 +38,8 @@ const Hero = ({ isVisible, scrollToSection }) => {
       {/* Floating Badges */}
       <div className="absolute top-1/4 right-[10%] lg:right-[15%] hidden md:block animate-float z-20">
         <div className="glass-panel px-6 py-4 rounded-2xl border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center gap-4 backdrop-blur-xl">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-concept-red to-orange-500 flex items-center justify-center text-white font-bold text-xl shadow-[0_0_20px_rgba(220,38,38,0.5)]">
-            +400
+          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-concept-red to-orange-500 flex items-center justify-center text-white font-bold text-xl shadow-[0_0_20px_rgba(220,38,38,0.5)]" ref={carsCountRef}>
+            +{carsCount}
           </div>
           <div>
             <p className="text-white font-bold tracking-wide">Sprowadzonych</p>
@@ -46,8 +50,8 @@ const Hero = ({ isVisible, scrollToSection }) => {
 
       <div className="absolute bottom-1/3 left-[10%] lg:left-[15%] hidden md:block animate-float-delayed z-20">
         <div className="glass-panel px-6 py-4 rounded-2xl border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center gap-4 backdrop-blur-xl">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-concept-blue to-teal-500 flex items-center justify-center text-white font-bold text-xl shadow-[0_0_20px_rgba(59,130,246,0.5)]">
-            100%
+          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-concept-blue to-teal-500 flex items-center justify-center text-white font-bold text-xl shadow-[0_0_20px_rgba(59,130,246,0.5)]" ref={safetyCountRef}>
+            {safetyCount}%
           </div>
           <div>
             <p className="text-white font-bold tracking-wide">Bezpieczeństwo</p>
