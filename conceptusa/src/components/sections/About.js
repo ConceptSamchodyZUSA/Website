@@ -20,44 +20,90 @@ const About = ({ isVisible }) => {
           Dlaczego <span className="text-concept-red">CONCEPT</span>?
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            { icon: <Shield size={40} />, title: 'Bezpieczeństwo', desc: 'Sprawdzona historia pojazdu i pełna dokumentacja' },
-            { icon: <DollarSign size={40} />, title: 'Najlepsze ceny', desc: 'Import bezpośrednio z USA bez pośredników' },
-            { icon: <Truck size={40} />, title: 'Pełna obsługa', desc: 'Od zakupu po rejestrację - wszystko załatwiamy' },
-            { icon: <Star size={40} />, title: 'Doświadczenie', desc: 'Setki zadowolonych klientów i sprowadzonych aut' }
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className="glass p-8 rounded-2xl text-center group transition-all duration-300 hover:-translate-y-2 hover:bg-white/10"
-            >
-              <div className="text-concept-red flex justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                {item.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white tracking-wide">{item.title}</h3>
-              <p className="text-slate-400 font-light leading-relaxed">{item.desc}</p>
+        {/* Bento Box Layout for 'Dlaczego CONCEPT?' */}
+        <div className="grid md:grid-cols-3 gap-6 auto-rows-[250px]">
+          {/* Main feature - span 2 cols, 2 rows if needed or just 1 row */}
+          <div className="glass p-8 rounded-3xl text-left group transition-all duration-500 hover:-translate-y-2 hover:bg-white/10 md:col-span-2 relative overflow-hidden flex flex-col justify-end">
+            <div className="absolute top-8 right-8 text-concept-red opacity-20 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500">
+              <Shield size={120} />
             </div>
-          ))}
+            <div className="relative z-10 w-2/3">
+              <div className="text-concept-red mb-4 group-hover:-translate-y-1 transition-transform duration-300">
+                <Shield size={32} />
+              </div>
+              <h3 className="text-2xl font-bold mb-3 text-white tracking-wide">Bezpieczeństwo na pierwszy rzutu oka</h3>
+              <p className="text-slate-400 font-light leading-relaxed">Każdy sprowadzany przez nas samochód posiada sprawdzoną historię CarFax i pełną dokumentację aukcyjną. Nie ma miejsca na domysły.</p>
+            </div>
+          </div>
+
+          <div className="glass p-8 rounded-3xl text-left group transition-all duration-500 hover:-translate-y-2 hover:bg-white/10 relative overflow-hidden flex flex-col justify-end">
+            <div className="absolute top-6 right-6 text-concept-blue opacity-20 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500">
+              <DollarSign size={80} />
+            </div>
+            <div className="relative z-10">
+              <div className="text-concept-blue mb-4 group-hover:-translate-y-1 transition-transform duration-300">
+                <DollarSign size={28} />
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-white tracking-wide">Najlepsze ceny</h3>
+              <p className="text-slate-400 text-sm font-light leading-relaxed">Import bezpośrednio z USA bez drogich pośredników krajowych.</p>
+            </div>
+          </div>
+
+          <div className="glass p-8 rounded-3xl text-left group transition-all duration-500 hover:-translate-y-2 hover:bg-white/10 relative overflow-hidden flex flex-col justify-end">
+            <div className="absolute top-6 right-6 text-teal-500 opacity-20 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500">
+              <Truck size={80} />
+            </div>
+            <div className="relative z-10">
+              <div className="text-teal-500 mb-4 group-hover:-translate-y-1 transition-transform duration-300">
+                <Truck size={28} />
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-white tracking-wide">Północna logistyka</h3>
+              <p className="text-slate-400 text-sm font-light leading-relaxed">Od zakupu po rejestrację - organizujemy transport prosto z portu w Gdyni.</p>
+            </div>
+          </div>
+
+          <div className="glass p-8 rounded-3xl text-left group transition-all duration-500 hover:-translate-y-2 hover:bg-white/10 md:col-span-2 relative overflow-hidden flex flex-col justify-end border-l-4 border-white/20 hover:border-concept-red">
+            <div className="absolute top-8 right-8 text-white opacity-5 group-hover:scale-110 group-hover:opacity-20 transition-all duration-500">
+              <Star size={120} />
+            </div>
+            <div className="relative z-10 w-3/4">
+              <div className="text-white mb-4 group-hover:-translate-y-1 transition-transform duration-300">
+                <Star size={32} />
+              </div>
+              <h3 className="text-2xl font-bold mb-3 text-white tracking-wide">Wieloletnie doświadczenie</h3>
+              <p className="text-slate-400 font-light leading-relaxed">Setki zadowolonych klientów i perfekcyjnie sprowadzonych aut, ugruntowane lata na dynamicznym rynku importu aut z za wielkiej wody.</p>
+            </div>
+          </div>
         </div>
 
-        {/* Specjalizacja */}
+        {/* Specjalizacja - Spotlight effect */}
         <div className="mt-24">
-          <h3 className="text-3xl font-bold text-center mb-8 font-heading">
-            Nasza <span className="text-concept-red">specjalizacja</span>
+          <h3 className="text-3xl font-bold text-center mb-10 font-heading tracking-wide">
+            Nasza <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red to-concept-blue animate-gradient-x">specjalizacja</span>
           </h3>
-          <div className="glass-panel rounded-2xl p-10 text-center">
-            <p className="text-lg md:text-xl text-slate-300 mb-8 font-light">
-              Specjalizujemy się głównie w markach grupy <span className="text-concept-blue font-semibold tracking-wide">Stellantis</span>
+          <div className="glass-panel border border-white/5 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden group">
+            {/* Ambient Background that follows general hover logic or just pulses smoothly */}
+            <div className="absolute inset-0 bg-gradient-to-br from-concept-red/5 via-transparent to-concept-blue/5 opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+            <p className="relative z-10 text-lg md:text-2xl text-slate-300 mb-10 font-light tracking-wide">
+              Specjalizujemy się głównie w markach grupy <span className="text-white font-semibold">Stellantis</span>
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base mb-8">
-              <span className="bg-concept-red/10 border border-concept-red/30 text-white px-6 py-2.5 rounded-full font-medium tracking-wide shadow-[0_0_15px_rgba(220,38,38,0.1)]">Chrysler</span>
-              <span className="bg-concept-red/10 border border-concept-red/30 text-white px-6 py-2.5 rounded-full font-medium tracking-wide shadow-[0_0_15px_rgba(220,38,38,0.1)]">Dodge</span>
-              <span className="bg-concept-red/10 border border-concept-red/30 text-white px-6 py-2.5 rounded-full font-medium tracking-wide shadow-[0_0_15px_rgba(220,38,38,0.1)]">Jeep</span>
-              <span className="bg-concept-red/10 border border-concept-red/30 text-white px-6 py-2.5 rounded-full font-medium tracking-wide shadow-[0_0_15px_rgba(220,38,38,0.1)]">Fiat</span>
-              <span className="bg-concept-red/10 border border-concept-red/30 text-white px-6 py-2.5 rounded-full font-medium tracking-wide shadow-[0_0_15px_rgba(220,38,38,0.1)]">Alfa Romeo</span>
+            <div className="relative z-10 flex flex-wrap justify-center gap-4 text-sm md:text-base mb-10">
+              {[
+                { name: 'Chrysler', color: 'red' },
+                { name: 'Dodge', color: 'red' },
+                { name: 'Jeep', color: 'teal' },
+                { name: 'Fiat', color: 'blue' },
+                { name: 'Alfa Romeo', color: 'red' }
+              ].map((brand, i) => (
+                <span key={i} className="group/badge relative overflow-hidden bg-white/5 border border-white/10 text-slate-300 hover:text-white px-8 py-3 rounded-full font-medium tracking-widest transition-all duration-300 hover:-translate-y-1 hover:border-white/30 cursor-default">
+                  <div className={`absolute inset-0 bg-gradient-to-r from-concept-${brand.color}/20 to-transparent opacity-0 group-hover/badge:opacity-100 transition-opacity duration-500`}></div>
+                  <span className="relative z-10">{brand.name}</span>
+                </span>
+              ))}
             </div>
-            <p className="text-slate-400 text-sm font-light">
-              oraz inne marki amerykańskie jak <span className="text-white font-medium">Ford</span> i więcej
+            <p className="relative z-10 text-slate-400 text-sm font-light tracking-wide">
+              oraz inne prestiżowe marki amerykańskie jak <span className="text-white font-medium">Ford</span> czy <span className="text-white font-medium">Chevrolet</span>
             </p>
           </div>
         </div>

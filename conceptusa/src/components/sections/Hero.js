@@ -98,10 +98,11 @@ const Hero = ({ isVisible, scrollToSection }) => {
           </button>
         </div>
 
-        {/* Adjusted bottom spacing to prevent overlapping */}
-        <div className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 opacity-60 hover:opacity-100 cursor-pointer hover:text-white transition-all duration-300 z-30" onClick={() => scrollToSection('about')}>
-          <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase">Odkryj</span>
-          <ChevronDown className="animate-bounce mt-1 text-concept-red" size={20} />
+        {/* Adjusted bottom spacing to prevent overlapping on smaller screens */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-400 opacity-60 hover:opacity-100 cursor-pointer hover:text-white transition-all duration-300 z-30" onClick={() => scrollToSection('about')}>
+          <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase hidden sm:block">Odkryj</span>
+          <ChevronDown className="animate-bounce mt-1 text-concept-red hidden sm:block" size={20} />
+          <ChevronDown className="animate-bounce mt-1 text-concept-red sm:hidden" size={16} />
         </div>
       </div>
     </section>

@@ -39,12 +39,11 @@ const Modal = ({
 
         <div className="p-8 md:p-10">
           {/* Image Gallery */}
-          <div className="relative mb-10 group bg-black/40 rounded-2xl overflow-hidden shadow-inner border border-white/5">
+          <div className="relative mb-6 group bg-black/40 rounded-2xl overflow-hidden shadow-inner border border-white/5">
             <img
               src={getCarImages(selectedCar)[currentImageIndex]}
               alt={`${selectedCar.brand} ${selectedCar.model}`}
-              className={`w-full h-[400px] md:h-[500px] object-contain transition duration-700 ${!loadedImages.has(getCarImages(selectedCar)[currentImageIndex]) ? 'blur-md grayscale' : ''
-                }`}
+              className={`w-full h-[400px] md:h-[500px] object-contain transition duration-700 ${!loadedImages.has(getCarImages(selectedCar)[currentImageIndex]) ? 'blur-md grayscale' : ''}`}
               loading="lazy"
               decoding="async"
               onLoad={() => handleImageLoad(getCarImages(selectedCar)[currentImageIndex])}
@@ -65,25 +64,35 @@ const Modal = ({
                   <ChevronRight size={24} />
                 </button>
 
-                <div className="absolute bottom-6 right-6 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full text-sm font-medium tracking-widest text-white/90 border border-white/10 shadow-lg">
+                <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full text-sm font-medium tracking-widest text-white/90 border border-white/10 shadow-lg">
                   {currentImageIndex + 1} / {getCarImages(selectedCar).length}
-                </div>
-
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-                  {getCarImages(selectedCar).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
-                      className={`h-2 rounded-full transition-all duration-300 ${index === currentImageIndex
-                          ? 'bg-concept-red w-8'
-                          : 'bg-white/30 hover:bg-white/60 w-2'
-                        }`}
-                    />
-                  ))}
                 </div>
               </>
             )}
           </div>
+
+          {/* Thumbnail Strip */}
+          {getCarImages(selectedCar).length > 1 && (
+            <div className="flex gap-3 mb-10 overflow-x-auto pb-2 scrollbar-hide">
+              {getCarImages(selectedCar).map((imgSrc, index) => (
+                <button
+                  key={index}
+                  onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
+                  className={`flex-shrink-0 w-20 h-16 md:w-24 md:h-18 rounded-xl overflow-hidden border-2 transition-all duration-300 ${index === currentImageIndex
+                    ? 'border-concept-red shadow-[0_0_15px_rgba(220,38,38,0.4)] scale-105'
+                    : 'border-white/10 opacity-50 hover:opacity-100 hover:border-white/30'
+                    }`}
+                >
+                  <img
+                    src={imgSrc}
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
 
           <div className="grid md:grid-cols-2 gap-12">
             <div>
@@ -95,55 +104,55 @@ const Modal = ({
                 <p className="text-slate-300 font-light leading-relaxed mb-8">{selectedCar.description}</p>
               )}
 
-              <div className="grid grid-cols-2 gap-y-6 gap-x-4">
-                <div className="glass px-4 py-3 rounded-xl border-white/5">
-                  <p className="text-slate-500 text-xs font-bold tracking-widest uppercase mb-1">Rok produkcji</p>
-                  <p className="text-white text-lg font-medium">{selectedCar.year}</p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="glass p-4 rounded-2xl border-white/5 group/spec hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                  <p className="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1">Rok produkcji</p>
+                  <p className="text-white text-xl font-bold">{selectedCar.year}</p>
                 </div>
-                <div className="glass px-4 py-3 rounded-xl border-white/5">
-                  <p className="text-slate-500 text-xs font-bold tracking-widest uppercase mb-1">Przebieg</p>
-                  <p className="text-white text-lg font-medium">
-                    {selectedCar.mileage?.toLocaleString()} mil
+                <div className="glass p-4 rounded-2xl border-white/5 group/spec hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                  <p className="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1">Przebieg</p>
+                  <p className="text-white text-xl font-bold">
+                    {selectedCar.mileage?.toLocaleString()} <span className="text-sm font-normal text-slate-400">mil</span>
                   </p>
-                  <p className="text-xs text-slate-400 mt-0.5">({Math.round(selectedCar.mileage * 1.60934).toLocaleString()} km)</p>
+                  <p className="text-[10px] text-slate-500 mt-0.5">({Math.round(selectedCar.mileage * 1.60934).toLocaleString()} km)</p>
                 </div>
                 {selectedCar.engine_capacity && (
-                  <div className="glass px-4 py-3 rounded-xl border-white/5">
-                    <p className="text-slate-500 text-xs font-bold tracking-widest uppercase mb-1">Silnik</p>
-                    <p className="text-white text-lg font-medium">{selectedCar.engine_capacity}L</p>
+                  <div className="glass p-4 rounded-2xl border-white/5 group/spec hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                    <p className="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1">Silnik</p>
+                    <p className="text-white text-xl font-bold">{selectedCar.engine_capacity}L</p>
                   </div>
                 )}
                 {selectedCar.horsepower && (
-                  <div className="glass px-4 py-3 rounded-xl border-white/5">
-                    <p className="text-slate-500 text-xs font-bold tracking-widest uppercase mb-1">Moc</p>
-                    <p className="text-white text-lg font-medium">{selectedCar.horsepower} KM</p>
+                  <div className="glass p-4 rounded-2xl border-white/5 group/spec hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                    <p className="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1">Moc</p>
+                    <p className="text-white text-xl font-bold">{selectedCar.horsepower} <span className="text-sm font-normal text-slate-400">KM</span></p>
                   </div>
                 )}
                 {selectedCar.transmission && (
-                  <div className="glass px-4 py-3 rounded-xl border-white/5">
-                    <p className="text-slate-500 text-xs font-bold tracking-widest uppercase mb-1">Skrzynia</p>
-                    <p className="text-white text-lg font-medium capitalize">{selectedCar.transmission}</p>
+                  <div className="glass p-4 rounded-2xl border-white/5 group/spec hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                    <p className="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1">Skrzynia</p>
+                    <p className="text-white text-xl font-bold capitalize">{selectedCar.transmission}</p>
                   </div>
                 )}
                 {selectedCar.drivetrain && (
-                  <div className="glass px-4 py-3 rounded-xl border-white/5">
-                    <p className="text-slate-500 text-xs font-bold tracking-widest uppercase mb-1">Napęd</p>
-                    <p className="text-white text-lg font-medium flex items-center gap-2">
+                  <div className="glass p-4 rounded-2xl border-white/5 group/spec hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                    <p className="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1">Napęd</p>
+                    <p className="text-white text-xl font-bold flex items-center gap-2">
                       {getDrivetrainIcon(selectedCar.drivetrain)}
                       <span>{getDrivetrainLabel(selectedCar.drivetrain)}</span>
                     </p>
                   </div>
                 )}
                 {selectedCar.fuel_type && (
-                  <div className="glass px-4 py-3 rounded-xl border-white/5">
-                    <p className="text-slate-500 text-xs font-bold tracking-widest uppercase mb-1">Paliwo</p>
-                    <p className="text-white text-lg font-medium capitalize">{selectedCar.fuel_type}</p>
+                  <div className="glass p-4 rounded-2xl border-white/5 group/spec hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                    <p className="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1">Paliwo</p>
+                    <p className="text-white text-xl font-bold capitalize">{selectedCar.fuel_type}</p>
                   </div>
                 )}
                 {selectedCar.color && (
-                  <div className="glass px-4 py-3 rounded-xl border-white/5">
-                    <p className="text-slate-500 text-xs font-bold tracking-widest uppercase mb-1">Kolor</p>
-                    <p className="text-white text-lg font-medium capitalize">{selectedCar.color}</p>
+                  <div className="glass p-4 rounded-2xl border-white/5 group/spec hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                    <p className="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1">Kolor</p>
+                    <p className="text-white text-xl font-bold capitalize">{selectedCar.color}</p>
                   </div>
                 )}
               </div>

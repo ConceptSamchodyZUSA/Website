@@ -3,8 +3,16 @@ import { Facebook, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-concept-dark py-16 border-t border-white/5 relative z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-concept-dark py-16 relative z-10 overflow-hidden">
+      {/* Animated Gradient Top Border */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-concept-red via-concept-blue to-concept-red bg-[length:200%_100%] animate-gradient-x"></div>
+
+      {/* Massive CONCEPT Watermark */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[18rem] md:text-[28rem] font-black tracking-widest text-white/[0.015] font-heading leading-none select-none pointer-events-none whitespace-nowrap" aria-hidden="true">
+        CONCEPT
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-3 gap-12 mb-16">
           {/* Company Info */}
           <div>
