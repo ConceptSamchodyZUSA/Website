@@ -21,13 +21,13 @@ const About = ({ isVisible }) => {
         </h2>
 
         {/* Bento Box Layout for 'Dlaczego CONCEPT?' */}
-        <div className="grid md:grid-cols-3 gap-6 auto-rows-[250px]">
+        <div className="grid md:grid-cols-3 gap-6 md:auto-rows-[250px]">
           {/* Main feature - span 2 cols, 2 rows if needed or just 1 row */}
           <div className="glass p-8 rounded-3xl text-left group transition-all duration-500 hover:-translate-y-2 hover:bg-white/10 md:col-span-2 relative overflow-hidden flex flex-col justify-end">
             <div className="absolute top-8 right-8 text-concept-red opacity-20 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500">
               <Shield size={120} />
             </div>
-            <div className="relative z-10 w-2/3">
+            <div className="relative z-10 md:w-2/3">
               <div className="text-concept-red mb-4 group-hover:-translate-y-1 transition-transform duration-300">
                 <Shield size={32} />
               </div>
@@ -66,7 +66,7 @@ const About = ({ isVisible }) => {
             <div className="absolute top-8 right-8 text-white opacity-5 group-hover:scale-110 group-hover:opacity-20 transition-all duration-500">
               <Star size={120} />
             </div>
-            <div className="relative z-10 w-3/4">
+            <div className="relative z-10 md:w-3/4">
               <div className="text-white mb-4 group-hover:-translate-y-1 transition-transform duration-300">
                 <Star size={32} />
               </div>

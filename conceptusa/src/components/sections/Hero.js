@@ -56,10 +56,10 @@ const Hero = ({ isVisible, scrollToSection }) => {
         </div>
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        <h1 className="text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold mb-5 font-heading tracking-widest drop-shadow-2xl leading-none opacity-0 animate-fade-in-up">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pb-16">
+        <h1 className="text-4xl md:text-5xl lg:text-[5rem] font-extrabold mb-3 font-heading tracking-widest drop-shadow-2xl leading-none opacity-0 animate-fade-in-up">
           {/* Premium logo with flanking decorative lines */}
-          <div className="relative inline-flex items-center gap-4 md:gap-6 mb-4">
+          <div className="relative inline-flex items-center gap-3 md:gap-5 mb-2">
             {/* Left decorative line */}
             <div className="hidden sm:flex items-center gap-2">
               <div className="w-8 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-concept-red/60"></div>
@@ -79,30 +79,30 @@ const Hero = ({ isVisible, scrollToSection }) => {
           </div>
           <br />
           <div className="relative inline-block mt-1">
-            <span className="text-white text-2xl md:text-3xl lg:text-4xl tracking-[0.3em] font-sans font-light text-shadow-xl uppercase">
+            <span className="text-white text-xl md:text-2xl lg:text-3xl tracking-[0.3em] font-sans font-light text-shadow-xl uppercase">
               Samochody z USA
             </span>
           </div>
         </h1>
 
-        <p className="text-base md:text-lg mb-10 text-slate-300 font-light max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards] tracking-wide">
+        <p className="text-sm md:text-base mb-6 text-slate-300 font-light max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards] tracking-wide">
           Premium import amerykańskiej motoryzacji. Dostarczamy emocje prosto do Twojego garażu.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-5 justify-center opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards] mb-8">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">
           <button
             onClick={() => scrollToSection('portfolio')}
-            className="group relative overflow-hidden glass rounded-full px-8 py-4 transition-all duration-500 hover:bg-white/10 border-white/20 hover:border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+            className="group relative overflow-hidden glass rounded-full px-6 py-3 transition-all duration-500 hover:bg-white/10 border-white/20 hover:border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]"
           >
             <div className="absolute inset-0 w-1/2 h-full -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
-            <span className="relative text-base font-medium text-white tracking-[0.2em] uppercase">
+            <span className="relative text-sm font-medium text-white tracking-[0.2em] uppercase">
               Zobacz portfolio
             </span>
           </button>
 
           <button
             onClick={() => scrollToSection('order')}
-            className="group relative overflow-hidden px-8 py-4 rounded-full text-base font-bold tracking-[0.2em] uppercase text-white bg-gradient-to-r from-concept-red to-red-700 transition-all duration-500 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] hover:-translate-y-1 border border-red-500/50"
+            className="group relative overflow-hidden px-6 py-3 rounded-full text-sm font-bold tracking-[0.2em] uppercase text-white bg-gradient-to-r from-concept-red to-red-700 transition-all duration-500 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] hover:-translate-y-1 border border-red-500/50"
           >
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-scan"></div>
             <span className="relative z-10 flex items-center gap-3">
