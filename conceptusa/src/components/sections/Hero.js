@@ -5,7 +5,7 @@ import { useCountUp } from '../../hooks/useAnimations';
 const backgroundImageFallback = '/background.jpg';
 
 const Hero = ({ isVisible, scrollToSection }) => {
-  const { ref: carsCountRef, count: carsCount } = useCountUp(400, 2200);
+  const { ref: carsCountRef, count: carsCount } = useCountUp(2000, 2200);
   const { ref: safetyCountRef, count: safetyCount } = useCountUp(100, 1800);
 
   return (
