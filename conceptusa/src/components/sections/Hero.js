@@ -38,7 +38,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
       {/* Floating Badges */}
       <div className="absolute top-1/4 right-[10%] lg:right-[15%] hidden md:block animate-float z-20">
         <div className="glass-panel px-6 py-4 rounded-2xl border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center gap-4 backdrop-blur-xl">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-concept-red to-orange-500 flex items-center justify-center text-white font-bold text-xl shadow-[0_0_20px_rgba(220,38,38,0.5)]" ref={carsCountRef}>
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-concept-red to-orange-500 flex items-center justify-center text-white font-bold text-sm shadow-[0_0_20px_rgba(220,38,38,0.5)]" ref={carsCountRef}>
             +{carsCount}
           </div>
           <div>
@@ -50,7 +50,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
 
       <div className="absolute bottom-1/3 left-[10%] lg:left-[15%] hidden md:block animate-float-delayed z-20">
         <div className="glass-panel px-6 py-4 rounded-2xl border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center gap-4 backdrop-blur-xl">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-concept-blue to-teal-500 flex items-center justify-center text-white font-bold text-xl shadow-[0_0_20px_rgba(59,130,246,0.5)]" ref={safetyCountRef}>
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-concept-blue to-teal-500 flex items-center justify-center text-white font-bold text-sm shadow-[0_0_20px_rgba(59,130,246,0.5)]" ref={safetyCountRef}>
             {safetyCount}%
           </div>
           <div>
