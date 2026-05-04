@@ -61,33 +61,22 @@ const Hero = ({ isVisible, scrollToSection }) => {
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pb-16">
-        <h1 className="text-4xl md:text-5xl lg:text-[5rem] font-extrabold mb-3 font-heading tracking-widest drop-shadow-2xl leading-none opacity-0 animate-fade-in-up">
-          {/* Premium logo with flanking decorative lines */}
-          <div className="relative inline-flex items-center gap-3 md:gap-5 mb-2">
-            {/* Left decorative line */}
-            <div className="hidden sm:flex items-center gap-2">
-              <div className="w-8 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-concept-red/60"></div>
-              <div className="w-1.5 h-1.5 rounded-full bg-concept-red/80"></div>
+          <div className="flex flex-col items-center justify-center gap-6 mb-6">
+            {/* Massive Emblem */}
+            <div className="relative flex items-center justify-center w-20 h-20 md:w-28 md:h-28 bg-gradient-to-br from-concept-red to-red-900 border-4 border-red-500 transform -skew-x-12 shadow-[0_0_40px_rgba(255,26,26,0.6)] group">
+              <div className="absolute inset-0 bg-white/20 w-1/2 h-full -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+              <span className="relative z-10 text-white font-black text-5xl md:text-7xl italic tracking-tighter transform skew-x-12">C</span>
             </div>
-
-            <div className="relative text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-500 drop-shadow-[0_0_20px_rgba(255,26,26,0.8)] px-2 font-black">
-              <div className="absolute inset-0 bg-concept-red/30 blur-2xl rounded-full -z-10 animate-pulse-slow"></div>
-              CONCEPT
-            </div>
-
-            {/* Right decorative line */}
-            <div className="hidden sm:flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-concept-blue/80"></div>
-              <div className="w-8 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-concept-blue/60"></div>
+            {/* The Text */}
+            <div className="flex flex-col items-center">
+              <span className="text-[4rem] md:text-[7rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 tracking-tighter leading-none drop-shadow-2xl">
+                CONCEPT
+              </span>
+              <span className="text-lg md:text-2xl text-concept-red font-bold tracking-[0.4em] uppercase mt-2">
+                USA IMPORTS
+              </span>
             </div>
           </div>
-          <br />
-          <div className="relative inline-block mt-1">
-            <span className="text-white text-xl md:text-2xl lg:text-3xl tracking-[0.3em] font-sans font-light text-shadow-xl uppercase">
-              Samochody z USA
-            </span>
-          </div>
-        </h1>
 
         <p className="text-sm md:text-base mb-6 text-slate-300 font-light max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards] tracking-wide">
           Premium import amerykańskiej motoryzacji. Dostarczamy emocje prosto do Twojego garażu.
