@@ -10,7 +10,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
 
   return (
     <section id="home" className={`relative h-screen flex items-center justify-center overflow-hidden ${isVisible ? 'visible' : ''}`}>
-      <div className="absolute inset-0 bg-carbon opacity-90 z-0"></div>
+      <div className="absolute inset-0 bg-concept-dark/80 z-0"></div>
 
       {/* Colorful, floating ambient glows */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-concept-red/20 rounded-full mix-blend-screen filter blur-[128px] opacity-70 animate-blob"></div>
@@ -61,43 +61,30 @@ const Hero = ({ isVisible, scrollToSection }) => {
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pb-16">
-        <h1 className="opacity-0 animate-fade-in-up">
-          {/* Spectacular Chrome Logo with Flanking Lines */}
-          <div className="relative inline-flex items-center gap-4 md:gap-8 mb-4">
-            {/* Left Wing/Line */}
+        <h1 className="text-4xl md:text-5xl lg:text-[5rem] font-extrabold mb-3 font-heading tracking-widest drop-shadow-2xl leading-none opacity-0 animate-fade-in-up">
+          {/* Premium logo with flanking decorative lines */}
+          <div className="relative inline-flex items-center gap-3 md:gap-5 mb-2">
+            {/* Left decorative line */}
             <div className="hidden sm:flex items-center gap-2">
-              <div className="w-12 md:w-32 h-[2px] bg-gradient-to-r from-transparent via-red-600 to-concept-red shadow-[0_0_15px_rgba(255,26,26,0.8)]"></div>
-              <div className="w-2 h-2 md:w-3 md:h-3 rotate-45 bg-white shadow-[0_0_10px_white]"></div>
+              <div className="w-8 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-concept-red/60"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-concept-red/80"></div>
             </div>
 
-            {/* Main Text */}
-            <div className="relative group">
-              {/* Glowing backplate */}
-              <div className="absolute inset-0 bg-concept-red/30 blur-[40px] rounded-full -z-10 animate-pulse-slow group-hover:bg-concept-red/50 transition-all duration-700"></div>
-              
-              {/* Text Layer */}
-              <div className="text-[4rem] md:text-[6.5rem] lg:text-[8rem] font-black tracking-tighter leading-none relative px-2">
-                {/* Silver/Chrome Gradient */}
-                <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-600 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
-                  CONCEPT
-                </span>
-                {/* Red glow effect on hover */}
-                <span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-concept-red to-red-500 animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-[4px] px-2">
-                  CONCEPT
-                </span>
-              </div>
+            <div className="relative text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x drop-shadow-[0_0_30px_rgba(220,38,38,0.4)] px-2">
+              <div className="absolute inset-0 bg-white/5 blur-xl rounded-full -z-10 animate-pulse-slow"></div>
+              CONCEPT
             </div>
 
-            {/* Right Wing/Line */}
+            {/* Right decorative line */}
             <div className="hidden sm:flex items-center gap-2">
-              <div className="w-2 h-2 md:w-3 md:h-3 rotate-45 bg-white shadow-[0_0_10px_white]"></div>
-              <div className="w-12 md:w-32 h-[2px] bg-gradient-to-l from-transparent via-red-600 to-concept-red shadow-[0_0_15px_rgba(255,26,26,0.8)]"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-concept-blue/80"></div>
+              <div className="w-8 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-concept-blue/60"></div>
             </div>
           </div>
           <br />
-          <div className="relative inline-block mt-2">
-            <span className="text-white/90 text-xl md:text-2xl lg:text-3xl tracking-[0.5em] font-sans font-bold uppercase drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
-              Samochody <span className="text-concept-red">z USA</span>
+          <div className="relative inline-block mt-1">
+            <span className="text-white text-xl md:text-2xl lg:text-3xl tracking-[0.3em] font-sans font-light text-shadow-xl uppercase">
+              Samochody z USA
             </span>
           </div>
         </h1>
@@ -109,20 +96,20 @@ const Hero = ({ isVisible, scrollToSection }) => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">
           <button
             onClick={() => scrollToSection('portfolio')}
-            className="group skew-btn bg-white/5 border-metallic hover:bg-white/10 transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] w-56 h-14"
+            className="group relative overflow-hidden glass rounded-full px-6 py-3 transition-all duration-500 hover:bg-white/10 border-white/20 hover:border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]"
           >
             <div className="absolute inset-0 w-1/2 h-full -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
-            <span className="skew-content text-sm font-bold text-white tracking-[0.2em] uppercase">
+            <span className="relative text-sm font-medium text-white tracking-[0.2em] uppercase">
               Zobacz portfolio
             </span>
           </button>
 
           <button
             onClick={() => scrollToSection('order')}
-            className="group skew-btn bg-concept-red border border-red-500/50 transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,26,26,0.8)] hover:bg-concept-red-light w-56 h-14"
+            className="group relative overflow-hidden px-6 py-3 rounded-full text-sm font-bold tracking-[0.2em] uppercase text-white bg-gradient-to-r from-concept-red to-red-700 transition-all duration-500 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] hover:-translate-y-1 border border-red-500/50"
           >
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-scan"></div>
-            <span className="skew-content relative z-10 text-sm font-bold tracking-[0.2em] uppercase text-white flex gap-3">
+            <span className="relative z-10 flex items-center gap-3">
               Zamów auto
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </span>

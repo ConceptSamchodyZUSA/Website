@@ -12,24 +12,24 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
             {/* Logo */}
             <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => scrollToSection('home')}>
               {!isScrolled ? (
-                <div className="flex items-center gap-3 text-2xl md:text-3xl font-extrabold font-heading tracking-widest group-hover:scale-105 transition-transform duration-500">
+                <div className="flex items-center gap-3 text-xl md:text-2xl font-extrabold font-heading tracking-widest">
                   <div className="hidden md:flex items-center gap-1.5">
-                    <div className="w-8 h-[2px] bg-gradient-to-r from-transparent to-concept-red shadow-[0_0_10px_rgba(255,26,26,0.8)]"></div>
-                    <div className="w-1.5 h-1.5 rotate-45 bg-white shadow-[0_0_5px_white]"></div>
+                    <div className="w-6 h-[1px] bg-gradient-to-r from-transparent to-concept-red/50"></div>
+                    <div className="w-1 h-1 rounded-full bg-concept-red/70"></div>
                   </div>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 group-hover:drop-shadow-[0_0_15px_rgba(255,26,26,0.8)] font-black transition-all duration-500">CONCEPT</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x group-hover:drop-shadow-[0_0_15px_rgba(220,38,38,0.5)] transition-all duration-500">CONCEPT</span>
                   <div className="hidden md:flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rotate-45 bg-white shadow-[0_0_5px_white]"></div>
-                    <div className="w-8 h-[2px] bg-gradient-to-l from-transparent to-concept-red shadow-[0_0_10px_rgba(255,26,26,0.8)]"></div>
+                    <div className="w-1 h-1 rounded-full bg-concept-blue/70"></div>
+                    <div className="w-6 h-[1px] bg-gradient-to-l from-transparent to-concept-blue/50"></div>
                   </div>
-                  <span className="text-white/70 text-[0.55rem] md:text-[0.65rem] font-sans font-bold uppercase tracking-[0.2em] ml-1">Samochody <span className="text-concept-red">USA</span></span>
+                  <span className="text-white/50 text-[0.5rem] md:text-[0.65rem] font-sans font-medium uppercase tracking-[0.2em] ml-1">Samochody z USA</span>
                 </div>
               ) : (
-                <div className="flex items-center gap-2 text-xl md:text-2xl font-extrabold font-heading tracking-widest group-hover:scale-105 transition-transform duration-500">
-                  <div className="w-1.5 h-1.5 rotate-45 bg-concept-red shadow-[0_0_5px_rgba(255,26,26,0.8)]"></div>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-500 font-black group-hover:drop-shadow-[0_0_10px_rgba(255,26,26,0.8)] transition-all duration-500">CONCEPT</span>
-                  <div className="w-1.5 h-1.5 rotate-45 bg-concept-red shadow-[0_0_5px_rgba(255,26,26,0.8)]"></div>
-                  <span className="text-white/70 text-[0.6rem] md:text-[0.7rem] font-sans font-bold uppercase tracking-[0.2em]">USA</span>
+                <div className="flex items-center gap-2 text-lg md:text-xl font-extrabold font-heading tracking-widest">
+                  <div className="w-1 h-1 rounded-full bg-concept-red/70"></div>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x text-shadow-sm group-hover:drop-shadow-[0_0_10px_rgba(220,38,38,0.4)] transition-all duration-500">CONCEPT</span>
+                  <div className="w-1 h-1 rounded-full bg-concept-blue/70"></div>
+                  <span className="text-white/60 text-[0.55rem] md:text-[0.65rem] font-sans font-medium uppercase tracking-[0.2em]">USA</span>
                 </div>
               )}
             </div>
@@ -56,10 +56,10 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
               {/* Contact button */}
               <button
                 onClick={() => scrollToSection('contact')}
-                className="group skew-btn px-6 py-2 bg-concept-red transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,26,26,0.8)] border border-red-500/50"
+                className="relative px-6 py-2.5 rounded hover:rounded-xl font-semibold bg-concept-red text-white transition-all duration-300 hover:bg-concept-red-dark hover:shadow-[0_0_15px_rgba(220,38,38,0.4)] border border-transparent"
               >
-                <span className="skew-content flex items-center gap-2 font-bold text-white uppercase tracking-wider text-xs">
-                  <Phone size={14} />
+                <span className="flex items-center gap-2">
+                  <Phone size={16} />
                   Kontakt
                 </span>
               </button>
@@ -87,11 +87,8 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
           }`}>
           {/* Header */}
           <div className="flex justify-between items-center p-6 border-b border-white/5">
-            {/* Upgraded Logo Mobile */}
-            <div className="flex items-center gap-2 font-heading font-extrabold text-2xl tracking-widest">
-              <div className="w-1.5 h-1.5 rotate-45 bg-concept-red shadow-[0_0_5px_rgba(255,26,26,0.8)]"></div>
-              <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-500 font-black drop-shadow-[0_0_10px_rgba(255,26,26,0.6)]">CONCEPT</span>
-              <div className="w-1.5 h-1.5 rotate-45 bg-concept-red shadow-[0_0_5px_rgba(255,26,26,0.8)]"></div>
+            <div className="flex items-center gap-2 font-heading font-extrabold text-xl tracking-widest">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x">CONCEPT</span>
             </div>
             <button
               onClick={() => setIsMenuOpen(false)}

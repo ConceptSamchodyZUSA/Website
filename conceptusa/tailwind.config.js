@@ -4,23 +4,26 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        heading: ['Oswald', 'sans-serif'],
+        heading: ['Bebas Neue', 'sans-serif'],
+        accent: ['Rajdhani', 'sans-serif'],
       },
       colors: {
         concept: {
           red: {
-            DEFAULT: '#ff1a1a',
-            light: '#ff4d4d',
-            dark: '#cc0000',
+            DEFAULT: '#E31837',  // Dodge Viper Red
+            light: '#FF2D55',    // Hot rod accent
+            dark: '#9B1B30',     // Deep burgundy
           },
           blue: {
-            DEFAULT: '#3b82f6',
-            light: '#60a5fa',
-            dark: '#2563eb',
+            DEFAULT: '#5B7B9A',  // Gunmetal Blue
+            light: '#7A9BB5',
+            dark: '#3D5A73',
           },
-          dark: '#050505', // true asphalt black
-          gray: '#111111', // almost black
-          slate: '#2c2c35', // gunmetal accent
+          chrome: '#C0C0C0',     // Chrome Silver
+          gold: '#D4A853',       // Burnished Gold
+          dark: '#0A0A0F',       // Near-black showroom
+          gray: '#141419',       // Slightly lighter dark
+          slate: '#2A2A35',      // Metallic accent
         }
       },
       animation: {
@@ -33,6 +36,8 @@ module.exports = {
         'float-delayed': 'float 6s ease-in-out 3s infinite',
         'blob': 'blob 7s infinite',
         'scan': 'scan 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'stripe-shimmer': 'stripeShimmer 3s ease-in-out infinite',
+        'slide-in-left': 'slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
       },
       keyframes: {
         shimmer: {
@@ -56,7 +61,16 @@ module.exports = {
         scan: {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(200%)' },
-        }
+        },
+        stripeShimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '50%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+        slideInLeft: {
+          '0%': { opacity: '0', transform: 'translateX(-40px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
       },
     }
   },
