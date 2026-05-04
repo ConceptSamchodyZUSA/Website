@@ -48,6 +48,19 @@ const ConceptUSACars = () => {
     website: '' // Honeypot field - should remain empty
   });
 
+  // Cursor glow effect (desktop only)
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
+      document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
+    };
+    // Only on non-touch devices
+    if (window.matchMedia('(hover: hover)').matches) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   // Console Easter Egg - dla ciekawskich deweloperów 😄
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
@@ -383,7 +396,7 @@ const ConceptUSACars = () => {
   };
 
   return (
-    <div className="min-h-screen bg-concept-dark text-white font-sans selection:bg-concept-red selection:text-white">
+    <div className="min-h-screen bg-concept-dark text-white font-sans selection:bg-concept-red selection:text-white cursor-glow">
       <a href="#home" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-concept-red focus:text-white rounded-br-lg font-bold shadow-xl">
         Przejdź do głównej treści
       </a>
@@ -480,7 +493,7 @@ const ConceptUSACars = () => {
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 md:hidden">
           <button
             onClick={() => scrollToSection('order')}
-            className="bg-gradient-to-r from-concept-red to-red-700 text-white px-8 py-3.5 rounded-full font-bold text-sm tracking-widest uppercase shadow-[0_0_30px_rgba(220,38,38,0.5)] border border-red-500/50 flex items-center gap-2 animate-pulse-slow"
+            className="bg-gradient-to-r from-concept-red to-concept-red-dark text-white px-8 py-3.5 rounded-full font-accent font-bold text-sm tracking-widest uppercase shadow-[0_0_30px_rgba(227,24,55,0.5)] border border-concept-red/50 flex items-center gap-2 animate-pulse-slow"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             Zamów auto

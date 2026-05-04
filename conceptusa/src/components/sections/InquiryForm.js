@@ -3,29 +3,29 @@ import { Loader2 } from 'lucide-react';
 
 const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, submittingForm }) => {
   return (
-    <section id="order" className={`py-24 bg-concept-dark relative z-10 ${isVisible ? 'visible' : ''}`}>
+    <section id="order" className={`py-24 bg-concept-gray relative z-10 ${isVisible ? 'visible' : ''}`}>
       <div className="absolute inset-0 bg-gradient-to-t from-transparent via-concept-red/[0.02] to-transparent pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 font-heading tracking-wide">
-          Zamów <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red to-concept-blue animate-gradient-x">swoje auto</span>
+        <h2 className="text-4xl md:text-6xl font-bold text-center mb-4 font-heading tracking-wider">
+          Zamów <span className="text-concept-red">swoje auto</span>
         </h2>
-        <p className="text-center text-slate-400 mb-16 text-lg font-light tracking-wide max-w-2xl mx-auto">
+        <p className="text-center text-slate-400 mb-16 text-lg font-light tracking-wide max-w-2xl mx-auto font-accent">
           Powiedz nam czego szukasz, a my znajdziemy idealne auto dla Ciebie. Importujemy marzenia, dostarczamy gotowe emocje.
         </p>
 
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 glass-panel rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 card-matte rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
 
           {/* Left Side: Contact Info & Storytelling */}
           <div className="lg:w-2/5 p-10 md:p-14 bg-gradient-to-br from-concept-dark/80 to-concept-dark flex flex-col justify-between relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-concept-red/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 group-hover:bg-concept-red/20 transition-colors duration-700"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-concept-blue/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/3 group-hover:bg-concept-blue/20 transition-colors duration-700"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-concept-gold/8 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/3 group-hover:bg-concept-gold/15 transition-colors duration-700"></div>
 
             <div className="relative z-10">
               <h3 className="text-3xl font-bold text-white mb-6 font-heading tracking-widest uppercase">
                 Zacznijmy <br /><span className="text-concept-red">rozmowę.</span>
               </h3>
-              <p className="text-slate-400 font-light leading-relaxed mb-12">
+              <p className="text-slate-400 font-light leading-relaxed mb-12 font-accent">
                 Wypełnij formularz, aby rozpocząć proces importu. Nasz ekspert skontaktuje się z Tobą w ciągu 24 godzin z wyselekcjonowanymi propozycjami aut dopasowanych do Twoich potrzeb i budżetu.
               </p>
 
@@ -35,8 +35,8 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                   </div>
                   <div>
-                    <p className="text-sm text-slate-500 uppercase tracking-widest font-medium mb-1">Telefon</p>
-                    <a href="tel:+48691795116" className="text-white hover:text-concept-red transition-colors text-lg tracking-wide">+48 691 795 116</a>
+                    <p className="text-sm text-slate-500 uppercase tracking-widest font-accent font-medium mb-1">Telefon</p>
+                    <a href="tel:+48691795116" className="text-white hover:text-concept-red transition-colors text-lg tracking-wide font-accent">+48 691 795 116</a>
                   </div>
                 </div>
 
@@ -45,8 +45,8 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                   </div>
                   <div>
-                    <p className="text-sm text-slate-500 uppercase tracking-widest font-medium mb-1">Email</p>
-                    <a href="mailto:conceptusacars@gmail.com" className="text-white hover:text-concept-blue transition-colors text-lg tracking-wide">conceptusacars@gmail.com</a>
+                    <p className="text-sm text-slate-500 uppercase tracking-widest font-accent font-medium mb-1">Email</p>
+                    <a href="mailto:conceptusacars@gmail.com" className="text-white hover:text-concept-blue transition-colors text-lg tracking-wide font-accent">conceptusacars@gmail.com</a>
                   </div>
                 </div>
               </div>
@@ -63,11 +63,11 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   id="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent"
+                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent font-accent"
                   placeholder="Imię i nazwisko"
                   required
                 />
-                <label htmlFor="name" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
+                <label htmlFor="name" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs font-accent">
                   Imię i nazwisko *
                 </label>
               </div>
@@ -78,11 +78,11 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   id="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-blue transition-colors font-light placeholder-transparent"
+                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-blue transition-colors font-light placeholder-transparent font-accent"
                   placeholder="Email"
                   required
                 />
-                <label htmlFor="email" className="absolute left-0 -top-3.5 text-concept-blue text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs">
+                <label htmlFor="email" className="absolute left-0 -top-3.5 text-concept-blue text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs font-accent">
                   Email *
                 </label>
               </div>
@@ -95,11 +95,11 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                 id="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent"
+                className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent font-accent"
                 placeholder="Telefon"
                 required
               />
-              <label htmlFor="phone" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
+              <label htmlFor="phone" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs font-accent">
                 Telefon *
               </label>
             </div>
@@ -126,10 +126,10 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   id="brand"
                   value={formData.brand}
                   onChange={handleInputChange}
-                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-blue transition-colors font-light placeholder-transparent"
+                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-blue transition-colors font-light placeholder-transparent font-accent"
                   placeholder="Marka"
                 />
-                <label htmlFor="brand" className="absolute left-0 -top-3.5 text-concept-blue text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs">
+                <label htmlFor="brand" className="absolute left-0 -top-3.5 text-concept-blue text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs font-accent">
                   Marka (np. Dodge)
                 </label>
               </div>
@@ -140,10 +140,10 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   id="model"
                   value={formData.model}
                   onChange={handleInputChange}
-                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent"
+                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent font-accent"
                   placeholder="Model"
                 />
-                <label htmlFor="model" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
+                <label htmlFor="model" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs font-accent">
                   Model (np. Challenger)
                 </label>
               </div>
@@ -158,10 +158,10 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   id="budget"
                   value={formData.budget}
                   onChange={handleInputChange}
-                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent"
+                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent font-accent"
                   placeholder="Budżet"
                 />
-                <label htmlFor="budget" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
+                <label htmlFor="budget" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs font-accent">
                   Budżet (PLN)
                 </label>
               </div>
@@ -172,10 +172,10 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                   id="year"
                   value={formData.year}
                   onChange={handleInputChange}
-                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-blue transition-colors font-light placeholder-transparent"
+                  className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-blue transition-colors font-light placeholder-transparent font-accent"
                   placeholder="Rok produkcji"
                 />
-                <label htmlFor="year" className="absolute left-0 -top-3.5 text-concept-blue text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs">
+                <label htmlFor="year" className="absolute left-0 -top-3.5 text-concept-blue text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-blue peer-focus:text-xs font-accent">
                   Rok produkcji
                 </label>
               </div>
@@ -188,10 +188,10 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                 id="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent resize-none"
+                className="peer w-full bg-transparent border-b-2 border-white/10 px-0 py-3 text-white focus:outline-none focus:border-concept-red transition-colors font-light placeholder-transparent resize-none font-accent"
                 placeholder="Wiadomość"
               ></textarea>
-              <label htmlFor="message" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs">
+              <label htmlFor="message" className="absolute left-0 -top-3.5 text-concept-red text-xs font-light transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-concept-red peer-focus:text-xs font-accent">
                 Dodatkowe informacje, pytania...
               </label>
             </div>
@@ -206,11 +206,11 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
                 className="mt-1 w-5 h-5 accent-concept-red cursor-pointer flex-shrink-0"
                 required
               />
-              <label className="text-xs text-slate-400 font-light leading-relaxed cursor-pointer" onClick={() => handleInputChange({ target: { name: 'rodoConsent', type: 'checkbox', checked: !formData.rodoConsent } })}>
+              <label className="text-xs text-slate-400 font-light leading-relaxed cursor-pointer font-accent" onClick={() => handleInputChange({ target: { name: 'rodoConsent', type: 'checkbox', checked: !formData.rodoConsent } })}>
                 Wyrażam zgodę na przetwarzanie moich danych osobowych przez{' '}
                 <strong className="text-slate-300 font-medium">Concept Łukasz Grzenkowski</strong> w celu kontaktu
                 i prezentacji oferty importu samochodów z USA. Administratorem danych jest Concept Łukasz Grzenkowski. Więcej informacji w{' '}
-                <a href="/privacy-policy" target="_blank" className="text-concept-blue hover:text-blue-400 transition-colors">
+                <a href="/privacy-policy" target="_blank" className="text-concept-blue hover:text-concept-blue-light transition-colors">
                   Polityce Prywatności
                 </a>.
               </label>
@@ -219,7 +219,7 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
             <button
               onClick={handleSubmit}
               disabled={submittingForm}
-              className={`relative w-full overflow-hidden group py-4 rounded-xl text-lg font-bold tracking-widest uppercase text-white bg-gradient-to-r from-concept-red to-red-700 transition-all duration-500 border border-red-500/50 flex items-center justify-center gap-3 ${submittingForm ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] hover:-translate-y-1'}`}
+              className={`relative w-full overflow-hidden group py-4 rounded-xl text-lg font-bold tracking-widest uppercase text-white bg-gradient-to-r from-concept-red to-concept-red-dark transition-all duration-500 border border-concept-red/50 flex items-center justify-center gap-3 font-accent ${submittingForm ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-[0_0_30px_rgba(227,24,55,0.6)] hover:-translate-y-1'}`}
             >
               {!submittingForm && (
                 <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-scan"></div>

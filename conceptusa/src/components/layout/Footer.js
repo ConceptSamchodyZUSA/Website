@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-concept-dark py-16 relative z-10 overflow-hidden">
       {/* Animated Gradient Top Border */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-concept-red via-concept-blue to-concept-red bg-[length:200%_100%] animate-gradient-x"></div>
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-concept-red via-concept-gold to-concept-red bg-[length:200%_100%] animate-gradient-x"></div>
 
       {/* Massive CONCEPT Watermark */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[18rem] md:text-[28rem] font-black tracking-widest text-white/[0.015] font-heading leading-none select-none pointer-events-none whitespace-nowrap" aria-hidden="true">
@@ -19,7 +19,7 @@ const Footer = () => {
             <h3 className="text-2xl font-bold text-white mb-6 font-heading tracking-widest uppercase">
               CONCEPT <span className="text-concept-red">.</span>
             </h3>
-            <div className="space-y-3 text-slate-400 text-sm font-light leading-relaxed">
+            <div className="space-y-3 text-slate-400 text-sm font-light leading-relaxed font-accent">
               <p className="font-medium text-slate-300 text-base">Concept Łukasz Grzenkowski</p>
               <p>ul. Długa 24</p>
               <p>84-230 Dębogórze-Wybudowanie</p>
@@ -27,10 +27,10 @@ const Footer = () => {
               <p>REGON: 383279264</p>
             </div>
             <div className="mt-8 flex gap-4">
-              <a href="https://facebook.com/conceptsamochodyzusa" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-full hover:bg-concept-blue text-slate-400 hover:text-white transition-all duration-300">
+              <a href="https://facebook.com/conceptsamochodyzusa" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-full hover:bg-concept-red/80 text-slate-400 hover:text-white transition-all duration-300 hover:shadow-[0_0_15px_rgba(227,24,55,0.3)]">
                 <Facebook size={20} />
               </a>
-              <a href="https://instagram.com/concept_samochody_z_usa" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-full hover:bg-pink-600 text-slate-400 hover:text-white transition-all duration-300">
+              <a href="https://instagram.com/concept_samochody_z_usa" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-full hover:bg-pink-600 text-slate-400 hover:text-white transition-all duration-300 hover:shadow-[0_0_15px_rgba(219,39,119,0.3)]">
                 <Instagram size={20} />
               </a>
             </div>
@@ -38,8 +38,8 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-6 tracking-wide">Szybki kontakt</h3>
-            <div className="space-y-4 text-slate-400 text-sm font-light">
+            <h3 className="text-lg font-bold text-white mb-6 tracking-wider font-heading">Szybki kontakt</h3>
+            <div className="space-y-4 text-slate-400 text-sm font-light font-accent">
               <a href="tel:+48691795116" className="group flex items-center gap-3 hover:text-white transition-colors">
                 <span className="text-concept-red group-hover:scale-110 transition-transform">📞</span>
                 <span className="tracking-wider">+48 691 795 116</span>
@@ -58,8 +58,8 @@ const Footer = () => {
 
           {/* Legal Links */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-6 tracking-wide">Informacje prawne</h3>
-            <div className="space-y-4 text-slate-400 text-sm font-light flex flex-col items-start">
+            <h3 className="text-lg font-bold text-white mb-6 tracking-wider font-heading">Informacje prawne</h3>
+            <div className="space-y-4 text-slate-400 text-sm font-light flex flex-col items-start font-accent">
               <a href="/terms-of-service" className="hover:text-white transition-colors border-b border-transparent hover:border-white/30 pb-0.5">
                 Regulamin świadczenia usług
               </a>
@@ -78,11 +78,11 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p className="text-slate-500 text-sm font-light">
+          <p className="text-slate-500 text-sm font-light font-accent">
             &copy; {new Date().getFullYear()} CONCEPT - Samochody z USA. Wszystkie prawa zastrzeżone.
           </p>
-          <p className="text-slate-600 text-xs font-light tracking-wide order-first md:order-last">
-            built by <a href="https://github.com/Kobeep" target="_blank" rel="noopener noreferrer" className="text-concept-blue hover:text-blue-400 font-medium ml-1">Kobeep</a> (Jakub Pospieszny)
+          <p className="text-slate-600 text-xs font-light tracking-wide order-first md:order-last font-accent">
+            built by <a href="https://github.com/Kobeep" target="_blank" rel="noopener noreferrer" className="text-concept-blue hover:text-concept-blue-light font-medium ml-1">Kobeep</a> (Jakub Pospieszny)
           </p>
         </div>
       </div>

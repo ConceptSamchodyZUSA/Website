@@ -10,15 +10,15 @@ const Hero = ({ isVisible, scrollToSection }) => {
 
   return (
     <section id="home" className={`relative h-screen flex items-center justify-center overflow-hidden ${isVisible ? 'visible' : ''}`}>
-      {/* Deep dark overlay */}
+      {/* Deep dark base */}
       <div className="absolute inset-0 bg-concept-dark/70 z-0"></div>
 
-      {/* Subtle ambient glows — red dominant, no blue */}
+      {/* Ambient glows */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-concept-red/15 rounded-full mix-blend-screen filter blur-[128px] opacity-60 animate-blob"></div>
-      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-concept-gold/8 rounded-full mix-blend-screen filter blur-[128px] opacity-50 animate-blob animation-delay-2000"></div>
-      <div className="absolute bottom-1/4 left-1/3 w-[600px] h-[600px] bg-concept-red-dark/10 rounded-full mix-blend-screen filter blur-[150px] opacity-50 animate-blob animation-delay-4000"></div>
+      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-concept-red-light/8 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob animation-delay-2000"></div>
+      <div className="absolute bottom-1/4 left-1/3 w-[600px] h-[600px] bg-purple-500/8 rounded-full mix-blend-screen filter blur-[150px] opacity-40 animate-blob animation-delay-4000"></div>
 
-      {/* Background image — more visible */}
+      {/* Background image */}
       <div className="absolute inset-0 opacity-50 mix-blend-overlay">
         <picture>
           <source
@@ -40,65 +40,60 @@ const Hero = ({ isVisible, scrollToSection }) => {
       {/* Noise texture overlay for cinematic grain */}
       <div className="noise-overlay absolute inset-0 z-[1]"></div>
 
-      {/* Speed line accent — horizontal */}
-      <div className="absolute top-[30%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-concept-red/20 to-transparent z-[2]"></div>
-      <div className="absolute top-[30.3%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-concept-red/10 to-transparent z-[2]"></div>
-
-      {/* HUD-style Floating Badges */}
+      {/* Floating Badges */}
       <div className="absolute top-1/4 right-[10%] lg:right-[15%] hidden md:block animate-float z-20">
-        <div className="hud-panel px-6 py-4 rounded-lg flex items-center gap-4">
-          <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-concept-red to-concept-red-dark flex items-center justify-center text-white font-bold text-sm shadow-[0_0_20px_rgba(227,24,55,0.4)] font-accent" ref={carsCountRef}>
+        <div className="glass-panel px-6 py-4 rounded-2xl border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center gap-4 backdrop-blur-xl">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-concept-red to-concept-red-dark flex items-center justify-center text-white font-bold text-sm shadow-[0_0_20px_rgba(227,24,55,0.5)] font-accent" ref={carsCountRef}>
             +{carsCount}
           </div>
           <div>
-            <p className="text-white font-bold tracking-wide text-sm font-accent uppercase">Sprowadzonych</p>
-            <p className="text-concept-chrome/60 text-xs font-accent">pojazdów z USA</p>
+            <p className="text-white font-bold tracking-wide font-accent">Sprowadzonych</p>
+            <p className="text-concept-slate text-sm font-accent">pojazdów z USA</p>
           </div>
         </div>
       </div>
 
       <div className="absolute bottom-1/3 left-[10%] lg:left-[15%] hidden md:block animate-float-delayed z-20">
-        <div className="hud-panel px-6 py-4 rounded-lg flex items-center gap-4">
-          <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-concept-gold/80 to-concept-gold/40 flex items-center justify-center text-concept-dark font-bold text-sm shadow-[0_0_20px_rgba(212,168,83,0.3)] font-accent" ref={safetyCountRef}>
+        <div className="glass-panel px-6 py-4 rounded-2xl border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center gap-4 backdrop-blur-xl">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-concept-gold/80 to-concept-gold/40 flex items-center justify-center text-concept-dark font-bold text-sm shadow-[0_0_20px_rgba(212,168,83,0.4)] font-accent" ref={safetyCountRef}>
             {safetyCount}%
           </div>
           <div>
-            <p className="text-white font-bold tracking-wide text-sm font-accent uppercase">Bezpieczeństwo</p>
-            <p className="text-concept-chrome/60 text-xs font-accent">Pełna dokumentacja</p>
+            <p className="text-white font-bold tracking-wide font-accent">Bezpieczeństwo</p>
+            <p className="text-concept-slate text-sm font-accent">Pełna dokumentacja</p>
           </div>
         </div>
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pb-16">
         <h1 className="mb-3 leading-none opacity-0 animate-fade-in-up">
-          {/* Premium logo with racing stripe flanks */}
-          <div className="relative inline-flex items-center gap-4 md:gap-6 mb-2">
-            {/* Left racing stripes */}
-            <div className="hidden sm:flex items-center gap-1.5">
-              <div className="w-8 md:w-20 h-[2px] bg-gradient-to-r from-transparent to-concept-red/70"></div>
-              <div className="w-3 md:w-8 h-[2px] bg-gradient-to-r from-transparent to-concept-red/40"></div>
-              <div className="w-2 h-2 rotate-45 bg-concept-gold/70"></div>
+          {/* Spectacular glowing logo with decorative flanks */}
+          <div className="relative inline-flex items-center gap-3 md:gap-5 mb-2">
+            {/* Left decorative elements */}
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="w-8 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-concept-red/50 shadow-[0_0_8px_rgba(227,24,55,0.3)]"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-concept-red/80 shadow-[0_0_6px_rgba(227,24,55,0.6)]"></div>
             </div>
 
-            {/* CONCEPT — chrome metallic with massive Bebas Neue */}
+            {/* CONCEPT — spectacular glow effect */}
             <div className="relative">
-              <span className="text-chrome text-6xl md:text-7xl lg:text-[9rem] font-heading tracking-[0.15em] leading-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
+              <span className="text-glow text-6xl md:text-7xl lg:text-[9rem] font-heading tracking-[0.1em] leading-none">
                 CONCEPT
               </span>
-              {/* Red glow behind on hover */}
-              <div className="absolute inset-0 bg-concept-red/5 blur-3xl rounded-full -z-10 animate-pulse-slow"></div>
+              {/* Ambient glow behind text */}
+              <div className="absolute inset-0 bg-concept-red/10 blur-[60px] rounded-full -z-10 animate-pulse-slow"></div>
+              <div className="absolute inset-0 bg-concept-red/5 blur-[100px] rounded-full -z-20 scale-150"></div>
             </div>
 
-            {/* Right racing stripes */}
-            <div className="hidden sm:flex items-center gap-1.5">
-              <div className="w-2 h-2 rotate-45 bg-concept-gold/70"></div>
-              <div className="w-3 md:w-8 h-[2px] bg-gradient-to-l from-transparent to-concept-red/40"></div>
-              <div className="w-8 md:w-20 h-[2px] bg-gradient-to-l from-transparent to-concept-red/70"></div>
+            {/* Right decorative elements */}
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-concept-red/80 shadow-[0_0_6px_rgba(227,24,55,0.6)]"></div>
+              <div className="w-8 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-concept-red/50 shadow-[0_0_8px_rgba(227,24,55,0.3)]"></div>
             </div>
           </div>
           <br />
           <div className="relative inline-block mt-1">
-            <span className="text-concept-chrome/70 text-lg md:text-xl lg:text-2xl tracking-[0.4em] font-accent font-medium uppercase">
+            <span className="text-white/60 text-xl md:text-2xl lg:text-3xl tracking-[0.3em] font-accent font-light uppercase">
               Samochody z USA
             </span>
           </div>
@@ -111,7 +106,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">
           <button
             onClick={() => scrollToSection('portfolio')}
-            className="group relative overflow-hidden glass rounded-lg px-6 py-3 transition-all duration-500 hover:bg-white/10 border-white/20 hover:border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+            className="group relative overflow-hidden glass rounded-full px-6 py-3 transition-all duration-500 hover:bg-white/10 border-white/20 hover:border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]"
           >
             <div className="absolute inset-0 w-1/2 h-full -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
             <span className="relative text-sm font-medium text-white tracking-[0.2em] uppercase font-accent">
@@ -121,7 +116,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
 
           <button
             onClick={() => scrollToSection('order')}
-            className="group relative overflow-hidden px-6 py-3 rounded-lg text-sm font-bold tracking-[0.2em] uppercase text-white bg-gradient-to-r from-concept-red to-concept-red-dark transition-all duration-500 hover:shadow-[0_0_30px_rgba(227,24,55,0.6)] hover:-translate-y-1 border border-concept-red/50 font-accent"
+            className="group relative overflow-hidden px-6 py-3 rounded-full text-sm font-bold tracking-[0.2em] uppercase text-white bg-gradient-to-r from-concept-red to-concept-red-dark transition-all duration-500 hover:shadow-[0_0_30px_rgba(227,24,55,0.6)] hover:-translate-y-1 border border-concept-red/50 font-accent"
           >
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-scan"></div>
             <span className="relative z-10 flex items-center gap-3">
@@ -138,7 +133,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
         <ChevronDown className="animate-bounce mt-1 text-concept-red" size={20} />
       </div>
 
-      {/* Bottom gradient fade to next section */}
+      {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-concept-dark to-transparent z-[5]"></div>
     </section>
   );
