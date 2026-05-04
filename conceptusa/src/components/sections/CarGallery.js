@@ -21,7 +21,7 @@ const CarGallery = ({
   scrollToSection
 }) => {
   return (
-    <section id="portfolio" className={`py-24 bg-concept-dark relative z-10 ${isVisible ? 'visible' : ''}`}>
+    <section id="portfolio" className={`py-24 bg-carbon relative z-10 ${isVisible ? 'visible' : ''}`}>
       <div className="absolute inset-0 bg-gradient-to-b from-concept-dark/40 to-transparent pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -36,41 +36,41 @@ const CarGallery = ({
         <div className="flex justify-center gap-4 mb-16 flex-wrap">
           <button
             onClick={() => setActiveFilter('all')}
-            className={`relative px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-500 overflow-hidden group ${activeFilter === 'all'
-              ? 'bg-gradient-to-r from-concept-red to-red-700 text-white shadow-[0_0_20px_rgba(220,38,38,0.5)] border border-red-500/50 scale-105'
-              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20'
+            className={`relative px-8 py-2.5 skew-btn text-sm font-bold tracking-widest uppercase transition-all duration-500 overflow-hidden group ${activeFilter === 'all'
+              ? 'bg-concept-red text-white shadow-[0_0_20px_rgba(255,26,26,0.5)] border border-red-500/50 scale-105'
+              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border-metallic'
               }`}
           >
             {activeFilter === 'all' && (
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-scan"></div>
             )}
-            <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 block">Wszystkie</span>
+            <span className="skew-content relative z-10 transition-transform duration-300 group-hover:scale-105 block">Wszystkie</span>
           </button>
 
           <button
             onClick={() => setActiveFilter('available')}
-            className={`relative px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-500 overflow-hidden group ${activeFilter === 'available'
-              ? 'bg-gradient-to-r from-teal-500 to-teal-700 text-white shadow-[0_0_20px_rgba(20,184,166,0.5)] border border-teal-400/50 scale-105'
-              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20'
+            className={`relative px-8 py-2.5 skew-btn text-sm font-bold tracking-widest uppercase transition-all duration-500 overflow-hidden group ${activeFilter === 'available'
+              ? 'bg-teal-600 text-white shadow-[0_0_20px_rgba(20,184,166,0.5)] border border-teal-400/50 scale-105'
+              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border-metallic'
               }`}
           >
             {activeFilter === 'available' && (
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-scan"></div>
             )}
-            <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 block">Dostępne</span>
+            <span className="skew-content relative z-10 transition-transform duration-300 group-hover:scale-105 block">Dostępne</span>
           </button>
 
           <button
             onClick={() => setActiveFilter('sold')}
-            className={`relative px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-500 overflow-hidden group ${activeFilter === 'sold'
-              ? 'bg-gradient-to-r from-slate-500 to-slate-700 text-white shadow-[0_0_20px_rgba(100,116,139,0.5)] border border-slate-400/50 scale-105'
-              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20'
+            className={`relative px-8 py-2.5 skew-btn text-sm font-bold tracking-widest uppercase transition-all duration-500 overflow-hidden group ${activeFilter === 'sold'
+              ? 'bg-slate-600 text-white shadow-[0_0_20px_rgba(100,116,139,0.5)] border border-slate-400/50 scale-105'
+              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border-metallic'
               }`}
           >
             {activeFilter === 'sold' && (
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-scan"></div>
             )}
-            <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 block">Sprzedane</span>
+            <span className="skew-content relative z-10 transition-transform duration-300 group-hover:scale-105 block">Sprzedane</span>
           </button>
         </div>
 

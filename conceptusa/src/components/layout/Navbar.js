@@ -17,19 +17,19 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
                     <div className="w-6 h-[1px] bg-gradient-to-r from-transparent to-concept-red/50"></div>
                     <div className="w-1 h-1 rounded-full bg-concept-red/70"></div>
                   </div>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x group-hover:drop-shadow-[0_0_15px_rgba(220,38,38,0.5)] transition-all duration-500">CONCEPT</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-500 group-hover:drop-shadow-[0_0_15px_rgba(255,26,26,0.8)] font-black transition-all duration-500">CONCEPT</span>
                   <div className="hidden md:flex items-center gap-1.5">
-                    <div className="w-1 h-1 rounded-full bg-concept-blue/70"></div>
-                    <div className="w-6 h-[1px] bg-gradient-to-l from-transparent to-concept-blue/50"></div>
+                    <div className="w-1 h-1 rounded-full bg-concept-red/70"></div>
+                    <div className="w-6 h-[1px] bg-gradient-to-l from-transparent to-concept-red/50"></div>
                   </div>
-                  <span className="text-white/50 text-[0.5rem] md:text-[0.65rem] font-sans font-medium uppercase tracking-[0.2em] ml-1">Samochody z USA</span>
+                  <span className="text-white/50 text-[0.5rem] md:text-[0.65rem] font-sans font-bold uppercase tracking-[0.2em] ml-1">Samochody z USA</span>
                 </div>
               ) : (
                 <div className="flex items-center gap-2 text-lg md:text-xl font-extrabold font-heading tracking-widest">
                   <div className="w-1 h-1 rounded-full bg-concept-red/70"></div>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x text-shadow-sm group-hover:drop-shadow-[0_0_10px_rgba(220,38,38,0.4)] transition-all duration-500">CONCEPT</span>
-                  <div className="w-1 h-1 rounded-full bg-concept-blue/70"></div>
-                  <span className="text-white/60 text-[0.55rem] md:text-[0.65rem] font-sans font-medium uppercase tracking-[0.2em]">USA</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-500 font-black group-hover:drop-shadow-[0_0_10px_rgba(255,26,26,0.8)] transition-all duration-500">CONCEPT</span>
+                  <div className="w-1 h-1 rounded-full bg-concept-red/70"></div>
+                  <span className="text-white/60 text-[0.55rem] md:text-[0.65rem] font-sans font-bold uppercase tracking-[0.2em]">USA</span>
                 </div>
               )}
             </div>
@@ -56,10 +56,10 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
               {/* Contact button */}
               <button
                 onClick={() => scrollToSection('contact')}
-                className="relative px-6 py-2.5 rounded hover:rounded-xl font-semibold bg-concept-red text-white transition-all duration-300 hover:bg-concept-red-dark hover:shadow-[0_0_15px_rgba(220,38,38,0.4)] border border-transparent"
+                className="group skew-btn px-6 py-2 bg-concept-red transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,26,26,0.8)] border border-red-500/50"
               >
-                <span className="flex items-center gap-2">
-                  <Phone size={16} />
+                <span className="skew-content flex items-center gap-2 font-bold text-white uppercase tracking-wider text-xs">
+                  <Phone size={14} />
                   Kontakt
                 </span>
               </button>

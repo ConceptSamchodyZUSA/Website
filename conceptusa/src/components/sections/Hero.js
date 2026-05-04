@@ -10,7 +10,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
 
   return (
     <section id="home" className={`relative h-screen flex items-center justify-center overflow-hidden ${isVisible ? 'visible' : ''}`}>
-      <div className="absolute inset-0 bg-concept-dark/80 z-0"></div>
+      <div className="absolute inset-0 bg-carbon opacity-90 z-0"></div>
 
       {/* Colorful, floating ambient glows */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-concept-red/20 rounded-full mix-blend-screen filter blur-[128px] opacity-70 animate-blob"></div>
@@ -70,8 +70,8 @@ const Hero = ({ isVisible, scrollToSection }) => {
               <div className="w-1.5 h-1.5 rounded-full bg-concept-red/80"></div>
             </div>
 
-            <div className="relative text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x drop-shadow-[0_0_30px_rgba(220,38,38,0.4)] px-2">
-              <div className="absolute inset-0 bg-white/5 blur-xl rounded-full -z-10 animate-pulse-slow"></div>
+            <div className="relative text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-500 drop-shadow-[0_0_20px_rgba(255,26,26,0.8)] px-2 font-black">
+              <div className="absolute inset-0 bg-concept-red/30 blur-2xl rounded-full -z-10 animate-pulse-slow"></div>
               CONCEPT
             </div>
 
@@ -96,20 +96,20 @@ const Hero = ({ isVisible, scrollToSection }) => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">
           <button
             onClick={() => scrollToSection('portfolio')}
-            className="group relative overflow-hidden glass rounded-full px-6 py-3 transition-all duration-500 hover:bg-white/10 border-white/20 hover:border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+            className="group skew-btn bg-white/5 border-metallic hover:bg-white/10 transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] w-56 h-14"
           >
             <div className="absolute inset-0 w-1/2 h-full -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
-            <span className="relative text-sm font-medium text-white tracking-[0.2em] uppercase">
+            <span className="skew-content text-sm font-bold text-white tracking-[0.2em] uppercase">
               Zobacz portfolio
             </span>
           </button>
 
           <button
             onClick={() => scrollToSection('order')}
-            className="group relative overflow-hidden px-6 py-3 rounded-full text-sm font-bold tracking-[0.2em] uppercase text-white bg-gradient-to-r from-concept-red to-red-700 transition-all duration-500 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] hover:-translate-y-1 border border-red-500/50"
+            className="group skew-btn bg-concept-red border border-red-500/50 transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,26,26,0.8)] hover:bg-concept-red-light w-56 h-14"
           >
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-scan"></div>
-            <span className="relative z-10 flex items-center gap-3">
+            <span className="skew-content relative z-10 text-sm font-bold tracking-[0.2em] uppercase text-white flex gap-3">
               Zamów auto
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </span>

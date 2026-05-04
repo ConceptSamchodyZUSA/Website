@@ -18,7 +18,7 @@ const CarCard = ({
   return (
     <div
       ref={tiltRef}
-      className="glass group rounded-2xl overflow-hidden cursor-pointer border border-white/5 relative"
+      className="glass group rounded-xl overflow-hidden cursor-pointer border-metallic relative"
       onClick={() => openCarModal(car)}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
@@ -50,11 +50,11 @@ const CarCard = ({
           </div>
         )}
 
-        <div className={`absolute top-4 right-4 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg backdrop-blur-md ${car.status === 'available'
-          ? 'bg-teal-500/80 border border-teal-400/50 text-white'
-          : 'bg-slate-500/80 border border-slate-400/50 text-white'
+        <div className={`absolute top-4 right-4 px-4 py-1.5 skew-btn text-xs font-bold tracking-widest uppercase shadow-[0_10px_20px_rgba(0,0,0,0.5)] ${car.status === 'available'
+          ? 'bg-gradient-to-r from-concept-red to-red-800 border-l-4 border-white text-white'
+          : 'bg-gradient-to-r from-slate-700 to-slate-900 border-l-4 border-slate-400 text-slate-300'
           }`}>
-          {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
+          <span className="skew-content">{car.status === 'available' ? 'Dostępny' : 'Sprzedany'}</span>
         </div>
       </div>
 

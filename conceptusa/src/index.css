@@ -73,6 +73,27 @@
     @apply bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-lg border border-white/[0.05] shadow-2xl;
   }
 
+  .bg-carbon {
+    background-color: #050505;
+    background-image: 
+      radial-gradient(#1a1a1a 1px, transparent 1px), 
+      radial-gradient(#1a1a1a 1px, transparent 1px);
+    background-size: 8px 8px;
+    background-position: 0 0, 4px 4px;
+  }
+
+  .skew-btn {
+    @apply transform -skew-x-12 relative overflow-hidden;
+  }
+
+  .skew-content {
+    @apply transform skew-x-12 flex items-center justify-center;
+  }
+  
+  .border-metallic {
+    @apply border border-slate-700/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)];
+  }
+
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r;
   }

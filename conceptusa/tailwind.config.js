@@ -4,23 +4,23 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        heading: ['Outfit', 'sans-serif'],
+        heading: ['Oswald', 'sans-serif'],
       },
       colors: {
         concept: {
           red: {
-            DEFAULT: '#dc2626',
-            light: '#ef4444',
-            dark: '#b91c1c',
+            DEFAULT: '#ff1a1a',
+            light: '#ff4d4d',
+            dark: '#cc0000',
           },
           blue: {
             DEFAULT: '#3b82f6',
             light: '#60a5fa',
             dark: '#2563eb',
           },
-          dark: '#0f172a', // deeper slate base
-          gray: '#1e293b', // slate lighter
-          slate: '#334155', // metallic accent
+          dark: '#050505', // true asphalt black
+          gray: '#111111', // almost black
+          slate: '#2c2c35', // gunmetal accent
         }
       },
       animation: {
