@@ -60,22 +60,43 @@ const Hero = ({ isVisible, scrollToSection }) => {
         </div>
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pb-16">
-          <div className="flex flex-col items-center justify-center gap-6 mb-6">
-            {/* Massive Emblem */}
-            <div className="relative flex items-center justify-center w-20 h-20 md:w-28 md:h-28 bg-gradient-to-br from-concept-red to-red-900 border-4 border-red-500 transform -skew-x-12 shadow-[0_0_40px_rgba(255,26,26,0.6)] group">
-              <div className="absolute inset-0 bg-white/20 w-1/2 h-full -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-              <span className="relative z-10 text-white font-black text-5xl md:text-7xl italic tracking-tighter transform skew-x-12">C</span>
+          {/* Spectacular Chrome Logo with Flanking Lines */}
+          <div className="relative inline-flex items-center gap-4 md:gap-8 mb-4">
+            {/* Left Wing/Line */}
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="w-12 md:w-32 h-[2px] bg-gradient-to-r from-transparent via-red-600 to-concept-red shadow-[0_0_15px_rgba(255,26,26,0.8)]"></div>
+              <div className="w-2 h-2 md:w-3 md:h-3 rotate-45 bg-white shadow-[0_0_10px_white]"></div>
             </div>
-            {/* The Text */}
-            <div className="flex flex-col items-center">
-              <span className="text-[4rem] md:text-[7rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 tracking-tighter leading-none drop-shadow-2xl">
-                CONCEPT
-              </span>
-              <span className="text-lg md:text-2xl text-concept-red font-bold tracking-[0.4em] uppercase mt-2">
-                USA IMPORTS
-              </span>
+
+            {/* Main Text */}
+            <div className="relative group">
+              {/* Glowing backplate */}
+              <div className="absolute inset-0 bg-concept-red/30 blur-[40px] rounded-full -z-10 animate-pulse-slow group-hover:bg-concept-red/50 transition-all duration-700"></div>
+              
+              {/* Text Layer */}
+              <div className="text-[4rem] md:text-[6.5rem] lg:text-[8rem] font-black tracking-tighter leading-none relative px-2">
+                {/* Silver/Chrome Gradient */}
+                <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-600 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+                  CONCEPT
+                </span>
+                {/* Red glow effect on hover */}
+                <span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-concept-red to-red-500 animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-[4px] px-2">
+                  CONCEPT
+                </span>
+              </div>
             </div>
+
+            {/* Right Wing/Line */}
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="w-2 h-2 md:w-3 md:h-3 rotate-45 bg-white shadow-[0_0_10px_white]"></div>
+              <div className="w-12 md:w-32 h-[2px] bg-gradient-to-l from-transparent via-red-600 to-concept-red shadow-[0_0_15px_rgba(255,26,26,0.8)]"></div>
+            </div>
+          </div>
+          <br />
+          <div className="relative inline-block mt-2">
+            <span className="text-white/90 text-xl md:text-2xl lg:text-3xl tracking-[0.5em] font-sans font-bold uppercase drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+              Samochody <span className="text-concept-red">z USA</span>
+            </span>
           </div>
 
         <p className="text-sm md:text-base mb-6 text-slate-300 font-light max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards] tracking-wide">

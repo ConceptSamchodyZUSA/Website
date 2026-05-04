@@ -11,20 +11,27 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => scrollToSection('home')}>
-              {/* New Emblem Logo */}
-              <div className="flex items-center gap-3 transition-transform duration-300 group-hover:scale-105">
-                <div className={`relative flex items-center justify-center bg-gradient-to-br from-concept-red to-red-900 border-2 border-red-500 transform -skew-x-12 shadow-[0_0_15px_rgba(255,26,26,0.6)] ${isScrolled ? 'w-8 h-8' : 'w-10 h-10'}`}>
-                  <span className={`relative z-10 text-white font-black italic tracking-tighter transform skew-x-12 ${isScrolled ? 'text-lg' : 'text-xl'}`}>C</span>
+              {!isScrolled ? (
+                <div className="flex items-center gap-3 text-2xl md:text-3xl font-extrabold font-heading tracking-widest group-hover:scale-105 transition-transform duration-500">
+                  <div className="hidden md:flex items-center gap-1.5">
+                    <div className="w-8 h-[2px] bg-gradient-to-r from-transparent to-concept-red shadow-[0_0_10px_rgba(255,26,26,0.8)]"></div>
+                    <div className="w-1.5 h-1.5 rotate-45 bg-white shadow-[0_0_5px_white]"></div>
+                  </div>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 group-hover:drop-shadow-[0_0_15px_rgba(255,26,26,0.8)] font-black transition-all duration-500">CONCEPT</span>
+                  <div className="hidden md:flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rotate-45 bg-white shadow-[0_0_5px_white]"></div>
+                    <div className="w-8 h-[2px] bg-gradient-to-l from-transparent to-concept-red shadow-[0_0_10px_rgba(255,26,26,0.8)]"></div>
+                  </div>
+                  <span className="text-white/70 text-[0.55rem] md:text-[0.65rem] font-sans font-bold uppercase tracking-[0.2em] ml-1">Samochody <span className="text-concept-red">USA</span></span>
                 </div>
-                <div className="flex flex-col justify-center">
-                  <span className={`font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-300 tracking-tighter leading-none ${isScrolled ? 'text-xl' : 'text-2xl'}`}>
-                    CONCEPT
-                  </span>
-                  <span className={`text-concept-red font-bold tracking-[0.3em] uppercase leading-none mt-0.5 ${isScrolled ? 'text-[0.5rem]' : 'text-[0.6rem]'}`}>
-                    USA IMPORTS
-                  </span>
+              ) : (
+                <div className="flex items-center gap-2 text-xl md:text-2xl font-extrabold font-heading tracking-widest group-hover:scale-105 transition-transform duration-500">
+                  <div className="w-1.5 h-1.5 rotate-45 bg-concept-red shadow-[0_0_5px_rgba(255,26,26,0.8)]"></div>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-500 font-black group-hover:drop-shadow-[0_0_10px_rgba(255,26,26,0.8)] transition-all duration-500">CONCEPT</span>
+                  <div className="w-1.5 h-1.5 rotate-45 bg-concept-red shadow-[0_0_5px_rgba(255,26,26,0.8)]"></div>
+                  <span className="text-white/70 text-[0.6rem] md:text-[0.7rem] font-sans font-bold uppercase tracking-[0.2em]">USA</span>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Desktop Menu */}
@@ -80,14 +87,11 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
           }`}>
           {/* Header */}
           <div className="flex justify-between items-center p-6 border-b border-white/5">
-            {/* New Emblem Logo Mobile */}
-            <div className="flex items-center gap-2">
-              <div className="relative flex items-center justify-center w-8 h-8 bg-gradient-to-br from-concept-red to-red-900 border-2 border-red-500 transform -skew-x-12 shadow-[0_0_10px_rgba(255,26,26,0.6)]">
-                <span className="relative z-10 text-white font-black text-lg italic tracking-tighter transform skew-x-12">C</span>
-              </div>
-              <span className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-300 tracking-tighter">
-                CONCEPT
-              </span>
+            {/* Upgraded Logo Mobile */}
+            <div className="flex items-center gap-2 font-heading font-extrabold text-2xl tracking-widest">
+              <div className="w-1.5 h-1.5 rotate-45 bg-concept-red shadow-[0_0_5px_rgba(255,26,26,0.8)]"></div>
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-500 font-black drop-shadow-[0_0_10px_rgba(255,26,26,0.6)]">CONCEPT</span>
+              <div className="w-1.5 h-1.5 rotate-45 bg-concept-red shadow-[0_0_5px_rgba(255,26,26,0.8)]"></div>
             </div>
             <button
               onClick={() => setIsMenuOpen(false)}
