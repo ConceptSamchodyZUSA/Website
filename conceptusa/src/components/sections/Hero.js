@@ -60,6 +60,8 @@ const Hero = ({ isVisible, scrollToSection }) => {
         </div>
       </div>
 
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pb-16">
+        <h1 className="opacity-0 animate-fade-in-up">
           {/* Spectacular Chrome Logo with Flanking Lines */}
           <div className="relative inline-flex items-center gap-4 md:gap-8 mb-4">
             {/* Left Wing/Line */}
@@ -98,6 +100,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
               Samochody <span className="text-concept-red">z USA</span>
             </span>
           </div>
+        </h1>
 
         <p className="text-sm md:text-base mb-6 text-slate-300 font-light max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards] tracking-wide">
           Premium import amerykańskiej motoryzacji. Dostarczamy emocje prosto do Twojego garażu.
