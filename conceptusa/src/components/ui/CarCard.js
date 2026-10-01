@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Calendar, Gauge, Fuel, Zap } from 'lucide-react';
 import { useTilt } from '../../hooks/useAnimations';
 
 const CarCard = ({
   car,
   getCarImages,
-  handleImageLoad,
-  loadedImages,
   openCarModal,
   getDrivetrainIcon,
   getDrivetrainLabel
 }) => {
   const carImages = getCarImages(car);
   const mainImage = carImages[0];
+  const [loadedImageSrc, setLoadedImageSrc] = useState(null);
   const { ref: tiltRef, style: tiltStyle, onMouseMove, onMouseLeave } = useTilt(6);
 
   return (
@@ -31,11 +30,11 @@ const CarCard = ({
         <img
           src={mainImage}
           alt={`${car.brand} ${car.model}`}
-          className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${!loadedImages.has(mainImage) ? 'blur-md grayscale' : ''
+          className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${loadedImageSrc !== mainImage ? 'blur-md grayscale' : ''
             }`}
           loading="lazy"
           decoding="async"
-          onLoad={() => handleImageLoad(mainImage)}
+          onLoad={() => setLoadedImageSrc(mainImage)}
         />
 
         {/* Absolute Overlays */}

@@ -10,8 +10,6 @@ const CarGallery = ({
   filteredCars,
   currentCars,
   getCarImages,
-  handleImageLoad,
-  loadedImages,
   openCarModal,
   getDrivetrainIcon,
   getDrivetrainLabel,
@@ -114,8 +112,6 @@ const CarGallery = ({
                 key={car.id}
                 car={car}
                 getCarImages={getCarImages}
-                handleImageLoad={handleImageLoad}
-                loadedImages={loadedImages}
                 openCarModal={openCarModal}
                 getDrivetrainIcon={getDrivetrainIcon}
                 getDrivetrainLabel={getDrivetrainLabel}

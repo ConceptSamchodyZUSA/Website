@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Settings, ArrowUp, ArrowDown } from 'lucide-react';
 import { carService, inquiryService } from './services';
-import emailjs from '@emailjs/browser';
 import CookieConsentBanner from './CookieConsent';
 
 import Navbar from './components/layout/Navbar';
@@ -32,9 +31,6 @@ const ConceptUSACars = () => {
   const carsPerPage = 9; // 3x3 grid
   const [submittingForm, setSubmittingForm] = useState(false);
   const [formLoadTime] = useState(Date.now()); // Track when form was loaded
-
-  // Image loading state for blur effect
-  const [loadedImages, setLoadedImages] = useState(new Set());
 
   const [formData, setFormData] = useState({
     name: '',
@@ -208,11 +204,6 @@ const ConceptUSACars = () => {
     setCurrentImageIndex(0);
   };
 
-  // Handle image load for blur effect
-  const handleImageLoad = (src) => {
-    setLoadedImages(prev => new Set([...prev, src]));
-  };
-
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -297,6 +288,7 @@ const ConceptUSACars = () => {
 
       // Send emails via EmailJS
       try {
+        const { default: emailjs } = await import('@emailjs/browser');
         const templateParams = {
           from_name: formData.name,
           from_email: formData.email,
@@ -451,8 +443,6 @@ const ConceptUSACars = () => {
           filteredCars={filteredCars}
           currentCars={currentCars}
           getCarImages={getCarImages}
-          handleImageLoad={handleImageLoad}
-          loadedImages={loadedImages}
           openCarModal={openCarModal}
           getDrivetrainIcon={getDrivetrainIcon}
           getDrivetrainLabel={getDrivetrainLabel}
@@ -493,8 +483,6 @@ const ConceptUSACars = () => {
         closeCarModal={closeCarModal}
         getCarImages={getCarImages}
         currentImageIndex={currentImageIndex}
-        handleImageLoad={handleImageLoad}
-        loadedImages={loadedImages}
         prevImage={prevImage}
         nextImage={nextImage}
         setCurrentImageIndex={setCurrentImageIndex}
