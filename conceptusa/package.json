@@ -11,8 +11,9 @@
     "@testing-library/user-event": "^13.5.0",
     "bcryptjs": "^3.0.3",
     "lucide-react": "^0.553.0",
+    "nodemailer": "^10.0.13",
     "react": "^19.2.0",
-    "react-cookie-consent": "^9.0.0",
+    "react-cookie-consent": "^10.0.2",
     "react-dom": "^19.2.0",
     "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.9.5",
@@ -44,9 +45,10 @@
     ]
   },
   "devDependencies": {
+    "ajv": "^8.20.0",
     "autoprefixer": "^10.4.22",
     "postcss": "^8.5.6",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.18"
   }
 }

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Settings, ArrowUp, ArrowDown } from 'lucide-react';
 import { carService, inquiryService } from './services';
-import emailjs from '@emailjs/browser';
 import CookieConsentBanner from './CookieConsent';
 
 import Navbar from './components/layout/Navbar';
@@ -33,9 +32,6 @@ const ConceptUSACars = () => {
   const [submittingForm, setSubmittingForm] = useState(false);
   const [formLoadTime] = useState(Date.now()); // Track when form was loaded
 
-  // Image loading state for blur effect
-  const [loadedImages, setLoadedImages] = useState(new Set());
-
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -62,28 +58,25 @@ const ConceptUSACars = () => {
     }
   }, []);
 
-  // Intersection Observer for scroll animations (bi-directional)
+  // Intersection Observer triggers one-time entrance animations without hiding sections.
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.05, // Very low threshold for instant mobile loading
-      rootMargin: '100px 0px 100px 0px' // Start loading 100px before entering viewport
+      threshold: 0.05,
+      rootMargin: '250px 0px 250px 0px'
     };
 
     const observerCallback = (entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Section entering viewport - add to visible
-          setVisibleSections(prev => new Set([...prev, entry.target.id]));
-        } else {
-          // Section leaving viewport - remove from visible (for reverse effect)
-          setVisibleSections(prev => {
-            const newSet = new Set(prev);
-            newSet.delete(entry.target.id);
-            return newSet;
-          });
-        }
+        if (!entry.isIntersecting) return;
+
+        setVisibleSections(prev => {
+          if (prev.has(entry.target.id)) return prev;
+          return new Set([...prev, entry.target.id]);
+        });
+        observer.unobserve(entry.target);
       });
-    }; const observer = new IntersectionObserver(observerCallback, observerOptions);
+    };
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     // Observe all sections
     const sections = document.querySelectorAll('section[id]');
@@ -208,11 +201,6 @@ const ConceptUSACars = () => {
     setCurrentImageIndex(0);
   };
 
-  // Handle image load for blur effect
-  const handleImageLoad = (src) => {
-    setLoadedImages(prev => new Set([...prev, src]));
-  };
-
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -297,6 +285,7 @@ const ConceptUSACars = () => {
 
       // Send emails via EmailJS
       try {
+        const { default: emailjs } = await import('@emailjs/browser');
         const templateParams = {
           from_name: formData.name,
           from_email: formData.email,
@@ -451,8 +440,6 @@ const ConceptUSACars = () => {
           filteredCars={filteredCars}
           currentCars={currentCars}
           getCarImages={getCarImages}
-          handleImageLoad={handleImageLoad}
-          loadedImages={loadedImages}
           openCarModal={openCarModal}
           getDrivetrainIcon={getDrivetrainIcon}
           getDrivetrainLabel={getDrivetrainLabel}
@@ -493,8 +480,6 @@ const ConceptUSACars = () => {
         closeCarModal={closeCarModal}
         getCarImages={getCarImages}
         currentImageIndex={currentImageIndex}
-        handleImageLoad={handleImageLoad}
-        loadedImages={loadedImages}
         prevImage={prevImage}
         nextImage={nextImage}
         setCurrentImageIndex={setCurrentImageIndex}

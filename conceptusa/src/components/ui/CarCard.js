@@ -1,112 +1,105 @@
-import React from 'react';
-import { Calendar, Gauge, Fuel, Zap } from 'lucide-react';
-import { useTilt } from '../../hooks/useAnimations';
+import React, { useState } from 'react';
+import { ArrowUpRight, Calendar, Gauge, Fuel, Zap } from 'lucide-react';
 
 const CarCard = ({
   car,
   getCarImages,
-  handleImageLoad,
-  loadedImages,
   openCarModal,
   getDrivetrainIcon,
   getDrivetrainLabel
 }) => {
   const carImages = getCarImages(car);
   const mainImage = carImages[0];
-  const { ref: tiltRef, style: tiltStyle, onMouseMove, onMouseLeave } = useTilt(6);
+  const [loadedImageSrc, setLoadedImageSrc] = useState(null);
 
   return (
     <div
-      ref={tiltRef}
-      className="glass group rounded-2xl overflow-hidden cursor-pointer border border-white/5 relative"
+      role="button"
+      tabIndex={0}
+      aria-label={`Zobacz szczegóły: ${car.brand} ${car.model}`}
+      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70 text-left shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl hover:shadow-black/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-concept-red"
       onClick={() => openCarModal(car)}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      style={tiltStyle}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openCarModal(car);
+        }
+      }}
     >
-      {/* Dynamic Hover Glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-concept-red/0 via-transparent to-concept-blue/0 group-hover:from-concept-red/10 group-hover:to-concept-blue/10 transition-colors duration-700 pointer-events-none z-10 mix-blend-screen"></div>
-
-      <div className="relative h-56 overflow-hidden bg-black/50">
+      <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
         <img
           src={mainImage}
           alt={`${car.brand} ${car.model}`}
-          className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${!loadedImages.has(mainImage) ? 'blur-md grayscale' : ''
+          className={`h-full w-full object-cover transition duration-500 group-hover:scale-[1.04] ${loadedImageSrc !== mainImage ? 'blur-sm grayscale' : ''
             }`}
           loading="lazy"
           decoding="async"
-          onLoad={() => handleImageLoad(mainImage)}
+          onLoad={() => setLoadedImageSrc(mainImage)}
         />
 
-        {/* Absolute Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-concept-dark via-concept-dark/20 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-700 z-10"></div>
-
-        {/* Scanning line effect on hover */}
-        <div className="absolute inset-0 w-full h-[2px] bg-white/40 shadow-[0_0_15px_rgba(255,255,255,0.8)] -translate-y-full group-hover:animate-[scan_2s_ease-in-out_infinite] z-20"></div>
-
         {carImages.length > 1 && (
-          <div className="absolute bottom-4 right-4 glass px-3 py-1.5 rounded-full text-xs font-medium tracking-wide flex items-center gap-2 border-white/20 text-white">
-            <span className="opacity-70">📷</span> {carImages.length}
+          <div className="absolute bottom-3 right-3 rounded-full border border-white/15 bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+            {carImages.length} zdjęć
           </div>
         )}
 
-        <div className={`absolute top-4 right-4 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg backdrop-blur-md ${car.status === 'available'
-          ? 'bg-teal-500/80 border border-teal-400/50 text-white'
-          : 'bg-slate-500/80 border border-slate-400/50 text-white'
+        <div className={`absolute left-3 top-3 rounded-full border px-3 py-1.5 text-[11px] font-semibold tracking-wide backdrop-blur-md ${car.status === 'available'
+          ? 'border-emerald-300/25 bg-emerald-950/75 text-emerald-200'
+          : 'border-white/15 bg-slate-900/75 text-slate-300'
           }`}>
           {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
         </div>
       </div>
 
-      <div className="p-6">
-        <h3 className="text-2xl font-bold mb-4 text-white font-heading tracking-wide group-hover:text-concept-red transition-colors">
-          {car.brand} {car.model}
-        </h3>
+      <div className="p-5 sm:p-6">
+        <div className="mb-5 flex items-start justify-between gap-3">
+          <div>
+            <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">{car.year || 'USA'}</p>
+            <h3 className="font-heading text-xl font-bold tracking-tight text-white transition-colors group-hover:text-red-300 sm:text-2xl">
+              {car.brand} {car.model}
+            </h3>
+          </div>
+          <ArrowUpRight size={19} className="mt-1 shrink-0 text-slate-500 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+        </div>
 
-        <div className="grid grid-cols-2 gap-y-3 gap-x-4 mb-6">
-          <div className="flex items-center gap-2 text-slate-300 text-sm font-light">
-            <Calendar size={16} className="text-concept-red/70" />
+        <div className="mb-5 grid grid-cols-2 gap-x-3 gap-y-3 border-y border-white/[0.08] py-4">
+          <div className="flex items-center gap-2 text-sm text-slate-300">
+            <Calendar size={15} className="text-slate-500" />
             <span>{car.year}</span>
           </div>
 
-          <div className="flex items-center gap-2 text-slate-300 text-sm font-light">
-            <Gauge size={16} className="text-concept-blue/70" />
+          <div className="flex items-center gap-2 text-sm text-slate-300">
+            <Gauge size={15} className="text-slate-500" />
             <span>{Math.round(car.mileage * 1.60934).toLocaleString()} km</span>
           </div>
 
           {car.engine_capacity && (
-            <div className="flex items-center gap-2 text-slate-300 text-sm font-light">
-              <Fuel size={16} className="text-orange-500/70" />
+            <div className="flex items-center gap-2 text-sm text-slate-300">
+              <Fuel size={15} className="text-slate-500" />
               <span>{car.engine_capacity}L</span>
             </div>
           )}
 
           {car.horsepower && (
-            <div className="flex items-center gap-2 text-slate-300 text-sm font-light">
-              <Zap size={16} className="text-yellow-500/70" />
+            <div className="flex items-center gap-2 text-sm text-slate-300">
+              <Zap size={15} className="text-slate-500" />
               <span>{car.horsepower} KM</span>
             </div>
           )}
         </div>
 
-        <div className="pt-5 border-t border-white/10">
+        <div>
           {car.status === 'available' ? (
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl font-bold text-teal-400 font-heading tracking-wide">
+              <span className="font-heading text-2xl font-bold tracking-tight text-white sm:text-3xl">
                 {car.price?.toLocaleString()}
               </span>
-              <span className="text-lg text-slate-400">PLN</span>
-              <span className="text-xs text-slate-500 uppercase tracking-widest ml-auto font-medium">brutto</span>
+              <span className="text-sm font-medium text-slate-400">PLN</span>
+              <span className="ml-auto text-[10px] font-medium uppercase tracking-[0.15em] text-slate-500">brutto</span>
             </div>
           ) : (
-            <div className="relative h-10 flex items-center justify-center">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative px-6 py-1.5 bg-slate-800/80 rounded-lg border border-white/5">
-                  <span className="text-slate-400 font-medium text-xs tracking-widest uppercase">
-                    Niedostępny
-                  </span>
-                </div>
-              </div>
+            <div className="flex h-9 items-center">
+              <span className="text-sm font-medium text-slate-400">Pojazd sprzedany</span>
             </div>
           )}
         </div>

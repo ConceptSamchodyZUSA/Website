@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, ShieldCheck } from 'lucide-react';
 import { useCountUp } from '../../hooks/useAnimations';
 
 const backgroundImageFallback = '/background.jpg';
@@ -9,15 +9,8 @@ const Hero = ({ isVisible, scrollToSection }) => {
   const { ref: safetyCountRef, count: safetyCount } = useCountUp(100, 1800);
 
   return (
-    <section id="home" className={`relative h-screen flex items-center justify-center overflow-hidden ${isVisible ? 'visible' : ''}`}>
-      <div className="absolute inset-0 bg-concept-dark/80 z-0"></div>
-
-      {/* Colorful, floating ambient glows */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-concept-red/20 rounded-full mix-blend-screen filter blur-[128px] opacity-70 animate-blob"></div>
-      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-concept-blue/20 rounded-full mix-blend-screen filter blur-[128px] opacity-70 animate-blob animation-delay-2000"></div>
-      <div className="absolute bottom-1/4 left-1/3 w-[600px] h-[600px] bg-purple-500/10 rounded-full mix-blend-screen filter blur-[150px] opacity-60 animate-blob animation-delay-4000"></div>
-
-      <div className="absolute inset-0 opacity-40 mix-blend-overlay">
+    <section id="home" className={`relative isolate flex min-h-[100svh] items-center overflow-hidden bg-concept-dark ${isVisible ? 'visible' : ''}`}>
+      <div className="absolute inset-0">
         <picture>
           <source
             srcSet="/optimized-images/background-400w.webp 400w,
@@ -34,94 +27,66 @@ const Hero = ({ isVisible, scrollToSection }) => {
           />
         </picture>
       </div>
+      <div className="absolute inset-0 bg-gradient-to-r from-concept-dark via-concept-dark/85 to-concept-dark/35" />
+      <div className="absolute inset-0 bg-gradient-to-t from-concept-dark via-transparent to-concept-dark/25" />
 
-      {/* Floating Badges */}
-      <div className="absolute top-1/4 right-[10%] lg:right-[15%] hidden md:block animate-float z-20">
-        <div className="glass-panel px-6 py-4 rounded-2xl border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center gap-4 backdrop-blur-xl">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-concept-red to-orange-500 flex items-center justify-center text-white font-bold text-sm shadow-[0_0_20px_rgba(220,38,38,0.5)]" ref={carsCountRef}>
-            +{carsCount}
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-end gap-12 px-5 pb-28 pt-32 sm:px-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:px-10">
+        <div className="max-w-3xl text-left">
+          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-200 backdrop-blur-sm">
+            <span className="h-2 w-2 rounded-full bg-concept-red shadow-[0_0_12px_rgba(220,38,38,0.8)]" />
+            Import samochodów z USA · od A do Z
           </div>
-          <div>
-            <p className="text-white font-bold tracking-wide">Sprowadzonych</p>
-            <p className="text-concept-slate text-sm">pojazdów z USA</p>
-          </div>
-        </div>
-      </div>
 
-      <div className="absolute bottom-1/3 left-[10%] lg:left-[15%] hidden md:block animate-float-delayed z-20">
-        <div className="glass-panel px-6 py-4 rounded-2xl border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center gap-4 backdrop-blur-xl">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-concept-blue to-teal-500 flex items-center justify-center text-white font-bold text-sm shadow-[0_0_20px_rgba(59,130,246,0.5)]" ref={safetyCountRef}>
-            {safetyCount}%
-          </div>
-          <div>
-            <p className="text-white font-bold tracking-wide">Bezpieczeństwo</p>
-            <p className="text-concept-slate text-sm">Pełna dokumentacja</p>
-          </div>
-        </div>
-      </div>
+          <h1 className="hero-heading mb-5 max-w-3xl text-3xl font-bold leading-[1.04] tracking-tight text-white sm:text-4xl lg:text-5xl">
+            Ikony z Ameryki.
+            <span className="mt-2 block text-slate-300">Na Twoich zasadach.</span>
+          </h1>
 
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pb-16">
-        <h1 className="text-4xl md:text-5xl lg:text-[5rem] font-extrabold mb-3 font-heading tracking-widest drop-shadow-2xl leading-none opacity-0 animate-fade-in-up">
-          {/* Premium logo with flanking decorative lines */}
-          <div className="relative inline-flex items-center gap-3 md:gap-5 mb-2">
-            {/* Left decorative line */}
-            <div className="hidden sm:flex items-center gap-2">
-              <div className="w-8 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-concept-red/60"></div>
-              <div className="w-1.5 h-1.5 rounded-full bg-concept-red/80"></div>
-            </div>
+          <p className="mb-9 max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+            Znajdziemy, sprawdzimy i dostarczymy auto, którego naprawdę chcesz. Ty wybierasz samochód — my zajmujemy się całą resztą.
+          </p>
 
-            <div className="relative text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x drop-shadow-[0_0_30px_rgba(220,38,38,0.4)] px-2">
-              <div className="absolute inset-0 bg-white/5 blur-xl rounded-full -z-10 animate-pulse-slow"></div>
-              CONCEPT
-            </div>
-
-            {/* Right decorative line */}
-            <div className="hidden sm:flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-concept-blue/80"></div>
-              <div className="w-8 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-concept-blue/60"></div>
-            </div>
-          </div>
-          <br />
-          <div className="relative inline-block mt-1">
-            <span className="text-white text-xl md:text-2xl lg:text-3xl tracking-[0.3em] font-sans font-light text-shadow-xl uppercase">
-              Samochody z USA
-            </span>
-          </div>
-        </h1>
-
-        <p className="text-sm md:text-base mb-6 text-slate-300 font-light max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards] tracking-wide">
-          Premium import amerykańskiej motoryzacji. Dostarczamy emocje prosto do Twojego garażu.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">
+          <div className="flex flex-col gap-3 sm:flex-row">
           <button
             onClick={() => scrollToSection('portfolio')}
-            className="group relative overflow-hidden glass rounded-full px-6 py-3 transition-all duration-500 hover:bg-white/10 border-white/20 hover:border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+            className="neon-outline-cta group inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-white/20 bg-white/[0.07] px-7 text-sm font-semibold text-white transition-colors hover:bg-white/[0.13]"
           >
-            <div className="absolute inset-0 w-1/2 h-full -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
-            <span className="relative text-sm font-medium text-white tracking-[0.2em] uppercase">
-              Zobacz portfolio
-            </span>
+            Zobacz dostępne auta
+            <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
           </button>
 
           <button
             onClick={() => scrollToSection('order')}
-            className="group relative overflow-hidden px-6 py-3 rounded-full text-sm font-bold tracking-[0.2em] uppercase text-white bg-gradient-to-r from-concept-red to-red-700 transition-all duration-500 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] hover:-translate-y-1 border border-red-500/50"
+            className="neon-cta inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-concept-red px-7 text-sm font-semibold text-white shadow-lg shadow-red-950/30 transition-colors hover:bg-red-700"
           >
-            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-scan"></div>
-            <span className="relative z-10 flex items-center gap-3">
-              Zamów auto
-              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </span>
+            Zapytaj o import
+            <ArrowRight size={17} />
           </button>
+          </div>
+        </div>
+
+        <div className="grid max-w-md grid-cols-2 gap-3 lg:mb-1 lg:w-[360px]">
+          <div className="rounded-2xl border border-white/15 bg-black/30 p-5 backdrop-blur-md">
+            <p className="mb-2 text-3xl font-bold tracking-tight text-white sm:text-4xl" ref={carsCountRef}>+{carsCount}</p>
+            <p className="text-xs font-medium uppercase tracking-[0.12em] text-slate-400">sprowadzonych aut</p>
+          </div>
+          <div className="rounded-2xl border border-white/15 bg-black/30 p-5 backdrop-blur-md">
+            <div ref={safetyCountRef} className="mb-2 flex items-center gap-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              {safetyCount}% <ShieldCheck size={22} className="text-concept-blue-light" />
+            </div>
+            <p className="text-xs font-medium uppercase tracking-[0.12em] text-slate-400">pełna dokumentacja</p>
+          </div>
         </div>
       </div>
 
-      {/* Odkryj arrow — positioned relative to the SECTION (h-screen), NOT the content container */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-400 opacity-60 hover:opacity-100 cursor-pointer hover:text-white transition-all duration-300 z-30" onClick={() => scrollToSection('about')}>
-        <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase">Odkryj</span>
-        <ChevronDown className="animate-bounce mt-1 text-concept-red" size={20} />
-      </div>
+      <button
+        type="button"
+        aria-label="Przejdź do sekcji O nas"
+        className="absolute bottom-7 left-1/2 z-20 inline-flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-black/20 px-4 py-2 text-xs font-medium uppercase tracking-[0.16em] text-slate-300 transition-colors hover:text-white"
+        onClick={() => scrollToSection('about')}
+      >
+        Poznaj nas <ChevronDown size={15} />
+      </button>
     </section>
   );
 };

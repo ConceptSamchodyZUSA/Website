@@ -60,38 +60,47 @@ export const useCountUp = (end, duration = 2000) => {
  * @returns {{ ref: React.RefObject, style: object, onMouseMove: function, onMouseLeave: function }}
  */
 export const useTilt = (maxTilt = 8) => {
-  const [style, setStyle] = useState({
-    transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)',
-    transition: 'transform 0.1s ease-out',
-  });
   const ref = useRef(null);
+  const animationFrame = useRef(null);
 
   const onMouseMove = (e) => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || animationFrame.current !== null) return;
 
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const { clientX, clientY } = e;
+    animationFrame.current = requestAnimationFrame(() => {
+      animationFrame.current = null;
+      const rect = el.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -maxTilt;
-    const rotateY = ((x - centerX) / centerX) * maxTilt;
+      const rotateX = ((y - centerY) / centerY) * -maxTilt;
+      const rotateY = ((x - centerX) / centerX) * maxTilt;
 
-    setStyle({
-      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
-      transition: 'transform 0.1s ease-out',
+      el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     });
   };
 
   const onMouseLeave = () => {
-    setStyle({
-      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)',
-      transition: 'transform 0.4s ease-out',
-    });
+    if (animationFrame.current !== null) {
+      cancelAnimationFrame(animationFrame.current);
+      animationFrame.current = null;
+    }
+    const el = ref.current;
+    if (el) el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
   };
 
-  return { ref, style, onMouseMove, onMouseLeave };
+  useEffect(() => () => {
+    if (animationFrame.current !== null) cancelAnimationFrame(animationFrame.current);
+  }, []);
+
+  return {
+    ref,
+    style: { transition: 'transform 0.1s ease-out' },
+    onMouseMove,
+    onMouseLeave
+  };
 };

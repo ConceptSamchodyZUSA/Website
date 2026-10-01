@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Mail } from 'lucide-react';
 
 const Modal = ({
@@ -6,8 +6,6 @@ const Modal = ({
   closeCarModal,
   getCarImages,
   currentImageIndex,
-  handleImageLoad,
-  loadedImages,
   prevImage,
   nextImage,
   setCurrentImageIndex,
@@ -19,7 +17,10 @@ const Modal = ({
   scrollToSection,
   setSelectedCar
 }) => {
+  const [loadedImageSrc, setLoadedImageSrc] = useState(null);
+
   if (!selectedCar) return null;
+  const currentImage = getCarImages(selectedCar)[currentImageIndex];
 
   return (
     <div
@@ -41,12 +42,14 @@ const Modal = ({
           {/* Image Gallery */}
           <div className="relative mb-6 group bg-black/40 rounded-2xl overflow-hidden shadow-inner border border-white/5">
             <img
-              src={getCarImages(selectedCar)[currentImageIndex]}
+              key={currentImage}
+              src={currentImage}
               alt={`${selectedCar.brand} ${selectedCar.model}`}
-              className={`w-full h-[400px] md:h-[500px] object-contain transition duration-700 ${!loadedImages.has(getCarImages(selectedCar)[currentImageIndex]) ? 'blur-md grayscale' : ''}`}
-              loading="lazy"
+              className={`w-full h-[400px] md:h-[500px] object-contain transition duration-700 ${loadedImageSrc !== currentImage ? 'blur-md grayscale' : ''}`}
+              loading="eager"
+              fetchPriority="high"
               decoding="async"
-              onLoad={() => handleImageLoad(getCarImages(selectedCar)[currentImageIndex])}
+              onLoad={() => setLoadedImageSrc(currentImage)}
             />
 
             {getCarImages(selectedCar).length > 1 && (

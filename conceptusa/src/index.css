@@ -5,6 +5,10 @@
 @layer base {
   body {
     @apply font-sans antialiased text-slate-200 selection:bg-concept-red selection:text-white;
+    background-color: #0b1220;
+    background-image:
+      radial-gradient(ellipse at 8% 4%, rgba(59, 130, 246, 0.08), transparent 30rem),
+      radial-gradient(ellipse at 92% 10%, rgba(220, 38, 38, 0.06), transparent 28rem);
   }
 
   h1,
@@ -62,7 +66,14 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
+    @apply border border-white/10 shadow-xl backdrop-blur-md;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
+    transition: border-color 300ms ease, box-shadow 300ms ease;
+  }
+
+  .glass:hover {
+    border-color: rgba(96, 165, 250, 0.24);
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.24), 0 0 24px rgba(59, 130, 246, 0.07), 0 0 22px rgba(220, 38, 38, 0.035);
   }
 
   .glass-dark {
@@ -70,11 +81,142 @@
   }
 
   .glass-panel {
-    @apply bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-lg border border-white/[0.05] shadow-2xl;
+    @apply border border-white/[0.08] shadow-2xl backdrop-blur-lg;
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba(59, 130, 246, 0.07), transparent 45%),
+      radial-gradient(ellipse at 100% 100%, rgba(220, 38, 38, 0.055), transparent 48%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
   }
 
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r;
+  }
+
+  .brand-lockup {
+    display: inline-flex;
+    text-align: left;
+  }
+
+  .brand-lockup-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .brand-wordmark {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 0.32em;
+    white-space: nowrap;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    line-height: 1.1;
+    isolation: isolate;
+  }
+
+  .brand-wordmark::after {
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    left: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #60a5fa 18%, #f8fafc 48%, #f87171 82%, transparent);
+    background-size: 200% 100%;
+    box-shadow: 0 0 6px rgba(59, 130, 246, 0.8), 0 0 12px rgba(239, 68, 68, 0.45);
+    content: '';
+    animation: neon-sweep 5s linear infinite;
+  }
+
+  .brand-wordmark-main {
+    color: #f8fafc;
+    text-shadow: 0 0 2px #fff, 0 0 8px rgba(96, 165, 250, 0.95), 0 0 18px rgba(37, 99, 235, 0.75);
+    animation: neon-breathe 4s ease-in-out infinite alternate;
+  }
+
+  .brand-wordmark-usa {
+    color: #fecaca;
+    font-size: 0.68em;
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 4px #fff, 0 0 10px rgba(248, 113, 113, 0.95), 0 0 20px rgba(220, 38, 38, 0.8);
+  }
+
+  .brand-tagline {
+    margin-top: 7px;
+    color: rgba(203, 213, 225, 0.72);
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .brand-lockup--nav .brand-wordmark {
+    gap: 0.28em;
+    font-size: 17px;
+    letter-spacing: 0.1em;
+  }
+
+  .brand-lockup--nav .brand-tagline {
+    font-size: 7px;
+    letter-spacing: 0.22em;
+  }
+
+  .brand-lockup--footer .brand-wordmark {
+    font-size: 17px;
+    letter-spacing: 0.1em;
+  }
+
+  .brand-lockup--footer .brand-tagline {
+    font-size: 7px;
+  }
+
+  .group:hover .brand-wordmark-main {
+    text-shadow: 0 0 3px #fff, 0 0 12px rgba(96, 165, 250, 1), 0 0 26px rgba(37, 99, 235, 0.9);
+  }
+
+  .nav-link-glow {
+    background: linear-gradient(90deg, #60a5fa, #f8fafc 48%, #f87171);
+    box-shadow: 0 0 10px rgba(96, 165, 250, 0.45), 0 0 12px rgba(248, 113, 113, 0.22);
+  }
+
+  .neon-cta {
+    isolation: isolate;
+    box-shadow: 0 8px 24px rgba(127, 29, 29, 0.28), 0 0 0 rgba(239, 68, 68, 0);
+    transition: box-shadow 250ms ease, transform 250ms ease, background-color 250ms ease;
+  }
+
+  .neon-cta:hover {
+    box-shadow: 0 10px 28px rgba(127, 29, 29, 0.35), 0 0 22px rgba(239, 68, 68, 0.28);
+    transform: translateY(-1px);
+  }
+
+  .neon-outline-cta {
+    transition: border-color 250ms ease, box-shadow 250ms ease, background-color 250ms ease;
+  }
+
+  .neon-outline-cta:hover {
+    border-color: rgba(96, 165, 250, 0.58);
+    box-shadow: 0 0 22px rgba(59, 130, 246, 0.12), inset 0 0 18px rgba(59, 130, 246, 0.06);
+  }
+
+  .hero-heading {
+    text-wrap: balance;
+    text-shadow: 0 0 28px rgba(59, 130, 246, 0.09);
+  }
+
+  .hero-heading span {
+    text-shadow: 0 0 24px rgba(59, 130, 246, 0.16);
+  }
+
+  @keyframes neon-breathe {
+    from { opacity: 0.88; }
+    to { opacity: 1; }
+  }
+
+  @keyframes neon-sweep {
+    from { background-position: 100% 0; }
+    to { background-position: -100% 0; }
   }
 
   @keyframes gradient-x {
@@ -94,16 +236,10 @@
     animation: gradient-x 3s ease infinite;
   }
 
-  /* Scroll entrance animations */
+  /* Keep all content visible; IntersectionObserver only starts the optional entrance animation. */
   section[id] {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  section[id].visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 
   /* Staggered children inside visible sections */
@@ -162,6 +298,38 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  @media (max-width: 767px) {
+    /* Keep mobile scrolling responsive; reveal content without staggered repaints. */
+    section[id].visible>div>* {
+      animation: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .brand-wordmark-main {
+      animation: none;
+    }
+
+    .brand-wordmark::after {
+      animation: none;
+    }
+
+    .glass,
+    .neon-cta,
+    .neon-outline-cta {
+      transition: none;
+    }
   }
 
   /* Scan animation for CTA buttons */
