@@ -23,53 +23,37 @@ const CarGallery = ({
       <div className="absolute inset-0 bg-gradient-to-b from-concept-dark/40 to-transparent pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 font-heading">
-          Nasze <span className="text-concept-red">Portfolio</span>
-        </h2>
-        <p className="text-center text-slate-400 mb-12 text-lg font-light tracking-wide">
-          Sprowadzone samochody, które czekają na nowych właścicieli
-        </p>
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-concept-red">Nasza oferta</p>
+            <h2 className="font-heading text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+              Auta z <span className="text-slate-400">charakterem.</span>
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-slate-400 sm:text-base">
+              Sprawdzone samochody z USA, gotowe na kolejnego właściciela.
+            </p>
+          </div>
 
-        {/* Filters */}
-        <div className="flex justify-center gap-4 mb-16 flex-wrap">
-          <button
-            onClick={() => setActiveFilter('all')}
-            className={`relative px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-500 overflow-hidden group ${activeFilter === 'all'
-              ? 'bg-gradient-to-r from-concept-red to-red-700 text-white shadow-[0_0_20px_rgba(220,38,38,0.5)] border border-red-500/50 scale-105'
-              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20'
-              }`}
-          >
-            {activeFilter === 'all' && (
-              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-scan"></div>
-            )}
-            <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 block">Wszystkie</span>
-          </button>
-
-          <button
-            onClick={() => setActiveFilter('available')}
-            className={`relative px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-500 overflow-hidden group ${activeFilter === 'available'
-              ? 'bg-gradient-to-r from-teal-500 to-teal-700 text-white shadow-[0_0_20px_rgba(20,184,166,0.5)] border border-teal-400/50 scale-105'
-              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20'
-              }`}
-          >
-            {activeFilter === 'available' && (
-              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-scan"></div>
-            )}
-            <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 block">Dostępne</span>
-          </button>
-
-          <button
-            onClick={() => setActiveFilter('sold')}
-            className={`relative px-8 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-500 overflow-hidden group ${activeFilter === 'sold'
-              ? 'bg-gradient-to-r from-slate-500 to-slate-700 text-white shadow-[0_0_20px_rgba(100,116,139,0.5)] border border-slate-400/50 scale-105'
-              : 'glass bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20'
-              }`}
-          >
-            {activeFilter === 'sold' && (
-              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-scan"></div>
-            )}
-            <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 block">Sprzedane</span>
-          </button>
+          <div className="inline-flex w-fit max-w-full gap-1 overflow-x-auto rounded-xl border border-white/10 bg-white/[0.04] p-1">
+            {[
+              { id: 'all', label: 'Wszystkie' },
+              { id: 'available', label: 'Dostępne' },
+              { id: 'sold', label: 'Sprzedane' }
+            ].map((filter) => (
+              <button
+                key={filter.id}
+                type="button"
+                onClick={() => setActiveFilter(filter.id)}
+                aria-pressed={activeFilter === filter.id}
+                className={`whitespace-nowrap rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${activeFilter === filter.id
+                  ? 'bg-white text-slate-950 shadow-sm'
+                  : 'text-slate-400 hover:text-white'
+                  }`}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Loading Skeletons */}

@@ -130,27 +130,29 @@ const CookieConsentBanner = () => {
   return (
     <>
       {/* Overlay */}
-      <div className="fixed inset-0 bg-black/60 z-[60] animate-fade-in"
+      <div className="fixed inset-0 z-[60] bg-black/45 backdrop-blur-[2px] animate-fade-in"
            onClick={() => !showSettings && rejectAll()} />
 
       {/* Banner */}
-      <div className={`fixed ${showSettings ? 'inset-4 md:inset-8' : 'bottom-4 left-4 right-4 md:left-8 md:right-8 md:bottom-8'}
-                      bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl shadow-2xl z-[61]
-                      border-2 border-red-600/50 overflow-hidden transition-all duration-300
-                      ${showSettings ? 'max-w-4xl mx-auto max-h-[90vh] overflow-y-auto' : 'max-w-6xl mx-auto'}`}>
+      <div className={`fixed ${showSettings ? 'inset-4 md:inset-8' : 'bottom-4 left-4 right-4 md:bottom-6'}
+                      z-[61] mx-auto overflow-hidden rounded-2xl border border-white/10 bg-slate-950/95 text-white shadow-2xl shadow-black/40 backdrop-blur-2xl transition-all duration-300
+                      ${showSettings ? 'max-w-4xl max-h-[90vh] overflow-y-auto' : 'max-w-3xl'}`}>
 
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-600 to-blue-600 px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 sm:px-6">
           <div className="flex items-center gap-3">
-            <Cookie size={28} className="text-white" />
-            <h3 className="text-xl md:text-2xl font-bold">
+            <span className="grid h-10 w-10 place-items-center rounded-xl bg-concept-red/15 text-concept-red">
+              <Cookie size={20} />
+            </span>
+            <h3 className="text-base font-semibold tracking-tight text-white sm:text-lg">
               {showSettings ? 'Ustawienia Cookies' : 'Ta strona używa plików cookie'}
             </h3>
           </div>
           {showSettings && (
             <button
+              type="button"
               onClick={rejectAll}
-              className="text-white hover:text-gray-200 transition"
+              className="grid h-10 w-10 place-items-center rounded-full text-slate-400 transition hover:bg-white/10 hover:text-white"
               aria-label="Zamknij ustawienia"
             >
               <X size={24} />
@@ -159,42 +161,44 @@ const CookieConsentBanner = () => {
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-5 sm:p-6">
           {!showSettings ? (
             // Simple Banner View
             <>
-              <p className="text-gray-300 mb-6 text-sm md:text-base leading-relaxed">
+              <p className="mb-5 text-sm leading-relaxed text-slate-300">
                 Używamy plików cookie, aby zapewnić najlepszą jakość korzystania z naszej strony,
                 analizować ruch i personalizować treści. Możesz wybrać, które pliki cookie chcesz zaakceptować.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="grid gap-2 sm:grid-cols-3">
                 <button
+                  type="button"
                   onClick={acceptAll}
-                  className="flex-1 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800
-                           px-6 py-3 rounded-lg font-semibold transition transform hover:scale-105 shadow-lg"
+                  className="min-h-12 rounded-xl bg-concept-red px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
                 >
                   Akceptuj wszystkie
                 </button>
                 <button
+                  type="button"
                   onClick={rejectAll}
-                  className="flex-1 bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-lg font-semibold transition"
+                  className="min-h-12 rounded-xl border border-white/10 bg-white/[0.07] px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/[0.12]"
                 >
                   Odrzuć wszystkie
                 </button>
                 <button
+                  type="button"
                   onClick={() => setShowSettings(true)}
-                  className="flex-1 bg-transparent border-2 border-gray-600 hover:border-gray-500 hover:bg-gray-800
-                           px-6 py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2"
+                  className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:bg-white/[0.07] hover:text-white"
                 >
                   <Settings size={20} />
                   Dostosuj
                 </button>
               </div>
-              <p className="text-xs text-gray-500 mt-4 text-center">
+              <p className="mt-4 text-center text-xs text-slate-500">
                 Kontynuując bez zmiany ustawień, akceptujesz naszą{' '}
                 <button
+                  type="button"
                   onClick={() => setShowSettings(true)}
-                  className="text-blue-400 hover:text-blue-300 underline"
+                  className="text-slate-300 underline decoration-white/30 underline-offset-4 transition hover:text-white"
                 >
                   politykę cookies
                 </button>

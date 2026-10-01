@@ -5,34 +5,20 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
   return (
     <>
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-dark !border-0' : 'bg-transparent'
+      <nav className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${isScrolled
+        ? 'border-white/10 bg-concept-dark/90 shadow-lg shadow-black/10 backdrop-blur-xl'
+        : 'border-white/[0.06] bg-concept-dark/35 backdrop-blur-md'
         }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => scrollToSection('home')}>
-              {!isScrolled ? (
-                <div className="flex items-center gap-3 text-xl md:text-2xl font-extrabold font-heading tracking-widest">
-                  <div className="hidden md:flex items-center gap-1.5">
-                    <div className="w-6 h-[1px] bg-gradient-to-r from-transparent to-concept-red/50"></div>
-                    <div className="w-1 h-1 rounded-full bg-concept-red/70"></div>
-                  </div>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x group-hover:drop-shadow-[0_0_15px_rgba(220,38,38,0.5)] transition-all duration-500">CONCEPT</span>
-                  <div className="hidden md:flex items-center gap-1.5">
-                    <div className="w-1 h-1 rounded-full bg-concept-blue/70"></div>
-                    <div className="w-6 h-[1px] bg-gradient-to-l from-transparent to-concept-blue/50"></div>
-                  </div>
-                  <span className="text-white/50 text-[0.5rem] md:text-[0.65rem] font-sans font-medium uppercase tracking-[0.2em] ml-1">Samochody z USA</span>
-                </div>
-              ) : (
-                <div className="flex items-center gap-2 text-lg md:text-xl font-extrabold font-heading tracking-widest">
-                  <div className="w-1 h-1 rounded-full bg-concept-red/70"></div>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x text-shadow-sm group-hover:drop-shadow-[0_0_10px_rgba(220,38,38,0.4)] transition-all duration-500">CONCEPT</span>
-                  <div className="w-1 h-1 rounded-full bg-concept-blue/70"></div>
-                  <span className="text-white/60 text-[0.55rem] md:text-[0.65rem] font-sans font-medium uppercase tracking-[0.2em]">USA</span>
-                </div>
-              )}
-            </div>
+            <button type="button" aria-label="Concept USA — strona główna" className="group flex items-center gap-3 text-left" onClick={() => scrollToSection('home')}>
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-concept-red text-sm font-black tracking-tight text-white shadow-lg shadow-red-950/30">C.</span>
+              <span className="flex flex-col">
+                <span className="font-heading text-lg font-bold leading-tight tracking-[0.12em] text-white">CONCEPT<span className="text-concept-red">USA</span></span>
+                <span className="text-[9px] font-medium uppercase tracking-[0.2em] text-slate-400">Samochody z USA</span>
+              </span>
+            </button>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
@@ -56,7 +42,7 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
               {/* Contact button */}
               <button
                 onClick={() => scrollToSection('contact')}
-                className="relative px-6 py-2.5 rounded hover:rounded-xl font-semibold bg-concept-red text-white transition-all duration-300 hover:bg-concept-red-dark hover:shadow-[0_0_15px_rgba(220,38,38,0.4)] border border-transparent"
+                className="relative rounded-full border border-concept-red/70 bg-concept-red px-5 py-2.5 font-semibold text-white transition-colors duration-300 hover:bg-red-700"
               >
                 <span className="flex items-center gap-2">
                   <Phone size={16} />
@@ -67,6 +53,9 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
 
             {/* Mobile Menu Button */}
             <button
+              type="button"
+              aria-label={isMenuOpen ? 'Zamknij menu' : 'Otwórz menu'}
+              aria-expanded={isMenuOpen}
               className="md:hidden text-slate-200 hover:text-white transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
