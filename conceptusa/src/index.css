@@ -236,16 +236,10 @@
     animation: gradient-x 3s ease infinite;
   }
 
-  /* Scroll entrance animations */
+  /* Keep all content visible; IntersectionObserver only starts the optional entrance animation. */
   section[id] {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  section[id].visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 
   /* Staggered children inside visible sections */
@@ -304,6 +298,13 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  @media (max-width: 767px) {
+    /* Keep mobile scrolling responsive; reveal content without staggered repaints. */
+    section[id].visible>div>* {
+      animation: none;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

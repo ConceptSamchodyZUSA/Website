@@ -58,28 +58,25 @@ const ConceptUSACars = () => {
     }
   }, []);
 
-  // Intersection Observer for scroll animations (bi-directional)
+  // Intersection Observer triggers one-time entrance animations without hiding sections.
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.05, // Very low threshold for instant mobile loading
-      rootMargin: '100px 0px 100px 0px' // Start loading 100px before entering viewport
+      threshold: 0.05,
+      rootMargin: '250px 0px 250px 0px'
     };
 
     const observerCallback = (entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Section entering viewport - add to visible
-          setVisibleSections(prev => new Set([...prev, entry.target.id]));
-        } else {
-          // Section leaving viewport - remove from visible (for reverse effect)
-          setVisibleSections(prev => {
-            const newSet = new Set(prev);
-            newSet.delete(entry.target.id);
-            return newSet;
-          });
-        }
+        if (!entry.isIntersecting) return;
+
+        setVisibleSections(prev => {
+          if (prev.has(entry.target.id)) return prev;
+          return new Set([...prev, entry.target.id]);
+        });
+        observer.unobserve(entry.target);
       });
-    }; const observer = new IntersectionObserver(observerCallback, observerOptions);
+    };
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     // Observe all sections
     const sections = document.querySelectorAll('section[id]');
