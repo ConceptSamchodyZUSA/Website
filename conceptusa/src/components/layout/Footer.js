@@ -1,5 +1,6 @@
 import React from 'react';
 import { Facebook, Instagram } from 'lucide-react';
+import BrandLogo from '../ui/BrandLogo';
 
 const Footer = () => {
   return (
@@ -16,9 +17,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12 mb-16">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-6 font-heading tracking-widest uppercase">
-              CONCEPT <span className="text-concept-red">.</span>
-            </h3>
+            <div className="mb-6"><BrandLogo variant="footer" /></div>
             <div className="space-y-3 text-slate-400 text-sm font-light leading-relaxed">
               <p className="font-medium text-slate-300 text-base">Concept Łukasz Grzenkowski</p>
               <p>ul. Długa 24</p>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, X, ChevronRight, Phone, Facebook, Instagram } from 'lucide-react';
+import BrandLogo from '../ui/BrandLogo';
 
 const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
   return (
@@ -12,12 +13,8 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <button type="button" aria-label="Concept USA — strona główna" className="group flex items-center gap-3 text-left" onClick={() => scrollToSection('home')}>
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-concept-red text-sm font-black tracking-tight text-white shadow-lg shadow-red-950/30">C.</span>
-              <span className="flex flex-col">
-                <span className="font-heading text-lg font-bold leading-tight tracking-[0.12em] text-white">CONCEPT<span className="text-concept-red">USA</span></span>
-                <span className="text-[9px] font-medium uppercase tracking-[0.2em] text-slate-400">Samochody z USA</span>
-              </span>
+              <button type="button" aria-label="Concept USA — strona główna" className="group rounded-xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-300" onClick={() => scrollToSection('home')}>
+              <BrandLogo />
             </button>
 
             {/* Desktop Menu */}
@@ -35,14 +32,14 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
                   className="relative px-2 py-2 text-sm font-medium tracking-wide text-slate-300 transition-colors duration-300 group hover:text-white hover:bg-transparent border-0"
                 >
                   {item.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-concept-red transition-all duration-300 group-hover:w-full" />
+                  <span className="nav-link-glow absolute -bottom-1 left-0 h-[2px] w-0 transition-all duration-300 group-hover:w-full" />
                 </button>
               ))}
 
               {/* Contact button */}
               <button
                 onClick={() => scrollToSection('contact')}
-                className="relative rounded-full border border-concept-red/70 bg-concept-red px-5 py-2.5 font-semibold text-white transition-colors duration-300 hover:bg-red-700"
+                className="neon-cta relative rounded-full border border-concept-red/70 bg-concept-red px-5 py-2.5 font-semibold text-white transition-colors duration-300 hover:bg-red-700"
               >
                 <span className="flex items-center gap-2">
                   <Phone size={16} />
@@ -76,9 +73,7 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
           }`}>
           {/* Header */}
           <div className="flex justify-between items-center p-6 border-b border-white/5">
-            <div className="flex items-center gap-2 font-heading font-extrabold text-xl tracking-widest">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red via-concept-blue to-concept-red animate-gradient-x">CONCEPT</span>
-            </div>
+            <BrandLogo />
             <button
               onClick={() => setIsMenuOpen(false)}
               className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-concept-red text-white rounded-full transition-all duration-300"
@@ -114,7 +109,7 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
                 scrollToSection('contact');
                 setIsMenuOpen(false);
               }}
-              className="flex items-center justify-center gap-3 py-5 px-6 mt-4 text-xl font-bold bg-concept-red hover:bg-concept-red-dark text-white rounded-xl shadow-lg shadow-concept-red/20 transition-all duration-300"
+              className="neon-cta flex items-center justify-center gap-3 py-5 px-6 mt-4 text-xl font-bold bg-concept-red hover:bg-concept-red-dark text-white rounded-xl shadow-lg shadow-concept-red/20 transition-all duration-300"
             >
               <Phone size={24} />
               <span>Kontakt</span>

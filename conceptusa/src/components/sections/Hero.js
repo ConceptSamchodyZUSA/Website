@@ -37,7 +37,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
             Import samochodów z USA · od A do Z
           </div>
 
-          <h1 className="mb-6 max-w-3xl text-4xl font-bold leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="hero-heading mb-5 max-w-3xl text-3xl font-bold leading-[1.04] tracking-tight text-white sm:text-4xl lg:text-5xl">
             Ikony z Ameryki.
             <span className="mt-2 block text-slate-300">Na Twoich zasadach.</span>
           </h1>
@@ -49,7 +49,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
           <div className="flex flex-col gap-3 sm:flex-row">
           <button
             onClick={() => scrollToSection('portfolio')}
-            className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-white/20 bg-white/[0.07] px-7 text-sm font-semibold text-white transition-colors hover:bg-white/[0.13]"
+            className="neon-outline-cta group inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-white/20 bg-white/[0.07] px-7 text-sm font-semibold text-white transition-colors hover:bg-white/[0.13]"
           >
             Zobacz dostępne auta
             <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
@@ -57,7 +57,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
 
           <button
             onClick={() => scrollToSection('order')}
-            className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-concept-red px-7 text-sm font-semibold text-white shadow-lg shadow-red-950/30 transition-colors hover:bg-red-700"
+            className="neon-cta inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-concept-red px-7 text-sm font-semibold text-white shadow-lg shadow-red-950/30 transition-colors hover:bg-red-700"
           >
             Zapytaj o import
             <ArrowRight size={17} />
@@ -72,7 +72,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
           </div>
           <div className="rounded-2xl border border-white/15 bg-black/30 p-5 backdrop-blur-md">
             <div ref={safetyCountRef} className="mb-2 flex items-center gap-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              {safetyCount}% <ShieldCheck size={22} className="text-emerald-400" />
+              {safetyCount}% <ShieldCheck size={22} className="text-concept-blue-light" />
             </div>
             <p className="text-xs font-medium uppercase tracking-[0.12em] text-slate-400">pełna dokumentacja</p>
           </div>

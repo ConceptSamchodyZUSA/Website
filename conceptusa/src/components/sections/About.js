@@ -50,11 +50,11 @@ const About = ({ isVisible }) => {
           </div>
 
           <div className="glass p-8 rounded-3xl text-left group transition-all duration-500 hover:-translate-y-2 hover:bg-white/10 relative overflow-hidden flex flex-col justify-end">
-            <div className="absolute top-6 right-6 text-teal-500 opacity-20 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500">
+            <div className="absolute top-6 right-6 text-concept-blue opacity-20 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500">
               <Truck size={80} />
             </div>
             <div className="relative z-10">
-              <div className="text-teal-500 mb-4 group-hover:-translate-y-1 transition-transform duration-300">
+              <div className="text-concept-blue mb-4 group-hover:-translate-y-1 transition-transform duration-300">
                 <Truck size={28} />
               </div>
               <h3 className="text-xl font-bold mb-2 text-white tracking-wide">Północna logistyka</h3>
@@ -175,8 +175,8 @@ const About = ({ isVisible }) => {
         </div>
 
         {/* Obsługa finansowa */}
-        <div className="mt-24 glass-panel border-t-2 border-t-teal-500 rounded-3xl p-10 lg:p-14 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-transparent pointer-events-none"></div>
+        <div className="mt-24 glass-panel border-t-2 border-t-concept-blue rounded-3xl p-10 lg:p-14 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-concept-blue/10 to-transparent pointer-events-none"></div>
           <h3 className="text-2xl md:text-3xl font-bold mb-12 font-heading tracking-wide text-white">
             <span className="mr-3">💼</span> Profesjonalna obsługa finansowa i logistyczna
           </h3>
@@ -184,7 +184,7 @@ const About = ({ isVisible }) => {
           <div className="grid md:grid-cols-3 gap-10 text-left max-w-6xl mx-auto relative z-10">
             <div className="flex items-start space-x-5">
               <div className="flex-shrink-0">
-                <div className="bg-teal-500/20 text-teal-400 rounded-2xl p-4 border border-teal-500/30 shadow-[0_0_15px_rgba(20,184,166,0.15)]">
+                <div className="bg-concept-blue/20 text-concept-blue-light rounded-2xl p-4 border border-concept-blue/30 shadow-[0_0_15px_rgba(59,130,246,0.15)]">
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
@@ -197,7 +197,7 @@ const About = ({ isVisible }) => {
             </div>
             <div className="flex items-start space-x-5">
               <div className="flex-shrink-0">
-                <div className="bg-teal-500/20 text-teal-400 rounded-2xl p-4 border border-teal-500/30 shadow-[0_0_15px_rgba(20,184,166,0.15)]">
+                <div className="bg-concept-blue/20 text-concept-blue-light rounded-2xl p-4 border border-concept-blue/30 shadow-[0_0_15px_rgba(59,130,246,0.15)]">
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
@@ -210,7 +210,7 @@ const About = ({ isVisible }) => {
             </div>
             <div className="flex items-start space-x-5">
               <div className="flex-shrink-0">
-                <div className="bg-teal-500/20 text-teal-400 rounded-2xl p-4 border border-teal-500/30 shadow-[0_0_15px_rgba(20,184,166,0.15)]">
+                <div className="bg-concept-blue/20 text-concept-blue-light rounded-2xl p-4 border border-concept-blue/30 shadow-[0_0_15px_rgba(59,130,246,0.15)]">
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>

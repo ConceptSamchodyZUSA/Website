@@ -9,7 +9,7 @@ const VehicleProcess = ({ isVisible }) => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/5 to-transparent pointer-events-none"></div>
 
       {/* Dynamic Background Glows */}
-      <div className="absolute top-1/4 -right-48 w-[500px] h-[500px] bg-teal-500/10 rounded-full mix-blend-screen filter blur-[120px] opacity-50 pointer-events-none animate-pulse-slow"></div>
+      <div className="absolute top-1/4 -right-48 w-[500px] h-[500px] bg-concept-red/10 rounded-full mix-blend-screen filter blur-[120px] opacity-50 pointer-events-none animate-pulse-slow"></div>
       <div className="absolute bottom-1/4 -left-48 w-[500px] h-[500px] bg-concept-blue/10 rounded-full mix-blend-screen filter blur-[120px] opacity-50 pointer-events-none animate-pulse-slow" style={{ animationDelay: '1.5s' }}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -25,12 +25,12 @@ const VehicleProcess = ({ isVisible }) => {
           <button
             onClick={() => setProcessType('ready')}
             className={`relative px-10 py-5 rounded-2xl font-bold tracking-widest text-sm transition-all duration-500 overflow-hidden group ${processType === 'ready'
-              ? 'bg-gradient-to-br from-teal-900/40 to-teal-800/20 text-white shadow-[0_0_40px_rgba(20,184,166,0.3)]'
+              ? 'bg-gradient-to-br from-concept-red/25 to-red-950/30 text-white shadow-[0_0_40px_rgba(220,38,38,0.25)]'
               : 'glass border border-white/5 text-slate-400 hover:text-white hover:bg-white/10'
               }`}
           >
             {processType === 'ready' && (
-              <div className="absolute inset-0 border-2 border-transparent rounded-2xl [background:linear-gradient(theme(colors.teal.400),theme(colors.teal.600))_border-box] [mask:linear-gradient(#fff_0_0)_padding-box,linear-gradient(#fff_0_0)] mask-composite-exclude opacity-70 animate-pulse-slow"></div>
+              <div className="absolute inset-0 border-2 border-transparent rounded-2xl [background:linear-gradient(theme(colors.red.400),theme(colors.red.700))_border-box] [mask:linear-gradient(#fff_0_0)_padding-box,linear-gradient(#fff_0_0)] mask-composite-exclude opacity-70 animate-pulse-slow"></div>
             )}
             <span className="relative z-10 flex items-center justify-center">
               <span className="mr-3 text-xl group-hover:scale-110 transition-transform">🚗</span> AUTO NA GOTOWO
@@ -64,15 +64,15 @@ const VehicleProcess = ({ isVisible }) => {
               { num: '06', title: 'Odbiór', desc: 'Gotowe z kluczykiem', icon: '🎉' }
             ].map((step, idx) => (
               <div key={idx} className="relative group">
-                <div className="glass-panel p-6 rounded-2xl text-center hover:bg-teal-500/5 border hover:border-teal-500/30 transition-all duration-300 hover:-translate-y-2 h-full flex flex-col justify-center">
+                <div className="glass-panel p-6 rounded-2xl text-center hover:bg-concept-red/5 border hover:border-concept-red/30 transition-all duration-300 hover:-translate-y-2 h-full flex flex-col justify-center">
                   <div className="text-3xl mb-4 group-hover:scale-110 transition-transform duration-300">{step.icon}</div>
-                  <div className="text-xs font-bold font-sans text-teal-500/70 mb-2 tracking-widest">{step.num}</div>
+                  <div className="text-xs font-bold font-sans text-red-400/80 mb-2 tracking-widest">{step.num}</div>
                   <h3 className="text-sm font-bold text-white mb-2">{step.title}</h3>
                   <p className="text-xs text-slate-400 font-light">{step.desc}</p>
                 </div>
                 {idx < 5 && (
                   <div className="hidden md:flex absolute top-1/2 -right-3 transform -translate-y-1/2 z-10 w-6 h-6 items-center justify-center">
-                    <ChevronDown className="rotate-[-90deg] text-teal-500/50" size={20} />
+                    <ChevronDown className="rotate-[-90deg] text-concept-red/60" size={20} />
                   </div>
                 )}
               </div>
@@ -108,12 +108,12 @@ const VehicleProcess = ({ isVisible }) => {
 
         {/* Info Box */}
         <div className={`mt-16 glass p-8 md:p-10 rounded-2xl text-center max-w-4xl mx-auto transition-all duration-500 ${processType === 'ready'
-          ? 'border-l-4 border-l-teal-500'
+          ? 'border-l-4 border-l-concept-red'
           : 'border-l-4 border-l-concept-blue'
           }`}>
           {processType === 'ready' ? (
             <p className="text-lg md:text-xl text-slate-300 font-light leading-relaxed">
-              <span className="text-teal-400 font-semibold tracking-wide mr-2 uppercase text-sm">Pełna obsługa</span>
+              <span className="text-red-300 font-semibold tracking-wide mr-2 uppercase text-sm">Pełna obsługa</span>
               <br className="md:hidden" />
               Wszystko robimy my - od zakupu w USA, przez naprawę i rejestrację. Auto gotowe do jazdy od pierwszego dnia!
             </p>
