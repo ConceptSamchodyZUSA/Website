@@ -107,7 +107,7 @@
     inset: 0 0 0 auto;
     width: min(72%, 1120px);
     perspective: 1500px;
-    pointer-events: none;
+    pointer-events: auto;
   }
 
   .hero-art::before,
@@ -168,11 +168,29 @@
     transform-origin: center;
     animation: hero-frame-float 9s ease-in-out infinite;
     transition: transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1);
+    will-change: transform;
   }
 
   .hero-section:hover .hero-art-frame {
     animation-play-state: paused;
     transform: rotateY(-3deg) rotateZ(0deg) translateY(-4px);
+  }
+
+  .hero-art.is-interacting .hero-art-frame {
+    animation-play-state: paused;
+    transform: rotateY(calc(-7deg + var(--tilt-x, 0deg))) rotateX(var(--tilt-y, 0deg)) rotateZ(-1deg) translateY(-5px) scale(1.025);
+    transition-duration: 120ms;
+    transition-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .hero-art.is-interacting::after {
+    animation-play-state: paused;
+    transform: rotateY(calc(-7deg + var(--tilt-x, 0deg))) rotateX(var(--tilt-y, 0deg)) rotateZ(-1deg);
+  }
+
+  .hero-art.is-interacting .hero-orbit {
+    animation-play-state: paused;
+    transform: rotateX(calc(66deg + var(--tilt-y, 0deg))) rotateZ(calc(-14deg + var(--tilt-x, 0deg)));
   }
 
   .hero-art-frame picture,
@@ -190,6 +208,12 @@
     animation: hero-car-drift 17s ease-in-out infinite alternate;
   }
 
+  .hero-art.is-interacting .hero-art-image {
+    animation-play-state: paused;
+    transform: scale(1.12) translate3d(var(--image-shift-x, 0px), var(--image-shift-y, 0px), 0);
+    transition: transform 180ms ease-out;
+  }
+
   .hero-art-shine {
     position: absolute;
     inset: 0;
@@ -197,6 +221,19 @@
     background:
       linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 30%),
       linear-gradient(0deg, rgba(0, 0, 0, 0.54), transparent 36%);
+  }
+
+  .hero-art-shine::before {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255, 255, 255, 0.28), rgba(181, 195, 210, 0.1) 16%, transparent 42%);
+    content: '';
+    opacity: 0;
+    transition: opacity 250ms ease;
+  }
+
+  .hero-art.is-interacting .hero-art-shine::before {
+    opacity: 1;
   }
 
   .hero-art-shine::after {
@@ -579,6 +616,10 @@
       transform: rotateY(-3deg) rotateZ(-1deg);
     }
 
+    .hero-art.is-interacting .hero-art-frame {
+      transform: rotateY(calc(-3deg + var(--tilt-x, 0deg))) rotateX(var(--tilt-y, 0deg)) rotateZ(-1deg) translateY(-3px) scale(1.015);
+    }
+
     .hero-orbit {
       inset: 6% -11% 9% 3%;
       opacity: 0.58;
@@ -634,6 +675,18 @@
     .hero-orbit,
     .hero-art-shine::after {
       animation: none;
+    }
+
+    .hero-art.is-interacting .hero-art-frame,
+    .hero-art.is-interacting .hero-art-image,
+    .hero-art.is-interacting .hero-orbit,
+    .hero-art.is-interacting::after {
+      animation: none;
+      transform: none;
+    }
+
+    .hero-art.is-interacting .hero-art-shine::before {
+      opacity: 0;
     }
 
     .brand-wordmark::after {

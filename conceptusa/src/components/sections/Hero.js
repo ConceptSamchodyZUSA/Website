@@ -8,9 +8,43 @@ const Hero = ({ isVisible, scrollToSection }) => {
   const { ref: carsCountRef, count: carsCount } = useCountUp(2000, 2200);
   const { ref: safetyCountRef, count: safetyCount } = useCountUp(100, 1800);
 
+  const handleHeroPointerMove = (event) => {
+    if (event.pointerType === 'touch') return;
+
+    const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
+    const pointerX = (event.clientX - left) / width;
+    const pointerY = (event.clientY - top) / height;
+    const relativeX = (pointerX - 0.5) * 2;
+    const relativeY = (pointerY - 0.5) * 2;
+    const art = event.currentTarget;
+
+    art.style.setProperty('--tilt-x', `${(relativeX * 11).toFixed(2)}deg`);
+    art.style.setProperty('--tilt-y', `${(relativeY * -7).toFixed(2)}deg`);
+    art.style.setProperty('--image-shift-x', `${(relativeX * -18).toFixed(1)}px`);
+    art.style.setProperty('--image-shift-y', `${(relativeY * -12).toFixed(1)}px`);
+    art.style.setProperty('--spot-x', `${(pointerX * 100).toFixed(1)}%`);
+    art.style.setProperty('--spot-y', `${(pointerY * 100).toFixed(1)}%`);
+    art.classList.add('is-interacting');
+  };
+
+  const resetHeroPointer = (event) => {
+    event.currentTarget.classList.remove('is-interacting');
+    event.currentTarget.style.setProperty('--tilt-x', '0deg');
+    event.currentTarget.style.setProperty('--tilt-y', '0deg');
+    event.currentTarget.style.setProperty('--image-shift-x', '0px');
+    event.currentTarget.style.setProperty('--image-shift-y', '0px');
+    event.currentTarget.style.setProperty('--spot-x', '50%');
+    event.currentTarget.style.setProperty('--spot-y', '50%');
+  };
+
   return (
     <section id="home" className={`hero-section relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-concept-dark ${isVisible ? 'visible' : ''}`}>
-      <div className="hero-art" aria-hidden="true">
+      <div
+        className="hero-art"
+        aria-hidden="true"
+        onPointerMove={handleHeroPointerMove}
+        onPointerLeave={resetHeroPointer}
+      >
         <div className="hero-orbit" />
         <div className="hero-art-frame">
           <picture>
