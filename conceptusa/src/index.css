@@ -5,10 +5,10 @@
 @layer base {
   body {
     @apply font-sans antialiased text-slate-200 selection:bg-concept-red selection:text-white;
-    background-color: #0b1220;
+    background-color: #0b0d10;
     background-image:
-      radial-gradient(ellipse at 8% 4%, rgba(59, 130, 246, 0.08), transparent 30rem),
-      radial-gradient(ellipse at 92% 10%, rgba(220, 38, 38, 0.06), transparent 28rem);
+      radial-gradient(ellipse at 8% 4%, rgba(181, 195, 210, 0.045), transparent 30rem),
+      radial-gradient(ellipse at 92% 10%, rgba(220, 38, 38, 0.045), transparent 28rem);
   }
 
   h1,
@@ -72,8 +72,8 @@
   }
 
   .glass:hover {
-    border-color: rgba(96, 165, 250, 0.24);
-    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.24), 0 0 24px rgba(59, 130, 246, 0.07), 0 0 22px rgba(220, 38, 38, 0.035);
+    border-color: rgba(181, 195, 210, 0.2);
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.24), 0 0 24px rgba(181, 195, 210, 0.055), 0 0 22px rgba(220, 38, 38, 0.025);
   }
 
   .glass-dark {
@@ -83,13 +83,161 @@
   .glass-panel {
     @apply border border-white/[0.08] shadow-2xl backdrop-blur-lg;
     background:
-      radial-gradient(ellipse at 0% 0%, rgba(59, 130, 246, 0.07), transparent 45%),
+      radial-gradient(ellipse at 0% 0%, rgba(141, 162, 186, 0.06), transparent 45%),
       radial-gradient(ellipse at 100% 100%, rgba(220, 38, 38, 0.055), transparent 48%),
       linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
   }
 
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r;
+  }
+
+  .hero-section {
+    background:
+      radial-gradient(ellipse at 74% 46%, rgba(138, 149, 163, 0.11), transparent 38rem),
+      #0b0d10;
+  }
+
+  .hero-scroll-cue {
+    left: max(1.25rem, calc((100vw - 80rem) / 2 + 2.5rem));
+  }
+
+  .hero-art {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: min(72%, 1120px);
+    perspective: 1500px;
+    pointer-events: none;
+  }
+
+  .hero-art::before,
+  .hero-art::after {
+    position: absolute;
+    z-index: 1;
+    content: '';
+    pointer-events: none;
+  }
+
+  .hero-art::before {
+    inset: 0;
+    background:
+      linear-gradient(90deg, #0b0d10 0%, rgba(11, 13, 16, 0.82) 15%, rgba(11, 13, 16, 0.15) 56%, rgba(11, 13, 16, 0.12) 100%),
+      linear-gradient(0deg, #0b0d10 0%, transparent 28%, transparent 78%, rgba(11, 13, 16, 0.42) 100%);
+  }
+
+  .hero-art::after {
+    inset: 10% 3% 10% 14%;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 1.5rem;
+    transform: rotateY(-7deg) rotateZ(-1deg);
+    transform-origin: center;
+  }
+
+  .hero-art-frame {
+    position: absolute;
+    inset: 9% 3% 11% 13%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.4rem;
+    background: #16191e;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55), 0 0 0 8px rgba(255, 255, 255, 0.015);
+    transform: rotateY(-7deg) rotateZ(-1deg);
+    transform-origin: center;
+    transition: transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1);
+  }
+
+  .hero-section:hover .hero-art-frame {
+    transform: rotateY(-3deg) rotateZ(0deg) translateY(-4px);
+  }
+
+  .hero-art-frame picture,
+  .hero-art-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-art-image {
+    object-fit: cover;
+    object-position: 63% center;
+    filter: saturate(0.82) contrast(1.08);
+    transform: scale(1.03);
+  }
+
+  .hero-art-shine {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 30%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.54), transparent 36%);
+  }
+
+  .hero-art-caption {
+    position: absolute;
+    right: 2.5rem;
+    bottom: 2.5rem;
+    left: 2.5rem;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    color: white;
+  }
+
+  .hero-art-caption-mark {
+    color: rgba(255, 255, 255, 0.82);
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 800;
+    letter-spacing: -0.09em;
+    line-height: 0.75;
+    text-shadow: 0 6px 35px rgba(0, 0, 0, 0.55);
+  }
+
+  .hero-art-caption-copy {
+    padding-left: 1rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    line-height: 1.7;
+    text-align: right;
+    text-transform: uppercase;
+  }
+
+  .hero-art-index {
+    position: absolute;
+    right: 2rem;
+    bottom: 5.5%;
+    color: rgba(226, 232, 240, 0.55);
+    font-size: 0.625rem;
+    letter-spacing: 0.16em;
+  }
+
+  .hero-art-index span {
+    margin-right: 0.75rem;
+    color: #fca5a5;
+  }
+
+  .hero-atmosphere {
+    position: absolute;
+    top: 15%;
+    left: -18rem;
+    width: 36rem;
+    height: 36rem;
+    border-radius: 50%;
+    background: rgba(220, 38, 38, 0.055);
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.13;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.22) 0.5px, transparent 0.5px);
+    background-size: 5px 5px;
+    mask-image: linear-gradient(90deg, black, transparent 75%);
+    pointer-events: none;
   }
 
   .brand-lockup {
@@ -121,24 +269,23 @@
     bottom: -5px;
     left: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #60a5fa 18%, #f8fafc 48%, #f87171 82%, transparent);
+    background: linear-gradient(90deg, transparent, #8da2ba 18%, #f8fafc 48%, #f87171 82%, transparent);
     background-size: 200% 100%;
-    box-shadow: 0 0 6px rgba(59, 130, 246, 0.8), 0 0 12px rgba(239, 68, 68, 0.45);
+    box-shadow: 0 0 6px rgba(141, 162, 186, 0.42), 0 0 12px rgba(239, 68, 68, 0.28);
     content: '';
     animation: neon-sweep 5s linear infinite;
   }
 
   .brand-wordmark-main {
     color: #f8fafc;
-    text-shadow: 0 0 2px #fff, 0 0 8px rgba(96, 165, 250, 0.95), 0 0 18px rgba(37, 99, 235, 0.75);
-    animation: neon-breathe 4s ease-in-out infinite alternate;
+    text-shadow: 0 1px 12px rgba(181, 195, 210, 0.2);
   }
 
   .brand-wordmark-usa {
     color: #fecaca;
     font-size: 0.68em;
     letter-spacing: 0.12em;
-    text-shadow: 0 0 4px #fff, 0 0 10px rgba(248, 113, 113, 0.95), 0 0 20px rgba(220, 38, 38, 0.8);
+    text-shadow: 0 1px 10px rgba(248, 113, 113, 0.3);
   }
 
   .brand-tagline {
@@ -172,12 +319,12 @@
   }
 
   .group:hover .brand-wordmark-main {
-    text-shadow: 0 0 3px #fff, 0 0 12px rgba(96, 165, 250, 1), 0 0 26px rgba(37, 99, 235, 0.9);
+    text-shadow: 0 1px 16px rgba(181, 195, 210, 0.35);
   }
 
   .nav-link-glow {
-    background: linear-gradient(90deg, #60a5fa, #f8fafc 48%, #f87171);
-    box-shadow: 0 0 10px rgba(96, 165, 250, 0.45), 0 0 12px rgba(248, 113, 113, 0.22);
+    background: linear-gradient(90deg, #8da2ba, #f8fafc 48%, #f87171);
+    box-shadow: 0 0 10px rgba(141, 162, 186, 0.3), 0 0 12px rgba(248, 113, 113, 0.16);
   }
 
   .neon-cta {
@@ -196,17 +343,17 @@
   }
 
   .neon-outline-cta:hover {
-    border-color: rgba(96, 165, 250, 0.58);
-    box-shadow: 0 0 22px rgba(59, 130, 246, 0.12), inset 0 0 18px rgba(59, 130, 246, 0.06);
+    border-color: rgba(181, 195, 210, 0.48);
+    box-shadow: 0 0 22px rgba(181, 195, 210, 0.08), inset 0 0 18px rgba(181, 195, 210, 0.04);
   }
 
   .hero-heading {
     text-wrap: balance;
-    text-shadow: 0 0 28px rgba(59, 130, 246, 0.09);
+    text-shadow: 0 4px 34px rgba(0, 0, 0, 0.32);
   }
 
   .hero-heading span {
-    text-shadow: 0 0 24px rgba(59, 130, 246, 0.16);
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.36);
   }
 
   @keyframes neon-breathe {
@@ -305,6 +452,53 @@
     section[id].visible>div>* {
       animation: none;
     }
+
+    .hero-art {
+      top: 0;
+      right: 0;
+      bottom: auto;
+      width: 100%;
+      height: 72%;
+      opacity: 0.56;
+    }
+
+    .hero-art::before {
+      background:
+        linear-gradient(90deg, rgba(11, 13, 16, 0.88), rgba(11, 13, 16, 0.35) 65%, rgba(11, 13, 16, 0.24)),
+        linear-gradient(0deg, #0b0d10 0%, rgba(11, 13, 16, 0.72) 20%, transparent 76%);
+    }
+
+    .hero-art::after {
+      display: none;
+    }
+
+    .hero-art-frame {
+      inset: 9% -7% 6% 8%;
+      border-radius: 1rem;
+      transform: rotateY(-3deg) rotateZ(-1deg);
+    }
+
+    .hero-section:hover .hero-art-frame {
+      transform: rotateY(-3deg) rotateZ(-1deg);
+    }
+
+    .hero-art-caption {
+      right: 1.25rem;
+      bottom: 1.5rem;
+      left: 1.25rem;
+    }
+
+    .hero-art-caption-mark {
+      font-size: 4.5rem;
+    }
+
+    .hero-art-index {
+      display: none;
+    }
+
+    .hero-grain {
+      mask-image: linear-gradient(180deg, black, transparent 80%);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -317,8 +511,9 @@
       transition-duration: 0.01ms !important;
     }
 
-    .brand-wordmark-main {
-      animation: none;
+    .hero-art-frame,
+    .hero-section:hover .hero-art-frame {
+      transform: none;
     }
 
     .brand-wordmark::after {

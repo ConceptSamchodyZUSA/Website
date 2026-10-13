@@ -14,13 +14,13 @@ module.exports = {
             dark: '#b91c1c',
           },
           blue: {
-            DEFAULT: '#3b82f6',
-            light: '#60a5fa',
-            dark: '#2563eb',
+            DEFAULT: '#8da2ba',
+            light: '#b5c3d2',
+            dark: '#64788f',
           },
-          dark: '#0f172a', // deeper slate base
-          gray: '#1e293b', // slate lighter
-          slate: '#334155', // metallic accent
+          dark: '#0b0d10',
+          gray: '#171a1f',
+          slate: '#2b3038',
         }
       },
       animation: {
