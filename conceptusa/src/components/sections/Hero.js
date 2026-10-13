@@ -11,6 +11,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
   return (
     <section id="home" className={`hero-section relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-concept-dark ${isVisible ? 'visible' : ''}`}>
       <div className="hero-art" aria-hidden="true">
+        <div className="hero-orbit" />
         <div className="hero-art-frame">
           <picture>
             <source
