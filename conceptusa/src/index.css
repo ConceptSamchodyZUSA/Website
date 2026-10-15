@@ -98,6 +98,125 @@
       #0b0d10;
   }
 
+  .christmas-season {
+    background:
+      radial-gradient(ellipse at 76% 45%, rgba(220, 38, 38, 0.14), transparent 36rem),
+      radial-gradient(ellipse at 8% 88%, rgba(22, 163, 74, 0.12), transparent 30rem),
+      radial-gradient(ellipse at 50% 10%, rgba(251, 191, 36, 0.07), transparent 28rem),
+      #0b0d10;
+  }
+
+  .christmas-decor {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* Snowfall animation */
+  .snowflake {
+    animation: christmas-snowfall linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes christmas-snowfall {
+    0% {
+      transform: translateY(-10px) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.9;
+    }
+    90% {
+      opacity: 0.85;
+    }
+    100% {
+      transform: translateY(105vh) translateX(var(--drift, 25px));
+      opacity: 0.15;
+    }
+  }
+
+  /* Christmas Fairy Lights Twinkling */
+  .bulb-twinkle-1 {
+    animation: christmas-bulb-1 1.6s ease-in-out infinite alternate;
+  }
+
+  .bulb-twinkle-2 {
+    animation: christmas-bulb-2 2.1s ease-in-out infinite alternate;
+  }
+
+  .bulb-twinkle-3 {
+    animation: christmas-bulb-3 1.8s ease-in-out infinite alternate;
+  }
+
+  @keyframes christmas-bulb-1 {
+    0%, 100% { opacity: 1; filter: brightness(1.25); }
+    50% { opacity: 0.35; filter: brightness(0.7); }
+  }
+
+  @keyframes christmas-bulb-2 {
+    0%, 100% { opacity: 0.4; filter: brightness(0.75); }
+    50% { opacity: 1; filter: brightness(1.3); }
+  }
+
+  @keyframes christmas-bulb-3 {
+    0%, 100% { opacity: 0.9; filter: brightness(1.15); }
+    35% { opacity: 0.3; filter: brightness(0.6); }
+    70% { opacity: 1; filter: brightness(1.35); }
+  }
+
+  /* Hanging Christmas Bauble Swing */
+  .bauble-swing {
+    animation: christmas-bauble-swing 5.2s ease-in-out infinite alternate;
+  }
+
+  @keyframes christmas-bauble-swing {
+    0% { transform: rotate(-8deg); }
+    50% { transform: rotate(7deg); }
+    100% { transform: rotate(-5deg); }
+  }
+
+  .christmas-bauble-wrap:hover {
+    animation-duration: 2s;
+  }
+
+  /* Santa Hat Bob */
+  .santa-hat {
+    animation: christmas-santa-bob 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes christmas-santa-bob {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg) translateY(-2px); }
+  }
+
+  /* Christmas Hero Art & Glows */
+  .christmas-season .hero-art-frame {
+    border-color: rgba(220, 38, 38, 0.3);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55), 0 0 45px rgba(220, 38, 38, 0.16), 0 0 0 8px rgba(255, 255, 255, 0.015);
+  }
+
+  .christmas-season .hero-orbit {
+    border-color: rgba(220, 38, 38, 0.25);
+    box-shadow: 0 0 35px rgba(220, 38, 38, 0.1), inset 0 0 35px rgba(22, 163, 74, 0.08);
+  }
+
+  .christmas-season .hero-orbit::before {
+    background: #ef4444;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.9), 0 0 30px rgba(220, 38, 38, 0.8);
+  }
+
+  .christmas-site .neon-cta {
+    background-color: #dc2626;
+    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4), 0 0 18px rgba(239, 68, 68, 0.25);
+  }
+
+  .christmas-site .neon-cta:hover {
+    background-color: #ef4444;
+    box-shadow: 0 10px 28px rgba(220, 38, 38, 0.52), 0 0 28px rgba(239, 68, 68, 0.4);
+  }
+
   .hero-scroll-cue {
     left: max(1.25rem, calc((100vw - 80rem) / 2 + 2.5rem));
   }

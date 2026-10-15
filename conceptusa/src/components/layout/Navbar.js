@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu, X, ChevronRight, Phone, Facebook, Instagram } from 'lucide-react';
 import BrandLogo from '../ui/BrandLogo';
+import { ChristmasLights, ChristmasBauble } from '../ui/ChristmasDecor';
 
 const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
   return (
@@ -10,15 +11,15 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
         ? 'border-white/10 bg-concept-dark/90 shadow-lg shadow-black/10 backdrop-blur-xl'
         : 'border-white/[0.06] bg-concept-dark/35 backdrop-blur-md'
         }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-              <button type="button" aria-label="Concept USA — strona główna" className="group rounded-xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-300" onClick={() => scrollToSection('home')}>
+            <button type="button" aria-label="Concept USA — strona główna" className="group rounded-xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-300" onClick={() => scrollToSection('home')}>
               <BrandLogo />
             </button>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-8 relative">
               {[
                 { id: 'home', label: 'Start' },
                 { id: 'about', label: 'O nas' },
@@ -46,6 +47,9 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
                   Kontakt
                 </span>
               </button>
+
+              {/* Hanging festive Christmas Bauble */}
+              <ChristmasBauble color="red" size="sm" threadLength={24} className="hidden lg:block absolute -bottom-9 -right-3" />
             </div>
 
             {/* Mobile Menu Button */}
@@ -60,6 +64,9 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
             </button>
           </div>
         </div>
+
+        {/* Twinkling Christmas Lights Garland under navbar */}
+        <ChristmasLights className="absolute -bottom-3.5 inset-x-0 hidden sm:block opacity-90" count={26} />
       </nav>
 
       {/* Mobile Menu Overlay */}

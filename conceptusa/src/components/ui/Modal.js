@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Mail } from 'lucide-react';
+import { SnowCap, SantaHat } from './ChristmasDecor';
 
 const Modal = ({
   selectedCar,
@@ -31,6 +32,9 @@ const Modal = ({
         className="glass-panel rounded-3xl max-w-5xl w-full relative max-h-[90vh] overflow-y-auto overflow-x-hidden border-white/10 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Festive Snow Cap and Santa Hat on Modal */}
+        <SnowCap />
+        <SantaHat size="sm" className="absolute -top-4 left-6 z-20 -rotate-12" />
         <button
           onClick={closeCarModal}
           className="absolute top-4 right-4 text-slate-400 hover:text-white z-10 bg-white/5 hover:bg-concept-red rounded-full p-2.5 transition-all duration-300 backdrop-blur-md"

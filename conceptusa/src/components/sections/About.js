@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Shield, DollarSign, Truck, Star, ChevronDown } from 'lucide-react';
+import { SnowCap, PineBranch } from '../ui/ChristmasDecor';
 
 const About = ({ isVisible }) => {
   const [expandedCard, setExpandedCard] = useState(null);
@@ -16,14 +17,18 @@ const About = ({ isVisible }) => {
       <div className="absolute bottom-0 -right-48 w-[600px] h-[600px] bg-concept-red/10 rounded-full mix-blend-screen filter blur-[150px] opacity-40 pointer-events-none" style={{ animationDelay: '2s' }}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 font-heading">
-          Dlaczego <span className="text-concept-red">CONCEPT</span>?
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 font-heading flex items-center justify-center gap-3">
+          <span>Dlaczego <span className="text-concept-red">CONCEPT</span>?</span>
+          <PineBranch className="hidden sm:inline-block w-8 h-8" />
         </h2>
 
         {/* Bento Box Layout for 'Dlaczego CONCEPT?' */}
         <div className="grid md:grid-cols-3 gap-6 md:auto-rows-[250px]">
           {/* Main feature - span 2 cols, 2 rows if needed or just 1 row */}
           <div className="glass p-8 rounded-3xl text-left group transition-all duration-500 hover:-translate-y-2 hover:bg-white/10 md:col-span-2 relative overflow-hidden flex flex-col justify-end">
+            {/* Winter Snow Cap on Bento Card */}
+            <SnowCap />
+
             <div className="absolute top-8 right-8 text-concept-red opacity-20 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500">
               <Shield size={120} />
             </div>

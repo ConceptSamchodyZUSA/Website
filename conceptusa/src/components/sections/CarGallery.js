@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import CarCard from '../ui/CarCard';
+import { PineBranch } from '../ui/ChristmasDecor';
 
 const CarGallery = ({
   isVisible,
@@ -19,15 +20,20 @@ const CarGallery = ({
   scrollToSection
 }) => {
   return (
-    <section id="portfolio" className={`py-24 bg-concept-dark relative z-10 ${isVisible ? 'visible' : ''}`}>
+    <section id="portfolio" className={`py-24 bg-concept-dark relative z-10 overflow-hidden ${isVisible ? 'visible' : ''}`}>
       <div className="absolute inset-0 bg-gradient-to-b from-concept-dark/40 to-transparent pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-concept-red">Nasza oferta</p>
-            <h2 className="font-heading text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-              Auta z <span className="text-slate-400">charakterem.</span>
+            <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-concept-red">
+              <span>Nasza oferta</span>
+              <span className="text-sm select-none">🎄</span>
+              <span className="text-emerald-400 font-normal tracking-wider lowercase">· auta pod choinkę</span>
+            </div>
+            <h2 className="font-heading text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl flex items-center gap-3">
+              <span>Auta z <span className="text-slate-400">charakterem.</span></span>
+              <PineBranch className="hidden sm:inline-block w-8 h-8" />
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-6 text-slate-400 sm:text-base">
               Sprawdzone samochody z USA, gotowe na kolejnego właściciela.
