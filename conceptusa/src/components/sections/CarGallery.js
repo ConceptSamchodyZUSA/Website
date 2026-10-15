@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import CarCard from '../ui/CarCard';
-import { HalloweenCobweb, HalloweenPumpkin } from '../ui/HalloweenDecor';
+import { HalloweenCobweb } from '../ui/HalloweenDecor';
 
 const CarGallery = ({
   isVisible,
