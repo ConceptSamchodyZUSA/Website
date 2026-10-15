@@ -378,7 +378,7 @@ const ConceptUSACars = () => {
       </a>
 
       <Helmet>
-        <title>CONCEPT - Samochody z USA | Import Dodge, Ford, Jeep z Ameryki</title>
+        <title>🎃 CONCEPT - Samochody z USA | Halloween Edition 👻</title>
         <meta name="description" content="Sprowadzamy samochody z USA. Muscle cars, pickupy, SUVy. Pełna obsługa: faktura VAT, kredyty, leasingi. Odprawa celna port Gdynia." />
         <link rel="canonical" href="https://conceptusa.pl/" />
         <meta property="og:title" content="CONCEPT - Samochody z USA | Import aut z Ameryki" />

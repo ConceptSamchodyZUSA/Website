@@ -100,8 +100,8 @@
 
   .halloween-season {
     background:
-      radial-gradient(ellipse at 76% 45%, rgba(249, 115, 22, 0.13), transparent 34rem),
-      radial-gradient(ellipse at 8% 88%, rgba(124, 58, 237, 0.11), transparent 27rem),
+      radial-gradient(ellipse at 76% 45%, rgba(249, 115, 22, 0.15), transparent 36rem),
+      radial-gradient(ellipse at 8% 88%, rgba(124, 58, 237, 0.13), transparent 30rem),
       #0b0d10;
   }
 
@@ -113,6 +113,75 @@
     pointer-events: none;
   }
 
+  /* Cobweb styling */
+  .halloween-cobweb {
+    filter: drop-shadow(0 0 6px rgba(196, 181, 253, 0.22));
+    transition: filter 0.3s ease, opacity 0.3s ease;
+  }
+
+  .halloween-cobweb:hover {
+    filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.45));
+  }
+
+  /* Spider physics and animation */
+  .spider-swing {
+    animation: halloween-spider-swing 4.8s ease-in-out infinite alternate;
+  }
+
+  .halloween-spider-wrap {
+    transition: transform 0.3s ease;
+  }
+
+  .halloween-spider-wrap:hover {
+    animation-duration: 2s;
+  }
+
+  .halloween-spider-wrap:hover .spider-silk-thread {
+    stroke: rgba(251, 146, 60, 0.95);
+    filter: drop-shadow(0 0 4px rgba(249, 115, 22, 0.8));
+  }
+
+  .spider-eye {
+    animation: halloween-spider-eye 2.4s ease-in-out infinite alternate;
+  }
+
+  .spider-leg {
+    transform-origin: 45px 45px;
+    animation: halloween-spider-twitch 6s ease-in-out infinite;
+  }
+
+  .spider-leg-2 {
+    animation-delay: -1.5s;
+  }
+
+  .spider-leg-3 {
+    animation-delay: -3.2s;
+  }
+
+  .spider-leg-4 {
+    animation-delay: -4.7s;
+  }
+
+  /* Candle Flicker inside Jack-o'-Lantern */
+  .candle-flicker {
+    animation: halloween-candle-flicker 2.8s ease-in-out infinite alternate;
+  }
+
+  .pumpkin-glow-active {
+    animation: halloween-pumpkin-glow 4.2s ease-in-out infinite;
+  }
+
+  /* Floating Ghost */
+  .halloween-ghost {
+    animation: halloween-ghost-float 5.2s ease-in-out infinite;
+  }
+
+  /* Rising Embers */
+  .ember-particle {
+    animation: halloween-ember-rise linear infinite;
+  }
+
+  /* Flying Bats */
   .halloween-bat {
     position: absolute;
     top: 18%;
@@ -120,7 +189,7 @@
     display: block;
     width: clamp(2.5rem, 5vw, 4.5rem);
     color: #17131f;
-    filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.42));
+    filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.5));
     animation: halloween-bat-flight 19s linear infinite;
   }
 
@@ -160,7 +229,7 @@
     bottom: 1.5rem;
     display: block;
     width: clamp(4.5rem, 8vw, 7rem);
-    filter: drop-shadow(0 0 18px rgba(249, 115, 22, 0.3));
+    filter: drop-shadow(0 0 20px rgba(249, 115, 22, 0.35));
     animation: halloween-pumpkin-glow 4s ease-in-out infinite;
   }
 
@@ -178,7 +247,7 @@
     right: max(1.5rem, calc((100vw - 80rem) / 2));
     width: clamp(3.5rem, 6vw, 5rem);
     animation-delay: -2s;
-    opacity: 0.78;
+    opacity: 0.82;
   }
 
   .pumpkin-body {
@@ -203,7 +272,7 @@
 
   .pumpkin-face {
     fill: #351706;
-    filter: drop-shadow(0 0 4px rgba(255, 221, 102, 0.72));
+    filter: drop-shadow(0 0 6px rgba(255, 221, 102, 0.85));
   }
 
   .halloween-kicker {
@@ -211,18 +280,18 @@
   }
 
   .halloween-season .hero-art-frame {
-    border-color: rgba(249, 115, 22, 0.28);
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55), 0 0 42px rgba(249, 115, 22, 0.12), 0 0 0 8px rgba(255, 255, 255, 0.015);
+    border-color: rgba(249, 115, 22, 0.32);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55), 0 0 42px rgba(249, 115, 22, 0.18), 0 0 0 8px rgba(255, 255, 255, 0.015);
   }
 
   .halloween-season .hero-art-caption-mark {
     color: rgba(255, 237, 213, 0.9);
-    text-shadow: 0 6px 35px rgba(0, 0, 0, 0.55), 0 0 28px rgba(249, 115, 22, 0.22);
+    text-shadow: 0 6px 35px rgba(0, 0, 0, 0.55), 0 0 28px rgba(249, 115, 22, 0.3);
   }
 
   .halloween-season .hero-orbit {
-    border-color: rgba(249, 115, 22, 0.24);
-    box-shadow: 0 0 35px rgba(249, 115, 22, 0.075), inset 0 0 35px rgba(124, 58, 237, 0.055);
+    border-color: rgba(249, 115, 22, 0.28);
+    box-shadow: 0 0 35px rgba(249, 115, 22, 0.12), inset 0 0 35px rgba(124, 58, 237, 0.08);
   }
 
   .halloween-season .hero-orbit::before {
@@ -231,17 +300,106 @@
   }
 
   .halloween-season .hero-art-shine::after {
-    background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.14), rgba(255, 235, 205, 0.34), rgba(249, 115, 22, 0.14), transparent);
+    background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.16), rgba(255, 235, 205, 0.36), rgba(249, 115, 22, 0.16), transparent);
   }
 
   .halloween-site .neon-cta {
     background-color: #ea580c;
-    box-shadow: 0 8px 24px rgba(124, 45, 18, 0.38), 0 0 18px rgba(249, 115, 22, 0.2);
+    box-shadow: 0 8px 24px rgba(124, 45, 18, 0.38), 0 0 18px rgba(249, 115, 22, 0.25);
   }
 
   .halloween-site .neon-cta:hover {
     background-color: #f97316;
-    box-shadow: 0 10px 28px rgba(124, 45, 18, 0.45), 0 0 25px rgba(249, 115, 22, 0.32);
+    box-shadow: 0 10px 28px rgba(124, 45, 18, 0.5), 0 0 28px rgba(249, 115, 22, 0.4);
+  }
+
+  /* Halloween keyframe animations */
+  @keyframes halloween-spider-swing {
+    0% {
+      transform: rotate(-10deg);
+    }
+    50% {
+      transform: rotate(8deg);
+    }
+    100% {
+      transform: rotate(-7deg);
+    }
+  }
+
+  @keyframes halloween-spider-twitch {
+    0%, 88%, 100% {
+      transform: scale(1);
+    }
+    92% {
+      transform: scale(1.06) rotate(1.5deg);
+    }
+    96% {
+      transform: scale(0.96) rotate(-1.5deg);
+    }
+  }
+
+  @keyframes halloween-spider-eye {
+    0%, 100% {
+      filter: drop-shadow(0 0 2px #ef4444);
+      opacity: 0.85;
+    }
+    50% {
+      filter: drop-shadow(0 0 6px #fb923c);
+      opacity: 1;
+    }
+  }
+
+  @keyframes halloween-candle-flicker {
+    0%, 100% {
+      opacity: 0.95;
+      filter: drop-shadow(0 0 6px rgba(254, 240, 138, 0.95)) drop-shadow(0 0 18px rgba(249, 115, 22, 0.85));
+    }
+    14% {
+      opacity: 0.76;
+      filter: drop-shadow(0 0 3px rgba(254, 240, 138, 0.7)) drop-shadow(0 0 10px rgba(249, 115, 22, 0.6));
+    }
+    28% {
+      opacity: 1;
+      filter: drop-shadow(0 0 8px rgba(254, 240, 138, 1)) drop-shadow(0 0 24px rgba(249, 115, 22, 0.95));
+    }
+    44% {
+      opacity: 0.82;
+      filter: drop-shadow(0 0 4px rgba(254, 240, 138, 0.75)) drop-shadow(0 0 12px rgba(249, 115, 22, 0.7));
+    }
+    68% {
+      opacity: 0.98;
+      filter: drop-shadow(0 0 7px rgba(254, 240, 138, 0.95)) drop-shadow(0 0 20px rgba(249, 115, 22, 0.9));
+    }
+    86% {
+      opacity: 0.7;
+      filter: drop-shadow(0 0 3px rgba(254, 240, 138, 0.65)) drop-shadow(0 0 9px rgba(249, 115, 22, 0.55));
+    }
+  }
+
+  @keyframes halloween-ghost-float {
+    0%, 100% {
+      transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-14px) rotate(3deg);
+    }
+  }
+
+  @keyframes halloween-ember-rise {
+    0% {
+      transform: translateY(0) scale(0.6);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-90vh) translateX(30px) scale(1.2);
+      opacity: 0;
+    }
   }
 
   @keyframes halloween-bat-flight {
@@ -279,12 +437,12 @@
   @keyframes halloween-pumpkin-glow {
     0%, 100% {
       transform: translateY(0) rotate(-2deg);
-      filter: drop-shadow(0 0 13px rgba(249, 115, 22, 0.25));
+      filter: drop-shadow(0 0 14px rgba(249, 115, 22, 0.3));
     }
 
     50% {
       transform: translateY(-6px) rotate(2deg);
-      filter: drop-shadow(0 0 24px rgba(249, 115, 22, 0.56));
+      filter: drop-shadow(0 0 28px rgba(249, 115, 22, 0.65));
     }
   }
 

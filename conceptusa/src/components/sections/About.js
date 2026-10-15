@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Shield, DollarSign, Truck, Star, ChevronDown } from 'lucide-react';
+import { HalloweenCobweb, HalloweenPumpkin, HalloweenGhost } from '../ui/HalloweenDecor';
 
 const About = ({ isVisible }) => {
   const [expandedCard, setExpandedCard] = useState(null);
@@ -10,6 +11,9 @@ const About = ({ isVisible }) => {
 
   return (
     <section id="about" className={`py-24 bg-concept-dark relative z-10 overflow-hidden ${isVisible ? 'visible' : ''}`}>
+      {/* Friendly floating ghost apparition in the background */}
+      <HalloweenGhost size="sm" className="absolute top-12 right-12 z-0 opacity-25 hidden xl:block" />
+
       {/* Dynamic Background Glows */}
       <div className="absolute top-0 right-0 w-full h-[500px] bg-gradient-to-b from-concept-red/5 to-transparent pointer-events-none"></div>
       <div className="absolute top-1/3 -left-48 w-[500px] h-[500px] bg-concept-blue/10 rounded-full mix-blend-screen filter blur-[120px] opacity-60 pointer-events-none animate-pulse-slow"></div>
@@ -24,14 +28,20 @@ const About = ({ isVisible }) => {
         <div className="grid md:grid-cols-3 gap-6 md:auto-rows-[250px]">
           {/* Main feature - span 2 cols, 2 rows if needed or just 1 row */}
           <div className="glass p-8 rounded-3xl text-left group transition-all duration-500 hover:-translate-y-2 hover:bg-white/10 md:col-span-2 relative overflow-hidden flex flex-col justify-end">
+            {/* Corner cobweb on bento card */}
+            <HalloweenCobweb corner="top-right" size="md" className="absolute top-0 right-0 opacity-30 group-hover:opacity-75 transition-opacity" />
+
             <div className="absolute top-8 right-8 text-concept-red opacity-20 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500">
               <Shield size={120} />
             </div>
             <div className="relative z-10 md:w-2/3">
-              <div className="text-concept-red mb-4 group-hover:-translate-y-1 transition-transform duration-300">
+              <div className="text-concept-red mb-4 group-hover:-translate-y-1 transition-transform duration-300 flex items-center gap-2">
                 <Shield size={32} />
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-white tracking-wide">Bezpieczeństwo na pierwszy rzut oka</h3>
+              <h3 className="text-2xl font-bold mb-3 text-white tracking-wide flex items-center gap-3">
+                <span>Bezpieczeństwo na pierwszy rzut oka</span>
+                <HalloweenPumpkin size="sm" variant="classic" className="hidden sm:inline-block" glow={false} />
+              </h3>
               <p className="text-slate-400 font-light leading-relaxed">Każdy sprowadzany przez nas samochód posiada sprawdzoną historię CarFax i pełną dokumentację aukcyjną. Nie ma miejsca na domysły.</p>
             </div>
           </div>

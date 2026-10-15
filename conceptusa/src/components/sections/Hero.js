@@ -1,6 +1,14 @@
 import React from 'react';
 import { ArrowRight, ChevronDown, ShieldCheck } from 'lucide-react';
 import { useCountUp } from '../../hooks/useAnimations';
+import {
+  HalloweenCobweb,
+  HalloweenSpider,
+  HalloweenPumpkin,
+  HalloweenBat,
+  HalloweenFloatingEmbers,
+  HalloweenBadge
+} from '../ui/HalloweenDecor';
 
 const backgroundImageFallback = '/background.jpg';
 
@@ -39,33 +47,27 @@ const Hero = ({ isVisible, scrollToSection }) => {
 
   return (
     <section id="home" className={`hero-section halloween-season relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-concept-dark ${isVisible ? 'visible' : ''}`}>
+      {/* Spooky floating embers in background */}
+      <HalloweenFloatingEmbers count={14} />
+
+      {/* Hero Halloween Decor Elements */}
       <div className="halloween-decor" aria-hidden="true">
-        <span className="halloween-bat halloween-bat--one">
-          <svg viewBox="0 0 64 36" focusable="false"><path d="M32 31c-4-4-7-9-8-15-4 4-8 4-12-2-1 6-5 8-10 4C4 10 9 6 17 7c4 0 7 3 10 7l5-5 5 5c3-4 6-7 10-7 8-1 13 3 15 11-5 4-9 2-10-4-4 6-8 6-12 2-1 6-4 11-8 15Z" /></svg>
-        </span>
-        <span className="halloween-bat halloween-bat--two">
-          <svg viewBox="0 0 64 36" focusable="false"><path d="M32 31c-4-4-7-9-8-15-4 4-8 4-12-2-1 6-5 8-10 4C4 10 9 6 17 7c4 0 7 3 10 7l5-5 5 5c3-4 6-7 10-7 8-1 13 3 15 11-5 4-9 2-10-4-4 6-8 6-12 2-1 6-4 11-8 15Z" /></svg>
-        </span>
-        <span className="halloween-bat halloween-bat--three">
-          <svg viewBox="0 0 64 36" focusable="false"><path d="M32 31c-4-4-7-9-8-15-4 4-8 4-12-2-1 6-5 8-10 4C4 10 9 6 17 7c4 0 7 3 10 7l5-5 5 5c3-4 6-7 10-7 8-1 13 3 15 11-5 4-9 2-10-4-4 6-8 6-12 2-1 6-4 11-8 15Z" /></svg>
-        </span>
-        <span className="halloween-pumpkin halloween-pumpkin--left">
-          <svg viewBox="0 0 100 90" focusable="false">
-            <path className="pumpkin-stem" d="M48 24c-2-7 1-13 8-17 1 6 0 11-4 16" />
-            <path className="pumpkin-body" d="M50 22C28 11 10 25 10 49c0 23 15 35 40 35s40-12 40-35C90 25 72 11 50 22Z" />
-            <path className="pumpkin-ridge" d="M50 22c-8 10-9 48 0 62M38 20c-8 13-9 43 0 61M62 20c8 13 9 43 0 61" />
-            <path className="pumpkin-face" d="m29 39 14 5-12 9-2-14Zm42 0-14 5 12 9 2-14ZM43 62h14l-7 10-7-10Z" />
-          </svg>
-        </span>
-        <span className="halloween-pumpkin halloween-pumpkin--right">
-          <svg viewBox="0 0 100 90" focusable="false">
-            <path className="pumpkin-stem" d="M48 24c-2-7 1-13 8-17 1 6 0 11-4 16" />
-            <path className="pumpkin-body" d="M50 22C28 11 10 25 10 49c0 23 15 35 40 35s40-12 40-35C90 25 72 11 50 22Z" />
-            <path className="pumpkin-ridge" d="M50 22c-8 10-9 48 0 62M38 20c-8 13-9 43 0 61M62 20c8 13 9 43 0 61" />
-            <path className="pumpkin-face" d="m29 39 14 5-12 9-2-14Zm42 0-14 5 12 9 2-14ZM43 62h14l-7 10-7-10Z" />
-          </svg>
-        </span>
+        {/* Large corner cobweb in top-left */}
+        <HalloweenCobweb corner="top-left" size="lg" className="absolute top-0 left-0 z-10 opacity-55" />
+
+        {/* Playful hanging spider swinging above */}
+        <HalloweenSpider hanging={true} threadLength={60} size="md" className="absolute top-0 left-[18%] z-20 pointer-events-auto hidden sm:block" />
+
+        {/* Flying Bats */}
+        <HalloweenBat className="halloween-bat halloween-bat--one" />
+        <HalloweenBat className="halloween-bat halloween-bat--two" />
+        <HalloweenBat className="halloween-bat halloween-bat--three" />
+
+        {/* Carved Pumpkins with candle flame flicker */}
+        <HalloweenPumpkin variant="classic" size="lg" className="halloween-pumpkin halloween-pumpkin--left pointer-events-auto" glow={true} />
+        <HalloweenPumpkin variant="creepy" size="md" className="halloween-pumpkin halloween-pumpkin--right pointer-events-auto" glow={true} />
       </div>
+
       <div
         className="hero-art"
         aria-hidden="true"
@@ -73,7 +75,10 @@ const Hero = ({ isVisible, scrollToSection }) => {
         onPointerLeave={resetHeroPointer}
       >
         <div className="hero-orbit" />
-        <div className="hero-art-frame">
+        <div className="hero-art-frame relative">
+          {/* Subtle spiderweb hugging top-right of car frame */}
+          <HalloweenCobweb corner="top-right" size="sm" className="absolute top-0 right-0 z-20 opacity-75" />
+
           <picture>
             <source
               srcSet="/optimized-images/background-400w.webp 400w,
@@ -103,10 +108,9 @@ const Hero = ({ isVisible, scrollToSection }) => {
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-5 pb-28 pt-20 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(300px,0.75fr)] lg:px-10">
         <div className="max-w-3xl text-left">
           <div className="mb-8 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-300">
-            <span className="h-px w-10 bg-orange-400" />
-            <span className="halloween-kicker">Halloween edition</span>
+            <HalloweenBadge text="Halloween Edition" />
             <span className="text-slate-500">·</span>
-            Amerykańska motoryzacja
+            <span>Amerykańska motoryzacja</span>
           </div>
 
           <h1 className="hero-heading mb-7 max-w-3xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl xl:text-[5.5rem]">

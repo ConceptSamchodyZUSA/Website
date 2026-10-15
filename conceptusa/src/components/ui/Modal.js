@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Mail } from 'lucide-react';
+import { HalloweenCobweb } from './HalloweenDecor';
 
 const Modal = ({
   selectedCar,
@@ -31,6 +32,8 @@ const Modal = ({
         className="glass-panel rounded-3xl max-w-5xl w-full relative max-h-[90vh] overflow-y-auto overflow-x-hidden border-white/10 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Subtle decorative cobweb in modal corner */}
+        <HalloweenCobweb corner="top-left" size="md" className="absolute top-0 left-0 z-0 opacity-35 pointer-events-none" />
         <button
           onClick={closeCarModal}
           className="absolute top-4 right-4 text-slate-400 hover:text-white z-10 bg-white/5 hover:bg-concept-red rounded-full p-2.5 transition-all duration-300 backdrop-blur-md"

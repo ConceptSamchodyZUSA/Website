@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Calendar, Gauge, Fuel, Zap } from 'lucide-react';
+import { HalloweenCobweb } from './HalloweenDecor';
 
 const CarCard = ({
   car,
@@ -17,7 +18,7 @@ const CarCard = ({
       role="button"
       tabIndex={0}
       aria-label={`Zobacz szczegóły: ${car.brand} ${car.model}`}
-      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70 text-left shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl hover:shadow-black/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-concept-red"
+      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70 text-left shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:border-orange-500/40 hover:shadow-[0_10px_30px_rgba(249,115,22,0.15)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-concept-red"
       onClick={() => openCarModal(car)}
       onKeyDown={(event) => {
         if (event.key === 'Enter' || event.key === ' ') {
@@ -27,6 +28,13 @@ const CarCard = ({
       }}
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
+        {/* Decorative corner cobweb on car photo */}
+        <HalloweenCobweb
+          corner="top-right"
+          size="sm"
+          className="absolute top-0 right-0 z-10 opacity-35 group-hover:opacity-85 transition-opacity duration-300 pointer-events-none"
+        />
+
         <img
           src={mainImage}
           alt={`${car.brand} ${car.model}`}
@@ -38,16 +46,16 @@ const CarCard = ({
         />
 
         {carImages.length > 1 && (
-          <div className="absolute bottom-3 right-3 rounded-full border border-white/15 bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+          <div className="absolute bottom-3 right-3 rounded-full border border-white/15 bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm z-10">
             {carImages.length} zdjęć
           </div>
         )}
 
-        <div className={`absolute left-3 top-3 rounded-full border px-3 py-1.5 text-[11px] font-semibold tracking-wide backdrop-blur-md ${car.status === 'available'
+        <div className={`absolute left-3 top-3 rounded-full border px-3 py-1.5 text-[11px] font-semibold tracking-wide backdrop-blur-md z-10 ${car.status === 'available'
           ? 'border-emerald-300/25 bg-emerald-950/75 text-emerald-200'
           : 'border-white/15 bg-slate-900/75 text-slate-300'
           }`}>
-          {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
+          {car.status === 'available' ? '🎃 Dostępny' : 'Sprzedany'}
         </div>
       </div>
 

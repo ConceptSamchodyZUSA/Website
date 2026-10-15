@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import CarCard from '../ui/CarCard';
+import { HalloweenCobweb, HalloweenPumpkin } from '../ui/HalloweenDecor';
 
 const CarGallery = ({
   isVisible,
@@ -19,13 +20,20 @@ const CarGallery = ({
   scrollToSection
 }) => {
   return (
-    <section id="portfolio" className={`py-24 bg-concept-dark relative z-10 ${isVisible ? 'visible' : ''}`}>
+    <section id="portfolio" className={`py-24 bg-concept-dark relative z-10 overflow-hidden ${isVisible ? 'visible' : ''}`}>
       <div className="absolute inset-0 bg-gradient-to-b from-concept-dark/40 to-transparent pointer-events-none"></div>
+
+      {/* Decorative corner cobweb */}
+      <HalloweenCobweb corner="top-right" size="lg" className="absolute top-0 right-0 z-0 opacity-20 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-concept-red">Nasza oferta</p>
+            <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-concept-red">
+              <span>Nasza oferta</span>
+              <span className="text-sm select-none">🎃</span>
+              <span className="text-orange-300 font-normal tracking-wider lowercase">· upiornie dobre okazje</span>
+            </div>
             <h2 className="font-heading text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
               Auta z <span className="text-slate-400">charakterem.</span>
             </h2>

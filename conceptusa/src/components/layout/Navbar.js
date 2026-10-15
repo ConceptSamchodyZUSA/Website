@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu, X, ChevronRight, Phone, Facebook, Instagram } from 'lucide-react';
 import BrandLogo from '../ui/BrandLogo';
+import { HalloweenCobweb, HalloweenSpider } from '../ui/HalloweenDecor';
 
 const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
   return (
@@ -10,15 +11,18 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
         ? 'border-white/10 bg-concept-dark/90 shadow-lg shadow-black/10 backdrop-blur-xl'
         : 'border-white/[0.06] bg-concept-dark/35 backdrop-blur-md'
         }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Subtle decorative cobweb in top-right */}
+        <HalloweenCobweb corner="top-right" size="sm" className="absolute top-0 right-0 z-0 opacity-40 hidden sm:block" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-              <button type="button" aria-label="Concept USA — strona główna" className="group rounded-xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-300" onClick={() => scrollToSection('home')}>
+            <button type="button" aria-label="Concept USA — strona główna" className="group rounded-xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-300" onClick={() => scrollToSection('home')}>
               <BrandLogo />
             </button>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-8 relative">
               {[
                 { id: 'home', label: 'Start' },
                 { id: 'about', label: 'O nas' },
@@ -46,6 +50,14 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
                   Kontakt
                 </span>
               </button>
+
+              {/* Little playful hanging spider swaying beneath the navbar */}
+              <HalloweenSpider
+                hanging={true}
+                threadLength={24}
+                size="sm"
+                className="hidden xl:block absolute -bottom-8 -right-3 pointer-events-auto"
+              />
             </div>
 
             {/* Mobile Menu Button */}
@@ -67,7 +79,10 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
         className={`md:hidden fixed inset-0 z-[100] transition-all duration-500 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
           }`}
       >
-        <div className="absolute inset-0 bg-concept-dark/95 backdrop-blur-xl" />
+        <div className="absolute inset-0 bg-concept-dark/95 backdrop-blur-xl">
+          <HalloweenCobweb corner="top-right" size="md" className="absolute top-0 right-0 opacity-35" />
+          <HalloweenCobweb corner="bottom-left" size="sm" className="absolute bottom-0 left-0 opacity-25" />
+        </div>
 
         <div className={`relative h-full flex flex-col transition-all duration-500 ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'
           }`}>
