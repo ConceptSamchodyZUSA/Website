@@ -38,7 +38,34 @@ const Hero = ({ isVisible, scrollToSection }) => {
   };
 
   return (
-    <section id="home" className={`hero-section relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-concept-dark ${isVisible ? 'visible' : ''}`}>
+    <section id="home" className={`hero-section halloween-season relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-concept-dark ${isVisible ? 'visible' : ''}`}>
+      <div className="halloween-decor" aria-hidden="true">
+        <span className="halloween-bat halloween-bat--one">
+          <svg viewBox="0 0 64 36" focusable="false"><path d="M32 31c-4-4-7-9-8-15-4 4-8 4-12-2-1 6-5 8-10 4C4 10 9 6 17 7c4 0 7 3 10 7l5-5 5 5c3-4 6-7 10-7 8-1 13 3 15 11-5 4-9 2-10-4-4 6-8 6-12 2-1 6-4 11-8 15Z" /></svg>
+        </span>
+        <span className="halloween-bat halloween-bat--two">
+          <svg viewBox="0 0 64 36" focusable="false"><path d="M32 31c-4-4-7-9-8-15-4 4-8 4-12-2-1 6-5 8-10 4C4 10 9 6 17 7c4 0 7 3 10 7l5-5 5 5c3-4 6-7 10-7 8-1 13 3 15 11-5 4-9 2-10-4-4 6-8 6-12 2-1 6-4 11-8 15Z" /></svg>
+        </span>
+        <span className="halloween-bat halloween-bat--three">
+          <svg viewBox="0 0 64 36" focusable="false"><path d="M32 31c-4-4-7-9-8-15-4 4-8 4-12-2-1 6-5 8-10 4C4 10 9 6 17 7c4 0 7 3 10 7l5-5 5 5c3-4 6-7 10-7 8-1 13 3 15 11-5 4-9 2-10-4-4 6-8 6-12 2-1 6-4 11-8 15Z" /></svg>
+        </span>
+        <span className="halloween-pumpkin halloween-pumpkin--left">
+          <svg viewBox="0 0 100 90" focusable="false">
+            <path className="pumpkin-stem" d="M48 24c-2-7 1-13 8-17 1 6 0 11-4 16" />
+            <path className="pumpkin-body" d="M50 22C28 11 10 25 10 49c0 23 15 35 40 35s40-12 40-35C90 25 72 11 50 22Z" />
+            <path className="pumpkin-ridge" d="M50 22c-8 10-9 48 0 62M38 20c-8 13-9 43 0 61M62 20c8 13 9 43 0 61" />
+            <path className="pumpkin-face" d="m29 39 14 5-12 9-2-14Zm42 0-14 5 12 9 2-14ZM43 62h14l-7 10-7-10Z" />
+          </svg>
+        </span>
+        <span className="halloween-pumpkin halloween-pumpkin--right">
+          <svg viewBox="0 0 100 90" focusable="false">
+            <path className="pumpkin-stem" d="M48 24c-2-7 1-13 8-17 1 6 0 11-4 16" />
+            <path className="pumpkin-body" d="M50 22C28 11 10 25 10 49c0 23 15 35 40 35s40-12 40-35C90 25 72 11 50 22Z" />
+            <path className="pumpkin-ridge" d="M50 22c-8 10-9 48 0 62M38 20c-8 13-9 43 0 61M62 20c8 13 9 43 0 61" />
+            <path className="pumpkin-face" d="m29 39 14 5-12 9-2-14Zm42 0-14 5 12 9 2-14ZM43 62h14l-7 10-7-10Z" />
+          </svg>
+        </span>
+      </div>
       <div
         className="hero-art"
         aria-hidden="true"
@@ -76,8 +103,10 @@ const Hero = ({ isVisible, scrollToSection }) => {
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-5 pb-28 pt-20 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(300px,0.75fr)] lg:px-10">
         <div className="max-w-3xl text-left">
           <div className="mb-8 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-300">
-            <span className="h-px w-10 bg-concept-red" />
-            Amerykańska motoryzacja · import od A do Z
+            <span className="h-px w-10 bg-orange-400" />
+            <span className="halloween-kicker">Halloween edition</span>
+            <span className="text-slate-500">·</span>
+            Amerykańska motoryzacja
           </div>
 
           <h1 className="hero-heading mb-7 max-w-3xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl xl:text-[5.5rem]">

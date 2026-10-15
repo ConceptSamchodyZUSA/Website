@@ -372,7 +372,7 @@ const ConceptUSACars = () => {
   };
 
   return (
-    <div className="min-h-screen bg-concept-dark text-white font-sans selection:bg-concept-red selection:text-white">
+    <div className="halloween-site min-h-screen bg-concept-dark text-white font-sans selection:bg-concept-red selection:text-white">
       <a href="#home" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-concept-red focus:text-white rounded-br-lg font-bold shadow-xl">
         Przejdź do głównej treści
       </a>

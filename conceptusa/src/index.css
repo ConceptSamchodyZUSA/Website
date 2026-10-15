@@ -7,8 +7,8 @@
     @apply font-sans antialiased text-slate-200 selection:bg-concept-red selection:text-white;
     background-color: #0b0d10;
     background-image:
-      radial-gradient(ellipse at 8% 4%, rgba(181, 195, 210, 0.045), transparent 30rem),
-      radial-gradient(ellipse at 92% 10%, rgba(220, 38, 38, 0.045), transparent 28rem);
+      radial-gradient(ellipse at 8% 4%, rgba(124, 58, 237, 0.06), transparent 30rem),
+      radial-gradient(ellipse at 92% 10%, rgba(249, 115, 22, 0.05), transparent 28rem);
   }
 
   h1,
@@ -96,6 +96,196 @@
     background:
       radial-gradient(ellipse at 74% 46%, rgba(138, 149, 163, 0.11), transparent 38rem),
       #0b0d10;
+  }
+
+  .halloween-season {
+    background:
+      radial-gradient(ellipse at 76% 45%, rgba(249, 115, 22, 0.13), transparent 34rem),
+      radial-gradient(ellipse at 8% 88%, rgba(124, 58, 237, 0.11), transparent 27rem),
+      #0b0d10;
+  }
+
+  .halloween-decor {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .halloween-bat {
+    position: absolute;
+    top: 18%;
+    left: -5rem;
+    display: block;
+    width: clamp(2.5rem, 5vw, 4.5rem);
+    color: #17131f;
+    filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.42));
+    animation: halloween-bat-flight 19s linear infinite;
+  }
+
+  .halloween-bat svg {
+    display: block;
+    width: 100%;
+    fill: currentColor;
+    animation: halloween-bat-flap 450ms ease-in-out infinite alternate;
+  }
+
+  .halloween-bat--two {
+    top: 31%;
+    width: clamp(1.75rem, 3.4vw, 3rem);
+    color: #251b30;
+    animation-delay: -7s;
+    animation-duration: 23s;
+  }
+
+  .halloween-bat--two svg {
+    animation-delay: -200ms;
+  }
+
+  .halloween-bat--three {
+    top: 12%;
+    width: clamp(1.5rem, 2.8vw, 2.5rem);
+    color: #302033;
+    animation-delay: -14s;
+    animation-duration: 27s;
+  }
+
+  .halloween-bat--three svg {
+    animation-delay: -120ms;
+  }
+
+  .halloween-pumpkin {
+    position: absolute;
+    bottom: 1.5rem;
+    display: block;
+    width: clamp(4.5rem, 8vw, 7rem);
+    filter: drop-shadow(0 0 18px rgba(249, 115, 22, 0.3));
+    animation: halloween-pumpkin-glow 4s ease-in-out infinite;
+  }
+
+  .halloween-pumpkin svg {
+    display: block;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .halloween-pumpkin--left {
+    left: max(1.5rem, calc((100vw - 80rem) / 2));
+  }
+
+  .halloween-pumpkin--right {
+    right: max(1.5rem, calc((100vw - 80rem) / 2));
+    width: clamp(3.5rem, 6vw, 5rem);
+    animation-delay: -2s;
+    opacity: 0.78;
+  }
+
+  .pumpkin-body {
+    fill: #e96913;
+    stroke: #ff9c35;
+    stroke-width: 2;
+  }
+
+  .pumpkin-stem {
+    fill: none;
+    stroke: #6f8a3a;
+    stroke-linecap: round;
+    stroke-width: 8;
+  }
+
+  .pumpkin-ridge {
+    fill: none;
+    stroke: rgba(119, 43, 11, 0.46);
+    stroke-linecap: round;
+    stroke-width: 2.5;
+  }
+
+  .pumpkin-face {
+    fill: #351706;
+    filter: drop-shadow(0 0 4px rgba(255, 221, 102, 0.72));
+  }
+
+  .halloween-kicker {
+    color: #fdba74;
+  }
+
+  .halloween-season .hero-art-frame {
+    border-color: rgba(249, 115, 22, 0.28);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55), 0 0 42px rgba(249, 115, 22, 0.12), 0 0 0 8px rgba(255, 255, 255, 0.015);
+  }
+
+  .halloween-season .hero-art-caption-mark {
+    color: rgba(255, 237, 213, 0.9);
+    text-shadow: 0 6px 35px rgba(0, 0, 0, 0.55), 0 0 28px rgba(249, 115, 22, 0.22);
+  }
+
+  .halloween-season .hero-orbit {
+    border-color: rgba(249, 115, 22, 0.24);
+    box-shadow: 0 0 35px rgba(249, 115, 22, 0.075), inset 0 0 35px rgba(124, 58, 237, 0.055);
+  }
+
+  .halloween-season .hero-orbit::before {
+    background: #fb923c;
+    box-shadow: 0 0 12px rgba(251, 146, 60, 0.9), 0 0 30px rgba(249, 115, 22, 0.8);
+  }
+
+  .halloween-season .hero-art-shine::after {
+    background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.14), rgba(255, 235, 205, 0.34), rgba(249, 115, 22, 0.14), transparent);
+  }
+
+  .halloween-site .neon-cta {
+    background-color: #ea580c;
+    box-shadow: 0 8px 24px rgba(124, 45, 18, 0.38), 0 0 18px rgba(249, 115, 22, 0.2);
+  }
+
+  .halloween-site .neon-cta:hover {
+    background-color: #f97316;
+    box-shadow: 0 10px 28px rgba(124, 45, 18, 0.45), 0 0 25px rgba(249, 115, 22, 0.32);
+  }
+
+  @keyframes halloween-bat-flight {
+    0% {
+      transform: translate3d(-8vw, 0, 0) rotate(-8deg);
+    }
+
+    25% {
+      transform: translate3d(24vw, -22px, 0) rotate(8deg);
+    }
+
+    50% {
+      transform: translate3d(56vw, 16px, 0) rotate(-5deg);
+    }
+
+    75% {
+      transform: translate3d(91vw, -20px, 0) rotate(9deg);
+    }
+
+    100% {
+      transform: translate3d(120vw, 8px, 0) rotate(-7deg);
+    }
+  }
+
+  @keyframes halloween-bat-flap {
+    from {
+      transform: scaleY(0.82);
+    }
+
+    to {
+      transform: scaleY(1.08);
+    }
+  }
+
+  @keyframes halloween-pumpkin-glow {
+    0%, 100% {
+      transform: translateY(0) rotate(-2deg);
+      filter: drop-shadow(0 0 13px rgba(249, 115, 22, 0.25));
+    }
+
+    50% {
+      transform: translateY(-6px) rotate(2deg);
+      filter: drop-shadow(0 0 24px rgba(249, 115, 22, 0.56));
+    }
   }
 
   .hero-scroll-cue {
@@ -402,9 +592,9 @@
     bottom: -5px;
     left: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #8da2ba 18%, #f8fafc 48%, #f87171 82%, transparent);
+    background: linear-gradient(90deg, transparent, #a78bfa 18%, #f8fafc 48%, #fb923c 82%, transparent);
     background-size: 200% 100%;
-    box-shadow: 0 0 6px rgba(141, 162, 186, 0.42), 0 0 12px rgba(239, 68, 68, 0.28);
+    box-shadow: 0 0 6px rgba(167, 139, 250, 0.42), 0 0 12px rgba(249, 115, 22, 0.3);
     content: '';
     animation: neon-sweep 5s linear infinite;
   }
@@ -415,10 +605,10 @@
   }
 
   .brand-wordmark-usa {
-    color: #fecaca;
+    color: #fed7aa;
     font-size: 0.68em;
     letter-spacing: 0.12em;
-    text-shadow: 0 1px 10px rgba(248, 113, 113, 0.3);
+    text-shadow: 0 1px 10px rgba(249, 115, 22, 0.36);
   }
 
   .brand-tagline {
@@ -456,8 +646,8 @@
   }
 
   .nav-link-glow {
-    background: linear-gradient(90deg, #8da2ba, #f8fafc 48%, #f87171);
-    box-shadow: 0 0 10px rgba(141, 162, 186, 0.3), 0 0 12px rgba(248, 113, 113, 0.16);
+    background: linear-gradient(90deg, #a78bfa, #f8fafc 48%, #fb923c);
+    box-shadow: 0 0 10px rgba(167, 139, 250, 0.3), 0 0 12px rgba(251, 146, 60, 0.18);
   }
 
   .neon-cta {
@@ -641,6 +831,35 @@
 
     .hero-grain {
       mask-image: linear-gradient(180deg, black, transparent 80%);
+    }
+
+    .halloween-bat {
+      top: 16%;
+      width: 2.25rem;
+    }
+
+    .halloween-bat--two {
+      top: 30%;
+      width: 1.75rem;
+    }
+
+    .halloween-bat--three {
+      top: 11%;
+      width: 1.5rem;
+    }
+
+    .halloween-pumpkin {
+      bottom: 1rem;
+      width: 4.25rem;
+    }
+
+    .halloween-pumpkin--left {
+      left: 0.75rem;
+    }
+
+    .halloween-pumpkin--right {
+      right: 0.75rem;
+      width: 3.25rem;
     }
   }
 

@@ -9,14 +9,14 @@ module.exports = {
       colors: {
         concept: {
           red: {
-            DEFAULT: '#dc2626',
-            light: '#ef4444',
-            dark: '#b91c1c',
+            DEFAULT: '#f97316',
+            light: '#fb923c',
+            dark: '#c2410c',
           },
           blue: {
-            DEFAULT: '#8da2ba',
-            light: '#b5c3d2',
-            dark: '#64788f',
+            DEFAULT: '#8b5cf6',
+            light: '#a78bfa',
+            dark: '#6d28d9',
           },
           dark: '#0b0d10',
           gray: '#171a1f',
