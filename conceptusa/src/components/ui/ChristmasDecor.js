@@ -18,7 +18,7 @@ const FLAKE_PATHS = [
 ];
 
 /**
- * Layered cinematic snowfall — crystal flakes at mixed depths, not white dots.
+ * Layered cinematic snowfall — crystal flakes at mixed depths.
  */
 export const Snowfall = ({ count = 36, className = '' }) => {
   const [enabled, setEnabled] = useState(true);
@@ -174,4 +174,191 @@ export const ChristmasBadge = ({ text = 'Edycja świąteczna', className = '' })
 
 export const GoldRule = ({ className = '' }) => (
   <span className={`christmas-gold-rule ${className}`} aria-hidden="true" />
+);
+
+/**
+ * Premium Vector Santa Hat with subtle bobbing animation
+ */
+export const SantaHat = ({ className = '', size = 'md', style = {} }) => {
+  const sizeClasses = {
+    xs: 'w-6 h-6',
+    sm: 'w-8 h-8',
+    md: 'w-12 h-12',
+    lg: 'w-16 h-16'
+  };
+
+  return (
+    <span
+      className={`santa-hat inline-block pointer-events-none select-none ${sizeClasses[size] || sizeClasses.md} ${className}`}
+      style={style}
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 80 80" className="w-full h-full overflow-visible drop-shadow-[0_2px_8px_rgba(220,38,38,0.5)]" fill="none">
+        <defs>
+          <radialGradient id="hatRedGrad" cx="30%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#ef4444" />
+            <stop offset="60%" stopColor="#dc2626" />
+            <stop offset="100%" stopColor="#991b1b" />
+          </radialGradient>
+        </defs>
+
+        {/* Hat Body */}
+        <path
+          d="M 12 55 C 16 30, 40 16, 68 18 C 76 18, 76 28, 70 34 C 62 42, 60 48, 62 55 Z"
+          fill="url(#hatRedGrad)"
+        />
+        {/* Shadow Fold */}
+        <path
+          d="M 52 28 C 60 36, 62 46, 62 55 L 60 55 C 56 46, 54 36, 48 30 Z"
+          fill="rgba(0, 0, 0, 0.25)"
+        />
+        {/* Fluffy Fur Brim */}
+        <ellipse cx="38" cy="56" rx="28" ry="7.5" fill="#ffffff" />
+        <ellipse cx="20" cy="56" rx="9" ry="6" fill="#f8fafc" />
+        <ellipse cx="38" cy="56" rx="9" ry="6" fill="#f8fafc" />
+        <ellipse cx="56" cy="56" rx="9" ry="6" fill="#f8fafc" />
+        {/* Pompom Ball */}
+        <circle cx="72" cy="24" r="7" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.2))" />
+        <circle cx="70" cy="22" r="3" fill="#f1f5f9" />
+      </svg>
+    </span>
+  );
+};
+
+/**
+ * Scalloped frosted snow cap for card tops and modals
+ */
+export const SnowCap = ({ className = '', style = {} }) => (
+  <div className={`pointer-events-none absolute top-0 inset-x-0 h-4 z-20 select-none overflow-hidden ${className}`} style={style} aria-hidden="true">
+    <svg viewBox="0 0 500 24" preserveAspectRatio="none" className="w-full h-full fill-white/95 filter drop-shadow-[0_2px_4px_rgba(255,255,255,0.45)]">
+      <path d="M0,0 L500,0 L500,4 C 475,18 450,4 425,12 C 400,20 375,6 350,14 C 325,22 300,8 275,16 C 250,22 225,8 200,16 C 175,22 150,6 125,14 C 100,20 75,6 50,14 C 25,20 10,6 0,8 Z" />
+    </svg>
+  </div>
+);
+
+/**
+ * Swaying Christmas bauble with glossy finish & golden thread
+ */
+export const ChristmasBauble = ({
+  color = 'gold',
+  size = 'sm',
+  swing = true,
+  threadLength = 32,
+  className = '',
+  style = {}
+}) => {
+  const sizeMap = {
+    xs: { w: 24, h: 28 + threadLength },
+    sm: { w: 32, h: 36 + threadLength },
+    md: { w: 44, h: 50 + threadLength },
+    lg: { w: 56, h: 64 + threadLength }
+  };
+
+  const { w, h } = sizeMap[size] || sizeMap.sm;
+
+  const colorConfig = {
+    red: {
+      gradient: ['#f87171', '#dc2626', '#7f1d1d'],
+      glow: 'rgba(220, 38, 38, 0.45)'
+    },
+    gold: {
+      gradient: ['#fef08a', '#eab308', '#854d0e'],
+      glow: 'rgba(234, 179, 8, 0.45)'
+    },
+    emerald: {
+      gradient: ['#6ee7b7', '#059669', '#064e3b'],
+      glow: 'rgba(5, 150, 105, 0.45)'
+    }
+  };
+
+  const activeColor = colorConfig[color] || colorConfig.gold;
+  const gradientId = `baubleGrad_${color}_${size}`;
+
+  return (
+    <div
+      className={`christmas-bauble-wrap ${swing ? 'bauble-swing' : ''} ${className}`}
+      style={{
+        width: `${w}px`,
+        height: `${h}px`,
+        transformOrigin: 'top center',
+        ...style
+      }}
+      aria-hidden="true"
+    >
+      <svg viewBox={`0 0 60 ${60 + threadLength}`} className="w-full h-full overflow-visible" fill="none">
+        <defs>
+          <radialGradient id={gradientId} cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stopColor={activeColor.gradient[0]} />
+            <stop offset="55%" stopColor={activeColor.gradient[1]} />
+            <stop offset="100%" stopColor={activeColor.gradient[2]} />
+          </radialGradient>
+        </defs>
+
+        {/* Golden Hanging String */}
+        <line
+          x1="30"
+          y1="0"
+          x2="30"
+          y2={threadLength + 4}
+          stroke="#d4af37"
+          strokeWidth="1.2"
+          strokeDasharray="3,1.5"
+        />
+
+        <g transform={`translate(0, ${threadLength})`}>
+          <rect x="25" y="0" width="10" height="5" rx="1.5" fill="#d4af37" stroke="#996515" strokeWidth="0.8" />
+          <circle cx="30" cy="-2" r="3" stroke="#d4af37" strokeWidth="1.2" fill="none" />
+          <circle
+            cx="30"
+            cy="32"
+            r="26"
+            fill={`url(#${gradientId})`}
+            style={{ filter: `drop-shadow(0 4px 12px ${activeColor.glow})` }}
+          />
+          <ellipse cx="22" cy="22" rx="8" ry="5" fill="#ffffff" opacity="0.45" transform="rotate(-30 22 22)" />
+          <circle cx="16" cy="17" r="2.5" fill="#ffffff" opacity="0.65" />
+          <g stroke="#ffffff" strokeWidth="1" opacity="0.75">
+            <line x1="30" y1="24" x2="30" y2="40" />
+            <line x1="22" y1="32" x2="38" y2="32" />
+            <line x1="24" y1="26" x2="36" y2="38" />
+            <line x1="24" y1="38" x2="36" y2="26" />
+          </g>
+        </g>
+      </svg>
+    </div>
+  );
+};
+
+/**
+ * Holly branch with red berries
+ */
+export const PineBranch = ({ className = '', style = {} }) => (
+  <span className={`inline-block select-none pointer-events-none w-7 h-7 ${className}`} style={style} aria-hidden="true">
+    <svg viewBox="0 0 60 60" className="w-full h-full overflow-visible drop-shadow-[0_2px_6px_rgba(22,163,74,0.4)]" fill="none">
+      <path
+        d="M 28 32 C 16 32, 10 20, 8 10 C 18 12, 28 18, 30 28 Z"
+        fill="#15803d"
+        stroke="#166534"
+        strokeWidth="1"
+      />
+      <path
+        d="M 32 28 C 42 20, 50 14, 56 12 C 54 22, 46 32, 34 32 Z"
+        fill="#16a34a"
+        stroke="#15803d"
+        strokeWidth="1"
+      />
+      <path
+        d="M 30 34 C 30 46, 24 54, 20 58 C 22 48, 28 40, 32 36 Z"
+        fill="#15803d"
+        stroke="#166534"
+        strokeWidth="1"
+      />
+      <circle cx="28" cy="30" r="4.5" fill="#dc2626" />
+      <circle cx="26.8" cy="28.8" r="1.3" fill="#ffffff" opacity="0.85" />
+      <circle cx="34.5" cy="32" r="4" fill="#ef4444" />
+      <circle cx="33.5" cy="31" r="1.2" fill="#ffffff" opacity="0.85" />
+      <circle cx="31" cy="36.5" r="3.8" fill="#b91c1c" />
+      <circle cx="30.2" cy="35.5" r="1.1" fill="#ffffff" opacity="0.85" />
+    </svg>
+  </span>
 );

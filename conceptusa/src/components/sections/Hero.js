@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, ChevronDown, ShieldCheck } from 'lucide-react';
 import { useCountUp } from '../../hooks/useAnimations';
-import { ChristmasBadge, GoldRule } from '../ui/ChristmasDecor';
+import { ChristmasBadge, GoldRule, SnowCap } from '../ui/ChristmasDecor';
 
 const backgroundImageFallback = '/background.jpg';
 
@@ -40,7 +40,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
 
   return (
     <section id="home" className={`hero-section christmas-season relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-concept-dark ${isVisible ? 'visible' : ''}`}>
-      <div>
+      <div
         className="hero-art"
         aria-hidden="true"
         onPointerMove={handleHeroPointerMove}
@@ -48,6 +48,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
       >
         <div className="hero-orbit" />
         <div className="hero-art-frame relative">
+          <SnowCap />
           <picture>
             <source
               srcSet="/optimized-images/background-400w.webp 400w,
@@ -77,10 +78,10 @@ const Hero = ({ isVisible, scrollToSection }) => {
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-5 pb-28 pt-20 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(300px,0.75fr)] lg:px-10">
         <div className="max-w-3xl text-left">
           <div className="mb-8 flex flex-col items-start gap-4">
-            <ChristmasBadge text="Edycja świąteczna" />
+            <ChristmasBadge text="Edycja świąteczna · Sezon 2026" />
             <GoldRule />
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
-              Sezon 2026 · ikony z Ameryki
+              Ikony z Ameryki · import od A do Z
             </p>
           </div>
 
@@ -90,7 +91,7 @@ const Hero = ({ isVisible, scrollToSection }) => {
           </h1>
 
           <p className="mb-9 max-w-lg text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-            Znajdziemy, sprawdzimy i dostarczymy auto, którego naprawdę chcesz. Ty wybierasz samochód — my zajmujemy się całą resztą.
+            Znajdziemy, sprawdzimy i dostarczymy auto, którego naprawdę chcesz. Spraw sobie wymarzony prezent na nowy sezon — my zajmiemy się całą resztą.
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row">

@@ -81,8 +81,8 @@ const Footer = () => {
           <p className="text-slate-500 text-sm font-light">
             &copy; {new Date().getFullYear()} CONCEPT - Samochody z USA. Wszystkie prawa zastrzeżone.
           </p>
-          <p className="text-amber-200/80 text-xs font-light tracking-[0.12em] uppercase">
-            Wesołych Świąt od zespołu CONCEPT
+          <p className="text-amber-200/90 text-xs font-light tracking-[0.14em] uppercase">
+            🎅 Wesołych Świąt i Szczęśliwego Nowego Roku życzy zespół CONCEPT ❄️
           </p>
           <p className="text-slate-600 text-xs font-light tracking-wide order-first md:order-last">
             built by <a href="https://github.com/Kobeep" target="_blank" rel="noopener noreferrer" className="text-concept-blue hover:text-blue-400 font-medium ml-1">Kobeep</a> (Jakub Pospieszny)

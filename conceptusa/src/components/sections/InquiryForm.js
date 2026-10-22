@@ -1,6 +1,6 @@
 import React from 'react';
 import { Loader2 } from 'lucide-react';
-import { GoldRule } from '../ui/ChristmasDecor';
+import { GoldRule, SnowCap } from '../ui/ChristmasDecor';
 
 const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, submittingForm }) => {
   return (
@@ -15,10 +15,11 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
           Zamów <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-300 animate-gradient-x">swoje auto</span>
         </h2>
         <p className="text-center text-slate-400 mb-16 text-lg font-light tracking-wide max-w-2xl mx-auto">
-          Powiedz nam, czego szukasz — przygotujemy wycenę w 24 godziny, również w okresie świątecznym.
+          Powiedz nam, czego szukasz — przygotujemy wycenę w 24 godziny, również w okresie świątecznym. Spraw sobie lub bliskim prezent na lata.
         </p>
 
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 glass-panel rounded-3xl overflow-hidden border border-amber-200/15 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative">
+          <SnowCap />
 
           {/* Left Side: Contact Info & Storytelling */}
           <div className="lg:w-2/5 p-10 md:p-14 bg-gradient-to-br from-concept-dark/80 to-concept-dark flex flex-col justify-between relative overflow-hidden group">

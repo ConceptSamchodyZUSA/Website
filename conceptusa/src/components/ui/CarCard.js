@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Calendar, Gauge, Fuel, Zap } from 'lucide-react';
+import { SnowCap } from './ChristmasDecor';
 
 const CarCard = ({
   car,
@@ -27,6 +28,7 @@ const CarCard = ({
       }}
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
+        <SnowCap />
         <img
           src={mainImage}
           alt={`${car.brand} ${car.model}`}
@@ -47,7 +49,7 @@ const CarCard = ({
           ? 'border-emerald-400/30 bg-emerald-950/80 text-emerald-200 shadow-[0_0_12px_rgba(34,197,94,0.2)]'
           : 'border-white/15 bg-slate-900/75 text-slate-300'
           }`}>
-          {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
+          {car.status === 'available' ? '🎁 Dostępny' : 'Sprzedany'}
         </div>
       </div>
 
