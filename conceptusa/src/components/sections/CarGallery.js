@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import CarCard from '../ui/CarCard';
-import { PineBranch } from '../ui/ChristmasDecor';
+import { GoldRule } from '../ui/ChristmasDecor';
 
 const CarGallery = ({
   isVisible,
@@ -26,14 +26,13 @@ const CarGallery = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-concept-red">
+            <div className="mb-3 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-amber-200/80">
               <span>Nasza oferta</span>
-              <span className="text-sm select-none">🎄</span>
-              <span className="text-emerald-400 font-normal tracking-wider lowercase">· auta pod choinkę</span>
+              <GoldRule className="w-10" />
+              <span className="font-normal tracking-[0.18em] text-slate-500">Sezon świąteczny</span>
             </div>
-            <h2 className="font-heading text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl flex items-center gap-3">
-              <span>Auta z <span className="text-slate-400">charakterem.</span></span>
-              <PineBranch className="hidden sm:inline-block w-8 h-8" />
+            <h2 className="font-heading text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+              Auta z <span className="text-slate-400">charakterem.</span>
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-6 text-slate-400 sm:text-base">
               Sprawdzone samochody z USA, gotowe na kolejnego właściciela.

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Menu, X, ChevronRight, Phone, Facebook, Instagram } from 'lucide-react';
 import BrandLogo from '../ui/BrandLogo';
-import { ChristmasLights, ChristmasBauble } from '../ui/ChristmasDecor';
+import { ChristmasLights } from '../ui/ChristmasDecor';
 
 const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
   return (
     <>
       {/* Navigation */}
-      <nav className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${isScrolled
+      <nav className={`fixed inset-x-0 top-0 z-50 overflow-visible border-b transition-all duration-300 ${isScrolled}
         ? 'border-white/10 bg-concept-dark/90 shadow-lg shadow-black/10 backdrop-blur-xl'
         : 'border-white/[0.06] bg-concept-dark/35 backdrop-blur-md'
         }`}>
@@ -48,8 +48,6 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
                 </span>
               </button>
 
-              {/* Hanging festive Christmas Bauble */}
-              <ChristmasBauble color="red" size="sm" threadLength={24} className="hidden lg:block absolute -bottom-9 -right-3" />
             </div>
 
             {/* Mobile Menu Button */}
@@ -65,8 +63,7 @@ const Navbar = ({ isScrolled, isMenuOpen, setIsMenuOpen, scrollToSection }) => {
           </div>
         </div>
 
-        {/* Twinkling Christmas Lights Garland under navbar */}
-        <ChristmasLights className="absolute -bottom-3.5 inset-x-0 hidden sm:block opacity-90" count={26} />
+        <ChristmasLights className="absolute -bottom-4 inset-x-0 z-10" count={22} />
       </nav>
 
       {/* Mobile Menu Overlay */}

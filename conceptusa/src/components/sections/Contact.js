@@ -1,10 +1,14 @@
 import React from 'react';
 import { Phone, Mail, Facebook, Instagram, ChevronRight } from 'lucide-react';
+import { GoldRule } from '../ui/ChristmasDecor';
 
 const Contact = ({ isVisible }) => {
   return (
     <section id="contact" className={`py-24 bg-concept-dark/95 relative z-10 border-t border-white/5 ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="mb-6 flex justify-center">
+          <GoldRule />
+        </div>
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 font-heading">
           <span className="text-concept-red">Skontaktuj się</span> z nami
         </h2>

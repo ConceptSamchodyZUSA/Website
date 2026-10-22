@@ -13,7 +13,7 @@ import CarGallery from './components/sections/CarGallery';
 import InquiryForm from './components/sections/InquiryForm';
 import Contact from './components/sections/Contact';
 import Modal from './components/ui/Modal';
-import { Snowfall } from './components/ui/ChristmasDecor';
+import { Snowfall, WinterAtmosphere } from './components/ui/ChristmasDecor';
 
 // Use WebP for better performance (30% smaller)
 const backgroundImageWebP = '/optimized-images/background-1200w.webp';
@@ -374,14 +374,15 @@ const ConceptUSACars = () => {
 
   return (
     <div className="christmas-site min-h-screen bg-concept-dark text-white font-sans selection:bg-concept-red selection:text-white relative">
-      <Snowfall count={38} />
+      <WinterAtmosphere />
+      <Snowfall count={34} />
 
       <a href="#home" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-concept-red focus:text-white rounded-br-lg font-bold shadow-xl">
         Przejdź do głównej treści
       </a>
 
       <Helmet>
-        <title>🎄 CONCEPT - Samochody z USA | Christmas Edition 🎅🎁</title>
+        <title>CONCEPT — Samochody z USA | Edycja świąteczna</title>
         <meta name="description" content="Sprowadzamy samochody z USA. Muscle cars, pickupy, SUVy. Pełna obsługa: faktura VAT, kredyty, leasingi. Odprawa celna port Gdynia." />
         <link rel="canonical" href="https://conceptusa.pl/" />
         <meta property="og:title" content="CONCEPT - Samochody z USA | Import aut z Ameryki" />

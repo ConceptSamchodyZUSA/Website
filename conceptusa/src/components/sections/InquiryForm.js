@@ -1,6 +1,6 @@
 import React from 'react';
 import { Loader2 } from 'lucide-react';
-import { SnowCap } from '../ui/ChristmasDecor';
+import { GoldRule } from '../ui/ChristmasDecor';
 
 const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, submittingForm }) => {
   return (
@@ -8,17 +8,17 @@ const InquiryForm = ({ isVisible, formData, handleInputChange, handleSubmit, sub
       <div className="absolute inset-0 bg-gradient-to-t from-transparent via-concept-red/[0.02] to-transparent pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="mb-4 flex justify-center">
+          <GoldRule />
+        </div>
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 font-heading tracking-wide">
-          Zamów <span className="text-transparent bg-clip-text bg-gradient-to-r from-concept-red to-concept-blue animate-gradient-x">swoje auto</span>
+          Zamów <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-300 animate-gradient-x">swoje auto</span>
         </h2>
-        <p className="text-center text-slate-400 mb-16 text-lg font-light tracking-wide max-w-2xl mx-auto flex items-center justify-center gap-2 flex-wrap">
-          <span>Powiedz nam czego szukasz, a my znajdziemy idealne auto dla Ciebie.</span>
-          <span className="text-emerald-400 font-medium whitespace-nowrap">🎅 Świąteczna wycena w 24h!</span>
+        <p className="text-center text-slate-400 mb-16 text-lg font-light tracking-wide max-w-2xl mx-auto">
+          Powiedz nam, czego szukasz — przygotujemy wycenę w 24 godziny, również w okresie świątecznym.
         </p>
 
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 glass-panel rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative">
-          {/* Winter Snow Cap on Inquiry Form */}
-          <SnowCap />
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 glass-panel rounded-3xl overflow-hidden border border-amber-200/15 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative">
 
           {/* Left Side: Contact Info & Storytelling */}
           <div className="lg:w-2/5 p-10 md:p-14 bg-gradient-to-br from-concept-dark/80 to-concept-dark flex flex-col justify-between relative overflow-hidden group">

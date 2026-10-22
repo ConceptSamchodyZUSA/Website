@@ -98,11 +98,18 @@
       #0b0d10;
   }
 
+  .christmas-site {
+    background-image:
+      radial-gradient(ellipse at 8% 0%, rgba(185, 28, 28, 0.1), transparent 34rem),
+      radial-gradient(ellipse at 92% 6%, rgba(212, 175, 55, 0.07), transparent 30rem),
+      radial-gradient(ellipse at 50% 100%, rgba(12, 42, 32, 0.22), transparent 38rem);
+  }
+
   .christmas-season {
     background:
-      radial-gradient(ellipse at 76% 45%, rgba(220, 38, 38, 0.14), transparent 36rem),
-      radial-gradient(ellipse at 8% 88%, rgba(22, 163, 74, 0.12), transparent 30rem),
-      radial-gradient(ellipse at 50% 10%, rgba(251, 191, 36, 0.07), transparent 28rem),
+      radial-gradient(ellipse at 76% 42%, rgba(185, 28, 28, 0.16), transparent 34rem),
+      radial-gradient(ellipse at 10% 88%, rgba(18, 64, 48, 0.22), transparent 30rem),
+      radial-gradient(ellipse at 42% 6%, rgba(212, 175, 55, 0.08), transparent 26rem),
       #0b0d10;
   }
 
@@ -114,59 +121,130 @@
     pointer-events: none;
   }
 
-  /* Snowfall animation */
+  .christmas-snowfall {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
   .snowflake {
+    position: absolute;
+    top: -28px;
     animation: christmas-snowfall linear infinite;
     pointer-events: none;
+    will-change: transform, opacity;
   }
 
   @keyframes christmas-snowfall {
     0% {
-      transform: translateY(-10px) translateX(0);
+      transform: translate3d(0, -4vh, 0) rotate(0deg);
       opacity: 0;
     }
-    10% {
-      opacity: 0.9;
+    8% {
+      opacity: 1;
     }
-    90% {
-      opacity: 0.85;
+    88% {
+      opacity: 0.75;
     }
     100% {
-      transform: translateY(105vh) translateX(var(--drift, 25px));
-      opacity: 0.15;
+      transform: translate3d(var(--drift, 28px), 108vh, 0) rotate(var(--spin, 210deg));
+      opacity: 0;
     }
   }
 
-  /* Christmas Fairy Lights Twinkling */
+  .christmas-atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .christmas-vignette {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 42%, transparent 42%, rgba(6, 8, 10, 0.38) 100%),
+      linear-gradient(180deg, rgba(8, 10, 12, 0.18), transparent 18%, transparent 78%, rgba(8, 12, 10, 0.28));
+  }
+
+  .christmas-frost-edge {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 7rem;
+    background:
+      linear-gradient(180deg, rgba(255, 252, 245, 0.055), transparent 72%),
+      radial-gradient(ellipse at 12% 0%, rgba(255, 255, 255, 0.07), transparent 18rem),
+      radial-gradient(ellipse at 88% 0%, rgba(212, 175, 55, 0.06), transparent 16rem);
+  }
+
+  .christmas-lights-wire {
+    position: relative;
+    width: 100%;
+    height: 2.35rem;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .christmas-bulb-wrap {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-50%, -10%);
+  }
+
+  .christmas-bulb-socket {
+    width: 0.28rem;
+    height: 0.28rem;
+    border-radius: 1px;
+    background: linear-gradient(180deg, #8a7340, #3f3318);
+  }
+
+  .christmas-bulb {
+    display: block;
+    width: 0.52rem;
+    height: 0.78rem;
+    border-radius: 50% 50% 45% 45%;
+  }
+
+  @media (min-width: 640px) {
+    .christmas-bulb {
+      width: 0.62rem;
+      height: 0.9rem;
+    }
+  }
+
   .bulb-twinkle-1 {
-    animation: christmas-bulb-1 1.6s ease-in-out infinite alternate;
+    animation: christmas-bulb-1 2.4s ease-in-out infinite;
   }
 
   .bulb-twinkle-2 {
-    animation: christmas-bulb-2 2.1s ease-in-out infinite alternate;
+    animation: christmas-bulb-2 2.9s ease-in-out infinite;
   }
 
   .bulb-twinkle-3 {
-    animation: christmas-bulb-3 1.8s ease-in-out infinite alternate;
+    animation: christmas-bulb-3 3.3s ease-in-out infinite;
   }
 
   @keyframes christmas-bulb-1 {
-    0%, 100% { opacity: 1; filter: brightness(1.25); }
-    50% { opacity: 0.35; filter: brightness(0.7); }
+    0%, 100% { opacity: 1; filter: brightness(1.15); }
+    50% { opacity: 0.55; filter: brightness(0.82); }
   }
 
   @keyframes christmas-bulb-2 {
-    0%, 100% { opacity: 0.4; filter: brightness(0.75); }
-    50% { opacity: 1; filter: brightness(1.3); }
+    0%, 100% { opacity: 0.5; filter: brightness(0.8); }
+    50% { opacity: 1; filter: brightness(1.22); }
   }
 
   @keyframes christmas-bulb-3 {
-    0%, 100% { opacity: 0.9; filter: brightness(1.15); }
-    35% { opacity: 0.3; filter: brightness(0.6); }
-    70% { opacity: 1; filter: brightness(1.35); }
+    0%, 100% { opacity: 0.85; filter: brightness(1.05); }
+    40% { opacity: 0.4; filter: brightness(0.7); }
+    70% { opacity: 1; filter: brightness(1.28); }
   }
 
-  /* Hanging Christmas Bauble Swing */
   .bauble-swing {
     animation: christmas-bauble-swing 5.2s ease-in-out infinite alternate;
   }
@@ -181,7 +259,6 @@
     animation-duration: 2s;
   }
 
-  /* Santa Hat Bob */
   .santa-hat {
     animation: christmas-santa-bob 4s ease-in-out infinite alternate;
   }
@@ -191,30 +268,85 @@
     50% { transform: rotate(3deg) translateY(-2px); }
   }
 
-  /* Christmas Hero Art & Glows */
+  .christmas-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(212, 175, 55, 0.38);
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.14), rgba(127, 29, 29, 0.18));
+    color: #f3e0a8;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03), 0 8px 24px rgba(0, 0, 0, 0.22), 0 0 18px rgba(212, 175, 55, 0.12);
+    backdrop-filter: blur(10px);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .christmas-gold-rule {
+    display: inline-block;
+    width: 4.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.35);
+  }
+
+  .christmas-site .glass:hover {
+    border-color: rgba(212, 175, 55, 0.22);
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.26), 0 0 24px rgba(212, 175, 55, 0.06), 0 0 22px rgba(220, 38, 38, 0.05);
+  }
+
   .christmas-season .hero-art-frame {
-    border-color: rgba(220, 38, 38, 0.3);
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55), 0 0 45px rgba(220, 38, 38, 0.16), 0 0 0 8px rgba(255, 255, 255, 0.015);
+    border-color: rgba(212, 175, 55, 0.28);
+    box-shadow:
+      0 40px 100px rgba(0, 0, 0, 0.55),
+      0 0 42px rgba(185, 28, 28, 0.16),
+      0 0 0 1px rgba(212, 175, 55, 0.12),
+      0 0 0 8px rgba(255, 255, 255, 0.015);
   }
 
   .christmas-season .hero-orbit {
-    border-color: rgba(220, 38, 38, 0.25);
-    box-shadow: 0 0 35px rgba(220, 38, 38, 0.1), inset 0 0 35px rgba(22, 163, 74, 0.08);
+    border-color: rgba(212, 175, 55, 0.22);
+    box-shadow: 0 0 35px rgba(185, 28, 28, 0.1), inset 0 0 35px rgba(18, 64, 48, 0.12);
   }
 
   .christmas-season .hero-orbit::before {
-    background: #ef4444;
-    box-shadow: 0 0 12px rgba(239, 68, 68, 0.9), 0 0 30px rgba(220, 38, 38, 0.8);
+    background: #e8c547;
+    box-shadow: 0 0 12px rgba(232, 197, 71, 0.95), 0 0 28px rgba(220, 38, 38, 0.55);
+  }
+
+  .christmas-season .hero-heading {
+    text-shadow: 0 4px 34px rgba(0, 0, 0, 0.32), 0 0 42px rgba(212, 175, 55, 0.08);
+  }
+
+  .christmas-season .hero-art-caption-mark {
+    color: #f6e7b8;
+    text-shadow: 0 6px 35px rgba(0, 0, 0, 0.55), 0 0 24px rgba(212, 175, 55, 0.25);
   }
 
   .christmas-site .neon-cta {
     background-color: #dc2626;
-    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4), 0 0 18px rgba(239, 68, 68, 0.25);
+    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4), 0 0 18px rgba(212, 175, 55, 0.14);
   }
 
   .christmas-site .neon-cta:hover {
     background-color: #ef4444;
-    box-shadow: 0 10px 28px rgba(220, 38, 38, 0.52), 0 0 28px rgba(239, 68, 68, 0.4);
+    box-shadow: 0 10px 28px rgba(220, 38, 38, 0.52), 0 0 26px rgba(232, 197, 71, 0.22);
+  }
+
+  .christmas-site .brand-wordmark-usa {
+    color: #f0d78c;
+    text-shadow: 0 1px 10px rgba(212, 175, 55, 0.35);
+  }
+
+  .christmas-site .brand-wordmark::after {
+    background: linear-gradient(90deg, transparent, #d4af37 18%, #f8fafc 48%, #ef4444 82%, transparent);
+  }
+
+  .christmas-site .nav-link-glow {
+    background: linear-gradient(90deg, #d4af37, #f8fafc 48%, #ef4444);
   }
 
   .hero-scroll-cue {
@@ -810,6 +942,15 @@
 
     .brand-wordmark::after {
       animation: none;
+    }
+
+    .christmas-snowfall,
+    .christmas-lights-wire .christmas-bulb {
+      animation: none !important;
+    }
+
+    .christmas-snowfall {
+      display: none;
     }
 
     .glass,

@@ -1,17 +1,13 @@
 import React from 'react';
 import { Facebook, Instagram } from 'lucide-react';
 import BrandLogo from '../ui/BrandLogo';
-import { ChristmasLights, ChristmasBauble } from '../ui/ChristmasDecor';
+import { ChristmasLights } from '../ui/ChristmasDecor';
 
 const Footer = () => {
   return (
     <footer className="bg-concept-dark py-16 relative z-10 overflow-hidden">
-      {/* Animated Gradient Top Border */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-concept-red via-concept-blue to-concept-red bg-[length:200%_100%] animate-gradient-x"></div>
-
-      {/* Christmas Fairy Lights across Footer Top */}
-      <ChristmasLights className="absolute top-0 inset-x-0 opacity-70" count={24} />
-      <ChristmasBauble color="gold" size="sm" threadLength={18} className="hidden md:block absolute top-0 left-12 z-20" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-300/70 to-transparent"></div>
+      <ChristmasLights className="absolute top-0 inset-x-0 opacity-80" count={20} />
 
       {/* Massive CONCEPT Watermark */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[18rem] md:text-[28rem] font-black tracking-widest text-white/[0.015] font-heading leading-none select-none pointer-events-none whitespace-nowrap" aria-hidden="true">
@@ -85,10 +81,8 @@ const Footer = () => {
           <p className="text-slate-500 text-sm font-light">
             &copy; {new Date().getFullYear()} CONCEPT - Samochody z USA. Wszystkie prawa zastrzeżone.
           </p>
-          <p className="text-emerald-400/90 text-xs font-light tracking-wide flex items-center justify-center gap-1.5 select-none">
-            <span>🎅</span>
-            <span>Wesołych Świąt i Szczęśliwego Nowego Roku od zespołu CONCEPT USA!</span>
-            <span>🎄</span>
+          <p className="text-amber-200/80 text-xs font-light tracking-[0.12em] uppercase">
+            Wesołych Świąt od zespołu CONCEPT
           </p>
           <p className="text-slate-600 text-xs font-light tracking-wide order-first md:order-last">
             built by <a href="https://github.com/Kobeep" target="_blank" rel="noopener noreferrer" className="text-concept-blue hover:text-blue-400 font-medium ml-1">Kobeep</a> (Jakub Pospieszny)

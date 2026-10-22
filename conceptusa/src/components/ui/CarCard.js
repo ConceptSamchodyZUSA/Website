@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Calendar, Gauge, Fuel, Zap } from 'lucide-react';
-import { SnowCap } from './ChristmasDecor';
 
 const CarCard = ({
   car,
@@ -18,7 +17,7 @@ const CarCard = ({
       role="button"
       tabIndex={0}
       aria-label={`Zobacz szczegóły: ${car.brand} ${car.model}`}
-      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70 text-left shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:border-red-500/40 hover:shadow-[0_10px_30px_rgba(220,38,38,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-concept-red"
+      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70 text-left shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:border-amber-300/35 hover:shadow-[0_12px_32px_rgba(212,175,55,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-concept-red"
       onClick={() => openCarModal(car)}
       onKeyDown={(event) => {
         if (event.key === 'Enter' || event.key === ' ') {
@@ -28,10 +27,7 @@ const CarCard = ({
       }}
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
-        {/* Frosted Snow Cap on top of car image */}
-        <SnowCap />
-
-        <img
+        <img>
           src={mainImage}
           alt={`${car.brand} ${car.model}`}
           className={`h-full w-full object-cover transition duration-500 group-hover:scale-[1.04] ${loadedImageSrc !== mainImage ? 'blur-sm grayscale' : ''
@@ -51,7 +47,7 @@ const CarCard = ({
           ? 'border-emerald-400/30 bg-emerald-950/80 text-emerald-200 shadow-[0_0_12px_rgba(34,197,94,0.2)]'
           : 'border-white/15 bg-slate-900/75 text-slate-300'
           }`}>
-          {car.status === 'available' ? '🎁 Dostępny' : 'Sprzedany'}
+          {car.status === 'available' ? 'Dostępny' : 'Sprzedany'}
         </div>
       </div>
 

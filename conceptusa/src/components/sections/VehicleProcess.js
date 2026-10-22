@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { GoldRule } from '../ui/ChristmasDecor';
 
 const VehicleProcess = ({ isVisible }) => {
   const [processType, setProcessType] = useState('ready');
@@ -13,6 +14,9 @@ const VehicleProcess = ({ isVisible }) => {
       <div className="absolute bottom-1/4 -left-48 w-[500px] h-[500px] bg-concept-blue/10 rounded-full mix-blend-screen filter blur-[120px] opacity-50 pointer-events-none animate-pulse-slow" style={{ animationDelay: '1.5s' }}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="mb-6 flex justify-center">
+          <GoldRule />
+        </div>
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 font-heading">
           Jak to <span className="text-concept-blue">działa</span>?
         </h2>
