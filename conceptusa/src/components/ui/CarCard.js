@@ -27,7 +27,7 @@ const CarCard = ({
       }}
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
-        <img>
+        <img
           src={mainImage}
           alt={`${car.brand} ${car.model}`}
           className={`h-full w-full object-cover transition duration-500 group-hover:scale-[1.04] ${loadedImageSrc !== mainImage ? 'blur-sm grayscale' : ''
